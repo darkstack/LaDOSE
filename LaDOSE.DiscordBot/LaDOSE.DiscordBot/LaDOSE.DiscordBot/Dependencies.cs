@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using DSharpPlus.Interactivity;
+using LaDOSE.DiscordBot.Service;
 
 namespace LaDOSE.DiscordBot
 {
@@ -7,5 +8,6 @@ namespace LaDOSE.DiscordBot
     {
         internal InteractivityModule Interactivity { get; set; }
         internal CancellationTokenSource Cts { get; set; }
+        public ChallongeService ChallongeService { get; set; }
     }
 }

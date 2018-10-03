@@ -20,6 +20,14 @@ namespace LaDOSE.DiscordBot.Command
                 await ctx.RespondAsync("Resultat");
      
             }
+
+            [Command("last")]
+            public async Task LastAsync(CommandContext ctx)
+            {
+                var tournament = await dep.ChallongeService.GetLastTournament();
+                await ctx.RespondAsync($"Dernier tournois: {tournament}");
+
+            }
         }
     }
 }

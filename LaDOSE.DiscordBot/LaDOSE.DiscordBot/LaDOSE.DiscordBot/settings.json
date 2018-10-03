@@ -1,5 +1,8 @@
 ﻿{
   "Discord": {
-    "Token" :  "APITOKEN Here" 
-  } 
+    "Token": "DISCORD TOKEN"
+  },
+  "Challonge": {
+    "Token": "CHALLONGE API TOKEN"
+  }
 }

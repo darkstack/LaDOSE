@@ -4,7 +4,7 @@ using DSharpPlus.CommandsNext.Attributes;
 
 namespace LaDOSE.DiscordBot.Command
 {
-    public partial class Result
+    public class Result
     {
 
         internal class Twitch

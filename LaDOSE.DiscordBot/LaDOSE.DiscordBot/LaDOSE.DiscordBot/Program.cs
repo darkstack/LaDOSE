@@ -8,6 +8,7 @@ using DSharpPlus.Interactivity;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.EventArgs;
 using LaDOSE.DiscordBot.Command;
+using LaDOSE.DiscordBot.Service;
 using Microsoft.Extensions.Configuration;
 
 namespace LaDOSE.DiscordBot
@@ -15,7 +16,6 @@ namespace LaDOSE.DiscordBot
     class Program
     {
         static DiscordClient discord;
-        static InteractivityModule _interactivity;
 
         static void Main(string[] args)
         {
@@ -29,6 +29,7 @@ namespace LaDOSE.DiscordBot
                 .AddJsonFile("settings.json", optional: true, reloadOnChange: true).Build();
 
             var discordToken = builder["Discord:Token"].ToString();
+            var challongeToken = builder["Challonge:Token"].ToString();
 
 
             Console.WriteLine($"LaDOSE.Net Discord Bot");
@@ -40,22 +41,18 @@ namespace LaDOSE.DiscordBot
                 TokenType = TokenType.Bot
             });
 
-            var _interactivity = discord.UseInteractivity(new InteractivityConfiguration()
-            {
-                PaginationBehaviour = TimeoutBehaviour.Delete,
-                PaginationTimeout = TimeSpan.FromSeconds(30),
-                Timeout = TimeSpan.FromSeconds(30)
-            });
 
-            var _cts = new CancellationTokenSource();
+            var challongeService = new ChallongeService(challongeToken);
+            var cts = new CancellationTokenSource();
             DependencyCollection dep = null;
 
             using (var d = new DependencyCollectionBuilder())
             {
                 d.AddInstance(new Dependencies()
                 {
-                    Interactivity = _interactivity,
-                    Cts = _cts
+                 
+                    Cts = cts,
+                    ChallongeService = challongeService
                 });
                 dep = d.Build();
             }
@@ -89,7 +86,7 @@ namespace LaDOSE.DiscordBot
                 await e.Guild.GetDefaultChannel().SendMessageAsync($"Bonjour {e.Member.DisplayName}!");
             };
             await discord.ConnectAsync();
-            while (!_cts.IsCancellationRequested)
+            while (!cts.IsCancellationRequested)
             {
                 await Task.Delay(200);
             }
