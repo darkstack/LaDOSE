@@ -39,8 +39,8 @@ namespace LaDOSE.DiscordBot
 
             discord.MessageCreated += async e =>
             {
-                if (e.Message.Content.ToLower().StartsWith("ping"))
-                    await e.Message.RespondAsync("pong!");
+                if (e.Message.Content.ToLower().Equals("!result"))
+                    await e.Message.RespondAsync("Les Résultats du dernier Ranking : XXXX");
             };
 
             await discord.ConnectAsync();
