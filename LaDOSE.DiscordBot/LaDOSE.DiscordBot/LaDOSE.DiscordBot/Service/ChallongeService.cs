@@ -13,34 +13,56 @@ namespace LaDOSE.DiscordBot.Service
 {
     public class ChallongeService
     {
+        private ChallongeConfig Config;
         public string ApiKey { get; set; }
+
+        public ChallongeHTTPClientAPICaller ApiCaller { get; set; }
+
+        public string DernierTournois { get; set; }
 
 
         public ChallongeService(string apiKey)
         {
             this.ApiKey = apiKey;
-            
+            this.Config = new ChallongeConfig(this.ApiKey);
+            this.ApiCaller = new ChallongeHTTPClientAPICaller(Config);
+            DernierTournois = "Aucun tournois.";
         }
 
-        public async Task<String> GetLastTournament()
+
+        public async Task<Boolean> GetLastTournament()
         {
-            ChallongeConfig config = new ChallongeConfig(this.ApiKey);
-            var caller = new ChallongeHTTPClientAPICaller(config);
-            var tournaments = new Tournaments(caller);
+            try
+            {
+
+     
             List<TournamentResult> tournamentResultList = await new TournamentsQuery()
                 {
                     state = TournamentState.Ended
                 }
-                .call(caller);
-            List<StartedTournament> tournamentList = new List<StartedTournament>();
-            foreach (TournamentResult result in tournamentResultList)
+                .call(this.ApiCaller);
+
+
+            var lastDate = tournamentResultList.Max(e => e.completed_at);
+            var lastRankingDate = new DateTime(lastDate.Year, lastDate.Month, lastDate.Day);
+            var lastTournament = tournamentResultList.Where(e => e.completed_at > lastRankingDate).ToList();
+            string returnValue = "Les derniers tournois : \n";
+            foreach (var tournamentResult in lastTournament)
             {
-                tournamentList.Add(new TournamentObject(result, caller));
+                returnValue += $"{tournamentResult.name} : <https://challonge.com/{tournamentResult.url}> \n";
             }
 
-            var startedTournament = tournamentList.Last();
-
-            return startedTournament.ToString();
+            DernierTournois = returnValue;
+            return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public string GetLastTournamentMessage()
+        {
+            return DernierTournois;
         }
     }
 }
