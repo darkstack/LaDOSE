@@ -4,18 +4,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using LaDOSE.Api.Context;
 using LaDOSE.Entity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LaDOSE.Api.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class ConfigController : ControllerBase
+    public class GameController : ControllerBase
     {
 
         private readonly LaDOSEDbContext _db;
 
-        public ConfigController(LaDOSEDbContext db)
+        public GameController(LaDOSEDbContext db)
         {
             _db = db;
         }
@@ -27,12 +29,14 @@ namespace LaDOSE.Api.Controllers
                 return _db.Game.ToList();
            
         }
-
+  
         // GET api/Config/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public Game Get(int id)
         {
-            return "value";
+            return _db.Game.FirstOrDefault(e=>e.Id==id);
         }
+ 
+      
     }
 }
