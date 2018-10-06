@@ -22,21 +22,22 @@ namespace LaDOSE.Api
 
             config = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appSettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .Build();
-            var certificateSettings = config.GetSection("certificateSettings");
-            string certificateFileName = certificateSettings.GetValue<string>("filename");
-            string certificatePassword = certificateSettings.GetValue<string>("password");
+            //var certificateSettings = config.GetSection("CertificateSettings");
+            //string certificateFileName = certificateSettings.GetValue<string>("filename");
+            //string certificatePassword = certificateSettings.GetValue<string>("password");
 
-            X509Certificate2 certificate = new X509Certificate2(certificateFileName, certificatePassword);
-            CreateWebHostBuilder(certificate,args).Build().Run();
+            //X509Certificate2 certificate = new X509Certificate2(certificateFileName, certificatePassword);
+            CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(X509Certificate2 certificate, string[] args)
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
         {
             return WebHost.CreateDefaultBuilder(args)
+                .UseContentRoot(Directory.GetCurrentDirectory())
             .UseConfiguration(config)
-                .UseKestrel(options => options.Listen(IPAddress.Loopback,int.Parse(config["Port"]),config=> config.UseHttps(certificate)))
+                .UseKestrel(options => options.Listen(IPAddress.Loopback,int.Parse(config["Port"])))
                     .UseStartup<Startup>();
         }
     }

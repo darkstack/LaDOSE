@@ -35,10 +35,14 @@ namespace LaDOSE.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var MySqlServer = this.Configuration["MySql:Server"];
+            var MySqlDatabase = this.Configuration["MySql:Database"];
+            var MySqlUser = this.Configuration["MySql:User"];
+            var MySqlPassword = this.Configuration["MySql:Password"];
             services.AddCors();
             services.AddMvc();
             services.AddDbContextPool<LaDOSEDbContext>( // replace "YourDbContext" with the class name of your DbContext
-                options => options.UseMySql("Server=localhost;Database=ladose;User=root;Password=;", // replace with your Connection String
+                options => options.UseMySql($"Server={MySqlServer};Database={MySqlDatabase};{MySqlUser}=root;Password={MySqlPassword};", // replace with your Connection String
                     mysqlOptions =>
                     {
                         mysqlOptions.ServerVersion(new Version(10, 1, 16), ServerType.MariaDb); // replace with your Server Version and Type
