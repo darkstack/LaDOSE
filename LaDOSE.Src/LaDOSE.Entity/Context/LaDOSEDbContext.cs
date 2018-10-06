@@ -1,13 +1,12 @@
-﻿
-using System;
-using LaDOSE.Entity;
-using Microsoft.EntityFrameworkCore;
-namespace LaDOSE.Api.Context
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace LaDOSE.Entity.Context
 {
     public class LaDOSEDbContext : DbContext
     {
         public DbSet<Game> Game { get; set; }
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
+        public DbSet<Season> Season { get; set; }
 
         public LaDOSEDbContext(DbContextOptions options) : base(options)
         {
@@ -18,4 +17,6 @@ namespace LaDOSE.Api.Context
             base.OnModelCreating(modelBuilder);
         }
     }
+
+
 }

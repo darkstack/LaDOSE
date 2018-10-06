@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using LaDOSE.Api.Context;
-using LaDOSE.Api.Services;
+using LaDOSE.Business.Interface;
+using LaDOSE.Business.Service;
 using LaDOSE.Entity;
+using LaDOSE.Entity.Context;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -18,7 +19,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using    Pomelo.EntityFrameworkCore.MySql;
+using Pomelo.EntityFrameworkCore.MySql;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 namespace LaDOSE.Api
@@ -45,6 +46,7 @@ namespace LaDOSE.Api
                 options => options.UseMySql($"Server={MySqlServer};Database={MySqlDatabase};User={MySqlUser};Password={MySqlPassword};", // replace with your Connection String
                     mysqlOptions =>
                     {
+                        
                         mysqlOptions.ServerVersion(new Version(10, 1, 16), ServerType.MariaDb); // replace with your Server Version and Type
                     }
                 ));

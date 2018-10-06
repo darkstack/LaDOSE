@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>LaDOSE.Business</AssemblyName>
+    <RootNamespace>LaDOSE.Business</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LaDOSE.Entity\LaDOSE.Entity.csproj" />
+  </ItemGroup>
+
+</Project>

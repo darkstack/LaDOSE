@@ -5,7 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using LaDOSE.Api.Services;
+using LaDOSE.Business.Interface;
 using LaDOSE.Entity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -32,24 +32,9 @@ namespace LaDOSE.Api.Controllers
             _configuration = configuration;
         }
 
-        [AllowAnonymous]
-        [HttpGet("test")]
-        public String Test()
-        {
-            return "DEAD";
-        }
-
-
-       
-        [HttpGet("test2")]
-        public String Test2()
-        {
-            return "DEAD";
-        }
-
 
         [AllowAnonymous]
-        [HttpPost("authenticate")]
+        [HttpPost("auth")]
         public IActionResult Authenticate([FromBody]ApplicationUser userDto)
         {
             var user = _userService.Authenticate(userDto.Username, userDto.Password);
@@ -82,25 +67,25 @@ namespace LaDOSE.Api.Controllers
             });
         }
 
-        [AllowAnonymous]
-        [HttpPost("register")]
-        public IActionResult Register([FromBody]ApplicationUser userDto)
-        {
-            // map dto to entity
+        //[AllowAnonymous]
+        //[HttpPost("register")]
+        //public IActionResult Register([FromBody]ApplicationUser userDto)
+        //{
+        //    // map dto to entity
      
 
-            try
-            {
-                // save 
-                _userService.Create(userDto, userDto.Password);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                // return error message if there was an exception
-                return BadRequest(new { message = ex.Message });
-            }
-        }
+        //    try
+        //    {
+        //        // save 
+        //        _userService.Create(userDto, userDto.Password);
+        //        return Ok();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // return error message if there was an exception
+        //        return BadRequest(new { message = ex.Message });
+        //    }
+        //}
 
 
     }

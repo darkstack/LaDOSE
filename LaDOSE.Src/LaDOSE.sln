@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LaDOSE.Api", "LaDOSE.Api\La
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LaDOSE.Entity", "LaDOSE.Entity\LaDOSE.Entity.csproj", "{B32A4AD5-9A4B-4D12-AAD5-55541F170E2A}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LaDOSE.Business", "LaDOSE.Service\LaDOSE.Business.csproj", "{952DE665-70B5-492B-BE91-D0111E3BD907}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B32A4AD5-9A4B-4D12-AAD5-55541F170E2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B32A4AD5-9A4B-4D12-AAD5-55541F170E2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B32A4AD5-9A4B-4D12-AAD5-55541F170E2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{952DE665-70B5-492B-BE91-D0111E3BD907}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{952DE665-70B5-492B-BE91-D0111E3BD907}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{952DE665-70B5-492B-BE91-D0111E3BD907}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{952DE665-70B5-492B-BE91-D0111E3BD907}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,21 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using LaDOSE.Api.Context;
+using LaDOSE.Business.Interface;
 using LaDOSE.Entity;
+using LaDOSE.Entity.Context;
 
-namespace LaDOSE.Api.Services
+namespace LaDOSE.Business.Service
 {
-    public interface IUserService
-    {
-        ApplicationUser Authenticate(string username, string password);
-        IEnumerable<ApplicationUser> GetAll();
-        ApplicationUser GetById(int id);
-        ApplicationUser Create(ApplicationUser user, string password);
-        void Update(ApplicationUser user, string password = null);
-        void Delete(int id);
-    }
-
     public class UserService : IUserService
     {
         private LaDOSEDbContext _context;

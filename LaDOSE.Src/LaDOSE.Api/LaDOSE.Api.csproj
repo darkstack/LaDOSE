@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Services\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
@@ -15,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LaDOSE.Entity\LaDOSE.Entity.csproj" />
+    <ProjectReference Include="..\LaDOSE.Service\LaDOSE.Business.csproj" />
   </ItemGroup>
 
   <ItemGroup>
