@@ -26,12 +26,12 @@ namespace LaDOSE.Entity.Context
             modelBuilder.Entity<SeasonGame>()
                 .HasOne(pt => pt.Season)
                 .WithMany(p => p.Games)
-                .HasForeignKey(pt => pt.GameId);
+                .HasForeignKey(pt => pt.SeasonId);
 
             modelBuilder.Entity<SeasonGame>()
                 .HasOne(pt => pt.Game)
                 .WithMany(p => p.Seasons)
-                .HasForeignKey(pt => pt.SeasonId);
+                .HasForeignKey(pt => pt.GameId);
 
         }
     }
