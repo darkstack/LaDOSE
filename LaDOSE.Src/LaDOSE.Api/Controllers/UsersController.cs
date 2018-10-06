@@ -9,25 +9,27 @@ using LaDOSE.Api.Services;
 using LaDOSE.Entity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
 namespace LaDOSE.Api.Controllers
 {
     [Authorize]
-    [ApiController]
+    [Produces("application/json")]
     [Route("[controller]")]
     public class UsersController : ControllerBase
     {
         private IUserService _userService;
-
+        private readonly IConfiguration _configuration;
 
         public UsersController(
-            IUserService userService
+            IUserService userService,
+            IConfiguration configuration
         )
         {
             _userService = userService;
-           
+            _configuration = configuration;
         }
 
         [AllowAnonymous]
@@ -56,7 +58,7 @@ namespace LaDOSE.Api.Controllers
                 return BadRequest(new { message = "Username or password is incorrect" });
 
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes("this is my custom Secret key for authnetication");
+            var key = Encoding.ASCII.GetBytes(this._configuration["JWTTokenSecret"]);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]

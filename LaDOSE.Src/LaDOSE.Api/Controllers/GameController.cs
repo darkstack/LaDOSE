@@ -11,7 +11,7 @@ namespace LaDOSE.Api.Controllers
 {
     [Authorize]
     [Route("api/[controller]")]
-    [ApiController]
+    [Produces("application/json")]
     public class GameController : ControllerBase
     {
 
@@ -23,7 +23,7 @@ namespace LaDOSE.Api.Controllers
         }
         // GET api/Config
         [HttpGet]
-        public ActionResult<IEnumerable<Game>> Get()
+        public List<Game> Get()
         {
    
                 return _db.Game.ToList();

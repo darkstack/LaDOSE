@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LaDOSE.DiscordBot", "LaDOSE
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LaDOSE.Api", "LaDOSE.Api\LaDOSE.Api.csproj", "{4D7ED4CC-F78F-4860-B8CE-DA01DCACCBB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaDOSE.Entity", "LaDOSE.Entity\LaDOSE.Entity.csproj", "{B32A4AD5-9A4B-4D12-AAD5-55541F170E2A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LaDOSE.Entity", "LaDOSE.Entity\LaDOSE.Entity.csproj", "{B32A4AD5-9A4B-4D12-AAD5-55541F170E2A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

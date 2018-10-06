@@ -24,6 +24,7 @@ namespace LaDOSE.DiscordBot
 
         static async Task MainAsync(string[] args)
         {
+            Console.WriteLine(Directory.GetCurrentDirectory());
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("settings.json", optional: true, reloadOnChange: true).Build();
