@@ -87,6 +87,7 @@ namespace LaDOSE.Api
 
             // configure DI for application services
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IGameService, GameService>();
         }
    
         

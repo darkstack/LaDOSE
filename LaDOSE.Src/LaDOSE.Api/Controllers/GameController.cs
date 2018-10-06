@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LaDOSE.Business.Interface;
 using LaDOSE.Entity;
 using LaDOSE.Entity.Context;
 using Microsoft.AspNetCore.Authorization;
@@ -15,28 +16,33 @@ namespace LaDOSE.Api.Controllers
     public class GameController : ControllerBase
     {
 
-        private readonly LaDOSEDbContext _db;
+        private readonly IGameService _gameService;
 
-        public GameController(LaDOSEDbContext db)
+        public GameController(IGameService gameService)
         {
-            _db = db;
+            _gameService = gameService;
         }
-        // GET api/Config
+        // GET api/Game
         [HttpGet]
         public List<Game> Get()
         {
-   
-                return _db.Game.ToList();
-           
+
+            return _gameService.GetAll().ToList();
+
         }
   
-        // GET api/Config/5
+        // GET api/Game/5
         [HttpGet("{id}")]
         public Game Get(int id)
         {
-            return _db.Game.FirstOrDefault(e=>e.Id==id);
+            return _gameService.GetById(id);
         }
- 
-      
+
+        [HttpPut()]
+        public bool Put(Game game)
+        {
+            return _gameService.Update(game);
+        }
+
     }
 }
