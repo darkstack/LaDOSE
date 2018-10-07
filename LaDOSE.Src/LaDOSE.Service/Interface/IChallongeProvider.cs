@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using ChallongeCSharpDriver.Core.Results;
 
 namespace LaDOSE.Business.Interface
 {
@@ -7,6 +8,6 @@ namespace LaDOSE.Business.Interface
     {
         Task<Boolean> GetLastTournament();
         string GetLastTournamentMessage();
-        Task<Tuple<int, string>> CreateTournament(string name, string url);
+        Task<TournamentResult> CreateTournament(string name, string url);
     }
 }

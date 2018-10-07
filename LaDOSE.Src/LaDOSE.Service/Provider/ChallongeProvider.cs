@@ -28,10 +28,10 @@ namespace LaDOSE.Business.Provider
             DernierTournois = "Aucun tournois.";
         }
 
-        public async Task<Tuple<int, string>> CreateTournament(string name, string url)
+        public async Task<TournamentResult> CreateTournament(string name, string url)
         {
-            var p = await new CreateTournamentQuery(name, TournamentType.Double_Elimination, url).call(ApiCaller);
-            return new Tuple<int, string>(p.id, p.url);
+            var result = await new CreateTournamentQuery(name, TournamentType.Double_Elimination, url).call(ApiCaller);
+            return result;
 
 
         }

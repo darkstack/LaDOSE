@@ -44,9 +44,15 @@ namespace LaDOSE.Business.Service
                 {
                     var url = $"TestDev{game.Id}{game.Name}";
                     var name = $"[{s}]Ranking {currentEvent.Name}{game.Name}";
-                    _challongeProvider.CreateTournament(name,url);
+                    var tournament = _challongeProvider.CreateTournament(name,url).Result;
+                    var eventGame = currentEvent.Games.FirstOrDefault(e => e.GameId == game.Id);
+                    eventGame.ChallongeId = tournament.id;
+                    eventGame.ChallongeUrl = tournament.url;
+                    _context.Entry(eventGame).State = EntityState.Modified;
+                   
                 }
 
+                _context.SaveChanges();
                 return true;
             }
 

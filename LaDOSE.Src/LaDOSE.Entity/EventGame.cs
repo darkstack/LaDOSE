@@ -8,5 +8,7 @@
         public int GameId { get; set; }
         public Game Game { get; set; }
 
+        public int? ChallongeId { get; set; }
+        public string ChallongeUrl { get; set; }
     }
 }
