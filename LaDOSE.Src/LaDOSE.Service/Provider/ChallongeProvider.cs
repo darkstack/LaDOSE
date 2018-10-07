@@ -6,12 +6,11 @@ using ChallongeCSharpDriver;
 using ChallongeCSharpDriver.Caller;
 using ChallongeCSharpDriver.Core.Queries;
 using ChallongeCSharpDriver.Core.Results;
-using ChallongeCSharpDriver.Main;
-using ChallongeCSharpDriver.Main.Objects;
+using LaDOSE.Business.Interface;
 
-namespace LaDOSE.DiscordBot.Service
+namespace LaDOSE.Business.Provider
 {
-    public class ChallongeService
+    public class ChallongeProvider : IChallongeProvider
     {
         private ChallongeConfig Config;
         public string ApiKey { get; set; }
@@ -21,7 +20,7 @@ namespace LaDOSE.DiscordBot.Service
         public string DernierTournois { get; set; }
 
 
-        public ChallongeService(string apiKey)
+        public ChallongeProvider(string apiKey)
         {
             this.ApiKey = apiKey;
             this.Config = new ChallongeConfig(this.ApiKey);
@@ -29,6 +28,13 @@ namespace LaDOSE.DiscordBot.Service
             DernierTournois = "Aucun tournois.";
         }
 
+        public async Task<Tuple<int, string>> CreateTournament(string name, string url)
+        {
+            var p = await new CreateTournamentQuery(name, TournamentType.Double_Elimination, url).call(ApiCaller);
+            return new Tuple<int, string>(p.id, p.url);
+
+
+        }
 
         public async Task<Boolean> GetLastTournament()
         {

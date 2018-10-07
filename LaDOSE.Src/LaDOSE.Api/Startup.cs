@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LaDOSE.Business.Interface;
+using LaDOSE.Business.Provider;
 using LaDOSE.Business.Service;
 using LaDOSE.Entity;
 using LaDOSE.Entity.Context;
@@ -40,6 +41,7 @@ namespace LaDOSE.Api
             var MySqlDatabase = this.Configuration["MySql:Database"];
             var MySqlUser = this.Configuration["MySql:User"];
             var MySqlPassword = this.Configuration["MySql:Password"];
+
             services.AddCors();
             services.AddMvc().AddJsonOptions(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddDbContextPool<LaDOSEDbContext>( // replace "YourDbContext" with the class name of your DbContext
@@ -86,11 +88,18 @@ namespace LaDOSE.Api
                 });
 
             // configure DI for application services
+            AddDIConfig(services);
+        }
+
+        private void AddDIConfig(IServiceCollection services)
+        {
+
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IGameService, GameService>();
+            services.AddScoped<IEventService, EventService>();
+            services.AddTransient<IChallongeProvider>(p => new ChallongeProvider(this.Configuration["ApiKey:ChallongeApiKey"]));
         }
-   
-        
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)

@@ -17,7 +17,7 @@ namespace LaDOSE.Business.Service
 
         public override IEnumerable<Game> GetAll()
         {
-            return _context.Game.Include(e => e.Seasons).ToList();
+            return _context.Game.Include(e => e.Seasons).ThenInclude(e=>e.Season).ToList();
         }
 
 
