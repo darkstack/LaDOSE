@@ -7,6 +7,7 @@ namespace LaDOSE.Entity.Context
         public DbSet<Game> Game { get; set; }
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
         public DbSet<Season> Season { get; set; }
+        public DbSet<Event> Event { get; set; }
         //public DbSet<SeasonGame> SeasonGame { get; set; }
 
         public LaDOSEDbContext(DbContextOptions options) : base(options)
@@ -21,7 +22,10 @@ namespace LaDOSE.Entity.Context
             modelBuilder.Entity<SeasonGame>()
                 .HasKey(t => new { t.SeasonId, t.GameId });
 
-
+            modelBuilder.Entity<Event>()
+                .HasOne(s => s.Season)
+                .WithMany(p => p.Event)
+                .HasForeignKey(fk => fk.SeasonId);
 
             modelBuilder.Entity<SeasonGame>()
                 .HasOne(pt => pt.Season)

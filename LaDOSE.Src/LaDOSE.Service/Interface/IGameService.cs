@@ -3,13 +3,8 @@ using LaDOSE.Entity;
 
 namespace LaDOSE.Business.Interface
 {
-    public interface IGameService
+    public interface IGameService : IBaseService<Game>
     {
    
-        IEnumerable<Game> GetAll();
-        Game GetById(int id);
-        Game Create(Game game);
-        bool Update(Game game);
-        void Delete(int id);
     }
 }

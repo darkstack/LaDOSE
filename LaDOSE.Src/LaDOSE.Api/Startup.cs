@@ -41,7 +41,7 @@ namespace LaDOSE.Api
             var MySqlUser = this.Configuration["MySql:User"];
             var MySqlPassword = this.Configuration["MySql:Password"];
             services.AddCors();
-            services.AddMvc();
+            services.AddMvc().AddJsonOptions(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddDbContextPool<LaDOSEDbContext>( // replace "YourDbContext" with the class name of your DbContext
                 options => options.UseMySql($"Server={MySqlServer};Database={MySqlDatabase};User={MySqlUser};Password={MySqlPassword};", // replace with your Connection String
                     mysqlOptions =>

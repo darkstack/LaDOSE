@@ -14,5 +14,7 @@ namespace LaDOSE.Entity
         public DateTime EndDate { get; set; }
 
         public virtual IEnumerable<SeasonGame> Games { get; set; }
+
+        public virtual IEnumerable<Event> Event { get; set; }
     }
 }
