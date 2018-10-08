@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ChallongeCSharpDriver;
 using ChallongeCSharpDriver.Caller;
+using ChallongeCSharpDriver.Core.Objects;
 using ChallongeCSharpDriver.Core.Queries;
 using ChallongeCSharpDriver.Core.Results;
 using LaDOSE.Business.Interface;
@@ -33,6 +34,14 @@ namespace LaDOSE.Business.Provider
             var result = await new CreateTournamentQuery(name, TournamentType.Double_Elimination, url).call(ApiCaller);
             return result;
 
+
+        }
+
+        public async Task<ParticipantResult> AddPlayer(int tournamentId, string userName)
+        {
+            var p = new ParticipantEntry(userName);
+            var result = await new AddParticipantQuery(tournamentId, p).call(ApiCaller);
+            return result;
 
         }
 

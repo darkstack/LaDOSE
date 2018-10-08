@@ -9,5 +9,6 @@ namespace LaDOSE.Business.Interface
         Task<Boolean> GetLastTournament();
         string GetLastTournamentMessage();
         Task<TournamentResult> CreateTournament(string name, string url);
+        Task<ParticipantResult> AddPlayer(int tournamentId, string userName);
     }
 }

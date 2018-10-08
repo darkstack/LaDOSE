@@ -33,10 +33,10 @@ namespace LaDOSE.Api.Controllers
 
         }
 
-        [HttpGet("Generate/{dto}")]
-        public bool GenerateChallonge(int dto)
+        [HttpGet("Generate/{eventId}/{wpEventId}")]
+        public bool GenerateChallonge(int eventId, int wpEventId)
         {
-             return _eventService.CreateChallonge(dto);
+             return _eventService.CreateChallonge(eventId, wpEventId);
             
         }
     }

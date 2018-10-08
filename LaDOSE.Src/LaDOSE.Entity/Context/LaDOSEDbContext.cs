@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using LaDOSE.Entity.Wordpress;
+using Microsoft.EntityFrameworkCore;
 
 namespace LaDOSE.Entity.Context
 {
@@ -8,6 +9,14 @@ namespace LaDOSE.Entity.Context
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
         public DbSet<Season> Season { get; set; }
         public DbSet<Event> Event { get; set; }
+
+        #region WordPress
+        public DbSet<WPUser> WPUser { get; set; }
+        public DbSet<WPEvent> WPEvent { get; set; }
+        public DbSet<WPBooking> WPBooking { get; set; }
+ 
+
+        #endregion
         public DbSet<SeasonGame> SeasonGame { get; set; }
         public DbSet<EventGame> EventGame { get; set; }
 
@@ -20,17 +29,18 @@ namespace LaDOSE.Entity.Context
    
 
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<SeasonGame>()
-                .HasKey(t => new { t.SeasonId, t.GameId });
-            modelBuilder.Entity<EventGame>()
-                .HasKey(t => new { t.EventId, t.GameId });
+            
 
+            
             modelBuilder.Entity<Event>()
                 .HasOne(s => s.Season)
                 .WithMany(p => p.Event)
                 .HasForeignKey(fk => fk.SeasonId);
 
 
+            #region SeasonGame
+            modelBuilder.Entity<SeasonGame>()
+                .HasKey(t => new { t.SeasonId, t.GameId });
 
             modelBuilder.Entity<SeasonGame>()
                 .HasOne(pt => pt.Season)
@@ -41,7 +51,12 @@ namespace LaDOSE.Entity.Context
                 .HasOne(pt => pt.Game)
                 .WithMany(p => p.Seasons)
                 .HasForeignKey(pt => pt.GameId);
+            #endregion
 
+            #region EventGame
+
+            modelBuilder.Entity<EventGame>()
+                .HasKey(t => new { t.EventId, t.GameId });
 
             modelBuilder.Entity<EventGame>()
                 .HasOne(pt => pt.Event)
@@ -52,6 +67,23 @@ namespace LaDOSE.Entity.Context
                 .HasOne(pt => pt.Game)
                 .WithMany(p => p.Events)
                 .HasForeignKey(pt => pt.GameId);
+            #endregion
+
+            #region WordPress WPBooking
+
+            modelBuilder.Entity<WPBooking>()
+                .HasKey(t => new { t.WPEventId, t.WPUserId });
+
+            modelBuilder.Entity<WPBooking>()
+                .HasOne(pt => pt.WPEvent)
+                .WithMany(p => p.WPBookings)
+                .HasForeignKey(pt => pt.WPEventId);
+
+            modelBuilder.Entity<WPBooking>()
+                .HasOne(pt => pt.WPUser)
+                .WithMany(p => p.WPBookings)
+                .HasForeignKey(pt => pt.WPUserId);
+            #endregion
 
         }
     }
