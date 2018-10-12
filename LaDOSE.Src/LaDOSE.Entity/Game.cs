@@ -4,10 +4,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace LaDOSE.Entity
 {
-    public class Game
+    public class Game : Context.Entity
     {
-        [Key]
-        public int Id { get; set; }
         public string Name { get; set; }
         public string ImgUrl { get; set; }
 

@@ -97,6 +97,7 @@ namespace LaDOSE.Api
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IGameService, GameService>();
             services.AddScoped<IEventService, EventService>();
+            services.AddScoped<ISeasonService, SeasonService>();
             services.AddTransient<IChallongeProvider>(p => new ChallongeProvider(this.Configuration["ApiKey:ChallongeApiKey"]));
         }
 

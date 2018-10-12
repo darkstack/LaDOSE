@@ -11,32 +11,17 @@ namespace LaDOSE.Api.Controllers
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
-    public class EventController : Controller
+    public class EventController : GenericController<IEventService, Event>
     {
-        private IEventService _eventService;
-
-        public EventController(IEventService eventService)
+        public EventController(IEventService service) : base(service)
         {
-            _eventService = eventService;
         }
-
-        [HttpPost]
-        public Event Post([FromBody]Event dto)
-        {
-            return _eventService.Create(dto);
-        }
-
-        [HttpGet("{id}")]
-        public Event Get(int id)
-        {
-            return _eventService.GetById(id);
-
-        }
-
+    
+ 
         [HttpGet("Generate/{eventId}/{wpEventId}")]
         public bool GenerateChallonge(int eventId, int wpEventId)
         {
-             return _eventService.CreateChallonge(eventId, wpEventId);
+             return _service.CreateChallonge(eventId, wpEventId);
             
         }
     }

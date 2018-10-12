@@ -13,36 +13,10 @@ namespace LaDOSE.Api.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [Produces("application/json")]
-    public class GameController : ControllerBase
+    public class GameController : GenericController<IGameService, Game>
     {
-
-        private readonly IGameService _gameService;
-
-        public GameController(IGameService gameService)
+        public GameController(IGameService service) : base(service)
         {
-            _gameService = gameService;
         }
-        // GET api/Game
-        [HttpGet]
-        public List<Game> Get()
-        {
-
-            return _gameService.GetAll().ToList();
-
-        }
-  
-        // GET api/Game/5
-        [HttpGet("{id}")]
-        public Game Get(int id)
-        {
-            return _gameService.GetById(id);
-        }
-
-        [HttpPut()]
-        public bool Put(Game game)
-        {
-            return _gameService.Update(game);
-        }
-
     }
 }

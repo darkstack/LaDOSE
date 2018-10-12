@@ -4,10 +4,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace LaDOSE.Entity
 {
-    public class Event
+    public class Event : Context.Entity
     {
-        [Key]
-        public int Id { get; set; }
+        //[Key]
+        //public int Id { get; set; }
         public string Name { get; set; }
         public DateTime Date { get; set; }
         public int SeasonId { get; set; }

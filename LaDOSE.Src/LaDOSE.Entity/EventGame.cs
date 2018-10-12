@@ -1,6 +1,6 @@
 ﻿namespace LaDOSE.Entity
 {
-    public class EventGame
+    public class EventGame 
     {
   
         public int EventId { get; set; }
