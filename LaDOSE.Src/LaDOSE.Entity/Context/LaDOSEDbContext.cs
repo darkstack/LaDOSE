@@ -37,6 +37,7 @@ namespace LaDOSE.Entity.Context
                 .WithMany(p => p.Event)
                 .HasForeignKey(fk => fk.SeasonId);
 
+            
 
             #region SeasonGame
             modelBuilder.Entity<SeasonGame>()

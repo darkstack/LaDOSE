@@ -42,6 +42,7 @@ namespace LaDOSE.Api
             var MySqlUser = this.Configuration["MySql:User"];
             var MySqlPassword = this.Configuration["MySql:Password"];
 
+
             services.AddCors();
             services.AddMvc().AddJsonOptions(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddDbContextPool<LaDOSEDbContext>( // replace "YourDbContext" with the class name of your DbContext
@@ -98,6 +99,7 @@ namespace LaDOSE.Api
             services.AddScoped<IGameService, GameService>();
             services.AddScoped<IEventService, EventService>();
             services.AddScoped<ISeasonService, SeasonService>();
+            services.AddScoped<IUtilService, UtilService>();
             services.AddTransient<IChallongeProvider>(p => new ChallongeProvider(this.Configuration["ApiKey:ChallongeApiKey"]));
         }
 
