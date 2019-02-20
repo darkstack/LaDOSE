@@ -85,9 +85,11 @@ namespace LaDOSE.DiscordBot
             //        await e.Message.RespondAsync("https://www.twitch.tv/LaDOSETV");
             //};
 
-            discord.GuildMemberAdded += async e =>
+            discord.GuildMemberAdded +=  async e =>
             {
-                await e.Guild.GetDefaultChannel().SendMessageAsync($"Bonjour {e.Member.DisplayName}!");
+                Console.WriteLine($"{e.Member.DisplayName} Joined");
+                await Task.Delay(0);
+                //await e.Guild.GetDefaultChannel().SendMessageAsync($"Bonjour!");
             };
             await discord.ConnectAsync();
             while (!cts.IsCancellationRequested)
