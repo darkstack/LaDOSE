@@ -35,7 +35,7 @@ namespace LaDOSE.DiscordBot.Command
                     await ctx.RespondAsync($"invalid id");
                     break;
             }
-            await ctx.RespondAsync($"command : {command}, todo:  {todo} ");
+            //await ctx.RespondAsync($"command : {command}, todo:  {todo} ");
         }
     }
 }
