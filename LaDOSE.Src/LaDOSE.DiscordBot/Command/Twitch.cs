@@ -4,23 +4,19 @@ using DSharpPlus.CommandsNext.Attributes;
 
 namespace LaDOSE.DiscordBot.Command
 {
-    public class Result
+    public class Twitch
     {
+        private readonly Dependencies dep;
 
-        internal class Twitch
+        public Twitch(Dependencies d)
         {
-            Dependencies dep;
-            public Twitch(Dependencies d)
-            {
-                this.dep = d;
-            }
+            dep = d;
+        }
 
-            [Command("twitch")]
-            public async Task TwitchAsync(CommandContext ctx)
-            {
-                await ctx.RespondAsync("https://www.twitch.tv/LaDOSETV");
-     
-            }
+        [Command("twitch")]
+        public async Task TwitchAsync(CommandContext ctx)
+        {
+            await ctx.RespondAsync("https://www.twitch.tv/LaDOSETV");
         }
     }
 }

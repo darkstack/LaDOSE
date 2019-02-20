@@ -4,8 +4,7 @@ using DSharpPlus.CommandsNext.Attributes;
 
 namespace LaDOSE.DiscordBot.Command
 {
-    public partial class Twitch
-    {
+
         internal class Result
         {
             Dependencies dep;
@@ -32,5 +31,5 @@ namespace LaDOSE.DiscordBot.Command
 
             }
         }
-    }
+    
 }

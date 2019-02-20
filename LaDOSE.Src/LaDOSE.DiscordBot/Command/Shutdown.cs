@@ -5,7 +5,7 @@ using DSharpPlus.CommandsNext.Attributes;
 namespace LaDOSE.DiscordBot.Command
 {
     [RequireRolesAttribute("SuperAdmin")]
-    internal class Shutdown
+    public class Shutdown
     {
         private readonly Dependencies dep;
 
@@ -14,7 +14,6 @@ namespace LaDOSE.DiscordBot.Command
             dep = d;
         }
 
-     
 
         [Command("shutdown")]
         public async Task ShutDownAsync(CommandContext ctx)

@@ -44,6 +44,7 @@ namespace LaDOSE.DiscordBot
 
 
             var challongeService = new ChallongeService(challongeToken);
+            var todoService = new TodoService();
             var cts = new CancellationTokenSource();
             DependencyCollection dep = null;
 
@@ -53,7 +54,8 @@ namespace LaDOSE.DiscordBot
                 {
                  
                     Cts = cts,
-                    ChallongeService = challongeService
+                    ChallongeService = challongeService,
+                    TodoService = todoService,
                 });
                 dep = d.Build();
             }
@@ -72,6 +74,7 @@ namespace LaDOSE.DiscordBot
             _cnext.RegisterCommands<Result>();
             _cnext.RegisterCommands<Twitch>();
             _cnext.RegisterCommands<Shutdown>();
+            _cnext.RegisterCommands<Todo>();
 
 
             //discord.MessageCreated += async e =>

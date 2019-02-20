@@ -4,10 +4,12 @@ using LaDOSE.DiscordBot.Service;
 
 namespace LaDOSE.DiscordBot
 {
-    internal class Dependencies
+    public class Dependencies
     {
         internal InteractivityModule Interactivity { get; set; }
         internal CancellationTokenSource Cts { get; set; }
         public ChallongeService ChallongeService { get; set; }
+        public TodoService TodoService { get; set; }
+
     }
 }
