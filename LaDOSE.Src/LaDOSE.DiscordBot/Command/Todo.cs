@@ -14,7 +14,7 @@ namespace LaDOSE.DiscordBot.Command
         }
 
         [Command("todo")]
-        public async Task TwitchAsync(CommandContext ctx, string command,params string[] todo)
+        public async Task TodoAsync(CommandContext ctx, string command,params string[] todo)
         {
             await ctx.TriggerTypingAsync();
             switch (command.ToUpperInvariant())
@@ -34,6 +34,7 @@ namespace LaDOSE.DiscordBot.Command
                     };
                     await ctx.RespondAsync($"invalid id");
                     break;
+
             }
             //await ctx.RespondAsync($"command : {command}, todo:  {todo} ");
         }

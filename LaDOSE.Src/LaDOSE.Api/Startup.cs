@@ -100,6 +100,7 @@ namespace LaDOSE.Api
             services.AddScoped<IEventService, EventService>();
             services.AddScoped<ISeasonService, SeasonService>();
             services.AddScoped<IUtilService, UtilService>();
+            services.AddScoped<IWordPressService, WordPressService>();
             services.AddTransient<IChallongeProvider>(p => new ChallongeProvider(this.Configuration["ApiKey:ChallongeApiKey"]));
         }
 
