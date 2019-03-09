@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Windows;
 using LaDOSE.DTO;
 using RestSharp;
 using RestSharp.Authenticators;
 using RestSharp.Serialization.Json;
+using DataFormat = RestSharp.DataFormat;
 
 namespace LaDOSE.DesktopApp.Services
 {
@@ -14,9 +16,14 @@ namespace LaDOSE.DesktopApp.Services
 
         public RestService()
         {
-            Client = new RestClient("http://localhost:5000/");
+            
+            var appSettings = ConfigurationManager.AppSettings;
+            string url = (string) appSettings["ApiUri"];
+            string user = (string)appSettings["ApiUser"];
+            string password = (string) appSettings["ApiPassword"];
+            Client = new RestClient(url);
             var restRequest = new RestRequest("users/auth", Method.POST);
-            restRequest.AddJsonBody(new { username = "****", password = "*****" });
+            restRequest.AddJsonBody(new { username = user, password = password });
             var response = Client.Post(restRequest);
             if (response.IsSuccessful)
             {
@@ -26,10 +33,42 @@ namespace LaDOSE.DesktopApp.Services
             }
             else
             {
-                throw new Exception("No Service Avaliable");
+                MessageBox.Show("Unable to contact services, i m useless, BYEKTHX","Error",MessageBoxButton.OK,MessageBoxImage.Error);
+                Application.Current.Shutdown(-1);
             }
         }
 
+        #region PostFix
+
+        private T Post<T>(string resource,T entity)
+        {
+            var json = new RestSharp.Serialization.Json.JsonSerializer();
+            var jsonD = new RestSharp.Serialization.Json.JsonDeserializer();
+            var request = new RestRequest();
+            request.Method = Method.POST;
+            request.Resource = resource;
+            request.AddHeader("Accept", "application/json");
+            request.AddHeader("Content-type", "application/json");
+            request.Parameters.Clear();
+            request.AddParameter("application/json; charset=utf-8", json.Serialize(entity), ParameterType.RequestBody);
+            request.AddObject(entity);
+            var response = Client.Execute(request);
+            //var content = response.Content; // raw content as string  
+            try
+            {
+                return jsonD.Deserialize<T>(response);
+            }
+            catch (Exception)
+            {
+                return default(T);
+            }
+
+
+        }
+
+        #endregion
+
+        #region WordPress
         public List<WPEvent> GetEvents()
         {
             var restRequest = new RestRequest("/api/wordpress/WPEvent", Method.GET);
@@ -37,11 +76,59 @@ namespace LaDOSE.DesktopApp.Services
             return restResponse.Data;
         }
 
+
+        public bool CreateChallonge(int gameId, int eventId)
+        {
+            var restRequest = new RestRequest($"/api/wordpress/CreateChallonge/{gameId}/{eventId}", Method.GET);
+            var restResponse = Client.Get<bool>(restRequest);
+            return restResponse.Data;
+        }
+        public bool RefreshDb()
+        {
+            var restRequest = new RestRequest("/api/Wordpress/UpdateDb", Method.GET);
+            var restResponse = Client.Get<bool>(restRequest);
+            return restResponse.Data;
+        }
+
+        public List<WPUser> GetUsers(int wpEventId, int gameId)
+        {
+            var restRequest = new RestRequest($"/api/Wordpress/GetUsers/{wpEventId}/{gameId}", Method.GET);
+            var restResponse = Client.Get<List<WPUser>>(restRequest);
+            return restResponse.Data;
+        }
+
+        public List<WPUser> GetUsersOptions(int wpEventId, int gameId)
+        {
+            var restRequest = new RestRequest($"/api/Wordpress/GetUsersOptions/{wpEventId}/{gameId}", Method.GET);
+            var restResponse = Client.Get<List<WPUser>>(restRequest);
+            return restResponse.Data;
+        }
+
+
+        #endregion
+
+        #region Games
         public List<Game> GetGames()
         {
             var restRequest = new RestRequest("/api/Game", Method.GET);
             var restResponse = Client.Get<List<Game>>(restRequest);
             return restResponse.Data;
         }
+
+        public Game UpdateGame(Game eventUpdate)
+        {
+            return Post("Api/Game", eventUpdate);
+        }
+        #endregion
+
+        #region Events
+
+
+        #endregion
+
+
+
+
+
     }
 }

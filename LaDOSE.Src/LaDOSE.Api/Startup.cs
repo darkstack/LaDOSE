@@ -44,7 +44,11 @@ namespace LaDOSE.Api
 
 
             services.AddCors();
-            services.AddMvc().AddJsonOptions(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            services.AddMvc().AddJsonOptions(x =>
+            {
+                x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                x.SerializerSettings.MaxDepth= 4;
+            });
             services.AddDbContextPool<LaDOSEDbContext>( // replace "YourDbContext" with the class name of your DbContext
                 options => options.UseMySql($"Server={MySqlServer};Database={MySqlDatabase};User={MySqlUser};Password={MySqlPassword};", // replace with your Connection String
                     mysqlOptions =>
@@ -99,7 +103,6 @@ namespace LaDOSE.Api
             services.AddScoped<IGameService, GameService>();
             services.AddScoped<IEventService, EventService>();
             services.AddScoped<ISeasonService, SeasonService>();
-            services.AddScoped<IUtilService, UtilService>();
             services.AddScoped<IWordPressService, WordPressService>();
             services.AddTransient<IChallongeProvider>(p => new ChallongeProvider(this.Configuration["ApiKey:ChallongeApiKey"]));
         }

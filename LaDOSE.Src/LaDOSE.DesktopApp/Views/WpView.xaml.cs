@@ -24,5 +24,7 @@ namespace LaDOSE.DesktopApp.Views
         {
             InitializeComponent();
         }
+
+
     }
 }

@@ -14,17 +14,47 @@
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Button Grid.Row="0" x:Name="LoadGames">Load Games</Button>
-        <ListView Grid.Row="1" ItemsSource="{Binding Games}">
+        
+        <ListView Grid.Row="1" ItemsSource="{Binding Games}" x:Name="GamesListView" SelectedItem="{Binding CurrentGame}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>
+                    <StackPanel Orientation="Horizontal">
                         <Label Content="{Binding Id}"></Label>
+                        <Label> - </Label>
                         <Label Content="{Binding Name}"></Label>
-                        <Label Content="{Binding ImgUrl}"></Label>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
             
         </ListView>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0"  Grid.ColumnSpan="2" x:Name="AddGame">Add Games</Button>
+            <Label Grid.Row="1" Grid.Column="0">Id</Label>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=CurrentGame.Id,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"></TextBox>
+
+            <Label Grid.Row="2" Grid.Column="0">Name</Label>
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=CurrentGame.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ></TextBox>
+
+            <Label Grid.Row="3" Grid.Column="0">WpTag</Label>
+            <TextBox Grid.Row="4" Grid.ColumnSpan="2" Text="{Binding Path=CurrentGame.WordPressTag,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ></TextBox>
+            <Label Grid.Row="5" Grid.Column="0">WpTagOs</Label>
+            <TextBox Grid.Row="6" Grid.ColumnSpan="2" Text="{Binding Path=CurrentGame.WordPressTagOs,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ></TextBox>
+            <Button Grid.Row="7" Grid.ColumnSpan="2" x:Name="Update">Update</Button>
+            
+        </Grid>
        </Grid>
 </UserControl>

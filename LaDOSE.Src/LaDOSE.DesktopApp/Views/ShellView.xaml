@@ -35,8 +35,18 @@
                 <MenuItem Header="_Close" />
             </MenuItem>
         </Menu>
-        <ContentControl Grid.Row="1" x:Name="ActiveItem" />
-
+      
+        <TabControl Grid.Row="1"  x:Name="Items">
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding DisplayName}" />
+                        <Button Content="X"
+                                cal:Message.Attach="DeactivateItem($dataContext,'true')" />
+                    </StackPanel>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+        </TabControl>
         <StatusBar Grid.Row="2">
    
             

@@ -18,7 +18,7 @@ namespace LaDOSE.Api.Controllers
         [HttpPost]
         public TU Post([FromBody]TU dto)
         {
-            return _service.Create(dto);
+            return _service.AddOrUpdate(dto);
         }
         [HttpGet]
         public List<TU> Get()

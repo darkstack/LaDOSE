@@ -4,7 +4,8 @@
              xmlns:local="clr-namespace:LaDOSE.DesktopApp"
              >
     <Application.Resources>
-            <ResourceDictionary>
+
+        <ResourceDictionary>
                 <ResourceDictionary.MergedDictionaries>
                     <ResourceDictionary>
                         <local:Bootstrapper x:Key="Bootstrapper" />

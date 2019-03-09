@@ -23,19 +23,6 @@ namespace LaDOSE.Api.Controllers
             this._gameService = gameService;
         }
 
-        [HttpGet("GetUsers/{eventId}/{wpEventId}/{gameId}")]
-        public List<WPUser> GetUsers(int eventId, int wpEventId,int gameId)
-        {
-            var game = _gameService.GetById(gameId);
-            return _service.GetBooking(eventId, wpEventId,game);
-
-        }
-
-        [HttpGet("Generate/{eventId}/{wpEventId}")]
-        public bool GenerateChallonge(int eventId, int wpEventId)
-        {
-             return _service.CreateChallonge(eventId, wpEventId);
-            
-        }
+    
     }
 }

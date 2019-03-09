@@ -9,5 +9,7 @@ namespace LaDOSE.Business.Interface
         T Create(T entity);
         bool Update(T entity);
         bool Delete(int id);
+
+        T AddOrUpdate(T entity);
     }
 }

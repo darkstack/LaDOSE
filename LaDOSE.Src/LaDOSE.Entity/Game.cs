@@ -8,7 +8,8 @@ namespace LaDOSE.Entity
     {
         public string Name { get; set; }
         public string ImgUrl { get; set; }
-
+        public string WordPressTag { get; set; }
+        public string WordPressTagOs { get; set; }
         public virtual IEnumerable<SeasonGame> Seasons { get; set; }
         public virtual IEnumerable<EventGame> Events { get; set; }
 

@@ -3,10 +3,11 @@ using System.Linq;
 using LaDOSE.Business.Interface;
 using LaDOSE.Entity.Context;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace LaDOSE.Business.Service
 {
-    public class BaseService<T> : IBaseService<T> where T : class
+    public class BaseService<T> : IBaseService<T> where T : Entity.Context.Entity
     {
         protected LaDOSEDbContext _context;
 
@@ -42,6 +43,22 @@ namespace LaDOSE.Business.Service
             var find = _context.Find<T>(id);
             _context.Remove(find);
             return _context.Entry(find).State == EntityState.Deleted;
+        }
+
+        public virtual T AddOrUpdate(T entity)
+        {
+            EntityEntry<T> entityEntry;
+            if (entity.Id == 0)
+            {
+                entityEntry = this._context.Add(entity);
+            }
+            else
+            {
+                entityEntry  = this._context.Update(entity);
+            }
+
+            this._context.SaveChanges();
+            return entityEntry.Entity;
         }
     }
 }
