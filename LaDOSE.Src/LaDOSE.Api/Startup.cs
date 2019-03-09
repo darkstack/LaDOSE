@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using LaDOSE.Business.Interface;
@@ -37,11 +38,24 @@ namespace LaDOSE.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Fix Gentoo Issue.
+   
             var MySqlServer = this.Configuration["MySql:Server"];
             var MySqlDatabase = this.Configuration["MySql:Database"];
             var MySqlUser = this.Configuration["MySql:User"];
             var MySqlPassword = this.Configuration["MySql:Password"];
-
+            if (Convert.ToBoolean(this.Configuration["FixGentoo"]))
+            {
+                try
+                {
+                    var loadFrom = Assembly.LoadFrom("ChallongeCSharpDriver.dll");
+                    Console.WriteLine($"Fix Gentoo Ok : {loadFrom.FullName}");
+                }
+                catch(Exception exception)
+                {
+                    Console.WriteLine($"Fix Gentoo NOK : {exception.Message}");
+                }
+            }
 
             services.AddCors();
             services.AddMvc().AddJsonOptions(x =>
@@ -98,13 +112,14 @@ namespace LaDOSE.Api
 
         private void AddDIConfig(IServiceCollection services)
         {
-
+            
+            services.AddTransient<IChallongeProvider>(p => new ChallongeProvider(this.Configuration["ApiKey:ChallongeApiKey"]));
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IGameService, GameService>();
             services.AddScoped<IEventService, EventService>();
             services.AddScoped<ISeasonService, SeasonService>();
             services.AddScoped<IWordPressService, WordPressService>();
-            services.AddTransient<IChallongeProvider>(p => new ChallongeProvider(this.Configuration["ApiKey:ChallongeApiKey"]));
+            
         }
 
 
