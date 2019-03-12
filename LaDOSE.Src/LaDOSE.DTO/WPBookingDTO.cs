@@ -1,8 +1,8 @@
 ﻿namespace LaDOSE.DTO
 {
-    public class WPBooking
+    public class WPBookingDTO
     {
-        public WPUser WpUser { get; set; }
+        public WPUserDTO WpUser { get; set; }
         public string Message { get; set; }
 
         public string Meta { get; set; }

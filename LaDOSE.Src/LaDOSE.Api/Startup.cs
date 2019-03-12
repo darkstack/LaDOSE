@@ -23,6 +23,9 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Pomelo.EntityFrameworkCore.MySql;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+using AutoMapper;
+using LaDOSE.Api.Helpers;
+using LaDOSE.Entity.Wordpress;
 
 namespace LaDOSE.Api
 {
@@ -56,7 +59,7 @@ namespace LaDOSE.Api
                     Console.WriteLine($"Fix Gentoo NOK : {exception.Message}");
                 }
             }
-
+            
             services.AddCors();
             services.AddMvc().AddJsonOptions(x =>
             {
@@ -105,9 +108,19 @@ namespace LaDOSE.Api
                         ValidateAudience = false
                     };
                 });
-
+            
             // configure DI for application services
             AddDIConfig(services);
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<WPUser, LaDOSE.DTO.WPUserDTO>();
+                cfg.CreateMap<WPUser, LaDOSE.DTO.WPUserDTO>();
+                cfg.CreateMap<WPEvent, LaDOSE.DTO.WPEventDTO>();
+                cfg.CreateMap<ApplicationUser, LaDOSE.DTO.ApplicationUser>();
+                cfg.CreateMap<WPBooking, LaDOSE.DTO.WPBookingDTO>();
+                cfg.CreateMapTwoWay<Game, LaDOSE.DTO.GameDTO>();
+
+            });
         }
 
         private void AddDIConfig(IServiceCollection services)

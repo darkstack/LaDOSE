@@ -9,13 +9,13 @@ namespace LaDOSE.DesktopApp.ViewModels
     {
         public override string DisplayName => "Games";
 
-        private Game _currentGame;
-        private List<Game> _games;
+        private GameDTO _currentGame;
+        private List<GameDTO> _games;
         private RestService RestService { get; set; }
         public GameViewModel(RestService restService)
         {
             this.RestService = restService;
-            this.Games=new List<Game>();
+            this.Games=new List<GameDTO>();
 
         }
 
@@ -32,7 +32,7 @@ namespace LaDOSE.DesktopApp.ViewModels
             NotifyOfPropertyChange("Games");
         }
 
-        public List<Game> Games
+        public List<GameDTO> Games
         {
             get => _games;
             set
@@ -42,7 +42,7 @@ namespace LaDOSE.DesktopApp.ViewModels
             }
         }
 
-        public Game CurrentGame
+        public GameDTO CurrentGame
         {
             get => _currentGame;
             set
@@ -59,7 +59,7 @@ namespace LaDOSE.DesktopApp.ViewModels
         }
         public void AddGame()
         {
-            var item = new Game();
+            var item = new GameDTO();
             this.Games.Add(item);
             this.CurrentGame = item;
         }

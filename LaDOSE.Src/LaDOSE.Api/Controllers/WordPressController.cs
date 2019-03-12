@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using AutoMapper;
 using LaDOSE.Business.Interface;
+using LaDOSE.DTO;
 using LaDOSE.Entity.Wordpress;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -24,7 +26,7 @@ namespace LaDOSE.Api.Controllers
  
 
         [HttpGet("WPEvent")]
-        public List<WPEvent> Event()
+        public List<WPEventDTO> Event()
         {
             var wpEvents = _service.GetWpEvent();
             foreach (var wpEvent in wpEvents)
@@ -36,22 +38,22 @@ namespace LaDOSE.Api.Controllers
                     wpEventWpBooking.WPUser.WPBookings = null;
                 }
             }
-            return wpEvents;
+            return Mapper.Map<List<WPEventDTO>>(wpEvents);
         }
 
 
         [HttpGet("GetUsers/{wpEventId}/{gameId}")]
-        public List<WPUser> GetUsers(int wpEventId, int gameId)
+        public List<WPUserDTO> GetUsers(int wpEventId, int gameId)
         {
             var game = GameService.GetById(gameId);
-            return _service.GetBooking(wpEventId, game);
+            return Mapper.Map<List<WPUserDTO>>(_service.GetBooking(wpEventId, game));
 
         }
         [HttpGet("GetUsersOptions/{wpEventId}/{gameId}")]
-        public List<WPUser> GetUsersOptions(int wpEventId, int gameId)
+        public List<WPUserDTO> GetUsersOptions(int wpEventId, int gameId)
         {
             var game = GameService.GetById(gameId);
-            return _service.GetBookingOptions(wpEventId, game);
+            return Mapper.Map<List<WPUserDTO>>(_service.GetBookingOptions(wpEventId, game));
 
         }
 

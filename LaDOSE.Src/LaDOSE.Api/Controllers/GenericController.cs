@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LaDOSE.Api.Controllers
 {
-    public class GenericController<T,TU> :Controller where TU : Entity.Context.Entity where T : IBaseService<TU>
+    public class GenericController<T, TU> : Controller where TU : Entity.Context.Entity where T : IBaseService<TU>
     {
         protected T _service;
 
@@ -16,10 +16,11 @@ namespace LaDOSE.Api.Controllers
         }
 
         [HttpPost]
-        public TU Post([FromBody]TU dto)
+        public TU Post([FromBody] TU dto)
         {
             return _service.AddOrUpdate(dto);
         }
+
         [HttpGet]
         public List<TU> Get()
         {
@@ -27,6 +28,7 @@ namespace LaDOSE.Api.Controllers
             return _service.GetAll().ToList();
 
         }
+
         [HttpGet("{id}")]
         public TU Get(int id)
         {

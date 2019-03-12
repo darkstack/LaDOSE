@@ -17,7 +17,9 @@ namespace LaDOSE.DesktopApp.Services
 
         public RestService()
         {
-            
+#if DEBUG
+            MessageBox.Show("WAIT");
+#endif
             var appSettings = ConfigurationManager.AppSettings;
             string url = (string) appSettings["ApiUri"];
             string user = (string)appSettings["ApiUser"];
@@ -95,10 +97,10 @@ namespace LaDOSE.DesktopApp.Services
         #endregion
 
         #region WordPress
-        public List<WPEvent> GetEvents()
+        public List<WPEventDTO> GetEvents()
         {
             var restRequest = new RestRequest("/api/wordpress/WPEvent", Method.GET);
-            var restResponse = Client.Get<List<WPEvent>>(restRequest);
+            var restResponse = Client.Get<List<WPEventDTO>>(restRequest);
             return restResponse.Data;
         }
 
@@ -109,10 +111,10 @@ namespace LaDOSE.DesktopApp.Services
             var restResponse = Client.Get(restRequest);
             return restResponse.Content;
         }
-        public string CreateChallonge2(int gameId, int eventId, List<WPUser> optionalPlayers)
+        public string CreateChallonge2(int gameId, int eventId, List<WPUserDTO> optionalPlayers)
         {
  
-            var restResponse = Post<List<WPUser>,string>($"/api/wordpress/CreateChallonge/{gameId}/{eventId}",optionalPlayers);
+            var restResponse = Post<List<WPUserDTO>,string>($"/api/wordpress/CreateChallonge/{gameId}/{eventId}",optionalPlayers);
             return restResponse;
         }
         public bool RefreshDb()
@@ -122,17 +124,17 @@ namespace LaDOSE.DesktopApp.Services
             return restResponse.Data;
         }
 
-        public List<WPUser> GetUsers(int wpEventId, int gameId)
+        public List<WPUserDTO> GetUsers(int wpEventId, int gameId)
         {
             var restRequest = new RestRequest($"/api/Wordpress/GetUsers/{wpEventId}/{gameId}", Method.GET);
-            var restResponse = Client.Get<List<WPUser>>(restRequest);
+            var restResponse = Client.Get<List<WPUserDTO>>(restRequest);
             return restResponse.Data;
         }
 
-        public List<WPUser> GetUsersOptions(int wpEventId, int gameId)
+        public List<WPUserDTO> GetUsersOptions(int wpEventId, int gameId)
         {
             var restRequest = new RestRequest($"/api/Wordpress/GetUsersOptions/{wpEventId}/{gameId}", Method.GET);
-            var restResponse = Client.Get<List<WPUser>>(restRequest);
+            var restResponse = Client.Get<List<WPUserDTO>>(restRequest);
             return restResponse.Data;
         }
 
@@ -140,14 +142,14 @@ namespace LaDOSE.DesktopApp.Services
         #endregion
 
         #region Games
-        public List<Game> GetGames()
+        public List<GameDTO> GetGames()
         {
             var restRequest = new RestRequest("/api/Game", Method.GET);
-            var restResponse = Client.Get<List<Game>>(restRequest);
+            var restResponse = Client.Get<List<GameDTO>>(restRequest);
             return restResponse.Data;
         }
 
-        public Game UpdateGame(Game eventUpdate)
+        public GameDTO UpdateGame(GameDTO eventUpdate)
         {
             return Post("Api/Game", eventUpdate);
         }

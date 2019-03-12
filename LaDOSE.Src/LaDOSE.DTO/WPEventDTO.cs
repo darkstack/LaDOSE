@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace LaDOSE.DTO
 {
-    public class WPEvent
+    public class WPEventDTO
     {
 
         // Id, Name, Slug, Date
@@ -12,6 +12,6 @@ namespace LaDOSE.DTO
         public string Name { get; set; }
         public string Slug { get; set; }
         public DateTime? Date { get; set; }
-        public List<WPBooking> WpBookings { get; set; }
+        public List<WPBookingDTO> WpBookings { get; set; }
     }
 }

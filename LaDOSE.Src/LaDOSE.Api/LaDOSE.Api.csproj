@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.4" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LaDOSE.DTO\LaDOSE.DTO.csproj" />
     <ProjectReference Include="..\LaDOSE.Entity\LaDOSE.Entity.csproj" />
     <ProjectReference Include="..\LaDOSE.Service\LaDOSE.Business.csproj" />
   </ItemGroup>

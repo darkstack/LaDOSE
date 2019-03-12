@@ -18,20 +18,20 @@ namespace LaDOSE.DesktopApp.ViewModels
     public class WordPressViewModel : Screen
     {
         public override string DisplayName => "Events";
-        private WPEvent _selectedWpEvent;
-        private Game _selectedGame;
-        private ObservableCollection<WPUser> _players;
-        private ObservableCollection<WPUser> _playersOptions;
-        private ObservableCollection<WPUser> _optionalPlayers;
+        private WPEventDTO _selectedWpEvent;
+        private GameDTO _selectedGame;
+        private ObservableCollection<WPUserDTO> _players;
+        private ObservableCollection<WPUserDTO> _playersOptions;
+        private ObservableCollection<WPUserDTO> _optionalPlayers;
 
         private RestService RestService { get; set; }
 
         public WordPressViewModel(RestService restService)
         {
             this.RestService = restService;
-            Players = new ObservableCollection<WPUser>();
-            PlayersOptions = new ObservableCollection<WPUser>();
-            OptionalPlayers = new ObservableCollection<WPUser>();
+            Players = new ObservableCollection<WPUserDTO>();
+            PlayersOptions = new ObservableCollection<WPUserDTO>();
+            OptionalPlayers = new ObservableCollection<WPUserDTO>();
         }
 
         #region Auto Property
@@ -49,9 +49,9 @@ namespace LaDOSE.DesktopApp.ViewModels
             get { return SelectedWpEvent != null && SelectedGame != null && Players?.Count() > 0; }
         }
 
-        public List<WPEvent> Events { get; set; }
+        public List<WPEventDTO> Events { get; set; }
 
-        public WPEvent SelectedWpEvent
+        public WPEventDTO SelectedWpEvent
         {
             get => _selectedWpEvent;
             set
@@ -62,7 +62,7 @@ namespace LaDOSE.DesktopApp.ViewModels
             }
         }
 
-        public Game SelectedGame
+        public GameDTO SelectedGame
         {
             get => _selectedGame;
             set
@@ -82,7 +82,7 @@ namespace LaDOSE.DesktopApp.ViewModels
             }
         }
 
-        public ObservableCollection<WPUser> Players
+        public ObservableCollection<WPUserDTO> Players
         {
             get => _players;
             set
@@ -92,7 +92,7 @@ namespace LaDOSE.DesktopApp.ViewModels
             }
         }
 
-        public ObservableCollection<WPUser> PlayersOptions
+        public ObservableCollection<WPUserDTO> PlayersOptions
         {
             get => _playersOptions;
             set
@@ -102,7 +102,7 @@ namespace LaDOSE.DesktopApp.ViewModels
             }
         }
 
-        public ObservableCollection<WPUser> OptionalPlayers
+        public ObservableCollection<WPUserDTO> OptionalPlayers
         {
             get => _optionalPlayers;
             set
@@ -112,8 +112,8 @@ namespace LaDOSE.DesktopApp.ViewModels
             }
         }
 
-        public ObservableCollection<Game> GamesFound { get; set; }
-        public List<Game> Games { get; set; }
+        public ObservableCollection<GameDTO> GamesFound { get; set; }
+        public List<GameDTO> Games { get; set; }
 
         #endregion
 
@@ -136,7 +136,7 @@ namespace LaDOSE.DesktopApp.ViewModels
 
         public void Generate()
         {
-            List<WPUser> test = new List<WPUser>();
+            List<WPUserDTO> test = new List<WPUserDTO>();
             test = OptionalPlayers.ToList();
             var messageBoxText = this.RestService.CreateChallonge2(SelectedGame.Id, SelectedWpEvent.Id, test);
 
@@ -163,7 +163,7 @@ namespace LaDOSE.DesktopApp.ViewModels
 
         #endregion
 
-        private void ParseGame(WPEvent selectedWpEvent)
+        private void ParseGame(WPEventDTO selectedWpEvent)
         {
             var reservation = SelectedWpEvent.WpBookings.FirstOrDefault();
             var games = WpEventDeserialize.Parse(reservation.Meta);
@@ -210,7 +210,7 @@ namespace LaDOSE.DesktopApp.ViewModels
         {
             Application.Current.Dispatcher.Invoke(() =>
                 System.Windows.Input.Mouse.OverrideCursor = Cursors.Wait);
-            GamesFound = new ObservableCollection<Game>();
+            GamesFound = new ObservableCollection<GameDTO>();
             this.Games = this.RestService.GetGames();
             this.Events = this.RestService.GetEvents();
 
@@ -219,15 +219,15 @@ namespace LaDOSE.DesktopApp.ViewModels
                 System.Windows.Input.Mouse.OverrideCursor = null);
         }
 
-        public List<WPUser> FindUser(int wpEventId, Game game,bool optional = false)
+        public List<WPUserDTO> FindUser(int wpEventId, GameDTO game,bool optional = false)
         {
 
             string[] selectedGameWpId;
             selectedGameWpId = !optional ? game.WordPressTag.Split(';') : game.WordPressTagOs.Split(';');
 
             var currentWpEvent = this.Events.Where(e => e.Id == wpEventId).ToList();
-            List<WPBooking> bookings = currentWpEvent.SelectMany(e => e.WpBookings).ToList();
-            List<WPUser> users = new List<WPUser>();
+            List<WPBookingDTO> bookings = currentWpEvent.SelectMany(e => e.WpBookings).ToList();
+            List<WPUserDTO> users = new List<WPUserDTO>();
             foreach (var booking in bookings)
             {
                 var reservations = WpEventDeserialize.Parse(booking.Meta);

@@ -46,7 +46,7 @@
                 <ColumnDefinition Width="2*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <ListView Grid.Column="0" ItemsSource="{Binding ElementName=EventsList,Path=SelectedItem.WpBookings}"
-                      x:Name="BookingList" IsTextSearchEnabled="True" TextSearch.TextPath="WpUser.Name"> 
+                      x:Name="BookingList" IsTextSearchEnabled="True" TextSearch.TextPath="WpUserDto.Name"> 
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">

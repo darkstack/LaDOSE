@@ -1,6 +1,6 @@
 ﻿namespace LaDOSE.DTO
 {
-    public class Game
+    public class GameDTO
     {
         public int Id { get; set; }
         public string Name { get; set; }
