@@ -162,7 +162,7 @@ namespace LaDOSE.DesktopApp.ViewModels
         }
 
         #endregion
-
+        //TODO : Remove the Meta of WPEvent (parse it in Update DB) 
         private void ParseGame(WPEventDTO selectedWpEvent)
         {
             var reservation = SelectedWpEvent.WpBookings.FirstOrDefault();

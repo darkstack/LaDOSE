@@ -33,5 +33,22 @@ namespace LaDOSE.Business.Helper
 
             return null;
         }
+
+        //Quick Fix to not leak Email. 
+        //TODO : Parse this shit and put it in database (and git rid of it in the UI) 
+        public static string CleanWpMeta(this string meta)
+        {
+            PhpSerializer p = new PhpSerializer();
+            var deserialize = p.Deserialize(meta);
+
+            Hashtable currentmeta = deserialize as Hashtable;
+
+            if (currentmeta != null)
+            {
+                currentmeta["registration"] = null;
+            }
+
+            return p.Serialize(currentmeta);
+        }
     }
 }

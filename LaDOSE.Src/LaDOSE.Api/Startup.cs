@@ -25,6 +25,7 @@ using Pomelo.EntityFrameworkCore.MySql;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using AutoMapper;
 using LaDOSE.Api.Helpers;
+using LaDOSE.Business.Helper;
 using LaDOSE.Entity.Wordpress;
 
 namespace LaDOSE.Api
@@ -117,7 +118,7 @@ namespace LaDOSE.Api
                 cfg.CreateMap<WPUser, LaDOSE.DTO.WPUserDTO>();
                 cfg.CreateMap<WPEvent, LaDOSE.DTO.WPEventDTO>();
                 cfg.CreateMap<ApplicationUser, LaDOSE.DTO.ApplicationUser>();
-                cfg.CreateMap<WPBooking, LaDOSE.DTO.WPBookingDTO>();
+                cfg.CreateMap<WPBooking, LaDOSE.DTO.WPBookingDTO>().ForMember(e=>e.Meta,opt=>opt.MapFrom(s=>s.Meta.CleanWpMeta()));
                 cfg.CreateMapTwoWay<Game, LaDOSE.DTO.GameDTO>();
 
             });
