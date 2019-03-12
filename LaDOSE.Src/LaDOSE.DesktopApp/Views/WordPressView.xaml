@@ -6,13 +6,16 @@
              xmlns:local="clr-namespace:LaDOSE.DesktopApp.Views"
              xmlns:userControls="clr-namespace:LaDOSE.DesktopApp.UserControls"
              xmlns:cal="http://www.caliburnproject.org"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:behaviors="clr-namespace:LaDOSE.DesktopApp.Behaviors"
              mc:Ignorable="d"
+             
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Row="4" Column="2">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -43,7 +46,7 @@
                 <ColumnDefinition Width="2*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <ListView Grid.Column="0" ItemsSource="{Binding ElementName=EventsList,Path=SelectedItem.WpBookings}"
-                      x:Name="BookingList">
+                      x:Name="BookingList" IsTextSearchEnabled="True" TextSearch.TextPath="WpUser.Name"> 
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -76,7 +79,7 @@
             </Grid.RowDefinitions>
             <Button Grid.Row="0" cal:Message.Attach="Generate">Generate</Button>
             <ListView Grid.Row="1" x:Name="GameFoundListView" ItemsSource="{Binding GamesFound}"
-                      SelectedItem="{Binding SelectedGame,UpdateSourceTrigger=PropertyChanged}">
+                      SelectedItem="{Binding SelectedGame,UpdateSourceTrigger=PropertyChanged}"  IsTextSearchEnabled="True" TextSearch.TextPath="Name">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -99,7 +102,7 @@
                         <Label Content="{Binding Players.Count,UpdateSourceTrigger=PropertyChanged}"></Label>
                         <Label>)</Label>
                     </StackPanel>
-                    <ListView Grid.Row="1" Grid.Column="0" x:Name="PlayersList" ItemsSource="{Binding Players,UpdateSourceTrigger=PropertyChanged}">
+                    <ListView Grid.Row="1" Grid.Column="0" x:Name="PlayersList" ItemsSource="{Binding Players,UpdateSourceTrigger=PropertyChanged}" IsTextSearchEnabled="True" TextSearch.TextPath="Name">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -113,7 +116,8 @@
                         <Label Content="{Binding PlayersOptions.Count,UpdateSourceTrigger=PropertyChanged}"></Label>
                         <Label>)</Label>
                     </StackPanel>
-                    <ListView Grid.Row="1"  Grid.Column="1" x:Name="PlayersOptionsList" ItemsSource="{Binding PlayersOptions,UpdateSourceTrigger=PropertyChanged}">
+                    <ListView Grid.Row="1"  Grid.Column="1" x:Name="PlayersOptionsList" ItemsSource="{Binding PlayersOptions,UpdateSourceTrigger=PropertyChanged}" IsTextSearchEnabled="True" TextSearch.TextPath="Name" behaviors:MultiSelectorBehaviours.SynchronizedSelectedItems="{Binding OptionalPlayers}">
+                        
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">

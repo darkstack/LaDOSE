@@ -22,7 +22,8 @@ namespace LaDOSE.DesktopApp.ViewModels
         private Game _selectedGame;
         private ObservableCollection<WPUser> _players;
         private ObservableCollection<WPUser> _playersOptions;
-        
+        private ObservableCollection<WPUser> _optionalPlayers;
+
         private RestService RestService { get; set; }
 
         public WordPressViewModel(RestService restService)
@@ -30,6 +31,121 @@ namespace LaDOSE.DesktopApp.ViewModels
             this.RestService = restService;
             Players = new ObservableCollection<WPUser>();
             PlayersOptions = new ObservableCollection<WPUser>();
+            OptionalPlayers = new ObservableCollection<WPUser>();
+        }
+
+        #region Auto Property
+
+        protected override void OnInitialize()
+        {
+            base.OnInitialize();
+            Task.Factory.StartNew(new Action(this.Load), TaskCreationOptions.LongRunning).ContinueWith(t => { },
+                CancellationToken.None, TaskContinuationOptions.OnlyOnFaulted,
+                TaskScheduler.FromCurrentSynchronizationContext());
+        }
+
+        public bool CanGenerate
+        {
+            get { return SelectedWpEvent != null && SelectedGame != null && Players?.Count() > 0; }
+        }
+
+        public List<WPEvent> Events { get; set; }
+
+        public WPEvent SelectedWpEvent
+        {
+            get => _selectedWpEvent;
+            set
+            {
+                _selectedWpEvent = value;
+                SelectedGame = null;
+                ParseGame(_selectedWpEvent);
+            }
+        }
+
+        public Game SelectedGame
+        {
+            get => _selectedGame;
+            set
+            {
+                _selectedGame = value;
+
+                Players.Clear();
+                PlayersOptions.Clear();
+
+                Task.Factory.StartNew(LoadPlayers, TaskCreationOptions.LongRunning).ContinueWith(t => { },
+                    CancellationToken.None, TaskContinuationOptions.OnlyOnFaulted,
+                    TaskScheduler.FromCurrentSynchronizationContext());
+                NotifyOfPropertyChange(() => SelectedGame);
+                NotifyOfPropertyChange(() => this.CanGenerate);
+                NotifyOfPropertyChange(() => Players);
+                NotifyOfPropertyChange(() => PlayersOptions);
+            }
+        }
+
+        public ObservableCollection<WPUser> Players
+        {
+            get => _players;
+            set
+            {
+                _players = value;
+                NotifyOfPropertyChange(() => Players);
+            }
+        }
+
+        public ObservableCollection<WPUser> PlayersOptions
+        {
+            get => _playersOptions;
+            set
+            {
+                _playersOptions = value;
+                NotifyOfPropertyChange(() => PlayersOptions);
+            }
+        }
+
+        public ObservableCollection<WPUser> OptionalPlayers
+        {
+            get => _optionalPlayers;
+            set
+            {
+                _optionalPlayers = value;
+                NotifyOfPropertyChange(() => OptionalPlayers);
+            }
+        }
+
+        public ObservableCollection<Game> GamesFound { get; set; }
+        public List<Game> Games { get; set; }
+
+        #endregion
+
+        #region Commands
+
+        public void UpdateDb()
+        {
+            Mouse.OverrideCursor = System.Windows.Input.Cursors.Wait;
+            var tsk = Task.Factory.StartNew(new Action(()=>this.RestService.RefreshDb()));
+            tsk.ContinueWith(t =>
+                {
+                    MessageBox.Show(t.Exception.InnerException.Message);
+                },
+                CancellationToken.None, TaskContinuationOptions.OnlyOnFaulted,
+                TaskScheduler.FromCurrentSynchronizationContext());
+            
+               MessageBox.Show("Database updated");
+            
+        }
+
+        public void Generate()
+        {
+            List<WPUser> test = new List<WPUser>();
+            test = OptionalPlayers.ToList();
+            var messageBoxText = this.RestService.CreateChallonge2(SelectedGame.Id, SelectedWpEvent.Id, test);
+
+            if (messageBoxText != null && messageBoxText.Length > 0 && !messageBoxText.Contains("error"))
+            {
+                System.Diagnostics.Process.Start($"https://challonge.com/{messageBoxText}");
+            }
+            else
+                MessageBox.Show("Didn't work :(");
         }
 
         public void LoadEvents()
@@ -45,86 +161,7 @@ namespace LaDOSE.DesktopApp.ViewModels
                 TaskScheduler.FromCurrentSynchronizationContext());
         }
 
-        private void Load()
-        {
-            GamesFound = new ObservableCollection<Game>();
-            this.Games = this.RestService.GetGames();
-            this.Events = this.RestService.GetEvents();
-
-            NotifyOfPropertyChange("Events");
-            Application.Current.Dispatcher.Invoke(() =>
-                System.Windows.Input.Mouse.OverrideCursor = null);
-        }
-
-
-        public bool CanGenerate
-        {
-            get { return SelectedWpEvent != null && SelectedGame != null; }
-        }
-
-
-        public List<WPEvent> Events { get; set; }
-
-        public WPEvent SelectedWpEvent
-        {
-            get => _selectedWpEvent;
-            set
-            {
-                _selectedWpEvent = value;
-                SelectedGame = null;
-                ParseGame(_selectedWpEvent);
-              
-            }
-        }
-
-        public Game SelectedGame
-        {
-            get => _selectedGame;
-            set
-            {
-                _selectedGame = value;
-             
-                Players.Clear();
-                PlayersOptions.Clear();
-
-                Task.Factory.StartNew(LoadPlayers,TaskCreationOptions.LongRunning).ContinueWith(t =>
-                    {
-
-                    },
-                    CancellationToken.None, TaskContinuationOptions.OnlyOnFaulted,
-                    TaskScheduler.FromCurrentSynchronizationContext());
-                NotifyOfPropertyChange(() => SelectedGame);
-                NotifyOfPropertyChange(() => this.CanGenerate);
-                NotifyOfPropertyChange(() => Players);
-                NotifyOfPropertyChange(() => PlayersOptions);
-            }
-        }
-
-
-
-        public ObservableCollection<WPUser> Players
-        {
-            get => _players;
-            set
-            {
-                _players = value;
-                NotifyOfPropertyChange(()=>Players);
-            }
-        }
-
-        public ObservableCollection<WPUser> PlayersOptions
-        {
-            get => _playersOptions;
-            set
-            {
-                _playersOptions = value;
-                NotifyOfPropertyChange(() => PlayersOptions);
-            }
-        }
-
-
-        public ObservableCollection<Game> GamesFound { get; set; }
-        public List<Game> Games { get; set; }
+        #endregion
 
         private void ParseGame(WPEvent selectedWpEvent)
         {
@@ -153,32 +190,58 @@ namespace LaDOSE.DesktopApp.ViewModels
 
         private void LoadPlayers()
         {
-     
             if (SelectedWpEvent != null)
                 if (SelectedGame != null)
                 {
-                  this.RestService.GetUsers(SelectedWpEvent.Id, SelectedGame.Id).ForEach((e) => this.Players.AddUI(e));
-                  this.RestService.GetUsersOptions(SelectedWpEvent.Id, SelectedGame.Id).ForEach((e) => this.PlayersOptions.AddUI(e));
+                    var findUser = FindUser(SelectedWpEvent.Id, SelectedGame);
+                    var findUser2 = FindUser(SelectedWpEvent.Id, SelectedGame,true);
 
+                    findUser.ForEach((e) => this.Players.AddUI(e));
+                    findUser2.ForEach((e) => this.PlayersOptions.AddUI(e));
+                    //this.RestService.GetUsers(SelectedWpEvent.Id, SelectedGame.Id)
+                    //    .ForEach((e) => this.Players.AddUI(e));
+                    //this.RestService.GetUsersOptions(SelectedWpEvent.Id, SelectedGame.Id)
+                    //    .ForEach((e) => this.PlayersOptions.AddUI(e));
+                    NotifyOfPropertyChange(() => this.CanGenerate);
                 }
-                    
         }
 
-        public void UpdateDb()
+        private void Load()
         {
-            if (this.RestService.RefreshDb())
-                MessageBox.Show("DataBaseUpdated");
-            else
-                MessageBox.Show("Update Failed");
+            Application.Current.Dispatcher.Invoke(() =>
+                System.Windows.Input.Mouse.OverrideCursor = Cursors.Wait);
+            GamesFound = new ObservableCollection<Game>();
+            this.Games = this.RestService.GetGames();
+            this.Events = this.RestService.GetEvents();
+
+            NotifyOfPropertyChange("Events");
+            Application.Current.Dispatcher.Invoke(() =>
+                System.Windows.Input.Mouse.OverrideCursor = null);
         }
 
-        public void Generate()
+        public List<WPUser> FindUser(int wpEventId, Game game,bool optional = false)
         {
-            if (this.RestService.CreateChallonge(SelectedGame.Id, SelectedWpEvent.Id))
-                MessageBox.Show("Challonge Created");
-            else
-                MessageBox.Show("Didn't worl :(");
-        }
 
+            string[] selectedGameWpId;
+            selectedGameWpId = !optional ? game.WordPressTag.Split(';') : game.WordPressTagOs.Split(';');
+
+            var currentWpEvent = this.Events.Where(e => e.Id == wpEventId).ToList();
+            List<WPBooking> bookings = currentWpEvent.SelectMany(e => e.WpBookings).ToList();
+            List<WPUser> users = new List<WPUser>();
+            foreach (var booking in bookings)
+            {
+                var reservations = WpEventDeserialize.Parse(booking.Meta);
+                if (reservations != null)
+                {
+                    var gamesReservation = reservations.Where(e => e.Valid).Select(e => e.Name);
+                    if (selectedGameWpId.Any(e => gamesReservation.Contains(e)))
+                    {
+                        users.Add(booking.WpUser);
+                    }
+                }
+            }
+
+            return users;
+        }
     }
 }

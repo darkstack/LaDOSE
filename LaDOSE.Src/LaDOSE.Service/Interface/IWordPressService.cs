@@ -10,6 +10,6 @@ namespace LaDOSE.Business.Interface
         List<WPUser> GetBooking(int wpEventId, Game game);
         List<WPUser> GetBookingOptions(int wpEventId, Game game);
         bool UpdateBooking();
-        bool CreateChallonge(int gameId, int wpEventId);
+        string CreateChallonge(int gameId, int wpEventId, IList<WPUser> additionPlayers);
     }
 }

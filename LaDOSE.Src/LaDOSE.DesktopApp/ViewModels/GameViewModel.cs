@@ -16,6 +16,13 @@ namespace LaDOSE.DesktopApp.ViewModels
         {
             this.RestService = restService;
             this.Games=new List<Game>();
+
+        }
+
+        protected override void OnInitialize()
+        {
+            LoadGames();
+            base.OnInitialize();
         }
 
         public void LoadGames()

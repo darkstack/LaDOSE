@@ -9,6 +9,7 @@ using LaDOSE.Entity.Context;
 using LaDOSE.Entity.Wordpress;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace LaDOSE.Business.Service
 {
@@ -78,14 +79,14 @@ namespace LaDOSE.Business.Service
             }
             return users;
         }
-        public bool CreateChallonge(int gameId, int wpEventId)
+        public string CreateChallonge(int gameId, int wpEventId, IList<WPUser> additionalPlayers)
         {
             var selectedGame = _context.Game.FirstOrDefault(e => e.Id == gameId);
             var selectedGameWpId = selectedGame.WordPressTag.Split(';');
             var currentWpEvent = _context.WPEvent.Include(e => e.WPBookings).ThenInclude(e => e.WPUser)
                 .Where(e => e.Id == wpEventId);
             var users = currentWpEvent.SelectMany(e => e.WPBookings.Select(u => u.WPUser));
-
+            var useradded = new List<WPUser>();
        
           
             if (selectedGame != null)
@@ -110,6 +111,7 @@ namespace LaDOSE.Business.Service
                         { 
                             try
                             {
+                                useradded.Add(booking.WPUser);
                                 _challongeProvider.AddPlayer(tournament.id, booking.WPUser.Name);
                             }
                             catch
@@ -124,13 +126,25 @@ namespace LaDOSE.Business.Service
                  
                     
                 }
-      
 
-                return true;
+                if (additionalPlayers != null && additionalPlayers.Count > 0)
+                {
+                    foreach (var additionalPlayer in additionalPlayers)
+                    {
+                        if (useradded.All(e => e.Name != additionalPlayer.Name))
+                        {
+                            _challongeProvider.AddPlayer(tournament.id, additionalPlayer.Name);
+                        }
+                    }
+
+                }
+
+
+                 return tournament.url;
             }
 
 
-            return false;
+            return "error while creating challonge";
         }
     }
 }

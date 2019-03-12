@@ -64,9 +64,15 @@ namespace LaDOSE.Api.Controllers
         }
 
         [HttpGet("CreateChallonge/{gameId:int}/{wpEventId:int}")]
-        public bool CreateChallonge(int gameId, int wpEventId)
+        public string CreateChallonge(int gameId, int wpEventId)
         {
-            return _service.CreateChallonge(gameId, wpEventId);
+            return _service.CreateChallonge(gameId, wpEventId,null);
+        }
+
+        [HttpPost("CreateChallonge/{gameId:int}/{wpEventId:int}")]
+        public string CreateChallonge(int gameId, int wpEventId, [FromBody]List<WPUser> additionalPlayer)
+        {
+            return _service.CreateChallonge(gameId, wpEventId, additionalPlayer);
         }
     }
 }

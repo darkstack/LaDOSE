@@ -18,13 +18,12 @@ namespace LaDOSE.DesktopApp.Views
     /// <summary>
     /// Interaction logic for ShellView.xaml
     /// </summary>
-    public partial class WordPressView : UserControl
+    public partial class WebNavigationView : UserControl
     {
-        public WordPressView()
+        public WebNavigationView()
         {
+      
             InitializeComponent();
         }
-
-
     }
 }

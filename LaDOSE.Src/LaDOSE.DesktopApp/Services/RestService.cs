@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Windows;
 using LaDOSE.DTO;
@@ -65,6 +66,31 @@ namespace LaDOSE.DesktopApp.Services
 
 
         }
+        private R Post<P,R>(string resource, P entity)
+        {
+            var json = new RestSharp.Serialization.Json.JsonSerializer();
+            var jsonD = new RestSharp.Serialization.Json.JsonDeserializer();
+            var request = new RestRequest();
+            request.Method = Method.POST;
+            request.Resource = resource;
+            request.AddHeader("Accept", "application/json");
+            request.AddHeader("Content-type", "application/json");
+            request.Parameters.Clear();
+            request.AddParameter("application/json; charset=utf-8", json.Serialize(entity), ParameterType.RequestBody);
+            //request.AddObject(entity);
+            var response = Client.Execute(request);
+            //var content = response.Content; // raw content as string  
+            try
+            {
+                return jsonD.Deserialize<R>(response);
+            }
+            catch (Exception)
+            {
+                return default(R);
+            }
+
+
+        }
 
         #endregion
 
@@ -77,11 +103,17 @@ namespace LaDOSE.DesktopApp.Services
         }
 
 
-        public bool CreateChallonge(int gameId, int eventId)
+        public string CreateChallonge(int gameId, int eventId)
         {
             var restRequest = new RestRequest($"/api/wordpress/CreateChallonge/{gameId}/{eventId}", Method.GET);
-            var restResponse = Client.Get<bool>(restRequest);
-            return restResponse.Data;
+            var restResponse = Client.Get(restRequest);
+            return restResponse.Content;
+        }
+        public string CreateChallonge2(int gameId, int eventId, List<WPUser> optionalPlayers)
+        {
+ 
+            var restResponse = Post<List<WPUser>,string>($"/api/wordpress/CreateChallonge/{gameId}/{eventId}",optionalPlayers);
+            return restResponse;
         }
         public bool RefreshDb()
         {
