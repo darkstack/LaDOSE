@@ -72,13 +72,14 @@ namespace LaDOSE.DesktopApp.ViewModels
                 Players.Clear();
                 PlayersOptions.Clear();
 
-                Task.Factory.StartNew(LoadPlayers, TaskCreationOptions.LongRunning).ContinueWith(t => { },
-                    CancellationToken.None, TaskContinuationOptions.OnlyOnFaulted,
+                Task.Factory.StartNew(LoadPlayers, TaskCreationOptions.LongRunning).ContinueWith(
+                    t => { NotifyOfPropertyChange(() => this.CanGenerate); },
+                    CancellationToken.None, TaskContinuationOptions.OnlyOnRanToCompletion,
                     TaskScheduler.FromCurrentSynchronizationContext());
                 NotifyOfPropertyChange(() => SelectedGame);
-                NotifyOfPropertyChange(() => this.CanGenerate);
                 NotifyOfPropertyChange(() => Players);
                 NotifyOfPropertyChange(() => PlayersOptions);
+                NotifyOfPropertyChange(() => this.CanGenerate);
             }
         }
 
@@ -196,13 +197,9 @@ namespace LaDOSE.DesktopApp.ViewModels
                     var findUser = FindUser(SelectedWpEvent.Id, SelectedGame);
                     var findUser2 = FindUser(SelectedWpEvent.Id, SelectedGame,true);
 
-                    findUser.ForEach((e) => this.Players.AddUI(e));
+                    findUser.ForEach((e) => this.Players.AddUI(e,()=>NotifyOfPropertyChange(() => this.CanGenerate)));
                     findUser2.ForEach((e) => this.PlayersOptions.AddUI(e));
-                    //this.RestService.GetUsers(SelectedWpEvent.Id, SelectedGame.Id)
-                    //    .ForEach((e) => this.Players.AddUI(e));
-                    //this.RestService.GetUsersOptions(SelectedWpEvent.Id, SelectedGame.Id)
-                    //    .ForEach((e) => this.PlayersOptions.AddUI(e));
-                    NotifyOfPropertyChange(() => this.CanGenerate);
+              
                 }
         }
 
