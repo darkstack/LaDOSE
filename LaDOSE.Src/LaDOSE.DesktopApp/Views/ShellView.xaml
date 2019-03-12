@@ -9,7 +9,8 @@
              xmlns:cal="http://www.caliburnproject.org"
              Icon="{Binding Path=AppIcon}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             Style="{StaticResource {x:Type Window}}">
     <Window.Resources>
      
     </Window.Resources>
@@ -53,11 +54,20 @@
         <TabControl Grid.Row="1"  x:Name="Items">
             <TabControl.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding DisplayName}" />
-                        <Button Content="X"
-                                cal:Message.Attach="DeactivateItem($dataContext,'true')" />
-                    </StackPanel>
+                    <DockPanel>
+                        <TextBlock  HorizontalAlignment="Right" Text="{Binding DisplayName}" />
+                        <Button Margin="5,0,0,0" 
+                                cal:Message.Attach="DeactivateItem($dataContext,'true')" >
+                            <Grid>
+                                <Canvas Width='8' Height='8'>
+                                    <Line X1='2' X2='6' Y1='2' Y2='6' 
+                                          Stroke='Red' StrokeThickness='1'/>
+                                    <Line X1='6' X2='2' Y1='2' Y2='6' 
+                                          Stroke='Red' StrokeThickness='1'/>
+                                </Canvas>
+                            </Grid>
+                        </Button>
+                    </DockPanel>
                 </DataTemplate>
             </TabControl.ItemTemplate>
         </TabControl>

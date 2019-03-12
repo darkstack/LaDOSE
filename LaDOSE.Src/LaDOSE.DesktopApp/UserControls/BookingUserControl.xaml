@@ -6,21 +6,24 @@
              xmlns:local="clr-namespace:LaDOSE.DesktopApp.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
+         
              >
     <UserControl.Resources>
 
     </UserControl.Resources>
     <Grid>
-        <ListView  Grid.Row ="1" ItemsSource="{Binding Path=Reservation}">
+        <ListView  Grid.Row ="1" Margin="2" ItemsSource="{Binding Path=Reservation}">
             <ListView.ItemTemplate>
                 <DataTemplate>
 
-                    <StackPanel Orientation="Horizontal" Background="Green" x:Name="Panel" VerticalAlignment="Stretch" >
-                        <Label Content="{Binding Name}"></Label>
+                    <StackPanel Orientation="Horizontal" x:Name="Panel" VerticalAlignment="Stretch" >
+                        <Label  x:Name="Name" Content="{Binding Name}">
+
+                        </Label>
                     </StackPanel>
                     <DataTemplate.Triggers>
-                        <DataTrigger Binding="{Binding Valid}" Value="False">
-                            <Setter TargetName="Panel" Property="Background" Value="Red" />
+                        <DataTrigger Binding="{Binding Valid}" Value="True">
+                            <Setter TargetName="Name" Property="Foreground" Value="Green" />
                         </DataTrigger>
                     </DataTemplate.Triggers>
                 </DataTemplate>
