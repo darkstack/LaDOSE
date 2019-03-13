@@ -117,7 +117,9 @@
                         <Label Content="{Binding PlayersOptions.Count,UpdateSourceTrigger=PropertyChanged}"></Label>
                         <Label>)</Label>
                     </StackPanel>
-                    <ListView Grid.Row="1"  Grid.Column="1" Margin="2" x:Name="PlayersOptionsList" ItemsSource="{Binding PlayersOptions,UpdateSourceTrigger=PropertyChanged}" IsTextSearchEnabled="True" TextSearch.TextPath="Name" behaviors:MultiSelectorBehaviours.SynchronizedSelectedItems="{Binding OptionalPlayers}">
+                    <ListView Grid.Row="1"  Grid.Column="1" Margin="2" x:Name="PlayersOptionsList" ItemsSource="{Binding PlayersOptions,UpdateSourceTrigger=PropertyChanged}" 
+                              IsTextSearchEnabled="True" TextSearch.TextPath="Name" behaviors:MultiSelectorBehaviours.SynchronizedSelectedItems="{Binding OptionalPlayers}"
+                              SelectionMode="Multiple">
                         
                         <ListView.ItemTemplate>
                             <DataTemplate>
