@@ -12,7 +12,7 @@
 
     </UserControl.Resources>
     <Grid>
-        <ListView  Grid.Row ="1" Margin="2" ItemsSource="{Binding Path=Reservation}">
+        <ListView  Grid.Row ="1" Margin="2" ItemsSource="{Binding Path=Reservation}" TextSearch.TextPath="Name">
             <ListView.ItemTemplate>
                 <DataTemplate>
 

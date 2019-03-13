@@ -93,11 +93,12 @@ namespace LaDOSE.Business.Service
             {
               
                 var currentEvent = currentWpEvent.FirstOrDefault();
-                var eventDate = currentEvent.Date?.ToString("MM/dd/yy");
+                var eventDate = currentEvent.Date?.ToString("dd/MM/yy");
 
                 var remove = currentEvent.Date?.ToString("Mdyy");
                 var url = $"{remove}{selectedGame.Id}";
-                var name = $"[{eventDate}]Ranking {currentEvent.Name} {selectedGame.Name}";
+                var selectedEvent = FormatCurrentEventName(currentEvent.Name);
+                var name = $"[{eventDate}] LaDOSE.Net - {selectedEvent} - {selectedGame.Name}";
                 var tournament = _challongeProvider.CreateTournament(name, url).Result;
 
 
@@ -145,6 +146,27 @@ namespace LaDOSE.Business.Service
 
 
             return "error while creating challonge";
+        }
+
+        private string FormatCurrentEventName(string currentEventName)
+        {
+
+            
+            if (currentEventName.Contains("-"))
+            {
+                var strings = currentEventName.Split('-');
+                var s = strings[strings.Length-1];
+                DateTime test;
+                if (DateTime.TryParse(s, out test))
+                {
+                    var formatCurrentEventName = currentEventName.Replace(s, "");
+                    formatCurrentEventName= formatCurrentEventName.Replace(" -", "");
+                    return formatCurrentEventName;
+                }
+                
+            }
+
+            return currentEventName;
         }
     }
 }
