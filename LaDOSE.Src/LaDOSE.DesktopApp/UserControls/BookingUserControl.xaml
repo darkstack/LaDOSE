@@ -17,9 +17,9 @@
                 <DataTemplate>
 
                     <StackPanel Orientation="Horizontal" x:Name="Panel" VerticalAlignment="Stretch" >
-                        <Label  x:Name="Name" Content="{Binding Name}">
+                        <TextBlock  x:Name="Name" Text="{Binding Name}">
 
-                        </Label>
+                        </TextBlock>
                     </StackPanel>
                     <DataTemplate.Triggers>
                         <DataTrigger Binding="{Binding Valid}" Value="True">

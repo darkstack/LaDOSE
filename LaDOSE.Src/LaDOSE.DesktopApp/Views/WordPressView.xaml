@@ -31,9 +31,9 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="{Binding Id}" />
-                        <Label Content="{Binding Name}" />
-                        <Label Content="{Binding Date}" />
+                        <TextBlock Text="{Binding Id}" />
+                        <TextBlock Margin="5,0,0,0" Text="{Binding Name}" />
+                        <TextBlock Margin="5,0,0,0" Text="{Binding Date}" />
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -50,7 +50,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Label Content="{Binding WpUser.Name}" />
+                            <TextBlock Text="{Binding WpUser.Name}" />
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -83,7 +83,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Label Content="{Binding Path=Name}" />
+                            <TextBlock Text="{Binding Path=Name}" />
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -106,7 +106,7 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Label Content="{Binding Path=Name}" />
+                                    <TextBlock Text="{Binding Path=Name}" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -121,7 +121,7 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Label Content="{Binding Path=Name}" />
+                                    <TextBlock Text="{Binding Path=Name}" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
