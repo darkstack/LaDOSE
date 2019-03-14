@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using LaDOSE.Business.Interface;
 using LaDOSE.Entity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LaDOSE.Api.Controllers
@@ -33,6 +35,21 @@ namespace LaDOSE.Api.Controllers
         public TU Get(int id)
         {
             return _service.GetById(id);
+
+        }
+     
+        [HttpGet("{id}/delete")]
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                return _service.Delete((int) id) ? (IActionResult) NoContent() : NotFound();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+            
 
         }
     }

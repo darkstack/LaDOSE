@@ -49,6 +49,7 @@ namespace LaDOSE.DesktopApp.ViewModels
             {
                  _currentGame = value;
                 NotifyOfPropertyChange(()=>CurrentGame);
+                NotifyOfPropertyChange(() => CanDeleteGame);
             }
         }
 
@@ -60,8 +61,16 @@ namespace LaDOSE.DesktopApp.ViewModels
         public void AddGame()
         {
             var item = new GameDTO();
-            this.Games.Add(item);
-            this.CurrentGame = item;
+            this.RestService.UpdateGame(item);
+            LoadGames();
         }
+        public void DeleteGame()
+        {
+            
+            this.RestService.DeleteGame(this.CurrentGame.Id);
+            LoadGames();
+        }
+
+        public bool CanDeleteGame => CurrentGame != null;
     }
 }

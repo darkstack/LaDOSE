@@ -35,6 +35,7 @@ namespace LaDOSE.Business.Service
         public virtual bool Update(T entity)
         {
             var entityEntry = _context.Update(entity);
+            this._context.SaveChanges();
             return _context.Entry(entityEntry).State == EntityState.Unchanged;
         }
 
@@ -42,6 +43,7 @@ namespace LaDOSE.Business.Service
         {
             var find = _context.Find<T>(id);
             _context.Remove(find);
+            this._context.SaveChanges();
             return _context.Entry(find).State == EntityState.Deleted;
         }
 

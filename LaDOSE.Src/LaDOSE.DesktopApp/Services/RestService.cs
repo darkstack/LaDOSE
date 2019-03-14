@@ -149,9 +149,15 @@ namespace LaDOSE.DesktopApp.Services
             return restResponse.Data;
         }
 
-        public GameDTO UpdateGame(GameDTO eventUpdate)
+        public GameDTO UpdateGame(GameDTO game)
         {
-            return Post("Api/Game", eventUpdate);
+            return Post("Api/Game", game);
+        }
+        public bool DeleteGame(int gameId)
+        {
+            var restRequest = new RestRequest($"/api/Game/{gameId}", Method.DELETE);
+            var restResponse = Client.Execute(restRequest);
+            return restResponse.IsSuccessful;
         }
         #endregion
 

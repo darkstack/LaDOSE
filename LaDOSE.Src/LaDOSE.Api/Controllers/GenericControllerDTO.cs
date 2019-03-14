@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using LaDOSE.Business.Interface;
 using Microsoft.AspNetCore.Mvc;
@@ -32,6 +33,18 @@ namespace LaDOSE.Api.Controllers
         {
             return AutoMapper.Mapper.Map<D>(_service.GetById(id));
 
+        }
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                return _service.Delete((int)id) ? (IActionResult)NoContent() : NotFound();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
     }
 }

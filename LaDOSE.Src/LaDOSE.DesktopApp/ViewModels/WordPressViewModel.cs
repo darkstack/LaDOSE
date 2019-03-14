@@ -197,8 +197,8 @@ namespace LaDOSE.DesktopApp.ViewModels
                     var findUser = FindUser(SelectedWpEvent.Id, SelectedGame);
                     var findUser2 = FindUser(SelectedWpEvent.Id, SelectedGame,true);
 
-                    findUser.ForEach((e) => this.Players.AddUI(e,()=>NotifyOfPropertyChange(() => this.CanGenerate)));
-                    findUser2.ForEach((e) => this.PlayersOptions.AddUI(e,null));
+                    findUser.OrderBy(e=>e.Name).ToList().ForEach((e) => this.Players.AddUI(e,()=>NotifyOfPropertyChange(() => this.CanGenerate)));
+                    findUser2.OrderBy(e => e.Name).ToList().ForEach((e) => this.PlayersOptions.AddUI(e,null));
               
                 }
         }

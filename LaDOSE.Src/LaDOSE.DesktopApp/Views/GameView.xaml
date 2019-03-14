@@ -42,7 +42,9 @@
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
-            <Button Grid.Row="0"  Grid.ColumnSpan="2" x:Name="AddGame">Add Games</Button>
+            <Button Grid.Row="0"  Grid.Column="0" x:Name="AddGame">Add Game</Button>
+
+            <Button Grid.Row="0"  Grid.Column="1" x:Name="DeleteGame">Delete Game</Button>
             <Label Grid.Row="1" Grid.Column="0">Id</Label>
             <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=CurrentGame.Id,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"></TextBox>
 
