@@ -38,7 +38,7 @@ namespace LaDOSE.Api.Controllers
 
         }
      
-        [HttpGet("{id}/delete")]
+        [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             try
