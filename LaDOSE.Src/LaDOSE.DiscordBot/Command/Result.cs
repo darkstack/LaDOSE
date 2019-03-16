@@ -4,32 +4,50 @@ using DSharpPlus.CommandsNext.Attributes;
 
 namespace LaDOSE.DiscordBot.Command
 {
+    internal class Result
+    {
+        Dependencies dep;
 
-        internal class Result
+        public Result(Dependencies d)
         {
-            Dependencies dep;
-            public Result(Dependencies d)
-            {
-                this.dep = d;
-            }
-
-
-            [RequireRolesAttribute("Staff")]
-            [Command("update")]
-            public async Task UpdateAsync(CommandContext ctx)
-            {
-                var tournament = await dep.ChallongeService.GetLastTournament();
-                await ctx.RespondAsync($"Mise à jour effectuée");
-
-            }
-
-            [Command("last")]
-            public async Task LastAsync(CommandContext ctx)
-            {
-                var lastTournamentMessage = dep.ChallongeService.GetLastTournamentMessage();
-                await ctx.RespondAsync(lastTournamentMessage);
-
-            }
+            this.dep = d;
         }
-    
+
+
+        [RequireRolesAttribute("Staff")]
+        [Command("update")]
+        public async Task UpdateAsync(CommandContext ctx)
+        {
+            var tournament = await dep.ChallongeService.GetLastTournament();
+            await ctx.RespondAsync($"Mise à jour effectuée");
+        }
+
+        [Command("last")]
+        public async Task LastAsync(CommandContext ctx)
+        {
+            var lastTournamentMessage = dep.ChallongeService.GetLastTournamentMessage();
+            await ctx.RespondAsync(lastTournamentMessage);
+        }
+
+        [RequireRolesAttribute("Staff")]
+        [Command("inscriptions")]
+        public async Task InscriptionsAsync(CommandContext ctx)
+        {
+            await ctx.TriggerTypingAsync();
+            var inscrits = dep.WebService.GetInscrits();
+            await ctx.RespondAsync(inscrits);
+        }
+
+        [RequireRolesAttribute("Staff")]
+        [Command("UpdateDb")]
+        public async Task UpdateDbAsync(CommandContext ctx)
+        {
+            await ctx.RespondAsync("Mise à jour des inscriptions en cours...");
+            await ctx.TriggerTypingAsync();
+
+            var status = dep.WebService.RefreshDb() ? "Ok" : "erreur";
+
+            await ctx.RespondAsync($"Status: {status}");
+        }
+    }
 }

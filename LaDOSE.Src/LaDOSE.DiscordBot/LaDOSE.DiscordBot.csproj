@@ -14,6 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LaDOSE.REST\LaDOSE.REST.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="ChallongeCSharpDriver">
       <HintPath>..\..\Library\ChallongeCSharpDriver.dll</HintPath>
     </Reference>

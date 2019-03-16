@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace LaDOSE.DiscordBot.Service
 {
@@ -48,7 +49,7 @@ namespace LaDOSE.DiscordBot.Service
             string returnText = "";
             var text = File.ReadAllText(db);
             var i = 0;
-            foreach (var line in text.Split('\n'))
+            foreach (var line in text.Split())
             {
                 if(!string.IsNullOrEmpty(line))
                 returnText += $"{++i}. {line}";

@@ -68,24 +68,24 @@ namespace LaDOSE.Api.Controllers
         }
 
         //[AllowAnonymous]
-        //[HttpPost("register")]
-        //public IActionResult Register([FromBody]ApplicationUser userDto)
-        //{
-        //    // map dto to entity
-     
+        [HttpPost("register")]
+        public IActionResult Register([FromBody]ApplicationUser userDto)
+        {
+            // map dto to entity
 
-        //    try
-        //    {
-        //        // save 
-        //        _userService.Create(userDto, userDto.Password);
-        //        return Ok();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // return error message if there was an exception
-        //        return BadRequest(new { message = ex.Message });
-        //    }
-        //}
+
+            try
+            {
+                // save 
+                _userService.Create(userDto, userDto.Password);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                // return error message if there was an exception
+                return BadRequest(new { message = ex.Message });
+            }
+        }
 
 
     }

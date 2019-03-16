@@ -1,0 +1,138 @@
+﻿<UserControl x:Class="LaDOSE.DesktopApp.Views.WordPressView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:LaDOSE.DesktopApp.Views"
+             xmlns:userControls="clr-namespace:LaDOSE.DesktopApp.UserControls"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:behaviors="clr-namespace:LaDOSE.DesktopApp.Behaviors"
+             mc:Ignorable="d"
+             
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Row="4" Column="2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <DockPanel  Grid.Row="0">
+            <Button Margin="2" x:Name="UpdateDb">Update DB</Button>
+            <Button Margin="2" x:Name="LoadEvents">Load Events</Button>
+        </DockPanel>
+
+        <ListView Grid.Row="1" ItemsSource="{Binding Events}" x:Name="EventsList" Margin="0,0,0,5"
+                  SelectedItem="{Binding SelectedWpEvent, Mode=TwoWay}" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Id}" />
+                        <TextBlock Margin="5,0,0,0" Text="{Binding Name}" />
+                        <TextBlock Margin="5,0,0,0" Text="{Binding Date, StringFormat=dd/MM/yyyy}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+        <Grid Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ListView Grid.Column="0" ItemsSource="{Binding ElementName=EventsList,Path=SelectedItem.WpBookings}" 
+                      x:Name="BookingList" IsTextSearchEnabled="True" TextSearch.TextPath="WpUser.Name" Margin="2" KeyUp="Copy"> 
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" >
+                            <TextBlock Text="{Binding WpUser.Name}">
+                            </TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="60" />
+                </Grid.RowDefinitions>
+                <userControls:BookingUserControl Grid.Row="0"
+                                             Current="{Binding ElementName=BookingList,Path=SelectedItem.Meta,UpdateSourceTrigger=PropertyChanged}" />
+                <Label Grid.Row="1">Message</Label>
+                <TextBox Grid.Row="2" Margin="2" IsReadOnly="True" Text="{Binding ElementName=BookingList,Path=SelectedItem.Message}" TextWrapping="Wrap" AcceptsReturn="False" VerticalScrollBarVisibility="Auto" />
+               
+            </Grid>
+        
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0" cal:Message.Attach="Generate">Generate</Button>
+            <ListView Grid.Row="1" x:Name="GameFoundListView" ItemsSource="{Binding GamesFound}"
+                      SelectedItem="{Binding SelectedGame,UpdateSourceTrigger=PropertyChanged}"  IsTextSearchEnabled="True" TextSearch.TextPath="Name" Margin="2">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Path=Name}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                        <Label>Registred Players (</Label>
+                        <Label Content="{Binding Players.Count,UpdateSourceTrigger=PropertyChanged}"></Label>
+                        <Label>)</Label>
+                    </StackPanel>
+                    <ListView Grid.Row="1" Grid.Column="0" Margin="2" x:Name="PlayersList" ItemsSource="{Binding Players,UpdateSourceTrigger=PropertyChanged}" IsTextSearchEnabled="True" TextSearch.TextPath="Name">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Path=Name}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                        <Label>Optional Players (</Label>
+                        <Label Content="{Binding PlayersOptions.Count,UpdateSourceTrigger=PropertyChanged}"></Label>
+                        <Label>)</Label>
+                    </StackPanel>
+                    <ListView Grid.Row="1"  Grid.Column="1" Margin="2" x:Name="PlayersOptionsList" ItemsSource="{Binding PlayersOptions,UpdateSourceTrigger=PropertyChanged}" 
+                              IsTextSearchEnabled="True" TextSearch.TextPath="Name" behaviors:MultiSelectorBehaviours.SynchronizedSelectedItems="{Binding OptionalPlayers}"
+                              SelectionMode="Multiple">
+                        
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Path=Name}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+          
+        </Grid>
+        </Grid>
+
+    </Grid>
+</UserControl>

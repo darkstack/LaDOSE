@@ -4,5 +4,10 @@
   },
   "Challonge": {
     "Token": "CHALLONGE API TOKEN"
+  },
+  "REST": {
+    "Url": "http://localhost:5000",
+    "User": "user",
+    "Password": "password"
   }
 }
