@@ -1,6 +1,8 @@
+CREATE DATABASE  IF NOT EXISTS `ladoseapi` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `ladoseapi`;
 -- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
--- Host: api.ladose.net    Database: ladoseapi
+-- Host: localhost    Database: ladoseapi
 -- ------------------------------------------------------
 -- Server version	5.6.40-log
 
@@ -30,7 +32,7 @@ CREATE TABLE `ApplicationUser` (
   `PasswordHash` blob,
   `PasswordSalt` blob,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -82,9 +84,13 @@ CREATE TABLE `Game` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
   `ImgUrl` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `WordPressTag` varchar(255) DEFAULT NULL,
+  `WordPressTagOs` varchar(255) DEFAULT NULL,
+  `Order` int(11) NOT NULL DEFAULT '0',
+  `Gamecol` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`Id`),
   UNIQUE KEY `name_UNIQUE` (`Name`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -182,15 +188,15 @@ DELIMITER ;;
 CREATE DEFINER=`ladoseapi`@`%` PROCEDURE `ImportEvent`()
 BEGIN
 	INSERT INTO WPEvent (Id, Name,Slug,Date ) 
-    select event_id, event_name,event_slug, event_start_date from ladose.wp_em_events
+    select event_id, event_name,event_slug, event_start_date from wordpressdb.wp_em_events
     where event_id not in (select Id from WPEvent);
     
 	INSERT INTO WPUser (Id, Name, WPUSerLogin, WPMail) 
-    select ID, display_name, user_login , user_email from ladose.wp_users
+    select ID, display_name, user_login , user_email from wordpressdb.wp_users
     where ID not in (select Id from WPUser);
     
     INSERT INTO WPBooking (WPEventId, WPUserId, Message, Meta) 
-    select event_id, person_id, booking_comment , booking_meta from ladose.wp_em_bookings
+    select event_id, person_id, booking_comment , booking_meta from wordpressdb.wp_em_bookings
     where (event_id , person_id) not in (select WPEventId,WPUserId from WPBooking);
 END ;;
 DELIMITER ;
@@ -208,5 +214,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-08 23:31:28
-i
+-- Dump completed on 2019-03-16 13:04:14
