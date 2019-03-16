@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Windows;
 using Caliburn.Micro;
-using LaDOSE.DesktopApp.Services;
+
 using LaDOSE.DesktopApp.ViewModels;
+using LaDOSE.REST;
 
 namespace LaDOSE.DesktopApp
 {
@@ -18,13 +20,18 @@ namespace LaDOSE.DesktopApp
 
         protected override void Configure()
         {
+
             container = new SimpleContainer();
 
             container.Singleton<IWindowManager, WindowManager>();
-
-            container.PerRequest<ShellViewModel>();
             container.Singleton<RestService>();
+            
+            container.PerRequest<ShellViewModel>();
+
+           
+    
         }
+
 
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
@@ -44,6 +51,7 @@ namespace LaDOSE.DesktopApp
         protected override void BuildUp(object instance)
         {
             container.BuildUp(instance);
+
         }
     }
 }

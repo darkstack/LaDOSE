@@ -14,16 +14,16 @@ namespace LaDOSE.Api.Controllers
     public class WordPressController : Controller
     {
         public IGameService GameService { get; }
+
         private IWordPressService _service;
         // GET
 
-        public WordPressController(IWordPressService service, IGameService gameService )
+        public WordPressController(IWordPressService service, IGameService gameService)
         {
             GameService = gameService;
             _service = service;
         }
 
- 
 
         [HttpGet("WPEvent")]
         public List<WPEventDTO> Event()
@@ -31,30 +31,44 @@ namespace LaDOSE.Api.Controllers
             var wpEvents = _service.GetWpEvent();
             foreach (var wpEvent in wpEvents)
             {
-
                 foreach (var wpEventWpBooking in wpEvent.WPBookings)
                 {
                     wpEventWpBooking.WPEvent = null;
                     wpEventWpBooking.WPUser.WPBookings = null;
                 }
             }
+
             return Mapper.Map<List<WPEventDTO>>(wpEvents);
         }
 
+        
+        [HttpGet("NextEvent")]
+        public WPEventDTO NextEvent()
+        {
+            var wpEvents = _service.GetNextWpEvent();
+
+
+            foreach (var wpEventWpBooking in wpEvents.WPBookings)
+            {
+                wpEventWpBooking.WPEvent = null;
+                wpEventWpBooking.WPUser.WPBookings = null;
+            }
+
+            return Mapper.Map<WPEventDTO>(wpEvents);
+        }
 
         [HttpGet("GetUsers/{wpEventId}/{gameId}")]
         public List<WPUserDTO> GetUsers(int wpEventId, int gameId)
         {
             var game = GameService.GetById(gameId);
             return Mapper.Map<List<WPUserDTO>>(_service.GetBooking(wpEventId, game));
-
         }
+
         [HttpGet("GetUsersOptions/{wpEventId}/{gameId}")]
         public List<WPUserDTO> GetUsersOptions(int wpEventId, int gameId)
         {
             var game = GameService.GetById(gameId);
             return Mapper.Map<List<WPUserDTO>>(_service.GetBookingOptions(wpEventId, game));
-
         }
 
 
@@ -62,17 +76,16 @@ namespace LaDOSE.Api.Controllers
         public bool UpdateDb()
         {
             return _service.UpdateBooking();
-            
         }
 
         [HttpGet("CreateChallonge/{gameId:int}/{wpEventId:int}")]
         public string CreateChallonge(int gameId, int wpEventId)
         {
-            return _service.CreateChallonge(gameId, wpEventId,null);
+            return _service.CreateChallonge(gameId, wpEventId, null);
         }
 
         [HttpPost("CreateChallonge/{gameId:int}/{wpEventId:int}")]
-        public string CreateChallonge(int gameId, int wpEventId, [FromBody]List<WPUser> additionalPlayer)
+        public string CreateChallonge(int gameId, int wpEventId, [FromBody] List<WPUser> additionalPlayer)
         {
             return _service.CreateChallonge(gameId, wpEventId, additionalPlayer);
         }

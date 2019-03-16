@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Configuration;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using Caliburn.Micro;
-using LaDOSE.DesktopApp.Services;
+using LaDOSE.REST;
 
 namespace LaDOSE.DesktopApp.ViewModels
 {
@@ -15,6 +16,16 @@ namespace LaDOSE.DesktopApp.ViewModels
             this.DisplayName = "LaDOSE";
             this.AppIcon = BitmapFrame.Create(Application.GetResourceStream(new Uri("/LaDOSE.DesktopApp;component/Resources/64x64.png",
                 UriKind.RelativeOrAbsolute)).Stream);
+
+            var appSettings = ConfigurationManager.AppSettings;
+            string url = (string)appSettings["ApiUri"];
+            string user = (string)appSettings["ApiUser"];
+            string password = (string)appSettings["ApiPassword"];
+            Uri uri = new Uri(url);
+            var restService = IoC.Get<RestService>();
+
+            restService.Connect(uri, user, password);
+
             var wordPressViewModel = new WordPressViewModel(IoC.Get<RestService>());
             ActivateItem(wordPressViewModel);
             base.OnInitialize();

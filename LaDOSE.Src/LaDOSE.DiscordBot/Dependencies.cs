@@ -10,6 +10,6 @@ namespace LaDOSE.DiscordBot
         internal CancellationTokenSource Cts { get; set; }
         public ChallongeService ChallongeService { get; set; }
         public TodoService TodoService { get; set; }
-
+        public WebService WebService { get; set; }
     }
 }

@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Caliburn.Micro;
-using LaDOSE.DesktopApp.Services;
 using LaDOSE.DTO;
+using LaDOSE.REST;
 
 namespace LaDOSE.DesktopApp.ViewModels
 {
@@ -16,19 +17,20 @@ namespace LaDOSE.DesktopApp.ViewModels
         {
             this.RestService = restService;
             this.Games=new List<GameDTO>();
-
+            
         }
 
         protected override void OnInitialize()
         {
             LoadGames();
+            this.CurrentGame = Games.First();
             base.OnInitialize();
         }
 
         public void LoadGames()
         {
-            this.Games.Clear();
-            this.Games = this.RestService.GetGames();
+            var gameDtos = this.RestService.GetGames().OrderBy(e=>e.Order).ToList();
+            this.Games = gameDtos;
             NotifyOfPropertyChange("Games");
         }
 
@@ -56,7 +58,8 @@ namespace LaDOSE.DesktopApp.ViewModels
         public void Update()
         {
             this.RestService.UpdateGame(this.CurrentGame);
-            this.Games = RestService.GetGames();
+            LoadGames();
+               
         }
         public void AddGame()
         {

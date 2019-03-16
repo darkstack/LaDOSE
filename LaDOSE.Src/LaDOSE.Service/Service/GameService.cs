@@ -15,11 +15,25 @@ namespace LaDOSE.Business.Service
         {
         }
 
+        public override Game AddOrUpdate(Game entity)
+        {
+            if (entity.Order == 0)
+            {
+                entity.Order = GetNextFreeOrder();
+            }
+
+            return base.AddOrUpdate(entity);
+        }
+
         public override IEnumerable<Game> GetAll()
         {
             return _context.Game.Include(e => e.Seasons).ThenInclude(e=>e.Season).ToList();
         }
 
-
+        public int GetNextFreeOrder()
+        {
+            int nextFreeOrder = _context.Game.Max(e => e.Order);
+            return ++nextFreeOrder;
+        }
     }
 }

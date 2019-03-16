@@ -8,9 +8,9 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
 using Caliburn.Micro;
-using LaDOSE.DesktopApp.Services;
 using LaDOSE.DesktopApp.Utils;
 using LaDOSE.DTO;
+using LaDOSE.REST;
 using Action = System.Action;
 
 namespace LaDOSE.DesktopApp.ViewModels
@@ -169,7 +169,7 @@ namespace LaDOSE.DesktopApp.ViewModels
             var reservation = SelectedWpEvent.WpBookings.FirstOrDefault();
             var games = WpEventDeserialize.Parse(reservation.Meta);
             GamesFound.Clear();
-
+            var foundGames = new List<GameDTO>();
             if (games != null)
             {
                 foreach (string wpTag in games.Select(e => e.Name))
@@ -178,12 +178,18 @@ namespace LaDOSE.DesktopApp.ViewModels
                         e.WordPressTag != null && e.WordPressTag.Split(';').Contains(wpTag));
                     if (foundGame != null)
                     {
-                        if (!GamesFound.Contains(foundGame))
+                        if (!foundGames.Contains(foundGame))
                         {
-                            GamesFound.Add(foundGame);
+                            foundGames.Add(foundGame);
                         }
                     }
                 }
+            }
+
+            var orderedEnumerable = foundGames.OrderBy(e => e.Order);
+            foreach (var gameDto in orderedEnumerable)
+            {
+                GamesFound.Add(gameDto);
             }
 
             NotifyOfPropertyChange(() => GamesFound);
@@ -209,8 +215,9 @@ namespace LaDOSE.DesktopApp.ViewModels
                 System.Windows.Input.Mouse.OverrideCursor = Cursors.Wait);
             GamesFound = new ObservableCollection<GameDTO>();
             this.Games = this.RestService.GetGames();
-            this.Events = this.RestService.GetEvents();
-
+             var events = this.RestService.GetEvents();
+             events.ForEach(e => e.WpBookings = e.WpBookings.OrderBy(x => x.WpUser.Name).ToList());
+             this.Events = events;
             NotifyOfPropertyChange("Events");
             Application.Current.Dispatcher.Invoke(() =>
                 System.Windows.Input.Mouse.OverrideCursor = null);

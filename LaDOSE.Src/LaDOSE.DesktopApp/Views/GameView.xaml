@@ -4,6 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LaDOSE.DesktopApp.Views"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:behaviors="clr-namespace:LaDOSE.DesktopApp.Behaviors"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Row="4" Column="1">
@@ -19,7 +21,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="{Binding Id}"></Label>
+                        <Label Content="{Binding Order}"></Label>
                         <Label> - </Label>
                         <Label Content="{Binding Name}"></Label>
                     </StackPanel>
@@ -33,6 +35,7 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
@@ -51,11 +54,20 @@
             <Label Grid.Row="2" Grid.Column="0">Name</Label>
             <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=CurrentGame.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ></TextBox>
 
-            <Label Grid.Row="3" Grid.Column="0">WpTag</Label>
-            <TextBox Grid.Row="4" Grid.ColumnSpan="2" Text="{Binding Path=CurrentGame.WordPressTag,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ></TextBox>
-            <Label Grid.Row="5" Grid.Column="0">WpTagOs</Label>
-            <TextBox Grid.Row="6" Grid.ColumnSpan="2" Text="{Binding Path=CurrentGame.WordPressTagOs,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ></TextBox>
-            <Button Grid.Row="7" Grid.ColumnSpan="2" x:Name="Update">Update</Button>
+            <Label Grid.Row="3" Grid.Column="0">Order</Label>
+            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=CurrentGame.Order,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                <i:Interaction.Behaviors>
+                    <behaviors:TextBoxInputRegExBehaviour RegularExpression="^\d+$" MaxLength="9" EmptyValue="0">
+
+                    </behaviors:TextBoxInputRegExBehaviour>
+                </i:Interaction.Behaviors>
+            </TextBox>
+
+            <Label Grid.Row="4" Grid.Column="0">WpTag</Label>
+            <TextBox Grid.Row="5" Grid.ColumnSpan="2" Text="{Binding Path=CurrentGame.WordPressTag,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ></TextBox>
+            <Label Grid.Row="6" Grid.Column="0">WpTagOs</Label>
+            <TextBox Grid.Row="7" Grid.ColumnSpan="2" Text="{Binding Path=CurrentGame.WordPressTagOs,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ></TextBox>
+            <Button Grid.Row="8" Grid.ColumnSpan="2" x:Name="Update">Update</Button>
             
         </Grid>
        </Grid>

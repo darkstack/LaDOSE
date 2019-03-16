@@ -1,32 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Configuration;
-using System.Windows;
 using LaDOSE.DTO;
 using RestSharp;
 using RestSharp.Authenticators;
 using RestSharp.Serialization.Json;
-using DataFormat = RestSharp.DataFormat;
 
-namespace LaDOSE.DesktopApp.Services
+namespace LaDOSE.REST
 {
     public class RestService
     {
+
         public RestClient Client { get; set; }
 
-        public RestService()
+        public RestService() { }
+    
+
+        public void Connect(Uri url, string user, string password)
         {
-#if DEBUG
-            MessageBox.Show("WAIT");
-#endif
-            var appSettings = ConfigurationManager.AppSettings;
-            string url = (string) appSettings["ApiUri"];
-            string user = (string)appSettings["ApiUser"];
-            string password = (string) appSettings["ApiPassword"];
             Client = new RestClient(url);
             var restRequest = new RestRequest("users/auth", Method.POST);
-            restRequest.AddJsonBody(new { username = user, password = password });
+            restRequest.AddJsonBody(new {username = user, password = password});
             var response = Client.Post(restRequest);
             if (response.IsSuccessful)
             {
@@ -36,8 +29,7 @@ namespace LaDOSE.DesktopApp.Services
             }
             else
             {
-                MessageBox.Show("Unable to contact services, i m useless, BYEKTHX","Error",MessageBoxButton.OK,MessageBoxImage.Error);
-                Application.Current.Shutdown(-1);
+                throw new Exception("unable to contact services");
             }
         }
 
@@ -101,6 +93,12 @@ namespace LaDOSE.DesktopApp.Services
         {
             var restRequest = new RestRequest("/api/wordpress/WPEvent", Method.GET);
             var restResponse = Client.Get<List<WPEventDTO>>(restRequest);
+            return restResponse.Data;
+        }
+        public WPEventDTO GetNextEvent()
+        {
+            var restRequest = new RestRequest("/api/wordpress/NextEvent", Method.GET);
+            var restResponse = Client.Get<WPEventDTO>(restRequest);
             return restResponse.Data;
         }
 

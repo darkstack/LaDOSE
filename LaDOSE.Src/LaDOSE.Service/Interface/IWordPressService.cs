@@ -6,6 +6,7 @@ namespace LaDOSE.Business.Interface
 {
     public interface IWordPressService
     {
+        WPEvent GetNextWpEvent();
         List<WPEvent> GetWpEvent();
         List<WPUser> GetBooking(int wpEventId, Game game);
         List<WPUser> GetBookingOptions(int wpEventId, Game game);

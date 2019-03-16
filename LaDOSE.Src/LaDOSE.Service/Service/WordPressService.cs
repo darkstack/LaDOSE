@@ -30,6 +30,12 @@ namespace LaDOSE.Business.Service
                 .ThenInclude(e => e.WPUser).Where(e => e.WPBookings.Count() != 0).Take(10).ToList();
             return wpEvents;
         }
+        public WPEvent GetNextWpEvent()
+        {
+            var wpEvents = _context.Set<WPEvent>().OrderByDescending(e=>e.Date).ThenByDescending(e => e.Id)
+                .Include(e => e.WPBookings).ThenInclude(e => e.WPUser).FirstOrDefault(e => Enumerable.Count<WPBooking>(e.WPBookings) != 0);
+            return wpEvents;
+        }
 
         public bool UpdateBooking()
         {

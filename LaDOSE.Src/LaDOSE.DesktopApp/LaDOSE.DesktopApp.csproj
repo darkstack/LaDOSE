@@ -66,8 +66,8 @@
     <Reference Include="Caliburn.Micro.Platform.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
       <HintPath>..\packages\Caliburn.Micro.3.2.0\lib\net45\Caliburn.Micro.Platform.Core.dll</HintPath>
     </Reference>
-    <Reference Include="RestSharp, Version=106.6.5.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
-      <HintPath>..\packages\RestSharp.106.6.5\lib\net452\RestSharp.dll</HintPath>
+    <Reference Include="RestSharp, Version=106.6.9.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.106.6.9\lib\net452\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -99,12 +99,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Behaviors\TextBoxInputRegExBehaviour.cs" />
     <Compile Include="Behaviors\MultiSelectorBehaviours.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Themes\LeftMarginMultiplierConverter.cs" />
     <Compile Include="Themes\TreeViewItemExtensions.cs" />
     <Compile Include="Utils\PhpSerialize.cs" />
-    <Compile Include="Services\RestService.cs" />
     <Compile Include="UserControls\BookingUserControl.xaml.cs">
       <DependentUpon>BookingUserControl.xaml</DependentUpon>
     </Compile>
@@ -189,6 +189,10 @@
       <Project>{61201da6-1bc9-4ba1-ac45-70104d391ecd}</Project>
       <Name>LaDOSE.DTO</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LaDOSE.REST\LaDOSE.REST.csproj">
+      <Project>{692c2a72-ab7e-4502-bed8-aa2afa1761cb}</Project>
+      <Name>LaDOSE.REST</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="64x64.ico" />
@@ -207,6 +211,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

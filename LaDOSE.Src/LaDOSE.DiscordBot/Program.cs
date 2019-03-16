@@ -31,7 +31,9 @@ namespace LaDOSE.DiscordBot
 
             var discordToken = builder["Discord:Token"].ToString();
             var challongeToken = builder["Challonge:Token"].ToString();
-
+            var restUrl = builder["REST:Url"].ToString();
+            var restUser = builder["REST:User"].ToString();
+            var restPassword = builder["REST:Password"].ToString();
 
             Console.WriteLine($"LaDOSE.Net Discord Bot");
 
@@ -42,7 +44,7 @@ namespace LaDOSE.DiscordBot
                 TokenType = TokenType.Bot
             });
 
-
+            var webService = new WebService(new Uri(restUrl),restUser,restPassword);
             var challongeService = new ChallongeService(challongeToken);
             var todoService = new TodoService();
             var cts = new CancellationTokenSource();
@@ -56,6 +58,7 @@ namespace LaDOSE.DiscordBot
                     Cts = cts,
                     ChallongeService = challongeService,
                     TodoService = todoService,
+                    WebService = webService
                 });
                 dep = d.Build();
             }
