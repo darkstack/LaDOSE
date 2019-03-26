@@ -5,7 +5,7 @@ namespace LaDOSE.REST.Event
 {
     public class UpdatedJwtEventHandler : EventArgs
     {
-        private ApplicationUserDTO msg;
+        private readonly ApplicationUserDTO msg;
         public UpdatedJwtEventHandler(ApplicationUserDTO applicationUser)
         {
             this.msg = applicationUser;
