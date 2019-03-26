@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using LaDOSE.Entity;
 using LaDOSE.Entity.Wordpress;
 
@@ -12,5 +13,7 @@ namespace LaDOSE.Business.Interface
         List<WPUser> GetBookingOptions(int wpEventId, Game game);
         bool UpdateBooking();
         string CreateChallonge(int gameId, int wpEventId, IList<WPUser> additionPlayers);
+
+        Task<string> GetLastChallonge();
     }
 }

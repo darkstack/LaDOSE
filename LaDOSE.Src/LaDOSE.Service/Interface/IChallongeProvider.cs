@@ -6,7 +6,7 @@ namespace LaDOSE.Business.Interface
 {
     public interface IChallongeProvider
     {
-        Task<Boolean> GetLastTournament();
+        Task<string> GetLastTournament();
         string GetLastTournamentMessage();
         Task<TournamentResult> CreateTournament(string name, string url);
         Task<ParticipantResult> AddPlayer(int tournamentId, string userName);

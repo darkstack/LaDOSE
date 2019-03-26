@@ -10,6 +10,7 @@ using ChallongeCSharpDriver.Main;
 using ChallongeCSharpDriver.Main.Objects;
 using LaDOSE.DTO;
 using LaDOSE.REST;
+using RestSharp.Authenticators;
 
 namespace LaDOSE.DiscordBot.Service
 {
@@ -17,10 +18,18 @@ namespace LaDOSE.DiscordBot.Service
     {
         private RestService restService;
 
+        public RestService RestService => restService;
+
         public WebService(Uri uri,string user,string password)
         {
           restService = new RestService();
           restService.Connect(uri,user,password);
+        }
+
+        private void CheckToken()
+        {
+            
+         
         }
 
 
@@ -36,6 +45,11 @@ namespace LaDOSE.DiscordBot.Service
         public bool RefreshDb()
         {
             return restService.RefreshDb();
+        }
+
+        public string GetLastChallonge()
+        {
+            return restService.GetLastChallonge();
         }
     }
 }

@@ -45,8 +45,9 @@ namespace LaDOSE.Business.Provider
 
         }
 
-        public async Task<Boolean> GetLastTournament()
+        public async Task<string> GetLastTournament()
         {
+            string dernierTournois = null;
             try
             {
 
@@ -59,6 +60,7 @@ namespace LaDOSE.Business.Provider
 
 
                 var lastDate = tournamentResultList.Max(e => e.completed_at);
+               
                 if (lastDate.HasValue)
                 {
                     var lastRankingDate = new DateTime(lastDate.Value.Year, lastDate.Value.Month, lastDate.Value.Day);
@@ -70,13 +72,13 @@ namespace LaDOSE.Business.Provider
                         returnValue += $"{tournamentResult.name} : <https://challonge.com/{tournamentResult.url}> \n";
                     }
 
-                    DernierTournois = returnValue;
+                    dernierTournois = returnValue;
                 }
-                return true;
+                return dernierTournois;
             }
             catch
             {
-                return false;
+                return dernierTournois;
             }
         }
         public string GetLastTournamentMessage()

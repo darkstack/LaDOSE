@@ -96,6 +96,7 @@ namespace LaDOSE.Api
                                 // return unauthorized if user no longer exists
                                 context.Fail("Unauthorized");
                             }
+
                             return Task.CompletedTask;
                         }
                     };
@@ -117,9 +118,10 @@ namespace LaDOSE.Api
                 cfg.CreateMap<WPUser, LaDOSE.DTO.WPUserDTO>();
                 cfg.CreateMap<WPUser, LaDOSE.DTO.WPUserDTO>();
                 cfg.CreateMap<WPEvent, LaDOSE.DTO.WPEventDTO>();
-                cfg.CreateMap<ApplicationUser, LaDOSE.DTO.ApplicationUser>();
+                cfg.CreateMap<ApplicationUser, LaDOSE.DTO.ApplicationUserDTO>();
                 cfg.CreateMap<WPBooking, LaDOSE.DTO.WPBookingDTO>().ForMember(e=>e.Meta,opt=>opt.MapFrom(s=>s.Meta.CleanWpMeta()));
                 cfg.CreateMapTwoWay<Game, LaDOSE.DTO.GameDTO>();
+                cfg.CreateMapTwoWay<Todo, LaDOSE.DTO.TodoDTO>();
 
             });
         }
@@ -133,6 +135,7 @@ namespace LaDOSE.Api
             services.AddScoped<IEventService, EventService>();
             services.AddScoped<ISeasonService, SeasonService>();
             services.AddScoped<IWordPressService, WordPressService>();
+            services.AddScoped<ITodoService, TodoService>();
             
         }
 

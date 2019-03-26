@@ -72,8 +72,10 @@
             </TabControl.ItemTemplate>
         </TabControl>
         <StatusBar Grid.Row="2">
-   
-            
+            <StackPanel Orientation="Horizontal">
+            <TextBlock> User : </TextBlock>
+            <TextBlock Margin="5,0,0,0"  Text="{Binding Path=User,UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+            </StackPanel>
         </StatusBar>
 
     </Grid>

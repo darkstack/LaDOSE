@@ -1,6 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
+using DSharpPlus.Interactivity;
+using LaDOSE.DTO;
 
 namespace LaDOSE.DiscordBot.Command
 {
@@ -17,22 +20,98 @@ namespace LaDOSE.DiscordBot.Command
         public async Task TodoAsync(CommandContext ctx, string command,params string[] todo)
         {
             await ctx.TriggerTypingAsync();
+            string args = string.Join(" ",todo);
             switch (command.ToUpperInvariant())
             {
                 case "ADD":
-                    dep.TodoService.Add(todo[0]);
+                   
+                    var todoDto = new TodoDTO
+                    {
+                        Created = DateTime.Now,
+                        Done = false,
+                        Deleted = null,
+                        Task = args,
+                        User = ctx.User.Username,
+                    };
+                    dep.WebService.RestService.UpdateTodo(todoDto);
+                    //dep.WebService.RestService.UpdateGame();
                     break;
                 case "LIST":
-                    await ctx.RespondAsync($"{dep.TodoService.List()}");
+                    var todoDtos = dep.WebService.RestService.GetTodos();
+                    foreach (var task in todoDtos)
+                    {
+                        string taskStatus = task.Done ? ":white_check_mark:" : ":negative_squared_cross_mark:";
+                        await ctx.RespondAsync($"{task?.Id} - {task?.Task} Par : {task?.User} Etat : {taskStatus}");
+                    }
+                    
                     break;
                 case "DEL":
-                    int id;
-                    if (int.TryParse(todo[0], out id))
+                    try
                     {
-                        await ctx.RespondAsync($"{dep.TodoService.Delete(id)}");
-                        break;
-                    };
-                    await ctx.RespondAsync($"invalid id");
+                        int id = int.Parse(todo[0]);
+                        await ctx.RespondAsync(dep.WebService.RestService.DeleteTodo(id) ? $"Deleted" : $"Error");
+                    }
+                    catch (Exception e)
+                    {
+                        await ctx.RespondAsync($"Error {e.Message}");
+                        return;
+                    }
+                    break;
+                case "V":
+                    try
+                    {
+                        int id = int.Parse(todo[0]);
+                        var todoById = dep.WebService.RestService.GetTodoById(id);
+                        todoById.Done = true;
+                        dep.WebService.RestService.UpdateTodo(todoById);
+                        await ctx.RespondAsync($"Done : {todoById.Id} - {todoById.Task}");
+                    }
+                    catch (Exception e)
+                    {
+                        await ctx.RespondAsync($"Error {e.Message}");
+                        return;
+                    }
+                    break;
+                case "X":
+                    try
+                    {
+                        int id = int.Parse(todo[0]);
+                        var todoById = dep.WebService.RestService.GetTodoById(id);
+                        todoById.Done = false;
+                        dep.WebService.RestService.UpdateTodo(todoById);
+                        await ctx.RespondAsync($"Undone : {todoById.Id} - {todoById.Task}");
+                    }
+                    catch (Exception e)
+                    {
+                        await ctx.RespondAsync($"Erreur {e.Message}");
+                        return;
+                    }
+                    break;
+                case "TRUNC":
+                    try
+                    {
+          
+                        var todos = dep.WebService.RestService.GetTodos();
+                        await ctx.RespondAsync($"Sure ? (Y/N)");
+                        var interactivity = ctx.Client.GetInteractivityModule();
+                        var waitForMessageAsync = await interactivity.WaitForMessageAsync(xm => xm.Content.Contains("Y")||xm.Content.Contains("N"), TimeSpan.FromSeconds(10));
+                        if (waitForMessageAsync!= null)
+                        {
+                            if (waitForMessageAsync.Message.Content == "Y")
+                            {
+                                foreach (var task in todos)
+                                {
+                                    dep.WebService.RestService.DeleteTodo(task.Id);
+                                    await ctx.RespondAsync($"Deleted - {task.Id}");
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        await ctx.RespondAsync($"Erreur {e.Message}");
+                        return;
+                    }
                     break;
 
             }

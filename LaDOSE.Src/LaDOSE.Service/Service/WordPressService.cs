@@ -1,7 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
+using ChallongeCSharpDriver;
+using ChallongeCSharpDriver.Core.Queries;
+using ChallongeCSharpDriver.Core.Results;
 using LaDOSE.Business.Helper;
 using LaDOSE.Business.Interface;
 using LaDOSE.Entity;
@@ -152,6 +157,12 @@ namespace LaDOSE.Business.Service
 
 
             return "error while creating challonge";
+        }
+
+        public async Task<string> GetLastChallonge()
+        {
+                var lastTournament = await _challongeProvider.GetLastTournament();
+                return lastTournament;
         }
 
         private string FormatCurrentEventName(string currentEventName)

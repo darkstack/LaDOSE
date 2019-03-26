@@ -16,7 +16,7 @@ namespace LaDOSE.DiscordBot
     class Program
     {
         static DiscordClient discord;
-
+        static  InteractivityModule Interactivity { get; set; }
         static void Main(string[] args)
         {
             MainAsync(args).ConfigureAwait(false).GetAwaiter().GetResult();
@@ -44,9 +44,20 @@ namespace LaDOSE.DiscordBot
                 TokenType = TokenType.Bot
             });
 
+            discord.UseInteractivity(new InteractivityConfiguration
+            {
+                // default pagination behaviour to just ignore the reactions
+                PaginationBehaviour = TimeoutBehaviour.Ignore,
+
+                // default pagination timeout to 5 minutes
+                PaginationTimeout = TimeSpan.FromMinutes(5),
+
+                // default timeout for other actions to 2 minutes
+                Timeout = TimeSpan.FromMinutes(2)
+            });
             var webService = new WebService(new Uri(restUrl),restUser,restPassword);
-            var challongeService = new ChallongeService(challongeToken);
-            var todoService = new TodoService();
+            //var challongeService = new ChallongeService(challongeToken);
+            
             var cts = new CancellationTokenSource();
             DependencyCollection dep = null;
 
@@ -54,10 +65,8 @@ namespace LaDOSE.DiscordBot
             {
                 d.AddInstance(new Dependencies()
                 {
-                 
                     Cts = cts,
-                    ChallongeService = challongeService,
-                    TodoService = todoService,
+                    //ChallongeService = challongeService,
                     WebService = webService
                 });
                 dep = d.Build();

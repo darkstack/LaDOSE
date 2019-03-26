@@ -9,6 +9,7 @@ namespace LaDOSE.Entity.Context
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
         public DbSet<Season> Season { get; set; }
         public DbSet<Event> Event { get; set; }
+        public DbSet<Todo> Todo { get; set; }
 
         #region WordPress
         public DbSet<WPUser> WPUser { get; set; }

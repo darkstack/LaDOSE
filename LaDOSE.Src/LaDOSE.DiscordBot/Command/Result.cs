@@ -14,18 +14,18 @@ namespace LaDOSE.DiscordBot.Command
         }
 
 
-        [RequireRolesAttribute("Staff")]
-        [Command("update")]
-        public async Task UpdateAsync(CommandContext ctx)
-        {
-            var tournament = await dep.ChallongeService.GetLastTournament();
-            await ctx.RespondAsync($"Mise à jour effectuée");
-        }
+        //[RequireRolesAttribute("Staff")]
+        //[Command("update")]
+        //public async Task UpdateAsync(CommandContext ctx)
+        //{
+        //    //var tournament = await dep.ChallongeService.GetLastTournament();
+        //    //await ctx.RespondAsync($"Mise à jour effectuée");
+        //}
 
         [Command("last")]
         public async Task LastAsync(CommandContext ctx)
         {
-            var lastTournamentMessage = dep.ChallongeService.GetLastTournamentMessage();
+            var lastTournamentMessage = dep.WebService.GetLastChallonge();
             await ctx.RespondAsync(lastTournamentMessage);
         }
 

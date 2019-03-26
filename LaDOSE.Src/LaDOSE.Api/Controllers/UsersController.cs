@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using LaDOSE.Business.Interface;
+using LaDOSE.DTO;
 using LaDOSE.Entity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -50,20 +51,21 @@ namespace LaDOSE.Api.Controllers
                 {
                     new Claim(ClaimTypes.Name, user.Id.ToString())
                 }),
-                Expires = DateTime.UtcNow.AddDays(7),
+                Expires = DateTime.UtcNow.AddMinutes(16),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var tokenString = tokenHandler.WriteToken(token);
 
             // return basic user info (without password) and token to store client side
-            return Ok(new
+            return Ok(new ApplicationUserDTO
             {
                 Id = user.Id,
                 Username = user.Username,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                Token = tokenString
+                Token = tokenString,
+                Expire = token.ValidTo
             });
         }
 
