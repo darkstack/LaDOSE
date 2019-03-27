@@ -23,7 +23,15 @@ namespace LaDOSE.DiscordBot.Service
         public WebService(Uri uri,string user,string password)
         {
           restService = new RestService();
-          restService.Connect(uri,user,password);
+          try
+          {
+              restService.Connect(uri, user, password);
+          }
+          catch (Exception)
+          {
+              Console.WriteLine("Unable to contact services");
+          }
+          
         }
 
         private void CheckToken()

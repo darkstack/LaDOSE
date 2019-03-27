@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using LaDOSE.Business.Interface;
 using LaDOSE.Entity.Context;
@@ -34,17 +35,36 @@ namespace LaDOSE.Business.Service
 
         public virtual bool Update(T entity)
         {
-            var entityEntry = _context.Update(entity);
-            this._context.SaveChanges();
-            return _context.Entry(entityEntry).State == EntityState.Unchanged;
+            try
+            {
+
+                var entityEntry = _context.Update(entity);
+                this._context.SaveChanges();
+                return true;
+            }
+            catch (DbUpdateException e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
         }
 
         public virtual bool Delete(int id)
         {
-            var find = _context.Find<T>(id);
-            _context.Remove(find);
-            this._context.SaveChanges();
-            return _context.Entry(find).State == EntityState.Deleted;
+            try
+            {
+                var find = _context.Find<T>(id);
+                if (find == null) return false;
+                _context.Remove((object) find);
+                this._context.SaveChanges();
+                return true;
+            }
+            catch (DbUpdateException e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+            
         }
 
         public virtual T AddOrUpdate(T entity)

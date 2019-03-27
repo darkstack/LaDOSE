@@ -65,7 +65,7 @@ namespace LaDOSE.REST
 
         private void CheckToken()
         {
-            if (this.Auth.Expire <= DateTime.Now)
+            if (this.Auth == null || this.Auth.Expire <= DateTime.Now)
             {
                 GetToken(this.username,this.password);
             }

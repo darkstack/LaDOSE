@@ -16,10 +16,23 @@ namespace LaDOSE.Business.Service
 
         public override bool Delete(int id)
         {
-            var find = _context.Find<Todo>(id);
-            find.Deleted = DateTime.Now;
-            this._context.SaveChanges();
-            return _context.Entry(find).State == EntityState.Modified;
+            try
+            {
+                var find = _context.Find<Todo>(id);
+                if (find != null)
+                {
+                    if (find.Deleted.HasValue)
+                        return false;
+                    find.Deleted = DateTime.Now;
+                }
+                    
+                this._context.SaveChanges();
+                return true;
+            }
+            catch (DbUpdateException)
+            {
+                return false;
+            }
         }
 
         public override IEnumerable<Todo> GetAll()

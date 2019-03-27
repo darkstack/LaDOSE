@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Threading.Tasks;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
@@ -38,12 +39,21 @@ namespace LaDOSE.DiscordBot.Command
                     break;
                 case "LIST":
                     var todoDtos = dep.WebService.RestService.GetTodos();
-                    foreach (var task in todoDtos)
-                    {
-                        string taskStatus = task.Done ? ":white_check_mark:" : ":negative_squared_cross_mark:";
-                        await ctx.RespondAsync($"{task?.Id} - {task?.Task} Par : {task?.User} Etat : {taskStatus}");
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendLine("Todos: ");
+                    if (todoDtos!=null && todoDtos.Count>0)
+                    { 
+                        foreach (var task in todoDtos)
+                        {
+                            string taskStatus = task.Done ? ":white_check_mark:" : ":negative_squared_cross_mark:";
+                            sb.AppendLine($"{task.Id} | {taskStatus} | {task.User} | {task.Task}");
+                        }
                     }
-                    
+                    else
+                    {
+                        sb.AppendLine("None.");
+                    }
+                    await ctx.RespondAsync(sb.ToString());
                     break;
                 case "DEL":
                     try
