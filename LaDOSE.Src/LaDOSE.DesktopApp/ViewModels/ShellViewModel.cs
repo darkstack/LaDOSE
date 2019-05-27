@@ -62,9 +62,9 @@ namespace LaDOSE.DesktopApp.ViewModels
             ActivateItem(new GameViewModel(IoC.Get<RestService>()));
         }
 
-        public void OpenWeb()
+        public void TournamentResult()
         {
-            ActivateItem(new WebNavigationViewModel("www.google.com"));
+            ActivateItem(new TournamentResultViewModel());
         }
     }
 }

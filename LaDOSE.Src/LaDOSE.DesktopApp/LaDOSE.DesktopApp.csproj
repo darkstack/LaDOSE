@@ -112,6 +112,7 @@
     <Compile Include="Utils\WpfUtil.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\GameViewModel.cs" />
+    <Compile Include="ViewModels\TournamentResultViewModel.cs" />
     <Compile Include="ViewModels\WebNavigationViewModel.cs" />
     <Compile Include="ViewModels\WordPressViewModel.cs" />
     <Compile Include="Views\WebNavigationView.xaml.cs">
@@ -122,6 +123,9 @@
     </Compile>
     <Compile Include="Views\GameView.xaml.cs">
       <DependentUpon>GameView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TournamentResultView.xaml.cs">
+      <DependentUpon>TournamentResultView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WordPressView.xaml.cs">
       <DependentUpon>WordPressView.xaml</DependentUpon>
@@ -147,6 +151,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\GameView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TournamentResultView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
