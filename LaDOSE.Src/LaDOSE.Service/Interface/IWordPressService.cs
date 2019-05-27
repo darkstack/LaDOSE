@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using LaDOSE.Entity;
 using LaDOSE.Entity.Wordpress;
@@ -15,5 +16,7 @@ namespace LaDOSE.Business.Interface
         string CreateChallonge(int gameId, int wpEventId, IList<WPUser> additionPlayers);
 
         Task<string> GetLastChallonge();
+
+        Task<List<Tuple<int, string, string>>> GetTournaments(DateTime? start, DateTime? end);
     }
 }

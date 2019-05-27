@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using AutoMapper;
 using LaDOSE.Business.Interface;
 using LaDOSE.DTO;
@@ -88,6 +90,14 @@ namespace LaDOSE.Api.Controllers
         public string CreateChallonge(int gameId, int wpEventId, [FromBody] List<WPUser> additionalPlayer)
         {
             return _service.CreateChallonge(gameId, wpEventId, additionalPlayer);
+        }
+
+        [HttpGet("GetTournaments")]
+        public async Task<List<Tuple<int, string, string>>> GetChallonge()
+        {
+            
+            var game = await _service.GetTournaments(DateTime.Now.AddMonths(-2), null);
+            return game;
         }
     }
 }

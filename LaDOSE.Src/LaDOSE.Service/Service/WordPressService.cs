@@ -164,7 +164,13 @@ namespace LaDOSE.Business.Service
                 var lastTournament = await _challongeProvider.GetLastTournament();
                 return lastTournament;
         }
-
+        public async Task<List<Tuple<int, string, string>>> GetTournaments(DateTime? start, DateTime? end)
+        {
+            var tournamentResults = await _challongeProvider.GetTournaments(start,end);
+            List<Tuple<int,string,string>> ret = new List<Tuple<int, string,string>>();
+            tournamentResults.ForEach(w =>ret.Add(new Tuple<int, string,string>(w.id,w.name,w.url)));
+            return ret;
+        }
         private string FormatCurrentEventName(string currentEventName)
         {
 

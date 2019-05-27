@@ -45,6 +45,21 @@ namespace LaDOSE.Business.Provider
 
         }
 
+        public async Task<List<TournamentResult>> GetTournaments(DateTime? start, DateTime? end)
+        {
+
+            List<TournamentResult> tournamentResultList = await new TournamentsQuery()
+                {
+                    state = TournamentState.Ended,
+                    createdAfter = start,
+                    createdBefore = DateTime.Now,
+
+
+            }       
+                .call(this.ApiCaller);
+            return tournamentResultList;
+        }
+
         public async Task<string> GetLastTournament()
         {
             string dernierTournois = null;
