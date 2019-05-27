@@ -30,7 +30,7 @@ namespace LaDOSE.Business.Service
             // check if password is correct
             if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
                 return null;
-
+    
             // authentication successful
             return user;
         }

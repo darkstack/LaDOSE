@@ -17,7 +17,8 @@ namespace LaDOSE.DiscordBot.Command
             dep = d;
         }
 
-        [Command("todo")]
+        [Command("todo"),Description("Todo List")]
+        
         public async Task TodoAsync(CommandContext ctx, string command,params string[] todo)
         {
             await ctx.TriggerTypingAsync();
@@ -123,7 +124,18 @@ namespace LaDOSE.DiscordBot.Command
                         return;
                     }
                     break;
+                case "HELP":
 
+
+                    await ctx.RespondAsync($"Todo:\n" +
+                                           $"-Add : Add todo\n" +
+                                           $"-Del : Delete todo\n" +
+                                           $"-V   : check todo\n" +
+                                           $"-X   : uncheck todo\n");
+                    break;
+                default:
+                        await ctx.RespondAsync($"Need some help ? !todo help");
+                    break;
             }
             //await ctx.RespondAsync($"command : {command}, todo:  {todo} ");
         }

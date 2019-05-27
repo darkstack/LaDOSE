@@ -109,7 +109,7 @@ namespace LaDOSE.Business.Service
                 var remove = currentEvent.Date?.ToString("Mdyy");
                 var url = $"{remove}{selectedGame.Id}";
                 var selectedEvent = FormatCurrentEventName(currentEvent.Name);
-                var name = $"[{eventDate}] LaDOSE.Net - {selectedEvent} - {selectedGame.Name}";
+                var name = $"[{eventDate}] LaDOSE.net - {selectedEvent} - {selectedGame.Name}";
                 var tournament = _challongeProvider.CreateTournament(name, url).Result;
 
 
