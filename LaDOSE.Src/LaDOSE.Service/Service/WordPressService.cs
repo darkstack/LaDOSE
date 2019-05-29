@@ -10,6 +10,7 @@ using ChallongeCSharpDriver.Core.Results;
 using LaDOSE.Business.Helper;
 using LaDOSE.Business.Interface;
 using LaDOSE.Entity;
+using LaDOSE.Entity.Challonge;
 using LaDOSE.Entity.Context;
 using LaDOSE.Entity.Wordpress;
 using Microsoft.EntityFrameworkCore;
@@ -164,12 +165,18 @@ namespace LaDOSE.Business.Service
                 var lastTournament = await _challongeProvider.GetLastTournament();
                 return lastTournament;
         }
-        public async Task<List<Tuple<int, string, string>>> GetTournaments(DateTime? start, DateTime? end)
+        public async Task<List<Tournament>> GetTournaments(DateTime? start, DateTime? end)
         {
-            var tournamentResults = await _challongeProvider.GetTournaments(start,end);
-            List<Tuple<int,string,string>> ret = new List<Tuple<int, string,string>>();
-            tournamentResults.ForEach(w =>ret.Add(new Tuple<int, string,string>(w.id,w.name,w.url)));
-            return ret;
+            var tournaments = await _challongeProvider.GetTournaments(start,end);
+         
+            foreach (var tournament in tournaments)
+            {
+                List<Participent> participents = await _challongeProvider.GetParticipents(tournament.Id);
+                tournament.Participents = participents;
+            }
+
+
+            return tournaments;
         }
         private string FormatCurrentEventName(string currentEventName)
         {

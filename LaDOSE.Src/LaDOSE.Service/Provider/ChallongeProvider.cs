@@ -8,6 +8,7 @@ using ChallongeCSharpDriver.Core.Objects;
 using ChallongeCSharpDriver.Core.Queries;
 using ChallongeCSharpDriver.Core.Results;
 using LaDOSE.Business.Interface;
+using LaDOSE.Entity.Challonge;
 
 namespace LaDOSE.Business.Provider
 {
@@ -45,7 +46,7 @@ namespace LaDOSE.Business.Provider
 
         }
 
-        public async Task<List<TournamentResult>> GetTournaments(DateTime? start, DateTime? end)
+        public async Task<List<Tournament>> GetTournaments(DateTime? start, DateTime? end)
         {
 
             List<TournamentResult> tournamentResultList = await new TournamentsQuery()
@@ -57,7 +58,29 @@ namespace LaDOSE.Business.Provider
 
             }       
                 .call(this.ApiCaller);
-            return tournamentResultList;
+            List<Tournament> tournaments = new List<Tournament>();
+            tournamentResultList.ForEach(w => tournaments.Add(new Tournament()
+            {
+                Id = w.id,
+                Name = w.name,
+                Participents = new List<Participent>()
+            }));
+            return tournaments;
+        }
+
+        public async Task<List<Participent>> GetParticipents(int tournamentId)
+        {
+            var participentResults = new ParticipantsQuery().call(ApiCaller);
+
+            List<Participent> participants = new List<Participent>();
+            participentResults.Result.ForEach(w => participants.Add(new Participent()
+            {
+                Id = w.id,
+                Name = w.name,
+                Rank = w.final_rank,
+                IsMember = false,
+            }));
+            return participants;
         }
 
         public async Task<string> GetLastTournament()
