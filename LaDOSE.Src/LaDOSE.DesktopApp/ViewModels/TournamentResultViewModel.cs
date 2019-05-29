@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Caliburn.Micro;
+using LaDOSE.DesktopApp.Utils;
 using LaDOSE.DTO;
 using LaDOSE.REST;
 
@@ -23,7 +24,7 @@ namespace LaDOSE.DesktopApp.ViewModels
             Tournaments = new List<TournamentDTO>();
          
         }
-        private ObservableCollection<TournamentDTO> _selectedTournaments;
+       
         private TournamentsResultDTO _results;
         public List<TournamentDTO> Tournaments { get; set; }
 
@@ -36,7 +37,7 @@ namespace LaDOSE.DesktopApp.ViewModels
                 NotifyOfPropertyChange(() => Results);
             }
         }
-
+        private ObservableCollection<TournamentDTO> _selectedTournaments;
         public ObservableCollection<TournamentDTO> SelectedTournaments
         {
             get { return _selectedTournaments; }
@@ -49,6 +50,7 @@ namespace LaDOSE.DesktopApp.ViewModels
 
         private GameDTO _selectedGame;
 
+
         public GameDTO SelectedGame
         {
             get { return _selectedGame; }
@@ -56,11 +58,23 @@ namespace LaDOSE.DesktopApp.ViewModels
             {
                 _selectedGame = value;
                 //TODO: QUICK AND DIRTY
-                var resultForGame = this.Results.Results.Where(e => e.GameId == SelectedGame.Id).ToList();
+                List<ResultDTO> resultForGame = this.Results.Results.Where(e => e.GameId == SelectedGame.Id).ToList();
                 First = resultForGame.OrderByDescending(e=>e.Point).First().Player;
+                SelectedGameResult = new ObservableCollection<ResultDTO>(resultForGame);
                 NotifyOfPropertyChange(() => SelectedGame);
             }
         }
+        private ObservableCollection<ResultDTO> _selectedGameResult;
+        public ObservableCollection<ResultDTO> SelectedGameResult
+        {
+            get { return _selectedGameResult; }
+            set
+            {
+                _selectedGameResult = value;
+                NotifyOfPropertyChange(() => SelectedGameResult);
+            }
+        }
+
         private String _first;
         public String First
         {
