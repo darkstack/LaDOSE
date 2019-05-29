@@ -83,28 +83,26 @@
 
             </ListView>
 
-            <StackPanel Grid.Row="2" Grid.Column="2">
-                <TextBlock>Resultat :</TextBlock>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock> First : </TextBlock> 
-                    <TextBlock Text="{Binding First,UpdateSourceTrigger=PropertyChanged}">  </TextBlock> 
+            <DockPanel Grid.Row="2" Grid.Column="2" >
+                
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                    <TextBlock> Total :</TextBlock>
+                    <TextBlock Text="{Binding SelectedGameResult.Count,UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                 </StackPanel>
-                <StackPanel Orientation="Vertical">
-                    <TextBlock> Result :</TextBlock>
-                    <ListView Grid.Row="2" Grid.Column="1" ItemsSource="{Binding SelectedGameResult}" Margin="5,5,5,5"
-                              IsTextSearchEnabled="True" TextSearch.TextPath="Name">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Margin="5,0,0,0" Text="{Binding Player}" />
-                                    <TextBlock Margin="5,0,0,0" Text="{Binding Point}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
+                <ListView  ItemsSource="{Binding SelectedGameResult}" Margin="5,5,5,5"
+                          IsTextSearchEnabled="True" TextSearch.TextPath="Name">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="5,0,0,0" Text="{Binding Player}" />
+                                <TextBlock Margin="5,0,0,0" Text="{Binding Point}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
 
-                    </ListView>
-                </StackPanel>
-            </StackPanel>
+                </ListView>
+            </DockPanel>
+            
         </Grid>
         </Grid>
 </UserControl>

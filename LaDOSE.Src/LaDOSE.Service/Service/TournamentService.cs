@@ -22,6 +22,8 @@ namespace LaDOSE.Business.Service
             public int Top8Point { get; set; }
             public int Top16Point { get; set; }
 
+            public int Participation => 1;
+
             public Rules(int playerMin, int playerMax, int firstPoint, int secondPoint, int thirdFourthPoint, int top8Point, int top16Point)
             {
                 PlayerMin = playerMin;
@@ -31,6 +33,7 @@ namespace LaDOSE.Business.Service
                 ThirdFourthPoint = thirdFourthPoint;
                 Top8Point = top8Point;
                 Top16Point = top16Point;
+                
             }
         }
 
@@ -97,6 +100,10 @@ namespace LaDOSE.Business.Service
                 tournament.Game = game;
 
                 var playerCount = tournament.Participents.Count;
+                //Suppression des forfait
+
+               
+                var lesSacs = tournament.Participents;
                 var currentRule = TournamentRules.FirstOrDefault(rules =>
                     rules.PlayerMin < playerCount && rules.PlayerMax >= playerCount
                 );
@@ -112,10 +119,19 @@ namespace LaDOSE.Business.Service
                 var Top16 = tournament.Participents.Where(p => p.Rank >9 && p.Rank<=16).ToList();
                 
                 result.Results.Add(new Result(first.Name,tournament.Game.Id,currentRule.FirstPoint));
+                lesSacs.Remove(first);
                 result.Results.Add(new Result(second.Name,tournament.Game.Id,currentRule.SecondPoint));
+                lesSacs.Remove(second);
                 thirdFourth.ForEach(r=> result.Results.Add(new Result(r.Name, tournament.Game.Id, currentRule.ThirdFourthPoint)));
+                thirdFourth.ForEach(p=>lesSacs.Remove(p));
                 Top8.ForEach(r=> result.Results.Add(new Result(r.Name, tournament.Game.Id, currentRule.Top8Point)));
+                Top8.ForEach(p => lesSacs.Remove(p));
                 Top16.ForEach(r=> result.Results.Add(new Result(r.Name, tournament.Game.Id, currentRule.Top16Point)));
+                Top16.ForEach(p => lesSacs.Remove(p));
+                lesSacs.ForEach(r => result.Results.Add(new Result(r.Name, tournament.Game.Id, currentRule.Participation)));
+                //
+
+
             }
 
             result.Games = tournaments.Select(e => e.Game).ToList();

@@ -73,13 +73,20 @@ namespace LaDOSE.Business.Provider
             var participentResults = await new ParticipantsQuery(){tournamentID = idTournament }.call(ApiCaller);
 
             List<Participent> participants = new List<Participent>();
-            participentResults.ForEach(w => participants.Add(new Participent()
+            participentResults.ForEach(w =>
             {
-                Id = w.id,
-                Name = w.name,
-                Rank = w.final_rank,
-                IsMember = true,
-            }));
+                if (w.active)
+                {
+                    participants.Add(new Participent()
+                    {
+                        Id = w.id,
+                        Name = w.name,
+                        Rank = w.final_rank,
+                        IsMember = false,
+                    });
+                }
+                
+            });
             return participants;
         }
 
