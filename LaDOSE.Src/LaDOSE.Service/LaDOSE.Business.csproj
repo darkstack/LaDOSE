@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <Reference Include="ChallongeCSharpDriver">
-      <HintPath>..\..\..\..\..\Project\LaDOSE\LaDOSE\Library\ChallongeCSharpDriver.dll</HintPath>
+      <HintPath>..\Libraries\ChallongeCSharpDriver.dll</HintPath>
     </Reference>
   </ItemGroup>
 
