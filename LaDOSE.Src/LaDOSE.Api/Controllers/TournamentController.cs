@@ -13,13 +13,12 @@ namespace LaDOSE.Api.Controllers
     [Route("api/[controller]")]
     public class TournamentController : Controller
     {
-        public IGameService GameService { get; }
-
-        private IWordPressService _service;
+   
+        private ITournamentService _service;
         // GET
-        public TournamentController(IWordPressService service, IGameService gameService)
+        public TournamentController(ITournamentService service)
         {
-            GameService = gameService;
+       
             _service = service;
         }
 
@@ -29,6 +28,21 @@ namespace LaDOSE.Api.Controllers
 
             var tournaments = await _service.GetTournaments(DateTime.Now.AddMonths(-2), null);
             return AutoMapper.Mapper.Map<List<TournamentDTO>>(tournaments);
+            return null;
+        }
+
+
+        [HttpPost("GetResults")]
+        public async Task<TournamentsResultDTO> GetResults([FromBody] List<int> ids)
+        {
+            if (ids == null)
+            {
+                throw new Exception("Invalid arguments");
+            }
+
+            var tournamentsResult = await _service.GetTournamentsResult(ids);
+            return AutoMapper.Mapper.Map<TournamentsResultDTO>(tournamentsResult);
+            
         }
     }
 }

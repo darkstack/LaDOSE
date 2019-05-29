@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using LaDOSE.Entity;
-using LaDOSE.Entity.Challonge;
 using LaDOSE.Entity.Wordpress;
 
 namespace LaDOSE.Business.Interface
@@ -18,6 +16,7 @@ namespace LaDOSE.Business.Interface
 
         Task<string> GetLastChallonge();
 
-        Task<List<Tournament>> GetTournaments(DateTime? start, DateTime? end);
+
     }
 }
+    

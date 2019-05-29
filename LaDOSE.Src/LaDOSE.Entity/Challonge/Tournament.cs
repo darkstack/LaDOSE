@@ -6,7 +6,7 @@ namespace LaDOSE.Entity.Challonge
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Game { get; set; }
+        public Game Game { get; set; }
         public List<Participent> Participents { get; set; }
     }
 }

@@ -13,13 +13,86 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Row="2" Column="1">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-       
+        <Button Grid.Row="0" x:Name="LoadTournaments">Update</Button>
+        <ListView Grid.Row="1" ItemsSource="{Binding Tournaments}" x:Name="TournamentList" Margin="0,0,0,5"
+                  IsTextSearchEnabled="True" TextSearch.TextPath="Name" behaviors:MultiSelectorBehaviours.SynchronizedSelectedItems="{Binding SelectedTournaments}"
+                  SelectionMode="Multiple">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Id}" />
+                        <TextBlock Margin="5,0,0,0" Text="{Binding Name}" />
+                        <TextBlock > - </TextBlock>
+                        <TextBlock Margin="5,0,0,0" Text="{Binding Game.Name}" />
+                      
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
 
-    </Grid>
+        </ListView>
+        <Grid Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Row="0" Grid.ColumnSpan="3" x:Name="Select">Select</Button>
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal">
+                <TextBlock> Jeux :</TextBlock>
+                <TextBlock Margin="5,0,0,0" Text="{Binding Results.Games.Count}" />
+                
+            </StackPanel>
+            <ListView Grid.Row="2" ItemsSource="{Binding Results.Games}" Margin="5,5,5,5"
+                      IsTextSearchEnabled="True" TextSearch.TextPath="Name" SelectedItem="{Binding SelectedGame, UpdateSourceTrigger=PropertyChanged}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Id}" />
+                            <TextBlock Margin="5,0,0,0" Text="{Binding Name}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+            <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal">
+                <TextBlock> Participents :</TextBlock>
+                <TextBlock Margin="5,0,0,0" Text="{Binding Results.Participents.Count}" />
+
+            </StackPanel>
+            <ListView Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Results.Participents}" Margin="5,5,5,5"
+                      IsTextSearchEnabled="True" TextSearch.TextPath="Name">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="5,0,0,0" Text="{Binding Name}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+
+            <StackPanel Grid.Row="2" Grid.Column="2">
+                <TextBlock>Resultat :</TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock> First : </TextBlock> 
+                    <TextBlock Text="{Binding First,UpdateSourceTrigger=PropertyChanged}">  </TextBlock> 
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock> Second :</TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        </Grid>
 </UserControl>

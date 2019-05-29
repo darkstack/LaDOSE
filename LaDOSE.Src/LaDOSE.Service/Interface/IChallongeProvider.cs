@@ -14,6 +14,7 @@ namespace LaDOSE.Business.Interface
         Task<ParticipantResult> AddPlayer(int tournamentId, string userName);
 
         Task<List<Tournament>> GetTournaments(DateTime? start, DateTime? end);
-        Task<List<Participent>> GetParticipents(int tournamentId);
+        Task<List<Participent>> GetParticipents(int idTournament);
+        Task<Tournament> GetTournament(int idTournament);
     }
 }

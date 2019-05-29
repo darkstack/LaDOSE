@@ -119,11 +119,15 @@ namespace LaDOSE.Api
                 cfg.CreateMap<WPUser, LaDOSE.DTO.WPUserDTO>();
                 cfg.CreateMap<WPUser, LaDOSE.DTO.WPUserDTO>();
                 cfg.CreateMap<WPEvent, LaDOSE.DTO.WPEventDTO>();
+                cfg.CreateMap<Result, LaDOSE.DTO.ResultDTO>();
+                cfg.CreateMap<TournamentsResult, LaDOSE.DTO.TournamentsResultDTO>();
+                cfg.CreateMap<Participent, LaDOSE.DTO.ParticipentDTO>();
+                cfg.CreateMap<Tournament, LaDOSE.DTO.TournamentDTO>();
+
+
                 cfg.CreateMap<ApplicationUser, LaDOSE.DTO.ApplicationUserDTO>();
                 cfg.CreateMap<WPBooking, LaDOSE.DTO.WPBookingDTO>().ForMember(e=>e.Meta,opt=>opt.MapFrom(s=>s.Meta.CleanWpMeta()));
                 cfg.CreateMapTwoWay<Game, LaDOSE.DTO.GameDTO>();
-                cfg.CreateMapTwoWay<Participent, LaDOSE.DTO.ParticipentDTO>();
-                cfg.CreateMapTwoWay<Tournament, LaDOSE.DTO.TournamentDTO>();
                 cfg.CreateMapTwoWay<Todo, LaDOSE.DTO.TodoDTO>();
 
             });
@@ -139,6 +143,7 @@ namespace LaDOSE.Api
             services.AddScoped<ISeasonService, SeasonService>();
             services.AddScoped<IWordPressService, WordPressService>();
             services.AddScoped<ITodoService, TodoService>();
+            services.AddScoped<ITournamentService, TournamentService>();
             
         }
 

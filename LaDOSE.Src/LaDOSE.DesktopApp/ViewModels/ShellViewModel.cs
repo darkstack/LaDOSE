@@ -38,8 +38,7 @@ namespace LaDOSE.DesktopApp.ViewModels
             var restService = IoC.Get<RestService>();
             restService.UpdatedJwtEvent += TokenUpdate;
             restService.Connect(uri, user, password);
-            var wordPressViewModel = new WordPressViewModel(IoC.Get<RestService>());
-            ActivateItem(wordPressViewModel);
+           
             base.OnInitialize();
             
             
@@ -52,7 +51,7 @@ namespace LaDOSE.DesktopApp.ViewModels
 
 
         public BitmapFrame AppIcon { get; set; }
-
+   
         public void LoadEvent()
         {
          ActivateItem(new WordPressViewModel(IoC.Get<RestService>()));
@@ -64,7 +63,7 @@ namespace LaDOSE.DesktopApp.ViewModels
 
         public void TournamentResult()
         {
-            ActivateItem(new TournamentResultViewModel());
+            ActivateItem(new TournamentResultViewModel(IoC.Get<RestService>()));
         }
     }
 }
