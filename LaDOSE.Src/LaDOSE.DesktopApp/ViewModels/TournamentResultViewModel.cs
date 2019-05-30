@@ -2,9 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows.Controls;
 using System.Windows.Forms;
 using LaDOSE.DesktopApp.Utils;
 using LaDOSE.DTO;
@@ -82,6 +84,7 @@ namespace LaDOSE.DesktopApp.ViewModels
         }
 
         private String _first;
+        private DataTable _gridDataTable;
 
         public String First
         {
@@ -103,7 +106,18 @@ namespace LaDOSE.DesktopApp.ViewModels
         {
             var tournamentDtos = this.RestService.GetTournaments().ToList();
             this.Tournaments = tournamentDtos;
+
             NotifyOfPropertyChange("Tournaments");
+        }
+
+        public DataTable GridDataTable
+        {
+            get => _gridDataTable;
+            set
+            {
+                _gridDataTable = value;
+                NotifyOfPropertyChange(() => GridDataTable);
+            }
         }
 
         public void Select()
@@ -111,6 +125,50 @@ namespace LaDOSE.DesktopApp.ViewModels
             var tournamentsIds = SelectedTournaments.Select(e => e.Id).ToList();
             var resultsDto = this.RestService.GetResults(tournamentsIds);
             this.Results = resultsDto;
+            ComputeDataGrid();
+        }
+
+        private void ComputeDataGrid()
+        {
+            var resultsParticipents = this.Results.Participents.OrderBy(e => e.Name).ToList();
+            var computed = ResultsToDataDictionary(resultsParticipents);
+
+            StringBuilder sb = new StringBuilder();
+
+            DataTable grid = new DataTable();
+            grid.Columns.Add("Players");
+            Results.Games.ForEach(e => grid.Columns.Add(e.Name.Replace('.',' ')));
+            grid.Columns.Add("Total");
+
+
+            for (int i = 0; i < resultsParticipents.Count; i++)
+            {
+                var dataRow = grid.Rows.Add();
+                var resultsParticipent = resultsParticipents[i];
+                int total = 0;
+                dataRow["Players"] = resultsParticipent.Name;
+                var gameDtos = Results.Games.Distinct().ToList();
+
+
+                for (int j = 0; j < gameDtos.Count; j++)
+                {
+                    var resultsGame = Results.Games[j];
+                    var dictionary = computed[resultsParticipent.Name];
+                    if (dictionary.ContainsKey(resultsGame.Id))
+                    {
+                        int points = dictionary[resultsGame.Id];
+                        dataRow[resultsGame.Name.Replace('.', ' ')] = points.ToString();
+                        total += points;
+                    }
+
+                    else
+                        dataRow[resultsGame.Name.Replace('.', ' ')] = null;
+                }
+
+                dataRow["Total"] = total.ToString();
+            }
+
+            this.GridDataTable = grid;
         }
 
         public void Export()
@@ -119,10 +177,10 @@ namespace LaDOSE.DesktopApp.ViewModels
                 return;
 
 
-            ComputeTable();
+            ExportToCSV();
         }
 
-        private void ComputeTable()
+        private void ExportToCSV()
         {
             SaveFileDialog sfDialog = new SaveFileDialog()
             {
@@ -130,32 +188,12 @@ namespace LaDOSE.DesktopApp.ViewModels
             };
             if (sfDialog.ShowDialog() == true)
             {
-                var computed = new Dictionary<string, Dictionary<int, int>>();
-                ;
                 var resultsParticipents = this.Results.Participents.OrderBy(e => e.Name).ToList();
-                foreach (var participent in resultsParticipents)
-                {
-                    computed.Add(participent.Name, new Dictionary<int, int>());
-                }
-
-                foreach (var game in Results.Games)
-                {
-                    var results = this.Results.Results.Where(e => e.GameId == game.Id).ToList();
-                    foreach (var result in results)
-                    {
-                        var dictionary = computed[result.Player];
-                        if (dictionary.ContainsKey(result.GameId))
-                            dictionary[game.Id] += result.Point;
-                        else
-                        {
-                            dictionary.Add(game.Id, result.Point);
-                        }
-                    }
-                }
+                var computed = ResultsToDataDictionary(resultsParticipents);
 
                 StringBuilder sb = new StringBuilder();
-                
-                
+
+
                 sb.AppendLine(Results.Games.Aggregate("Player;", (current, t) => current + (t.Name + ";")));
 
                 for (int i = 0; i < resultsParticipents.Count; i++)
@@ -164,7 +202,7 @@ namespace LaDOSE.DesktopApp.ViewModels
 
                     var resultsParticipent = resultsParticipents[i];
 
-                    entry= resultsParticipent.Name+";";
+                    entry = resultsParticipent.Name + ";";
                     var gameDtos = Results.Games.Distinct().ToList();
                     for (int j = 0; j < gameDtos.Count; j++)
                     {
@@ -173,12 +211,10 @@ namespace LaDOSE.DesktopApp.ViewModels
                         entry += dictionary.ContainsKey(resultsGame.Id)
                             ? dictionary[resultsGame.Id].ToString() + ";"
                             : ";";
-                        
                     }
 
                     sb.AppendLine(entry);
                 }
-
 
 
                 //string[][] resultCsv = new string[resultsParticipents.Count + 1][];
@@ -209,8 +245,37 @@ namespace LaDOSE.DesktopApp.ViewModels
                 //}
 
                 //Save 
-                File.WriteAllText(sfDialog.FileName,sb.ToString());
+                File.WriteAllText(sfDialog.FileName, sb.ToString());
             }
+        }
+
+        private Dictionary<string, Dictionary<int, int>> ResultsToDataDictionary(
+            List<ParticipentDTO> resultsParticipents)
+        {
+            var computed = new Dictionary<string, Dictionary<int, int>>();
+
+
+            foreach (var participent in resultsParticipents)
+            {
+                computed.Add(participent.Name, new Dictionary<int, int>());
+            }
+
+            foreach (var game in Results.Games)
+            {
+                var results = this.Results.Results.Where(e => e.GameId == game.Id).ToList();
+                foreach (var result in results)
+                {
+                    var dictionary = computed[result.Player];
+                    if (dictionary.ContainsKey(result.GameId))
+                        dictionary[game.Id] += result.Point;
+                    else
+                    {
+                        dictionary.Add(game.Id, result.Point);
+                    }
+                }
+            }
+
+            return computed;
         }
     }
 }

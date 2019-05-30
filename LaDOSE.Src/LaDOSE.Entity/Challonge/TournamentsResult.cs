@@ -13,18 +13,26 @@ namespace LaDOSE.Entity.Challonge
 
     public class Result
     {
-        public Result(string player, int gameId, int point)
+        public Result(string player, int gameId, int point) : this(player, gameId,  0, point)
+        {
+
+        }
+
+        public Result(string player, int gameId, int tournamentdId, int point)
         {
             Player = player;
             GameId = gameId;
             Point = point;
+            TournamentdId = tournamentdId;
         }
+
 
         public Result()
         {
         }
 
 
+        public int TournamentdId { get; set; }
         public int GameId { get; set; }
         public string Player { get; set; }
         public int Point { get; set; }

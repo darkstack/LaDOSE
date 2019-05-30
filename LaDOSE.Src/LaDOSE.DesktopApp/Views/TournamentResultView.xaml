@@ -87,26 +87,36 @@
 
             </ListView>
 
-            <DockPanel Grid.Row="2" Grid.Column="2" >
-                
-                <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-                    <TextBlock> Total :</TextBlock>
-                    <TextBlock Text="{Binding SelectedGameResult.Count,UpdateSourceTrigger=PropertyChanged}"></TextBlock>
-                </StackPanel>
-                <ListView  ItemsSource="{Binding SelectedGameResult}" Margin="5,5,5,5"
-                          IsTextSearchEnabled="True" TextSearch.TextPath="Name" DockPanel.Dock="Top">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Margin="5,0,0,0" Text="{Binding Player}" />
-                                <TextBlock Margin="5,0,0,0" Text="{Binding Point}" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
+            <TabControl Grid.Row="2" Grid.Column="2" >
+                <TabItem Header="Result">
+                    <DataGrid ItemsSource="{Binding GridDataTable}" AutoGenerateColumns="True" CanUserAddRows="False" CanUserDeleteRows="False">
+                        
+                    </DataGrid>
+                </TabItem>
+                <TabItem Header="By Game">
+                    <DockPanel >
 
-                </ListView>
-                
-            </DockPanel>
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                            <TextBlock> Total :</TextBlock>
+                            <TextBlock Text="{Binding SelectedGameResult.Count,UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                        </StackPanel>
+                        <ListView  ItemsSource="{Binding SelectedGameResult}" Margin="5,5,5,5"
+                                   IsTextSearchEnabled="True" TextSearch.TextPath="Name" DockPanel.Dock="Top">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Margin="5,0,0,0" Text="{Binding Player}" />
+                                        <TextBlock Margin="5,0,0,0" Text="{Binding Point}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+
+                        </ListView>
+
+                    </DockPanel>
+                </TabItem>
+            </TabControl>
+      
             <Button Grid.Row="3" Grid.ColumnSpan="3" x:Name="Export">Export</Button>
         </Grid>
         
