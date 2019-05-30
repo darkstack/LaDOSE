@@ -134,7 +134,7 @@ namespace LaDOSE.Business.Service
 
             }
 
-            result.Games = tournaments.Select(e => e.Game).ToList();
+            result.Games = tournaments.Select(e => e.Game).Distinct((game, game1) => game.Name==game1.Name).ToList();
 
             return result;
         }

@@ -42,6 +42,8 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -49,6 +51,8 @@
                 <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
             <Button Grid.Row="0" Grid.ColumnSpan="3" x:Name="Select">Select</Button>
+          
+
             <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal">
                 <TextBlock> Jeux :</TextBlock>
                 <TextBlock Margin="5,0,0,0" Text="{Binding Results.Games.Count}" />
@@ -90,7 +94,7 @@
                     <TextBlock Text="{Binding SelectedGameResult.Count,UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                 </StackPanel>
                 <ListView  ItemsSource="{Binding SelectedGameResult}" Margin="5,5,5,5"
-                          IsTextSearchEnabled="True" TextSearch.TextPath="Name">
+                          IsTextSearchEnabled="True" TextSearch.TextPath="Name" DockPanel.Dock="Top">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -101,8 +105,10 @@
                     </ListView.ItemTemplate>
 
                 </ListView>
+                
             </DockPanel>
-            
+            <Button Grid.Row="3" Grid.ColumnSpan="3" x:Name="Export">Export</Button>
         </Grid>
+        
         </Grid>
 </UserControl>
