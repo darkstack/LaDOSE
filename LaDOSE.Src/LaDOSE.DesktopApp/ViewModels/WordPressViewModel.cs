@@ -122,17 +122,7 @@ namespace LaDOSE.DesktopApp.ViewModels
 
         public void UpdateDb()
         {
-            Mouse.OverrideCursor = System.Windows.Input.Cursors.Wait;
-            var tsk = Task.Factory.StartNew(new Action(()=>this.RestService.RefreshDb()));
-            tsk.ContinueWith(t =>
-                {
-                    MessageBox.Show(t.Exception.InnerException.Message);
-                },
-                CancellationToken.None, TaskContinuationOptions.OnlyOnFaulted,
-                TaskScheduler.FromCurrentSynchronizationContext());
-            
-               MessageBox.Show("Database updated");
-            
+            WpfUtil.Await(()=>this.RestService.RefreshDb(), "Updated");
         }
 
         public void Generate()

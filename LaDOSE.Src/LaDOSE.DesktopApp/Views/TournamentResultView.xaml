@@ -9,10 +9,11 @@
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:behaviors="clr-namespace:LaDOSE.DesktopApp.Behaviors"
              mc:Ignorable="d"
-             
+
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Row="2" Column="1">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="2*" />
@@ -20,30 +21,72 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Button Grid.Row="0" x:Name="LoadTournaments">Update</Button>
-        <ListView Grid.Row="1" ItemsSource="{Binding Tournaments}" x:Name="TournamentList" Margin="0,0,0,5"
-                  IsTextSearchEnabled="True" TextSearch.TextPath="Name" behaviors:MultiSelectorBehaviours.SynchronizedSelectedItems="{Binding SelectedTournaments}"
+        <StackPanel Orientation="Horizontal">
+            <Label> Date : </Label>
+            <StackPanel Orientation="Horizontal" Width="200">
+                <DatePicker SelectedDate="{Binding From}" Width="100">
+                    <DatePicker.Resources>
+                        <Style TargetType="{x:Type DatePickerTextBox}">
+                            <Setter Property="Control.Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <TextBox x:Name="PART_TextBox"  Foreground="White"
+                                                 Text="{Binding Path=SelectedDate, RelativeSource={RelativeSource AncestorType={x:Type DatePicker}},StringFormat=d}" />
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DatePicker.Resources>
+                </DatePicker>
+
+                <DatePicker SelectedDate="{Binding To}" Width="100">
+                    <DatePicker.Resources>
+                        <Style TargetType="{x:Type DatePickerTextBox}">
+                            <Setter Property="Control.Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <TextBox x:Name="PART_TextBox"  Foreground="White"
+                                                 Text="{Binding Path=SelectedDate, RelativeSource={RelativeSource AncestorType={x:Type DatePicker}},StringFormat=d}" />
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DatePicker.Resources>
+                </DatePicker>
+            </StackPanel>
+           
+            <Label>Usefull :</Label>
+            <Button x:Name="SelectMonth">Month</Button>
+            <Button x:Name="SelectYear">Year</Button>
+            <Label>Select :</Label>
+            <TextBox Width="200" Text="{Binding SelectRegex}"></TextBox>
+            <Button x:Name="SelectRegexp">Select</Button>
+        </StackPanel>
+        <Button Grid.Row="1" x:Name="LoadTournaments">Update</Button>
+        <ListView Grid.Row="2" ItemsSource="{Binding Tournaments}" x:Name="TournamentList" Margin="0,0,0,5"
+                  IsTextSearchEnabled="True" TextSearch.TextPath="Name"
+                  behaviors:MultiSelectorBehaviours.SynchronizedSelectedItems="{Binding SelectedTournaments}"
                   SelectionMode="Multiple">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Id}" />
                         <TextBlock Margin="5,0,0,0" Text="{Binding Name}" />
-                        <TextBlock > - </TextBlock>
+                        <TextBlock> - </TextBlock>
                         <TextBlock Margin="5,0,0,0" Text="{Binding Game.Name}" />
-                      
+
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
 
         </ListView>
-        <Grid Row="2">
+        <Grid Row="3">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
-                
+
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -51,15 +94,16 @@
                 <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
             <Button Grid.Row="0" Grid.ColumnSpan="3" x:Name="Select">Select</Button>
-          
+
 
             <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal">
                 <TextBlock> Jeux :</TextBlock>
                 <TextBlock Margin="5,0,0,0" Text="{Binding Results.Games.Count}" />
-                
+
             </StackPanel>
             <ListView Grid.Row="2" ItemsSource="{Binding Results.Games}" Margin="5,5,5,5"
-                      IsTextSearchEnabled="True" TextSearch.TextPath="Name" SelectedItem="{Binding SelectedGame, UpdateSourceTrigger=PropertyChanged}">
+                      IsTextSearchEnabled="True" TextSearch.TextPath="Name"
+                      SelectedItem="{Binding SelectedGame, UpdateSourceTrigger=PropertyChanged}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -87,21 +131,20 @@
 
             </ListView>
 
-            <TabControl Grid.Row="2" Grid.Column="2" >
+            <TabControl Grid.Row="2" Grid.Column="2">
                 <TabItem Header="Result">
-                    <DataGrid ItemsSource="{Binding GridDataTable}" AutoGenerateColumns="True" CanUserAddRows="False" CanUserDeleteRows="False">
-                        
-                    </DataGrid>
+                    <DataGrid ItemsSource="{Binding GridDataTable}" AutoGenerateColumns="True" CanUserAddRows="False"
+                              CanUserDeleteRows="False" />
                 </TabItem>
                 <TabItem Header="By Game">
-                    <DockPanel >
+                    <DockPanel>
 
                         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
                             <TextBlock> Total :</TextBlock>
-                            <TextBlock Text="{Binding SelectedGameResult.Count,UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                            <TextBlock Text="{Binding SelectedGameResult.Count,UpdateSourceTrigger=PropertyChanged}" />
                         </StackPanel>
-                        <ListView  ItemsSource="{Binding SelectedGameResult}" Margin="5,5,5,5"
-                                   IsTextSearchEnabled="True" TextSearch.TextPath="Name" DockPanel.Dock="Top">
+                        <ListView ItemsSource="{Binding SelectedGameResult}" Margin="5,5,5,5"
+                                  IsTextSearchEnabled="True" TextSearch.TextPath="Name" DockPanel.Dock="Top">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
@@ -116,9 +159,9 @@
                     </DockPanel>
                 </TabItem>
             </TabControl>
-      
-            <Button Grid.Row="3" Grid.ColumnSpan="3" x:Name="Export">Export</Button>
+
+            <Button Grid.Row="4" Grid.ColumnSpan="3" x:Name="Export">Export</Button>
         </Grid>
-        
-        </Grid>
+
+    </Grid>
 </UserControl>

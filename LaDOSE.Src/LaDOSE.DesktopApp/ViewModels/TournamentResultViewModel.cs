@@ -6,6 +6,7 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using LaDOSE.DesktopApp.Utils;
@@ -22,12 +23,44 @@ namespace LaDOSE.DesktopApp.ViewModels
 
         private RestService RestService { get; set; }
 
-        public TournamentResultViewModel(RestService restService)
+        #region Properties
+        private String _selectRegex;
+
+        public String SelectRegex
         {
-            this.RestService = restService;
-            _selectedTournaments = new ObservableCollection<TournamentDTO>();
-            Tournaments = new List<TournamentDTO>();
+            get { return _selectRegex; }
+            set
+            {
+                _selectRegex = value;
+                NotifyOfPropertyChange(() => SelectRegex);
+            }
         }
+
+
+
+        private DateTime _from;
+    
+        public DateTime From
+        {
+            get { return _from; }
+            set
+            {
+                _from = value;
+                NotifyOfPropertyChange(() => From);
+            }
+        }
+
+        private DateTime _to;
+        public DateTime To
+        {
+            get { return _to; }
+            set
+            {
+                _to = value;
+                NotifyOfPropertyChange(() => To);
+            }
+        }
+
 
         private TournamentsResultDTO _results;
         public List<TournamentDTO> Tournaments { get; set; }
@@ -96,18 +129,36 @@ namespace LaDOSE.DesktopApp.ViewModels
             }
         }
 
+        #endregion
+        public TournamentResultViewModel(RestService restService)
+        {
+            this.RestService = restService;
+            _selectedTournaments = new ObservableCollection<TournamentDTO>();
+            Tournaments = new List<TournamentDTO>();
+        }
+
+    
+
         protected override void OnInitialize()
         {
+            this.To=DateTime.Now;
+            this.From = DateTime.Now.AddMonths(-1);
+            this.SelectRegex = "Ranking";
             LoadTournaments();
             base.OnInitialize();
         }
 
         public void LoadTournaments()
         {
-            var tournamentDtos = this.RestService.GetTournaments().ToList();
-            this.Tournaments = tournamentDtos;
+            WpfUtil.Await(() =>
+            {
+                var tournamentDtos = this.RestService
+                    .GetTournaments(new TimeRangeDTO() {From = this.From, To = this.To}).ToList();
+                this.Tournaments = tournamentDtos;
 
-            NotifyOfPropertyChange("Tournaments");
+                NotifyOfPropertyChange("Tournaments");
+            });
+
         }
 
         public DataTable GridDataTable
@@ -122,10 +173,34 @@ namespace LaDOSE.DesktopApp.ViewModels
 
         public void Select()
         {
-            var tournamentsIds = SelectedTournaments.Select(e => e.Id).ToList();
-            var resultsDto = this.RestService.GetResults(tournamentsIds);
-            this.Results = resultsDto;
-            ComputeDataGrid();
+            WpfUtil.Await(() =>
+            {
+                var tournamentsIds = SelectedTournaments.Select(e => e.Id).ToList();
+                var resultsDto = this.RestService.GetResults(tournamentsIds);
+                this.Results = resultsDto;
+                ComputeDataGrid();
+            });
+
+        }
+
+        public void SelectYear()
+        {
+            this.To = DateTime.Now;
+            this.From = new DateTime(DateTime.Now.Year,1,1);
+
+        }
+        public void SelectMonth()
+        {
+            this.To = DateTime.Now;
+            this.From = DateTime.Now.AddMonths(-1);
+        }
+        public void SelectRegexp()
+        {
+            var selectedTournaments = this.Tournaments.Where(e => Regex.IsMatch(e.Name, this.SelectRegex)).ToList();
+            this.SelectedTournaments.Clear();
+            if(selectedTournaments.Count>0)
+                selectedTournaments.ForEach(e=>this.SelectedTournaments.AddUI(e));
+            
         }
 
         private void ComputeDataGrid()
@@ -138,7 +213,7 @@ namespace LaDOSE.DesktopApp.ViewModels
             DataTable grid = new DataTable();
             grid.Columns.Add("Players");
             Results.Games.ForEach(e => grid.Columns.Add(e.Name.Replace('.',' ')));
-            grid.Columns.Add("Total");
+            grid.Columns.Add("Total").DataType = typeof(Int32);
 
 
             for (int i = 0; i < resultsParticipents.Count; i++)
@@ -157,17 +232,18 @@ namespace LaDOSE.DesktopApp.ViewModels
                     if (dictionary.ContainsKey(resultsGame.Id))
                     {
                         int points = dictionary[resultsGame.Id];
-                        dataRow[resultsGame.Name.Replace('.', ' ')] = points.ToString();
+                        dataRow[resultsGame.Name.Replace('.', ' ')] = points;
                         total += points;
                     }
 
                     else
                         dataRow[resultsGame.Name.Replace('.', ' ')] = null;
                 }
-
-                dataRow["Total"] = total.ToString();
+                
+                dataRow["Total"] = total;
             }
 
+            grid.DefaultView.Sort = "Total DESC";
             this.GridDataTable = grid;
         }
 
@@ -182,70 +258,31 @@ namespace LaDOSE.DesktopApp.ViewModels
 
         private void ExportToCSV()
         {
-            SaveFileDialog sfDialog = new SaveFileDialog()
+            if (this.GridDataTable != null)
             {
-                AddExtension = true
-            };
-            if (sfDialog.ShowDialog() == true)
-            {
-                var resultsParticipents = this.Results.Participents.OrderBy(e => e.Name).ToList();
-                var computed = ResultsToDataDictionary(resultsParticipents);
 
-                StringBuilder sb = new StringBuilder();
-
-
-                sb.AppendLine(Results.Games.Aggregate("Player;", (current, t) => current + (t.Name + ";")));
-
-                for (int i = 0; i < resultsParticipents.Count; i++)
+                SaveFileDialog sfDialog = new SaveFileDialog()
                 {
-                    var entry = "";
+                    AddExtension = true
+                };
+                if (sfDialog.ShowDialog() == true)
+                {
+                    StringBuilder sb = new StringBuilder();
 
-                    var resultsParticipent = resultsParticipents[i];
+                    IEnumerable<string> columnNames = this.GridDataTable.Columns.Cast<DataColumn>()
+                        .Select(column => column.ColumnName);
+                    sb.AppendLine(string.Join(";", columnNames));
 
-                    entry = resultsParticipent.Name + ";";
-                    var gameDtos = Results.Games.Distinct().ToList();
-                    for (int j = 0; j < gameDtos.Count; j++)
+                    foreach (DataRow row in this.GridDataTable.Rows)
                     {
-                        var resultsGame = Results.Games[j];
-                        var dictionary = computed[resultsParticipent.Name];
-                        entry += dictionary.ContainsKey(resultsGame.Id)
-                            ? dictionary[resultsGame.Id].ToString() + ";"
-                            : ";";
+                        //EXCEL IS A BITCH
+                        IEnumerable<string> fields = row.ItemArray.Select(field =>
+                            string.Concat("\"", field.ToString().Replace("\"", "\"\""), "\""));
+                        sb.AppendLine(string.Join(";", fields));
                     }
 
-                    sb.AppendLine(entry);
+                    File.WriteAllText(sfDialog.FileName, sb.ToString());
                 }
-
-
-                //string[][] resultCsv = new string[resultsParticipents.Count + 1][];
-                //resultCsv[0] = new string[Results.Games.Count + 1];
-                //resultCsv[0][0] = "Player";
-                //for (int j = 0; j < Results.Games.Count; j++)
-                //{
-                //    resultCsv[0][j + 1] = Results.Games[j].Name;
-                //}
-
-                //for (int i = 0; i < resultsParticipents.Count; i++)
-                //{
-                //    resultCsv[i + 1] = new string[Results.Games.Count + 1];
-
-                //    var resultsParticipent = resultsParticipents[i];
-
-                //    resultCsv[i + 1][0] = resultsParticipent.Name;
-                //    for (int j = 0; j < Results.Games.Count; j++)
-                //    {
-                //        var resultsGame = Results.Games[j];
-                //        var dictionary = computed[resultsParticipent.Name];
-                //        if (dictionary.ContainsKey(resultsGame.Id))
-                //        {
-                //            var i1 = dictionary[resultsGame.Id];
-                //            resultCsv[i + 1][j + 1] = i1.ToString();
-                //        }
-                //    }
-                //}
-
-                //Save 
-                File.WriteAllText(sfDialog.FileName, sb.ToString());
             }
         }
 

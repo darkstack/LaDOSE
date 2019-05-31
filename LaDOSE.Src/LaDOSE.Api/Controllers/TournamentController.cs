@@ -21,13 +21,19 @@ namespace LaDOSE.Api.Controllers
        
             _service = service;
         }
-
-        [HttpGet("GetTournaments")]
-        public async Task<List<TournamentDTO>> GetChallonges()
+        //This may be a get , but i dont know what the RFC State for Get request with Body 
+        //As i don't like to populate GET request with body this will be a post (and i think
+        //it will be easier to proxy. 
+        [HttpPost("GetTournaments")]
+        public async Task<List<TournamentDTO>> GetChallonges([FromBody] TimeRangeDTO dto)
         {
-
-            var tournaments = await _service.GetTournaments(DateTime.Now.AddMonths(-2), null);
-            return AutoMapper.Mapper.Map<List<TournamentDTO>>(tournaments);
+            if (dto.To.HasValue | dto.From.HasValue)
+            {
+                var tournaments = await _service.GetTournaments(dto.From, dto.To);
+                return AutoMapper.Mapper.Map<List<TournamentDTO>>(tournaments);
+            }
+            
+            
             return null;
         }
 

@@ -252,12 +252,11 @@ namespace LaDOSE.REST
 
         #region Tournaments
 
-        public List<TournamentDTO> GetTournaments()
+        public List<TournamentDTO> GetTournaments(TimeRangeDTO timeRange)
         {
             CheckToken();
-            var restRequest = new RestRequest("/api/Tournament/GetTournaments", Method.GET);
-            var restResponse = Client.Get<List<TournamentDTO>>(restRequest);
-            return restResponse.Data;
+            List<TournamentDTO> tournamentDtos = Post<TimeRangeDTO, List<TournamentDTO>>("/api/Tournament/GetTournaments",timeRange);
+            return tournamentDtos;
         }
 
         public TournamentsResultDTO GetResults(List<int> ids)
