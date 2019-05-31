@@ -211,8 +211,9 @@ namespace LaDOSE.DesktopApp.ViewModels
             StringBuilder sb = new StringBuilder();
 
             DataTable grid = new DataTable();
+            var games = Results.Games.Distinct().OrderBy(e=>e.Order).ToList();
             grid.Columns.Add("Players");
-            Results.Games.ForEach(e => grid.Columns.Add(e.Name.Replace('.',' ')));
+            games.ForEach(e => grid.Columns.Add(e.Name.Replace('.',' ')));
             grid.Columns.Add("Total").DataType = typeof(Int32);
 
 
@@ -222,10 +223,10 @@ namespace LaDOSE.DesktopApp.ViewModels
                 var resultsParticipent = resultsParticipents[i];
                 int total = 0;
                 dataRow["Players"] = resultsParticipent.Name;
-                var gameDtos = Results.Games.Distinct().ToList();
+                
 
 
-                for (int j = 0; j < gameDtos.Count; j++)
+                for (int j = 0; j < games.Count; j++)
                 {
                     var resultsGame = Results.Games[j];
                     var dictionary = computed[resultsParticipent.Name];
@@ -258,22 +259,25 @@ namespace LaDOSE.DesktopApp.ViewModels
 
         private void ExportToCSV()
         {
+
+            
             if (this.GridDataTable != null)
             {
-
+                var dataTable = this.GridDataTable.DefaultView.ToTable();
                 SaveFileDialog sfDialog = new SaveFileDialog()
                 {
+                    Filter = "Text Files (*.csv)|*.csv|All Files (*.*)|*.*",
                     AddExtension = true
                 };
                 if (sfDialog.ShowDialog() == true)
                 {
                     StringBuilder sb = new StringBuilder();
 
-                    IEnumerable<string> columnNames = this.GridDataTable.Columns.Cast<DataColumn>()
+                    IEnumerable<string> columnNames = dataTable.Columns.Cast<DataColumn>()
                         .Select(column => column.ColumnName);
                     sb.AppendLine(string.Join(";", columnNames));
 
-                    foreach (DataRow row in this.GridDataTable.Rows)
+                    foreach (DataRow row in dataTable.Rows)
                     {
                         //EXCEL IS A BITCH
                         IEnumerable<string> fields = row.ItemArray.Select(field =>
