@@ -266,7 +266,7 @@ namespace LaDOSE.DesktopApp.ViewModels
                 var dataTable = this.GridDataTable.DefaultView.ToTable();
                 SaveFileDialog sfDialog = new SaveFileDialog()
                 {
-                    Filter = "Text Files (*.csv)|*.csv|All Files (*.*)|*.*",
+                    Filter = "Csv Files (*.csv)|*.csv|All Files (*.*)|*.*",
                     AddExtension = true
                 };
                 if (sfDialog.ShowDialog() == true)
