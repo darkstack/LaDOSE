@@ -8,5 +8,6 @@ namespace LaDOSE.Entity.Challonge
         public string Name { get; set; }
         public Game Game { get; set; }
         public List<Participent> Participents { get; set; }
+        public string Url { get; set; }
     }
 }

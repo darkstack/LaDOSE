@@ -21,8 +21,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_03EA2AA5DE9B5108F9E23C5A1F059619"
-        "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
+        "MsmKey" = "8:_02264E6348654064AA8EB42877544BF7"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -34,7 +34,13 @@
         "Entry"
         {
         "MsmKey" = "8:_046DB433A39279407DF5B41A98F8438F"
-        "OwnerKey" = "8:_83E6D15BFA9F14202FD36924DF98B4CE"
+        "OwnerKey" = "8:_DADF3B761A62DF1C1F2B8672FD064C6A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_046DB433A39279407DF5B41A98F8438F"
+        "OwnerKey" = "8:_52BBDBD3CC9B62FED9C9CEB9A9767F13"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -519,6 +525,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_053DA219981E414987F4639C88FCA466"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_0610243203BDAAD2A0A488EA4265A0E5"
         "OwnerKey" = "8:_7FB45B1CCE3E7C15BF251C16E1B9F5AF"
         "MsmSig" = "8:_UNDEFINED"
@@ -549,6 +561,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_0AB87C36A3A34205B5601FACBE325463"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0B08BEE5BE5F46BB97FFD6CC0E5F0518"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_0B5E6B0232BF4944D3CADC8399C24177"
         "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
         "MsmSig" = "8:_UNDEFINED"
@@ -561,8 +585,50 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_0CE1F1B955D545E0912533A7136DA565"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0D020EF4DFB64A4AA8D2E498B62AC3F2"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_0D21C340159389437847D1CAE06BAE79"
         "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0E3764DDA3FF4E9CA643BB7D95214EC0"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0EE03CDF0FDA4F509FBDAFBC394B93B9"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0F416B1B7DD79174B266441EBF485CC7"
+        "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0F416B1B7DD79174B266441EBF485CC7"
+        "OwnerKey" = "8:_30712F25E6AB819656B12F807AB4B21C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0F4E7645E8374E0FB88EE5AA2C2F5D4C"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -579,20 +645,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_13B32B2860735979989CABF26B46DB9B"
-        "OwnerKey" = "8:_F26585E333E1013B1B68D82B45733654"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_13B32B2860735979989CABF26B46DB9B"
-        "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_13B32B2860735979989CABF26B46DB9B"
-        "OwnerKey" = "8:_9450DD186FCD6F9938DE9BA952E9D21F"
+        "MsmKey" = "8:_11C4BAB82F1C4B28AC9ED682D60D6D32"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -611,6 +665,12 @@
         {
         "MsmKey" = "8:_1523BF8838719354533C4652C25A4908"
         "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_153E8C5E1B1040D7ADF72FF4E2036E31"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -639,6 +699,24 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_19A127D234634B09AF1A41250A65E894"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_1B0C8B617F03486491625A1415681482"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_1BF0BB4D753C4C9499AAFB49375F7C91"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_203C73A107A452AF852B810A5A60FACB"
         "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
         "MsmSig" = "8:_UNDEFINED"
@@ -657,6 +735,24 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_20908A6050514AC86B4731CA75181A79"
+        "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_20908A6050514AC86B4731CA75181A79"
+        "OwnerKey" = "8:_02264E6348654064AA8EB42877544BF7"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_20908A6050514AC86B4731CA75181A79"
+        "OwnerKey" = "8:_3B24C09D94D66F35F45D8A73B6B45617"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_252B4F088D39CF48DB4473F35D2D76AF"
         "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
         "MsmSig" = "8:_UNDEFINED"
@@ -664,13 +760,13 @@
         "Entry"
         {
         "MsmKey" = "8:_252B4F088D39CF48DB4473F35D2D76AF"
-        "OwnerKey" = "8:_7FB45B1CCE3E7C15BF251C16E1B9F5AF"
+        "OwnerKey" = "8:_9394299B3B72ABAA46739E588CE53ACD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_252B4F088D39CF48DB4473F35D2D76AF"
-        "OwnerKey" = "8:_13B32B2860735979989CABF26B46DB9B"
+        "OwnerKey" = "8:_7FB45B1CCE3E7C15BF251C16E1B9F5AF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -694,13 +790,13 @@
         "Entry"
         {
         "MsmKey" = "8:_2858CD44EC06C835B2D18C1B9165832C"
-        "OwnerKey" = "8:_F26585E333E1013B1B68D82B45733654"
+        "OwnerKey" = "8:_7FB45B1CCE3E7C15BF251C16E1B9F5AF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_2858CD44EC06C835B2D18C1B9165832C"
-        "OwnerKey" = "8:_7FB45B1CCE3E7C15BF251C16E1B9F5AF"
+        "OwnerKey" = "8:_0F416B1B7DD79174B266441EBF485CC7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -712,7 +808,7 @@
         "Entry"
         {
         "MsmKey" = "8:_289F7430DFD8DC5DFF7ABBAEA130293A"
-        "OwnerKey" = "8:_F26585E333E1013B1B68D82B45733654"
+        "OwnerKey" = "8:_9394299B3B72ABAA46739E588CE53ACD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -724,7 +820,7 @@
         "Entry"
         {
         "MsmKey" = "8:_289F7430DFD8DC5DFF7ABBAEA130293A"
-        "OwnerKey" = "8:_13B32B2860735979989CABF26B46DB9B"
+        "OwnerKey" = "8:_0F416B1B7DD79174B266441EBF485CC7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -748,13 +844,13 @@
         "Entry"
         {
         "MsmKey" = "8:_2B5E454439E9CC1468AD67EF05FE84F5"
-        "OwnerKey" = "8:_7FB45B1CCE3E7C15BF251C16E1B9F5AF"
+        "OwnerKey" = "8:_9394299B3B72ABAA46739E588CE53ACD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_2B5E454439E9CC1468AD67EF05FE84F5"
-        "OwnerKey" = "8:_13B32B2860735979989CABF26B46DB9B"
+        "OwnerKey" = "8:_7FB45B1CCE3E7C15BF251C16E1B9F5AF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -777,6 +873,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_2CB08525D8A8481FA7C5335DDE8A8445"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_2F7D8D4E6813ECDF9499F8989C693010"
         "OwnerKey" = "8:_7FB45B1CCE3E7C15BF251C16E1B9F5AF"
         "MsmSig" = "8:_UNDEFINED"
@@ -801,8 +903,26 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_30712F25E6AB819656B12F807AB4B21C"
+        "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3129E1CF3D984ACEA3B5A856CAD234C3"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_315A509F773AFA8A08ABEFB6677EE626"
         "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_315A509F773AFA8A08ABEFB6677EE626"
+        "OwnerKey" = "8:_9394299B3B72ABAA46739E588CE53ACD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -813,14 +933,26 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_315A509F773AFA8A08ABEFB6677EE626"
-        "OwnerKey" = "8:_13B32B2860735979989CABF26B46DB9B"
+        "MsmKey" = "8:_33440E4BD2324E028317D400A4846224"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_34A848ABE9455F0467BBBBB2715CD025"
         "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_358F971CE76B49108FBAE13431877BB0"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_35C153F35F0744AE9EA7E017C538742E"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -849,14 +981,32 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_3BA4EE78C4B2A962E4A719DD645D7156"
-        "OwnerKey" = "8:_9450DD186FCD6F9938DE9BA952E9D21F"
+        "MsmKey" = "8:_398C1349697448A8861C815F50B7D850"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_3BA4EE78C4B2A962E4A719DD645D7156"
+        "MsmKey" = "8:_3B24C09D94D66F35F45D8A73B6B45617"
         "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3B263CDD66C94B7F8102396A9F48836D"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3C3F913438CF4005B146DD73A7E2A0F4"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3DEF667F641345CA98E09170ACB2792D"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -873,6 +1023,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_42211E92FD8C40738C2C2CB8F8EF3E43"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_42D166E18AC04BC2928DE1CD33E37438"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_44D3F8FB90889B4248FCDA1920C2971D"
         "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
         "MsmSig" = "8:_UNDEFINED"
@@ -881,6 +1043,12 @@
         {
         "MsmKey" = "8:_4517AD1766E63D570F998D2D8D575956"
         "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_45352340F79E417FB106E725841EC068"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -909,6 +1077,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_4CACB4E14EAA459393EF611A96AF91B5"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_4D503883165CDA60BA3F589364881DBC"
         "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
         "MsmSig" = "8:_UNDEFINED"
@@ -927,6 +1101,60 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_4D6FB9E17EF0481E992A2F1BA6AB1DA6"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4D7805581FD3CA95E4E9B13B1AAF3C44"
+        "OwnerKey" = "8:_20908A6050514AC86B4731CA75181A79"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4D7805581FD3CA95E4E9B13B1AAF3C44"
+        "OwnerKey" = "8:_02264E6348654064AA8EB42877544BF7"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4D7805581FD3CA95E4E9B13B1AAF3C44"
+        "OwnerKey" = "8:_C5CAE09622EC46A8B33A845A86C6FDBE"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4D7805581FD3CA95E4E9B13B1AAF3C44"
+        "OwnerKey" = "8:_2CB08525D8A8481FA7C5335DDE8A8445"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4D7805581FD3CA95E4E9B13B1AAF3C44"
+        "OwnerKey" = "8:_DC343C98E70D6CB9A511D1306B75FD66"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4D7805581FD3CA95E4E9B13B1AAF3C44"
+        "OwnerKey" = "8:_42211E92FD8C40738C2C2CB8F8EF3E43"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4D7805581FD3CA95E4E9B13B1AAF3C44"
+        "OwnerKey" = "8:_3B24C09D94D66F35F45D8A73B6B45617"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4D7805581FD3CA95E4E9B13B1AAF3C44"
+        "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_50B36012021457C022011C5386D6F043"
         "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
         "MsmSig" = "8:_UNDEFINED"
@@ -934,7 +1162,7 @@
         "Entry"
         {
         "MsmKey" = "8:_50B36012021457C022011C5386D6F043"
-        "OwnerKey" = "8:_F26585E333E1013B1B68D82B45733654"
+        "OwnerKey" = "8:_9394299B3B72ABAA46739E588CE53ACD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -946,7 +1174,19 @@
         "Entry"
         {
         "MsmKey" = "8:_50B36012021457C022011C5386D6F043"
-        "OwnerKey" = "8:_13B32B2860735979989CABF26B46DB9B"
+        "OwnerKey" = "8:_0F416B1B7DD79174B266441EBF485CC7"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_52BBDBD3CC9B62FED9C9CEB9A9767F13"
+        "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_52BBDBD3CC9B62FED9C9CEB9A9767F13"
+        "OwnerKey" = "8:_DADF3B761A62DF1C1F2B8672FD064C6A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -957,6 +1197,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_53540FE323B34E6BBDFE7B330BD3EF39"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_54CE2EC40587F3794E46C9DE378AD593"
         "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
         "MsmSig" = "8:_UNDEFINED"
@@ -965,6 +1211,36 @@
         {
         "MsmKey" = "8:_54CE2EC40587F3794E46C9DE378AD593"
         "OwnerKey" = "8:_7FB45B1CCE3E7C15BF251C16E1B9F5AF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_56257851962747E68103E5C7B77700BD"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_56C5F43362D94DD489EA9F14C2C9B984"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5A36BB1EFABD6BB3C70B0AF39BEED59A"
+        "OwnerKey" = "8:_DADF3B761A62DF1C1F2B8672FD064C6A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5A36BB1EFABD6BB3C70B0AF39BEED59A"
+        "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5B25EC7F05524FCCB8634989CDB9E3D8"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -987,12 +1263,36 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_625FDE3AF179459497B42386B58725AD"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_62FB356270EFE3E9BF157DCF0A3640AE"
         "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
+        "MsmKey" = "8:_630D311818494E80B10F15146E1763E5"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6657393D875042A3995DE2F4BF084452"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6826F96F8F3648D0B01AABC23B3D1F75"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_69E89488B24F50FCA9DEFEB25DD4B75A"
         "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
         "MsmSig" = "8:_UNDEFINED"
@@ -1000,7 +1300,7 @@
         "Entry"
         {
         "MsmKey" = "8:_69E89488B24F50FCA9DEFEB25DD4B75A"
-        "OwnerKey" = "8:_F26585E333E1013B1B68D82B45733654"
+        "OwnerKey" = "8:_9394299B3B72ABAA46739E588CE53ACD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1012,7 +1312,13 @@
         "Entry"
         {
         "MsmKey" = "8:_69E89488B24F50FCA9DEFEB25DD4B75A"
-        "OwnerKey" = "8:_13B32B2860735979989CABF26B46DB9B"
+        "OwnerKey" = "8:_0F416B1B7DD79174B266441EBF485CC7"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6C341B8F392441598D484CB108FE65C0"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1030,13 +1336,13 @@
         "Entry"
         {
         "MsmKey" = "8:_6CF61344816C3F5F647181F87D062CEB"
-        "OwnerKey" = "8:_7FB45B1CCE3E7C15BF251C16E1B9F5AF"
+        "OwnerKey" = "8:_9394299B3B72ABAA46739E588CE53ACD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_6CF61344816C3F5F647181F87D062CEB"
-        "OwnerKey" = "8:_13B32B2860735979989CABF26B46DB9B"
+        "OwnerKey" = "8:_7FB45B1CCE3E7C15BF251C16E1B9F5AF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1053,6 +1359,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_6E9ADEFF93A442809441A2331D3E0A9A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_718AFAE168F29EA1E71484DFC890F1B1"
         "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
         "MsmSig" = "8:_UNDEFINED"
@@ -1061,6 +1373,12 @@
         {
         "MsmKey" = "8:_718AFAE168F29EA1E71484DFC890F1B1"
         "OwnerKey" = "8:_7FB45B1CCE3E7C15BF251C16E1B9F5AF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_72651232D49142ECA847B70FB617FF0A"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1095,14 +1413,32 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_7E432E3F74974318999CB6ADC9ED775F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_7FB45B1CCE3E7C15BF251C16E1B9F5AF"
         "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
+        "MsmKey" = "8:_802E41096BF9471FBEAD8A9B7879A3C2"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_8040A45D5A191F7AACFE00D22FB3D0C1"
         "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8040A45D5A191F7AACFE00D22FB3D0C1"
+        "OwnerKey" = "8:_9394299B3B72ABAA46739E588CE53ACD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1113,8 +1449,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_8040A45D5A191F7AACFE00D22FB3D0C1"
-        "OwnerKey" = "8:_13B32B2860735979989CABF26B46DB9B"
+        "MsmKey" = "8:_8058E398E0BD4D0AB33574880B6F7498"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_814C37C27BB4422E94C2B82A87A502A3"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1137,8 +1479,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_83E6D15BFA9F14202FD36924DF98B4CE"
-        "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
+        "MsmKey" = "8:_851D2339991A4B73AF2F5DB9391535EA"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1163,6 +1505,18 @@
         {
         "MsmKey" = "8:_869281DBBA52DEAA1D3B4E0465D3A159"
         "OwnerKey" = "8:_046DB433A39279407DF5B41A98F8438F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_88765B7A081C47879F960010A94A57FD"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_88D22BFF11384A0DB57C0CA0221AB856"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1209,14 +1563,38 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_9450DD186FCD6F9938DE9BA952E9D21F"
+        "MsmKey" = "8:_9394299B3B72ABAA46739E588CE53ACD"
+        "OwnerKey" = "8:_0F416B1B7DD79174B266441EBF485CC7"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9394299B3B72ABAA46739E588CE53ACD"
         "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9394299B3B72ABAA46739E588CE53ACD"
+        "OwnerKey" = "8:_30712F25E6AB819656B12F807AB4B21C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9571B0997777438A9955A3201ECFA476"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_95EFD7C4EBA47E662FB3D4588935C129"
         "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_96AD65CF57474CB69E77BA110414C820"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1245,6 +1623,24 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_9AC328566E254E92BE1216CD0CBE4A9A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9D1F0370333F4E2B926F07843F7B30B3"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9E4E8A34F0C7415A821873536AFFC925"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_A01278BA7239F36B5A89352792F16792"
         "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
         "MsmSig" = "8:_UNDEFINED"
@@ -1253,6 +1649,18 @@
         {
         "MsmKey" = "8:_A01278BA7239F36B5A89352792F16792"
         "OwnerKey" = "8:_7FB45B1CCE3E7C15BF251C16E1B9F5AF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A1D01A47EDDA4449A5DCA141D253EDF0"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A2FC36425C4F4F889D1D3A48529FE26D"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1311,6 +1719,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_AC2EC4687C8C412097E76486156CF0EA"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_AD32F3CFF4F54B928EF03F54155EC931"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_AE37B669438F2B034B5BA3C4F9C1CB31"
         "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
         "MsmSig" = "8:_UNDEFINED"
@@ -1347,6 +1767,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_B135E05FBFFF4C8CA7FE68E777BD38B4"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_B14F0F4ED59668CAD4F4A9D09E6C615F"
         "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
         "MsmSig" = "8:_UNDEFINED"
@@ -1365,8 +1791,26 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_B6333642D63629B07DEFBE3031A5E08A"
+        "OwnerKey" = "8:_30712F25E6AB819656B12F807AB4B21C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B6333642D63629B07DEFBE3031A5E08A"
+        "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_B6C40984E6207D62ABEF2C42B88CE8AE"
         "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B6FA393BB88A4AF4BBA51E3C3CD5791E"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1383,6 +1827,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_BC3192F314064FE4A53F670296A3E6C4"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_BC5635F6FBC22118D2A3699D4DFD6524"
         "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
         "MsmSig" = "8:_UNDEFINED"
@@ -1395,8 +1845,20 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_BED2A9E0BAF943A39D7785DF9F198922"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_BF484BFCCBF369B0E6FA6D24B1593652"
         "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C09E58453A2D4C169AF5431293AAAEE0"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1421,6 +1883,18 @@
         {
         "MsmKey" = "8:_C4EC4761F59E6E1071992D7167AEF25E"
         "OwnerKey" = "8:_7FB45B1CCE3E7C15BF251C16E1B9F5AF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C5CAE09622EC46A8B33A845A86C6FDBE"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C62367AA255C4EDA8FEFB91B3F073131"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1450,7 +1924,7 @@
         "Entry"
         {
         "MsmKey" = "8:_C8A10AB98F5F9D9526D625E9BF6F2396"
-        "OwnerKey" = "8:_F26585E333E1013B1B68D82B45733654"
+        "OwnerKey" = "8:_9394299B3B72ABAA46739E588CE53ACD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1462,7 +1936,7 @@
         "Entry"
         {
         "MsmKey" = "8:_C8A10AB98F5F9D9526D625E9BF6F2396"
-        "OwnerKey" = "8:_13B32B2860735979989CABF26B46DB9B"
+        "OwnerKey" = "8:_0F416B1B7DD79174B266441EBF485CC7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1479,6 +1953,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_CAA2293C492F40AA963015875267FB31"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_CD7FC132AD64EBEDD3F69EB45BE60677"
         "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
         "MsmSig" = "8:_UNDEFINED"
@@ -1491,6 +1971,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_CF260BE5E9BF4CB9B77A5717D60DCDBD"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_CF3E4746766E4D4B8ED482DD580FCB1B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_D036BABEF867F32AADC539EF20BBCE89"
         "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
         "MsmSig" = "8:_UNDEFINED"
@@ -1515,6 +2007,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_D61AE039D89C4CB095039BF8F3DC90FC"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D78C8059575C457F90E691E72EE955B1"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_D882C6C8BB22996D7C10FA04F80D2B12"
         "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
         "MsmSig" = "8:_UNDEFINED"
@@ -1534,7 +2038,7 @@
         "Entry"
         {
         "MsmKey" = "8:_D9B5AF2787387D5711D6ACFF6D80562D"
-        "OwnerKey" = "8:_F26585E333E1013B1B68D82B45733654"
+        "OwnerKey" = "8:_9394299B3B72ABAA46739E588CE53ACD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1546,7 +2050,37 @@
         "Entry"
         {
         "MsmKey" = "8:_D9B5AF2787387D5711D6ACFF6D80562D"
-        "OwnerKey" = "8:_13B32B2860735979989CABF26B46DB9B"
+        "OwnerKey" = "8:_0F416B1B7DD79174B266441EBF485CC7"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D9EFC78F178C447D8154B9A5ED502257"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DA06F97A1EB2453AA27D5529FDB3351A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DADF3B761A62DF1C1F2B8672FD064C6A"
+        "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DBD514079E0742439F077F5B3B369365"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DC343C98E70D6CB9A511D1306B75FD66"
+        "OwnerKey" = "8:_2CB08525D8A8481FA7C5335DDE8A8445"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1569,6 +2103,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_E1FD46D1BEF94F51BAA0D527AAE4A8D7"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_E61E2DBAA6388BB7C72D0852C63BB734"
         "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
         "MsmSig" = "8:_UNDEFINED"
@@ -1594,7 +2134,7 @@
         "Entry"
         {
         "MsmKey" = "8:_E6E69F4DC9CBDB7D4BD8E70B8C37159E"
-        "OwnerKey" = "8:_F26585E333E1013B1B68D82B45733654"
+        "OwnerKey" = "8:_9394299B3B72ABAA46739E588CE53ACD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1606,7 +2146,13 @@
         "Entry"
         {
         "MsmKey" = "8:_E6E69F4DC9CBDB7D4BD8E70B8C37159E"
-        "OwnerKey" = "8:_13B32B2860735979989CABF26B46DB9B"
+        "OwnerKey" = "8:_0F416B1B7DD79174B266441EBF485CC7"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E93D476340AF4B219118E6840F0474DE"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1631,6 +2177,12 @@
         {
         "MsmKey" = "8:_ED3616D47B29DFFEA59EF7820C52AEC7"
         "OwnerKey" = "8:_046DB433A39279407DF5B41A98F8438F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_EDF768879A974E9DA827B36C40258880"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1671,18 +2223,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_F26585E333E1013B1B68D82B45733654"
-        "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_F26585E333E1013B1B68D82B45733654"
-        "OwnerKey" = "8:_9450DD186FCD6F9938DE9BA952E9D21F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_F41795E444273F87C5226235FACB0DF5"
         "OwnerKey" = "8:_6CAE9DC3009D486B9779D6ED2F076963"
         "MsmSig" = "8:_UNDEFINED"
@@ -1708,7 +2248,7 @@
         "Entry"
         {
         "MsmKey" = "8:_FCBFD1E62F6586C26CB1A5553A51BE87"
-        "OwnerKey" = "8:_F26585E333E1013B1B68D82B45733654"
+        "OwnerKey" = "8:_9394299B3B72ABAA46739E588CE53ACD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1720,7 +2260,13 @@
         "Entry"
         {
         "MsmKey" = "8:_FCBFD1E62F6586C26CB1A5553A51BE87"
-        "OwnerKey" = "8:_13B32B2860735979989CABF26B46DB9B"
+        "OwnerKey" = "8:_0F416B1B7DD79174B266441EBF485CC7"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_FDE969460873404BA3B79E33370D6B15"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1732,19 +2278,73 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_03EA2AA5DE9B5108F9E23C5A1F059619"
+        "OwnerKey" = "8:_02264E6348654064AA8EB42877544BF7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_9450DD186FCD6F9938DE9BA952E9D21F"
+        "OwnerKey" = "8:_358F971CE76B49108FBAE13431877BB0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_3BA4EE78C4B2A962E4A719DD645D7156"
+        "OwnerKey" = "8:_C5CAE09622EC46A8B33A845A86C6FDBE"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_2CB08525D8A8481FA7C5335DDE8A8445"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_DC343C98E70D6CB9A511D1306B75FD66"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_42211E92FD8C40738C2C2CB8F8EF3E43"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_3B24C09D94D66F35F45D8A73B6B45617"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_20908A6050514AC86B4731CA75181A79"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_4D7805581FD3CA95E4E9B13B1AAF3C44"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_30712F25E6AB819656B12F807AB4B21C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_B6333642D63629B07DEFBE3031A5E08A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_5A36BB1EFABD6BB3C70B0AF39BEED59A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1952,6 +2552,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
             }
         }
         "Release"
@@ -2045,20 +2653,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_03EA2AA5DE9B5108F9E23C5A1F059619"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_02264E6348654064AA8EB42877544BF7"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:RestSharp, Version=106.6.5.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:CefSharp.Wpf, Version=73.1.130.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=AMD64"
                 "ScatterAssemblies"
                 {
-                    "_03EA2AA5DE9B5108F9E23C5A1F059619"
+                    "_02264E6348654064AA8EB42877544BF7"
                     {
-                    "Name" = "8:RestSharp.dll"
+                    "Name" = "8:CefSharp.Wpf.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:RestSharp.dll"
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\CefSharp.Wpf.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_62ECF8B5CDFA4573B4C9111067D4A2B0"
@@ -2073,7 +2681,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_046DB433A39279407DF5B41A98F8438F"
@@ -2105,6 +2713,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_053DA219981E414987F4639C88FCA466"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\cef_200_percent.pak"
+            "TargetName" = "8:cef_200_percent.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_62ECF8B5CDFA4573B4C9111067D4A2B0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0610243203BDAAD2A0A488EA4265A0E5"
@@ -2200,6 +2828,46 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0AB87C36A3A34205B5601FACBE325463"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\uk.pak"
+            "TargetName" = "8:uk.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0B08BEE5BE5F46BB97FFD6CC0E5F0518"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\pt-PT.pak"
+            "TargetName" = "8:pt-PT.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0B5E6B0232BF4944D3CADC8399C24177"
             {
             "AssemblyRegister" = "3:1"
@@ -2229,6 +2897,46 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0CE1F1B955D545E0912533A7136DA565"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\devtools_resources.pak"
+            "TargetName" = "8:devtools_resources.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_62ECF8B5CDFA4573B4C9111067D4A2B0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0D020EF4DFB64A4AA8D2E498B62AC3F2"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\es-419.pak"
+            "TargetName" = "8:es-419.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0D21C340159389437847D1CAE06BAE79"
@@ -2262,6 +2970,97 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0E3764DDA3FF4E9CA643BB7D95214EC0"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\fi.pak"
+            "TargetName" = "8:fi.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0EE03CDF0FDA4F509FBDAFBC394B93B9"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\pl.pak"
+            "TargetName" = "8:pl.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0F416B1B7DD79174B266441EBF485CC7"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Caliburn.Micro.Platform.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_0F416B1B7DD79174B266441EBF485CC7"
+                    {
+                    "Name" = "8:Caliburn.Micro.Platform.Core.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Caliburn.Micro.Platform.Core.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_62ECF8B5CDFA4573B4C9111067D4A2B0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0F4E7645E8374E0FB88EE5AA2C2F5D4C"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\hu.pak"
+            "TargetName" = "8:hu.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_114CF1D0B64193446D117A0E2FC0CFC1"
             {
             "AssemblyRegister" = "3:1"
@@ -2293,21 +3092,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_13B32B2860735979989CABF26B46DB9B"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_11C4BAB82F1C4B28AC9ED682D60D6D32"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Caliburn.Micro, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_13B32B2860735979989CABF26B46DB9B"
-                    {
-                    "Name" = "8:Caliburn.Micro.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Caliburn.Micro.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\cef_extensions.pak"
+            "TargetName" = "8:cef_extensions.pak"
             "Tag" = "8:"
             "Folder" = "8:_62ECF8B5CDFA4573B4C9111067D4A2B0"
             "Condition" = "8:"
@@ -2321,7 +3109,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_14921ED3DA243843016499D1EA9F6ED0"
@@ -2417,6 +3205,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_153E8C5E1B1040D7ADF72FF4E2036E31"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\chrome_elf.dll"
+            "TargetName" = "8:chrome_elf.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_62ECF8B5CDFA4573B4C9111067D4A2B0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_158F08CC6FF97C2AC9FE4141C3517CC0"
             {
             "AssemblyRegister" = "3:1"
@@ -2510,6 +3318,66 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_19A127D234634B09AF1A41250A65E894"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\ko.pak"
+            "TargetName" = "8:ko.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1B0C8B617F03486491625A1415681482"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\ca.pak"
+            "TargetName" = "8:ca.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1BF0BB4D753C4C9499AAFB49375F7C91"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\snapshot_blob.bin"
+            "TargetName" = "8:snapshot_blob.bin"
+            "Tag" = "8:"
+            "Folder" = "8:_62ECF8B5CDFA4573B4C9111067D4A2B0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_203C73A107A452AF852B810A5A60FACB"
             {
             "AssemblyRegister" = "3:1"
@@ -2555,6 +3423,37 @@
                     }
                 }
             "SourcePath" = "8:System.Net.WebSockets.Client.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_62ECF8B5CDFA4573B4C9111067D4A2B0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_20908A6050514AC86B4731CA75181A79"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:CefSharp.Core, Version=73.1.130.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=AMD64"
+                "ScatterAssemblies"
+                {
+                    "_20908A6050514AC86B4731CA75181A79"
+                    {
+                    "Name" = "8:CefSharp.Core.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:CefSharp.Core.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_62ECF8B5CDFA4573B4C9111067D4A2B0"
@@ -2820,6 +3719,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2CB08525D8A8481FA7C5335DDE8A8445"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:CefSharp.BrowserSubprocess, Version=73.1.130.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=AMD64"
+                "ScatterAssemblies"
+                {
+                    "_2CB08525D8A8481FA7C5335DDE8A8445"
+                    {
+                    "Name" = "8:CefSharp.BrowserSubprocess.exe"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\CefSharp.BrowserSubprocess.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_62ECF8B5CDFA4573B4C9111067D4A2B0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2F7D8D4E6813ECDF9499F8989C693010"
             {
             "AssemblyRegister" = "3:1"
@@ -2882,6 +3812,57 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_30712F25E6AB819656B12F807AB4B21C"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Caliburn.Micro.Platform, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_30712F25E6AB819656B12F807AB4B21C"
+                    {
+                    "Name" = "8:Caliburn.Micro.Platform.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Caliburn.Micro.Platform.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_62ECF8B5CDFA4573B4C9111067D4A2B0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3129E1CF3D984ACEA3B5A856CAD234C3"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\lv.pak"
+            "TargetName" = "8:lv.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_315A509F773AFA8A08ABEFB6677EE626"
             {
             "AssemblyRegister" = "3:1"
@@ -2913,6 +3894,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_33440E4BD2324E028317D400A4846224"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\pt-BR.pak"
+            "TargetName" = "8:pt-BR.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_34A848ABE9455F0467BBBBB2715CD025"
             {
             "AssemblyRegister" = "3:1"
@@ -2942,6 +3943,57 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_358F971CE76B49108FBAE13431877BB0"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:CefSharp, Version=73.1.130.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=AMD64"
+                "ScatterAssemblies"
+                {
+                    "_358F971CE76B49108FBAE13431877BB0"
+                    {
+                    "Name" = "8:CefSharp.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\CefSharp.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_62ECF8B5CDFA4573B4C9111067D4A2B0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_35C153F35F0744AE9EA7E017C538742E"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\lt.pak"
+            "TargetName" = "8:lt.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_37956A6EEDD5BA141374F756E9F6A5AC"
@@ -3037,20 +4089,40 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3BA4EE78C4B2A962E4A719DD645D7156"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_398C1349697448A8861C815F50B7D850"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\sr.pak"
+            "TargetName" = "8:sr.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3B24C09D94D66F35F45D8A73B6B45617"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:CefSharp.Wpf, Version=73.1.130.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=AMD64"
                 "ScatterAssemblies"
                 {
-                    "_3BA4EE78C4B2A962E4A719DD645D7156"
+                    "_3B24C09D94D66F35F45D8A73B6B45617"
                     {
-                    "Name" = "8:System.Windows.Interactivity.dll"
+                    "Name" = "8:CefSharp.Wpf.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:System.Windows.Interactivity.dll"
+            "SourcePath" = "8:CefSharp.Wpf.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_62ECF8B5CDFA4573B4C9111067D4A2B0"
@@ -3066,6 +4138,66 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3B263CDD66C94B7F8102396A9F48836D"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\en-GB.pak"
+            "TargetName" = "8:en-GB.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3C3F913438CF4005B146DD73A7E2A0F4"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\hr.pak"
+            "TargetName" = "8:hr.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3DEF667F641345CA98E09170ACB2792D"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\ml.pak"
+            "TargetName" = "8:ml.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_40F8C78482A336A7A60A0D0C523336DB"
@@ -3097,6 +4229,57 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_42211E92FD8C40738C2C2CB8F8EF3E43"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:CefSharp.BrowserSubprocess.Core, Version=73.1.130.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=AMD64"
+                "ScatterAssemblies"
+                {
+                    "_42211E92FD8C40738C2C2CB8F8EF3E43"
+                    {
+                    "Name" = "8:CefSharp.BrowserSubprocess.Core.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\CefSharp.BrowserSubprocess.Core.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_62ECF8B5CDFA4573B4C9111067D4A2B0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_42D166E18AC04BC2928DE1CD33E37438"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\libGLESv2.dll"
+            "TargetName" = "8:libGLESv2.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_62ECF8B5CDFA4573B4C9111067D4A2B0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_44D3F8FB90889B4248FCDA1920C2971D"
@@ -3159,6 +4342,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_45352340F79E417FB106E725841EC068"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\fr.pak"
+            "TargetName" = "8:fr.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_453922FA4B665780AE51AF7461D4E3A0"
@@ -3254,6 +4457,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4CACB4E14EAA459393EF611A96AF91B5"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\nb.pak"
+            "TargetName" = "8:nb.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4D503883165CDA60BA3F589364881DBC"
             {
             "AssemblyRegister" = "3:1"
@@ -3268,6 +4491,57 @@
                     }
                 }
             "SourcePath" = "8:System.Diagnostics.Tracing.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_62ECF8B5CDFA4573B4C9111067D4A2B0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4D6FB9E17EF0481E992A2F1BA6AB1DA6"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\tr.pak"
+            "TargetName" = "8:tr.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4D7805581FD3CA95E4E9B13B1AAF3C44"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:CefSharp, Version=73.1.130.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=AMD64"
+                "ScatterAssemblies"
+                {
+                    "_4D7805581FD3CA95E4E9B13B1AAF3C44"
+                    {
+                    "Name" = "8:CefSharp.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:CefSharp.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_62ECF8B5CDFA4573B4C9111067D4A2B0"
@@ -3316,6 +4590,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_52BBDBD3CC9B62FED9C9CEB9A9767F13"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:LaDOSE.DTO, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64"
+                "ScatterAssemblies"
+                {
+                    "_52BBDBD3CC9B62FED9C9CEB9A9767F13"
+                    {
+                    "Name" = "8:LaDOSE.DTO.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:LaDOSE.DTO.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_62ECF8B5CDFA4573B4C9111067D4A2B0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_52CA32826CC38F238DE9D8E0A14C068E"
             {
             "AssemblyRegister" = "3:1"
@@ -3347,6 +4652,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_53540FE323B34E6BBDFE7B330BD3EF39"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\gu.pak"
+            "TargetName" = "8:gu.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_54CE2EC40587F3794E46C9DE378AD593"
             {
             "AssemblyRegister" = "3:1"
@@ -3376,6 +4701,97 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_56257851962747E68103E5C7B77700BD"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\et.pak"
+            "TargetName" = "8:et.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_56C5F43362D94DD489EA9F14C2C9B984"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\sw.pak"
+            "TargetName" = "8:sw.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5A36BB1EFABD6BB3C70B0AF39BEED59A"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:RestSharp, Version=106.6.9.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_5A36BB1EFABD6BB3C70B0AF39BEED59A"
+                    {
+                    "Name" = "8:RestSharp.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:RestSharp.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_62ECF8B5CDFA4573B4C9111067D4A2B0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5B25EC7F05524FCCB8634989CDB9E3D8"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\id.pak"
+            "TargetName" = "8:id.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5FD657B751A72F310F1EB8DCDC38CB35"
@@ -3440,6 +4856,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_625FDE3AF179459497B42386B58725AD"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\de.pak"
+            "TargetName" = "8:de.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_62FB356270EFE3E9BF157DCF0A3640AE"
             {
             "AssemblyRegister" = "3:1"
@@ -3471,6 +4907,66 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_630D311818494E80B10F15146E1763E5"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\d3dcompiler_47.dll"
+            "TargetName" = "8:d3dcompiler_47.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_62ECF8B5CDFA4573B4C9111067D4A2B0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6657393D875042A3995DE2F4BF084452"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\icudtl.dat"
+            "TargetName" = "8:icudtl.dat"
+            "Tag" = "8:"
+            "Folder" = "8:_62ECF8B5CDFA4573B4C9111067D4A2B0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6826F96F8F3648D0B01AABC23B3D1F75"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\nl.pak"
+            "TargetName" = "8:nl.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_69E89488B24F50FCA9DEFEB25DD4B75A"
             {
             "AssemblyRegister" = "3:1"
@@ -3500,6 +4996,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6C341B8F392441598D484CB108FE65C0"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\cef.pak"
+            "TargetName" = "8:cef.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_62ECF8B5CDFA4573B4C9111067D4A2B0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6CF61344816C3F5F647181F87D062CEB"
@@ -3564,6 +5080,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6E9ADEFF93A442809441A2331D3E0A9A"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\sl.pak"
+            "TargetName" = "8:sl.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_718AFAE168F29EA1E71484DFC890F1B1"
             {
             "AssemblyRegister" = "3:1"
@@ -3593,6 +5129,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_72651232D49142ECA847B70FB617FF0A"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\sv.pak"
+            "TargetName" = "8:sv.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_729F688BBA17945273B090782CA58949"
@@ -3750,6 +5306,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7E432E3F74974318999CB6ADC9ED775F"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\en-US.pak"
+            "TargetName" = "8:en-US.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7FB45B1CCE3E7C15BF251C16E1B9F5AF"
             {
             "AssemblyRegister" = "3:1"
@@ -3781,6 +5357,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_802E41096BF9471FBEAD8A9B7879A3C2"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\el.pak"
+            "TargetName" = "8:el.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8040A45D5A191F7AACFE00D22FB3D0C1"
             {
             "AssemblyRegister" = "3:1"
@@ -3810,6 +5406,46 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8058E398E0BD4D0AB33574880B6F7498"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\mr.pak"
+            "TargetName" = "8:mr.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_814C37C27BB4422E94C2B82A87A502A3"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\ja.pak"
+            "TargetName" = "8:ja.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_817FED66E9351997818AAB3B89635594"
@@ -3905,21 +5541,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_83E6D15BFA9F14202FD36924DF98B4CE"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_851D2339991A4B73AF2F5DB9391535EA"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:LaDOSE.DTO, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_83E6D15BFA9F14202FD36924DF98B4CE"
-                    {
-                    "Name" = "8:LaDOSE.DTO.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:LaDOSE.DTO.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\cef_100_percent.pak"
+            "TargetName" = "8:cef_100_percent.pak"
             "Tag" = "8:"
             "Folder" = "8:_62ECF8B5CDFA4573B4C9111067D4A2B0"
             "Condition" = "8:"
@@ -3933,7 +5558,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_858FEDF9772F61566957567773B6A570"
@@ -3996,6 +5621,46 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_88765B7A081C47879F960010A94A57FD"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\v8_context_snapshot.bin"
+            "TargetName" = "8:v8_context_snapshot.bin"
+            "Tag" = "8:"
+            "Folder" = "8:_62ECF8B5CDFA4573B4C9111067D4A2B0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_88D22BFF11384A0DB57C0CA0221AB856"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\da.pak"
+            "TargetName" = "8:da.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_89D90F7CBCA438622DC34563BA64BA96"
@@ -4091,20 +5756,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9450DD186FCD6F9938DE9BA952E9D21F"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9394299B3B72ABAA46739E588CE53ACD"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Caliburn.Micro.Platform, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Caliburn.Micro, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_9450DD186FCD6F9938DE9BA952E9D21F"
+                    "_9394299B3B72ABAA46739E588CE53ACD"
                     {
-                    "Name" = "8:Caliburn.Micro.Platform.dll"
+                    "Name" = "8:Caliburn.Micro.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:Caliburn.Micro.Platform.dll"
+            "SourcePath" = "8:Caliburn.Micro.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_62ECF8B5CDFA4573B4C9111067D4A2B0"
@@ -4120,6 +5785,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9571B0997777438A9955A3201ECFA476"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\zh-CN.pak"
+            "TargetName" = "8:zh-CN.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_95EFD7C4EBA47E662FB3D4588935C129"
@@ -4151,6 +5836,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_96AD65CF57474CB69E77BA110414C820"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\vi.pak"
+            "TargetName" = "8:vi.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_972ABC1378DA28BBF40F0F8B390189A3"
@@ -4215,6 +5920,66 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9AC328566E254E92BE1216CD0CBE4A9A"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\zh-TW.pak"
+            "TargetName" = "8:zh-TW.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9D1F0370333F4E2B926F07843F7B30B3"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\am.pak"
+            "TargetName" = "8:am.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9E4E8A34F0C7415A821873536AFFC925"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\ro.pak"
+            "TargetName" = "8:ro.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A01278BA7239F36B5A89352792F16792"
             {
             "AssemblyRegister" = "3:1"
@@ -4244,6 +6009,46 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A1D01A47EDDA4449A5DCA141D253EDF0"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\es.pak"
+            "TargetName" = "8:es.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A2FC36425C4F4F889D1D3A48529FE26D"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\cs.pak"
+            "TargetName" = "8:cs.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A475B958F09A1D3BEB4E18CE9A129A0A"
@@ -4401,6 +6206,46 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AC2EC4687C8C412097E76486156CF0EA"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\th.pak"
+            "TargetName" = "8:th.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AD32F3CFF4F54B928EF03F54155EC931"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\bn.pak"
+            "TargetName" = "8:bn.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_AE37B669438F2B034B5BA3C4F9C1CB31"
             {
             "AssemblyRegister" = "3:1"
@@ -4525,6 +6370,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B135E05FBFFF4C8CA7FE68E777BD38B4"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\fil.pak"
+            "TargetName" = "8:fil.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B14F0F4ED59668CAD4F4A9D09E6C615F"
             {
             "AssemblyRegister" = "3:1"
@@ -4587,6 +6452,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B6333642D63629B07DEFBE3031A5E08A"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_B6333642D63629B07DEFBE3031A5E08A"
+                    {
+                    "Name" = "8:System.Windows.Interactivity.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:System.Windows.Interactivity.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_62ECF8B5CDFA4573B4C9111067D4A2B0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B6C40984E6207D62ABEF2C42B88CE8AE"
             {
             "AssemblyRegister" = "3:1"
@@ -4616,6 +6512,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B6FA393BB88A4AF4BBA51E3C3CD5791E"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\it.pak"
+            "TargetName" = "8:it.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B738C08952A38028E6042C53F422AD3A"
@@ -4680,6 +6596,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BC3192F314064FE4A53F670296A3E6C4"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\te.pak"
+            "TargetName" = "8:te.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BC5635F6FBC22118D2A3699D4DFD6524"
             {
             "AssemblyRegister" = "3:1"
@@ -4711,6 +6647,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BED2A9E0BAF943A39D7785DF9F198922"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\ru.pak"
+            "TargetName" = "8:ru.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BF484BFCCBF369B0E6FA6D24B1593652"
             {
             "AssemblyRegister" = "3:1"
@@ -4740,6 +6696,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C09E58453A2D4C169AF5431293AAAEE0"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\hi.pak"
+            "TargetName" = "8:hi.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C2D4DE89294CBC9B898FFA9285246C0F"
@@ -4833,6 +6809,57 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C5CAE09622EC46A8B33A845A86C6FDBE"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:CefSharp.Core, Version=73.1.130.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=AMD64"
+                "ScatterAssemblies"
+                {
+                    "_C5CAE09622EC46A8B33A845A86C6FDBE"
+                    {
+                    "Name" = "8:CefSharp.Core.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\CefSharp.Core.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_62ECF8B5CDFA4573B4C9111067D4A2B0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C62367AA255C4EDA8FEFB91B3F073131"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\sk.pak"
+            "TargetName" = "8:sk.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C63EB0B7F640A184B7A0B7AE85C08B75"
@@ -4990,6 +7017,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CAA2293C492F40AA963015875267FB31"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\libEGL.dll"
+            "TargetName" = "8:libEGL.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_62ECF8B5CDFA4573B4C9111067D4A2B0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CD7FC132AD64EBEDD3F69EB45BE60677"
             {
             "AssemblyRegister" = "3:1"
@@ -5050,6 +7097,46 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CF260BE5E9BF4CB9B77A5717D60DCDBD"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\swiftshader\\libGLESv2.dll"
+            "TargetName" = "8:libGLESv2.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_C471FAFED00442A5BB30D2B4B6D45EA0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CF3E4746766E4D4B8ED482DD580FCB1B"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\natives_blob.bin"
+            "TargetName" = "8:natives_blob.bin"
+            "Tag" = "8:"
+            "Folder" = "8:_62ECF8B5CDFA4573B4C9111067D4A2B0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D036BABEF867F32AADC539EF20BBCE89"
@@ -5114,6 +7201,46 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D61AE039D89C4CB095039BF8F3DC90FC"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\kn.pak"
+            "TargetName" = "8:kn.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D78C8059575C457F90E691E72EE955B1"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\libcef.dll"
+            "TargetName" = "8:libcef.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_62ECF8B5CDFA4573B4C9111067D4A2B0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D882C6C8BB22996D7C10FA04F80D2B12"
             {
             "AssemblyRegister" = "3:1"
@@ -5159,6 +7286,128 @@
                     }
                 }
             "SourcePath" = "8:System.Reflection.Extensions.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_62ECF8B5CDFA4573B4C9111067D4A2B0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D9EFC78F178C447D8154B9A5ED502257"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\ms.pak"
+            "TargetName" = "8:ms.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DA06F97A1EB2453AA27D5529FDB3351A"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\ar.pak"
+            "TargetName" = "8:ar.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DADF3B761A62DF1C1F2B8672FD064C6A"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:LaDOSE.REST, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64"
+                "ScatterAssemblies"
+                {
+                    "_DADF3B761A62DF1C1F2B8672FD064C6A"
+                    {
+                    "Name" = "8:LaDOSE.REST.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:LaDOSE.REST.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_62ECF8B5CDFA4573B4C9111067D4A2B0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DBD514079E0742439F077F5B3B369365"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\he.pak"
+            "TargetName" = "8:he.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DC343C98E70D6CB9A511D1306B75FD66"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:CefSharp.BrowserSubprocess.Core, Version=73.1.130.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=AMD64"
+                "ScatterAssemblies"
+                {
+                    "_DC343C98E70D6CB9A511D1306B75FD66"
+                    {
+                    "Name" = "8:CefSharp.BrowserSubprocess.Core.DLL"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:CefSharp.BrowserSubprocess.Core.DLL"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_62ECF8B5CDFA4573B4C9111067D4A2B0"
@@ -5269,6 +7518,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E1FD46D1BEF94F51BAA0D527AAE4A8D7"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\ta.pak"
+            "TargetName" = "8:ta.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E61E2DBAA6388BB7C72D0852C63BB734"
             {
             "AssemblyRegister" = "3:1"
@@ -5331,6 +7600,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E93D476340AF4B219118E6840F0474DE"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\swiftshader\\libEGL.dll"
+            "TargetName" = "8:libEGL.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_C471FAFED00442A5BB30D2B4B6D45EA0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_EBD5DD884E58E4E1A02E056D9DDB818C"
             {
             "AssemblyRegister" = "3:1"
@@ -5391,6 +7680,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EDF768879A974E9DA827B36C40258880"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\fa.pak"
+            "TargetName" = "8:fa.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_EE25563D97EF798CEFCC0C5091E33BE1"
@@ -5517,37 +7826,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F26585E333E1013B1B68D82B45733654"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Caliburn.Micro.Platform.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_F26585E333E1013B1B68D82B45733654"
-                    {
-                    "Name" = "8:Caliburn.Micro.Platform.Core.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Caliburn.Micro.Platform.Core.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_62ECF8B5CDFA4573B4C9111067D4A2B0"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F41795E444273F87C5226235FACB0DF5"
             {
             "AssemblyRegister" = "3:1"
@@ -5610,6 +7888,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FDE969460873404BA3B79E33370D6B15"
+            {
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\bin\\x64\\Release\\locales\\bg.pak"
+            "TargetName" = "8:bg.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_5D4935958F824B9488646C0C465E4629"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -5618,7 +7916,7 @@
         {
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_62ECF8B5CDFA4573B4C9111067D4A2B0"
             {
-            "DefaultLocation" = "8:[ProgramFiles64Folder][Manufacturer]\\"
+            "DefaultLocation" = "8:[LocalAppDataFolder][Manufacturer]\\"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -5626,6 +7924,28 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_5D4935958F824B9488646C0C465E4629"
+                    {
+                    "Name" = "8:locales"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_9B1E17F39CB74EF6AD782A70A8D32661"
+                        "Folders"
+                        {
+                        }
+                    }
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_C471FAFED00442A5BB30D2B4B6D45EA0"
+                    {
+                    "Name" = "8:swiftshader"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_33F400C8782947AD9809EBC98DC308ED"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
             "{1525181F-901A-416C-8A58-119130FE478E}:_F37F6A69C6FB46DAB431916122619536"
@@ -5665,16 +7985,16 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Setup"
-        "ProductCode" = "8:{40C416F4-404D-41C2-91ED-5533E738280E}"
-        "PackageCode" = "8:{2F1C95A2-01F8-4E88-A262-6B8BD7CE0569}"
+        "ProductName" = "8:LaDose"
+        "ProductCode" = "8:{EFF41688-237A-4ECF-9C1B-2AF8F52C03BD}"
+        "PackageCode" = "8:{97376C07-7338-4F5A-B9D7-387D7F5874C8}"
         "UpgradeCode" = "8:{86273DB0-A85B-4D5C-B8DC-CAE09D128D7F}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
+        "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.0.1"
         "Manufacturer" = "8:LaDOSE"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -5682,7 +8002,7 @@
         "Subject" = "8:"
         "ARPCONTACT" = "8:Default Company Name"
         "Keywords" = "8:"
-        "ARPCOMMENTS" = "8:"
+        "ARPCOMMENTS" = "8:La Dose"
         "ARPURLINFOABOUT" = "8:"
         "ARPPRODUCTICON" = "8:"
         "ARPIconIndex" = "3:0"
@@ -6202,7 +8522,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_6CAE9DC3009D486B9779D6ED2F076963"
             {
-            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\obj\\Release\\LaDOSE.DesktopApp.exe"
+            "SourcePath" = "8:..\\LaDOSE.DesktopApp\\obj\\x64\\Release\\LaDOSE.DesktopApp.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_62ECF8B5CDFA4573B4C9111067D4A2B0"

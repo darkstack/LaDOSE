@@ -22,8 +22,16 @@ namespace LaDOSE.DesktopApp.ViewModels
         public override string DisplayName => "Tournament Result";
 
         private RestService RestService { get; set; }
+        Dictionary<string, Dictionary<int, int>> _computedResult;
 
         #region Properties
+
+        private string css = "strong { font-weight: 700;} " +
+                             "a { color: #ff9024;}"+
+                             "body { color: #efefef;background-color: #141415; }" +
+                             ""+
+                             "a:hover, .entry-meta span a:hover, .comments-link a:hover, body.coldisplay2 #front-columns a:active {color: #cb5920;}"+
+                             "tr td { border: 1px dashed #3D3D3D;} ";
         private String _selectRegex;
 
         public String SelectRegex
@@ -36,10 +44,33 @@ namespace LaDOSE.DesktopApp.ViewModels
             }
         }
 
+        private String _html;
+
+        public String Html
+        {
+            get { return $"<html><head><style>{this.css}</style></head><body>{HtmlContent}</body></html>";   }
+            set
+            {
+                _html = value;
+            }
+        }
+        private String _htmlContent;
+
+        public String HtmlContent
+        {
+            get { return _htmlContent; }
+            set
+            {
+                _htmlContent = value;
+                NotifyOfPropertyChange(() => HtmlContent);
+                NotifyOfPropertyChange(() => Html);
+            }
+        }
+
 
 
         private DateTime _from;
-    
+
         public DateTime From
         {
             get { return _from; }
@@ -51,6 +82,7 @@ namespace LaDOSE.DesktopApp.ViewModels
         }
 
         private DateTime _to;
+
         public DateTime To
         {
             get { return _to; }
@@ -130,6 +162,7 @@ namespace LaDOSE.DesktopApp.ViewModels
         }
 
         #endregion
+
         public TournamentResultViewModel(RestService restService)
         {
             this.RestService = restService;
@@ -137,11 +170,10 @@ namespace LaDOSE.DesktopApp.ViewModels
             Tournaments = new List<TournamentDTO>();
         }
 
-    
 
         protected override void OnInitialize()
         {
-            this.To=DateTime.Now;
+            this.To = DateTime.Now;
             this.From = DateTime.Now.AddMonths(-1);
             this.SelectRegex = "Ranking";
             LoadTournaments();
@@ -158,7 +190,6 @@ namespace LaDOSE.DesktopApp.ViewModels
 
                 NotifyOfPropertyChange("Tournaments");
             });
-
         }
 
         public DataTable GridDataTable
@@ -179,41 +210,43 @@ namespace LaDOSE.DesktopApp.ViewModels
                 var resultsDto = this.RestService.GetResults(tournamentsIds);
                 this.Results = resultsDto;
                 ComputeDataGrid();
+                ComputeHtml();
             });
-
         }
+
 
         public void SelectYear()
         {
             this.To = DateTime.Now;
-            this.From = new DateTime(DateTime.Now.Year,1,1);
-
+            this.From = new DateTime(DateTime.Now.Year, 1, 1);
         }
+
         public void SelectMonth()
         {
             this.To = DateTime.Now;
             this.From = DateTime.Now.AddMonths(-1);
         }
+
         public void SelectRegexp()
         {
             var selectedTournaments = this.Tournaments.Where(e => Regex.IsMatch(e.Name, this.SelectRegex)).ToList();
             this.SelectedTournaments.Clear();
-            if(selectedTournaments.Count>0)
-                selectedTournaments.ForEach(e=>this.SelectedTournaments.AddUI(e));
-            
+            if (selectedTournaments.Count > 0)
+                selectedTournaments.ForEach(e => this.SelectedTournaments.AddUI(e));
         }
 
         private void ComputeDataGrid()
         {
             var resultsParticipents = this.Results.Participents.OrderBy(e => e.Name).ToList();
-            var computed = ResultsToDataDictionary(resultsParticipents);
+
+            _computedResult = ResultsToDataDictionary(resultsParticipents);
 
             StringBuilder sb = new StringBuilder();
 
             DataTable grid = new DataTable();
-            var games = Results.Games.Distinct().OrderBy(e=>e.Order).ToList();
+            var games = Results.Games.Distinct().OrderBy(e => e.Order).ToList();
             grid.Columns.Add("Players");
-            games.ForEach(e => grid.Columns.Add(e.Name.Replace('.',' ')));
+            games.ForEach(e => grid.Columns.Add(e.Name.Replace('.', ' ')));
             grid.Columns.Add("Total").DataType = typeof(Int32);
 
 
@@ -223,13 +256,12 @@ namespace LaDOSE.DesktopApp.ViewModels
                 var resultsParticipent = resultsParticipents[i];
                 int total = 0;
                 dataRow["Players"] = resultsParticipent.Name;
-                
 
 
                 for (int j = 0; j < games.Count; j++)
                 {
                     var resultsGame = Results.Games[j];
-                    var dictionary = computed[resultsParticipent.Name];
+                    var dictionary = _computedResult[resultsParticipent.Name];
                     if (dictionary.ContainsKey(resultsGame.Id))
                     {
                         int points = dictionary[resultsGame.Id];
@@ -240,7 +272,7 @@ namespace LaDOSE.DesktopApp.ViewModels
                     else
                         dataRow[resultsGame.Name.Replace('.', ' ')] = null;
                 }
-                
+
                 dataRow["Total"] = total;
             }
 
@@ -259,8 +291,6 @@ namespace LaDOSE.DesktopApp.ViewModels
 
         private void ExportToCSV()
         {
-
-            
             if (this.GridDataTable != null)
             {
                 var dataTable = this.GridDataTable.DefaultView.ToTable();
@@ -288,6 +318,48 @@ namespace LaDOSE.DesktopApp.ViewModels
                     File.WriteAllText(sfDialog.FileName, sb.ToString());
                 }
             }
+        }
+
+        private void ComputeHtml()
+        {
+            
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<table style=\"text-align: center; margin-top: 15px;\" align=\"center\"><tbody>");
+
+            int columns = 0;
+            foreach (var game in Results.Games)
+            {
+              
+                if (columns % 2 == 0)
+                {
+                    sb.Append("<tr>");
+                }
+                columns++;
+                sb.Append("<td colspan=\"1\" width=\"50 % \">" +
+                          "<span style=\"color: #ff0000;\">" +
+                          $"<strong>{game.LongName} ({Results.Results.Count(e => e.GameId == game.Id)} participants) :</strong>" +
+                          "</span>");
+                List<ResultDTO> enumerable = Results.Results.Where(r => r.GameId == game.Id).ToList();
+                List<string> top3 = enumerable.OrderByDescending(e => e.Point).Take(3).Select(e => e.Player).ToList();
+                sb.AppendLine($"<br> 1/ {top3[0]}<br> 2/ {top3[1]}<br> 3/ {top3[2]}<p></p>");
+                sb.AppendLine($"<a href=\"https://challonge.com/fr/{enumerable.First().TournamentUrl}\" target=\"_blank\">https://challonge.com/fr/{enumerable.First().TournamentUrl}</a></p></td>");
+                if (columns % 2 == 0)
+                {
+                    sb.Append("</tr>");
+                }
+
+
+            }
+
+            sb.Append("</table>");
+
+
+           this.HtmlContent = sb.ToString();
+              
+        }
+        public void CopyHtml()
+        {
+            System.Windows.Clipboard.SetText(this.HtmlContent);
         }
 
         private Dictionary<string, Dictionary<int, int>> ResultsToDataDictionary(

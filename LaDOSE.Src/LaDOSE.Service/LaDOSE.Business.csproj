@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <AssemblyName>LaDOSE.Business</AssemblyName>
     <RootNamespace>LaDOSE.Business</RootNamespace>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>

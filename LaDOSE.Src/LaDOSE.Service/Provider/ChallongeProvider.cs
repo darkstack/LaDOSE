@@ -99,7 +99,9 @@ namespace LaDOSE.Business.Provider
             {
                 Id = tournamentResult.id,
                 Name = tournamentResult.name,
+                Url = tournamentResult.url,
                 Participents = new List<Participent>()
+                
             };
 
         }

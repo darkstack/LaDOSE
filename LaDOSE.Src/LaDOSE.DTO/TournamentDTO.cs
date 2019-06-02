@@ -32,5 +32,6 @@ namespace LaDOSE.DTO
         public string Player { get; set; }
         public int Point { get; set; }
         public int TournamendId { get; set; }
+        public string TournamentUrl { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Windows;
+using System.Windows.Threading;
 using Caliburn.Micro;
 
 using LaDOSE.DesktopApp.ViewModels;
@@ -52,6 +53,12 @@ namespace LaDOSE.DesktopApp
         {
             container.BuildUp(instance);
 
+        }
+
+        protected override void OnUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+        {
+            MessageBox.Show(e.Exception.Message, sender.ToString());
+            base.OnUnhandledException(sender, e);
         }
     }
 }

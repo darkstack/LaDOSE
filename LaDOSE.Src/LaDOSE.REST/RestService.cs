@@ -50,6 +50,7 @@ namespace LaDOSE.REST
             }
             else
             {
+
                 throw new Exception("unable to contact services");
             }
         }

@@ -40,6 +40,8 @@
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -62,12 +64,14 @@
                     </behaviors:TextBoxInputRegExBehaviour>
                 </i:Interaction.Behaviors>
             </TextBox>
+            <Label Grid.Row="4" Grid.Column="0">LongName</Label>
+            <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Path=CurrentGame.LongName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ></TextBox>
 
-            <Label Grid.Row="4" Grid.Column="0">WpTag</Label>
-            <TextBox Grid.Row="5" Grid.ColumnSpan="2" Text="{Binding Path=CurrentGame.WordPressTag,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ></TextBox>
+            <Label Grid.Row="5" Grid.Column="0">WpTag</Label>
+            <TextBox Grid.Row="5" Grid.Column="1"  Text="{Binding Path=CurrentGame.WordPressTag,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ></TextBox>
             <Label Grid.Row="6" Grid.Column="0">WpTagOs</Label>
-            <TextBox Grid.Row="7" Grid.ColumnSpan="2" Text="{Binding Path=CurrentGame.WordPressTagOs,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ></TextBox>
-            <Button Grid.Row="8" Grid.ColumnSpan="2" x:Name="Update">Update</Button>
+            <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding Path=CurrentGame.WordPressTagOs,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ></TextBox>
+            <Button Grid.Row="9" Grid.ColumnSpan="2" x:Name="Update">Update</Button>
             
         </Grid>
        </Grid>

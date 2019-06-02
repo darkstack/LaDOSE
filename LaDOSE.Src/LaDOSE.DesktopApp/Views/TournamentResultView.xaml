@@ -8,6 +8,7 @@
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:behaviors="clr-namespace:LaDOSE.DesktopApp.Behaviors"
+             xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
              mc:Ignorable="d"
 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -159,6 +160,12 @@
 
                         </ListView>
 
+                    </DockPanel>
+                </TabItem>
+                <TabItem Header="HTML">
+                   <DockPanel>
+                       <Button x:Name="CopyHtml" DockPanel.Dock="Top"> Copy HTML to clipboard </Button>
+                       <cefSharp:ChromiumWebBrowser behaviors:HtmlBehavior.Html="{Binding Html}" />
                     </DockPanel>
                 </TabItem>
             </TabControl>
