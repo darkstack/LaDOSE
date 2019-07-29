@@ -10,11 +10,12 @@ namespace LaDOSE.Business.Interface
     {
         Task<string> GetLastTournament();
         string GetLastTournamentMessage();
-        Task<TournamentResult> CreateTournament(string name, string url);
+        Task<TournamentResult> CreateTournament(string name, string url, DateTime? startAt);
         Task<ParticipantResult> AddPlayer(int tournamentId, string userName);
 
         Task<List<Tournament>> GetTournaments(DateTime? start, DateTime? end);
         Task<List<Participent>> GetParticipents(int idTournament);
         Task<Tournament> GetTournament(int idTournament);
+        Task<Tournament> GetTournament(string urlTournament);
     }
 }

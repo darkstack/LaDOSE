@@ -30,9 +30,9 @@ namespace LaDOSE.Business.Provider
             DernierTournois = "Aucun tournois.";
         }
 
-        public async Task<TournamentResult> CreateTournament(string name, string url)
+        public async Task<TournamentResult> CreateTournament(string name, string url,DateTime? startAt = null)
         {
-            var result = await new CreateTournamentQuery(name, TournamentType.Double_Elimination, url).call(ApiCaller);
+            var result = await new CreateTournamentQuery(name, startAt , TournamentType.Double_Elimination, url).call(ApiCaller);
             return result;
 
 
@@ -105,7 +105,21 @@ namespace LaDOSE.Business.Provider
             };
 
         }
+        public async Task<Tournament> GetTournament(string urlTournament)
+        {
 
+            var tournamentResult = await new TournamentQuery(urlTournament).call(ApiCaller);
+
+            return new Tournament()
+            {
+                Id = tournamentResult.id,
+                Name = tournamentResult.name,
+                Url = tournamentResult.url,
+                Participents = new List<Participent>()
+
+            };
+
+        }
         public async Task<string> GetLastTournament()
         {
             string dernierTournois = null;

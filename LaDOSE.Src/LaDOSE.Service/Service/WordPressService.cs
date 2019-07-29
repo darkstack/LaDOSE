@@ -23,6 +23,7 @@ namespace LaDOSE.Business.Service
         private LaDOSEDbContext _context;
         private IChallongeProvider _challongeProvider;
 
+        private const int MAX_CREATE_TRY = 5;
         public WordPressService(LaDOSEDbContext context, IChallongeProvider challongeProvider)
         {
             this._context = context;
@@ -109,8 +110,7 @@ namespace LaDOSE.Business.Service
                 var remove = currentEvent.Date?.ToString("Mdyy");
                 var url = $"{remove}{selectedGame.Id}";
                 var selectedEvent = FormatCurrentEventName(currentEvent.Name);
-                var name = $"[{eventDate}] LaDOSE.net - {selectedEvent} - {selectedGame.Name}";
-                var tournament = _challongeProvider.CreateTournament(name, url).Result;
+                var tournament = AddTournament(eventDate, selectedEvent, selectedGame, url, currentEvent);
 
 
                 foreach (var booking in currentEvent.WPBookings)
@@ -159,6 +159,8 @@ namespace LaDOSE.Business.Service
             return "error while creating challonge";
         }
 
+
+
         public async Task<string> GetLastChallonge()
         {
                 var lastTournament = await _challongeProvider.GetLastTournament();
@@ -166,7 +168,43 @@ namespace LaDOSE.Business.Service
         }
 
 
+        private TournamentResult AddTournament(string eventDate, string selectedEvent, Game selectedGame, string url, WPEvent currentEvent)
+        {
+            int createTry = 0;
+            var name = $"[{eventDate}] LaDOSE.net - {selectedEvent} - {selectedGame.Name}";
+            TournamentResult tournament = null;
+            do
+            {
+                try
+                {
+                    if (createTry > 0)
+                    {
+                        url += createTry.ToString();
+                    }
+                    tournament = _challongeProvider.CreateTournament(name, url, currentEvent.Date).Result;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error Creating Challonge : " + ex.Message);
+                    try
+                    {
+                        //Deja crée
+                        var result = _challongeProvider.GetTournament(url).Result;  
+                        if (result.Name == name)
+                            throw;
+                    }
+                    catch (Exception getex) 
+                    {
+                        Console.WriteLine("Error Getting Challonge: "+ url +" : " + getex.Message);
+                    }
 
+                    createTry++;
+                }
+            } while (tournament == null || createTry > MAX_CREATE_TRY);
+
+
+            return tournament;
+        }
         private string FormatCurrentEventName(string currentEventName)
         {
 
