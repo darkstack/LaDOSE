@@ -7,7 +7,7 @@ namespace LaDOSE.Business.Interface
 {
     public interface ITournamentService
     {
-        Task<List<Tournament>> GetTournaments(DateTime? start, DateTime? end);
+        Task<List<ChallongeTournament>> GetTournaments(DateTime? start, DateTime? end);
 
         Task<TournamentsResult> GetTournamentsResult(List<int> ids);
     }

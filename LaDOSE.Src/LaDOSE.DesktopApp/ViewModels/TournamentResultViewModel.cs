@@ -206,7 +206,7 @@ namespace LaDOSE.DesktopApp.ViewModels
         {
             WpfUtil.Await(() =>
             {
-                var tournamentsIds = SelectedTournaments.Select(e => e.Id).ToList();
+                var tournamentsIds = SelectedTournaments.Select(e => e.ChallongeId).ToList();
                 var resultsDto = this.RestService.GetResults(tournamentsIds);
                 this.Results = resultsDto;
                 ComputeDataGrid();

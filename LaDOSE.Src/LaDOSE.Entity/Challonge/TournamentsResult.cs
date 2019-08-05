@@ -5,7 +5,7 @@ namespace LaDOSE.Entity.Challonge
 {
     public class TournamentsResult
     {
-        public List<Participent> Participents { get; set; }
+        public List<ChallongeParticipent> Participents { get; set; }
         public List<Game> Games{ get; set; }
 
         public List<Result> Results { get; set; }

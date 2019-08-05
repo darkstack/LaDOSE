@@ -46,7 +46,7 @@ namespace LaDOSE.Business.Provider
 
         }
 
-        public async Task<List<Tournament>> GetTournaments(DateTime? start, DateTime? end)
+        public async Task<List<ChallongeTournament>> GetTournaments(DateTime? start, DateTime? end)
         {
 
             List<TournamentResult> tournamentResultList = await new TournamentsQuery()
@@ -58,28 +58,29 @@ namespace LaDOSE.Business.Provider
 
             }       
                 .call(this.ApiCaller);
-            List<Tournament> tournaments = new List<Tournament>();
-            tournamentResultList.ForEach(w => tournaments.Add(new Tournament()
+            List<ChallongeTournament> tournaments = new List<ChallongeTournament>();
+            tournamentResultList.ForEach(w => tournaments.Add(new ChallongeTournament()
             {
-                Id = w.id,
+                ChallongeId = w.id,
                 Name = w.name,
-                Participents = new List<Participent>()
+                Participents = new List<ChallongeParticipent>()
             }));
             return tournaments;
         }
 
-        public async Task<List<Participent>> GetParticipents(int idTournament)
+        public async Task<List<ChallongeParticipent>> GetParticipents(int idTournament)
         {
             var participentResults = await new ParticipantsQuery(){tournamentID = idTournament }.call(ApiCaller);
 
-            List<Participent> participants = new List<Participent>();
+            List<ChallongeParticipent> participants = new List<ChallongeParticipent>();
             participentResults.ForEach(w =>
             {
                 if (w.active)
                 {
-                    participants.Add(new Participent()
+                    participants.Add(new ChallongeParticipent()
                     {
-                        Id = w.id,
+                        ChallongeTournamentId = idTournament,
+                        ChallongeId = w.id,
                         Name = w.name,
                         Rank = w.final_rank,
                         IsMember = false,
@@ -90,32 +91,32 @@ namespace LaDOSE.Business.Provider
             return participants;
         }
 
-        public async Task<Tournament> GetTournament(int idTournament)
+        public async Task<ChallongeTournament> GetTournament(int idTournament)
         {
 
             var tournamentResult = await new TournamentQuery(idTournament).call(ApiCaller);
 
-            return new Tournament()
+            return new ChallongeTournament()
             {
-                Id = tournamentResult.id,
+                ChallongeId = tournamentResult.id,
                 Name = tournamentResult.name,
                 Url = tournamentResult.url,
-                Participents = new List<Participent>()
+                Participents = new List<ChallongeParticipent>()
                 
             };
 
         }
-        public async Task<Tournament> GetTournament(string urlTournament)
+        public async Task<ChallongeTournament> GetTournament(string urlTournament)
         {
 
             var tournamentResult = await new TournamentQuery(urlTournament).call(ApiCaller);
 
-            return new Tournament()
+            return new ChallongeTournament()
             {
-                Id = tournamentResult.id,
+                ChallongeId = tournamentResult.id,
                 Name = tournamentResult.name,
                 Url = tournamentResult.url,
-                Participents = new List<Participent>()
+                Participents = new List<ChallongeParticipent>()
 
             };
 

@@ -6,6 +6,7 @@ namespace LaDOSE.DTO
     public class TournamentDTO
     {
         public int Id { get; set; }
+        public int ChallongeId { get; set; }
         public string Name { get; set; }
         public string Game { get; set; }
         public List<ParticipentDTO> Participents {get;set;}
@@ -14,6 +15,7 @@ namespace LaDOSE.DTO
     public class ParticipentDTO
     {
         public int Id { get; set; }
+        public int ChallongeId { get; set; }
         public string Name { get; set; }
         public int Rank { get; set; }
         public bool? IsMember{ get; set; }

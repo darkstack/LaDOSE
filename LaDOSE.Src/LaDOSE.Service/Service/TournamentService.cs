@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LaDOSE.Business.Interface;
+using LaDOSE.Entity;
 using LaDOSE.Entity.Challonge;
 using LaDOSE.Entity.Context;
 using LaDOSE.Entity.Wordpress;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 
 namespace LaDOSE.Business.Service
 {
-    public class TournamentService : ITournamentService
+    public class TournamentService : BaseService<ChallongeTournament>,ITournamentService
     {
+        private IChallongeProvider _challongeProvider;
+
+        #region Rules
         private class Rules
         {
             public int PlayerMin { get; set; }
@@ -37,9 +42,7 @@ namespace LaDOSE.Business.Service
             }
         }
 
-        private LaDOSEDbContext _context;
-        private IChallongeProvider _challongeProvider;
-
+        //Rules Definitions (Min Players,Max Players,First Reward,Second Reward,Third / Fourth Reward, Top 8 reward, Top 16 Reward
         private List<Rules> TournamentRules = new List<Rules>()
         {
             new Rules(0, 8, 5, 3, 2, 0, 0),
@@ -47,59 +50,51 @@ namespace LaDOSE.Business.Service
             new Rules(16, 32, 12, 8, 5, 3, 2),
             new Rules(32, Int32.MaxValue, 18, 12, 8, 5, 3),
         };
+        #endregion
 
-        public TournamentService(LaDOSEDbContext context, IChallongeProvider challongeProvider)
+        public TournamentService(LaDOSEDbContext context, IChallongeProvider challongeProvider) : base(context)
         {
             this._context = context;
             this._challongeProvider = challongeProvider;
         }
 
-        public async Task<List<Tournament>> GetTournaments(DateTime? start, DateTime? end)
-        {
-            List<WPUser> wpUsers = _context.WPUser.ToList();
-            var tournaments = await _challongeProvider.GetTournaments(start, end);
-
-            foreach (var tournament in tournaments)
-            {
-                List<Participent> participents = await _challongeProvider.GetParticipents(tournament.Id);
-                tournament.Participents = participents;
-            }
-
-            return tournaments;
+        public async Task<List<ChallongeTournament>> GetTournaments(DateTime? start, DateTime? end)
+         {
+            return await _challongeProvider.GetTournaments(start, end);
+            //Useless
+            //foreach (var tournament in tournaments)
+            //{
+            //    List<ChallongeParticipent> participents = await _challongeProvider.GetParticipents(tournament.ChallongeId);
+            //    tournament.Participents = participents;
+            //}
         }
 
         public async Task<TournamentsResult> GetTournamentsResult(List<int> ids)
         {
             TournamentsResult result = new TournamentsResult();
             result.Results = new List<Result>();
-            var tournaments = new List<Tournament>();
-            foreach (var idTournament in ids)
-            {
-                var tournament = await _challongeProvider.GetTournament(idTournament);
-                tournament.Participents = await _challongeProvider.GetParticipents(tournament.Id);
-                tournaments.Add(tournament);
-            }
-
-            var games = _context.Game.ToList();
             var players = _context.WPUser.ToList();
+            var games = _context.Game.ToList();
+            var tournaments = await GetChallongeTournaments(ids,games);
 
             var allParticipent = tournaments.SelectMany(e => e.Participents).Distinct((a, b) => a.Name == b.Name)
                 .ToList();
-            foreach (var participent in allParticipent)
-            {
-                var player = players.FirstOrDefault(e => e.Name.Contains(participent.Name));
-                if (player != null)
-                {
-                    participent.IsMember = true;
-                }
-            }
+
+            //USELESS
+            //foreach (var participent in allParticipent)
+            //{
+            //    var player = players.FirstOrDefault(e => e.Name.Contains(participent.Name));
+            //    if (player != null)
+            //    {
+            //        participent.IsMember = true;
+            //    }
+            //}
 
             result.Participents = allParticipent;
 
             foreach (var tournament in tournaments)
             {
-                var game = games.First(g => tournament.Name.Contains(g.Name));
-                tournament.Game = game;
+
 
                 var playerCount = tournament.Participents.Count;
                 var lesSacs = tournament.Participents;
@@ -117,18 +112,18 @@ namespace LaDOSE.Business.Service
                 var Top8 = tournament.Participents.Where(p => p.Rank > 4 && p.Rank < 9).ToList();
                 var Top16 = tournament.Participents.Where(p => p.Rank > 8 && p.Rank <= 16).ToList();
 
-                result.Results.Add(new Result(first.Name, tournament.Game.Id, tournament.Id, tournament.Url, currentRule.FirstPoint));
+                result.Results.Add(new Result(first.Name, tournament.Game.Id, tournament.ChallongeId, tournament.Url, currentRule.FirstPoint));
                 lesSacs.Remove(first);
-                result.Results.Add(new Result(second.Name, tournament.Game.Id, tournament.Id, tournament.Url, currentRule.SecondPoint));
+                result.Results.Add(new Result(second.Name, tournament.Game.Id, tournament.ChallongeId, tournament.Url, currentRule.SecondPoint));
                 lesSacs.Remove(second);
                 thirdFourth.ForEach(r =>
-                    result.Results.Add(new Result(r.Name, tournament.Game.Id, tournament.Id, tournament.Url,
+                    result.Results.Add(new Result(r.Name, tournament.Game.Id, tournament.ChallongeId, tournament.Url,
                         currentRule.ThirdFourthPoint)));
                 thirdFourth.ForEach(p => lesSacs.Remove(p));
                 if (currentRule.Top8Point != 0)
                 {
                     Top8.ForEach(r =>
-                        result.Results.Add(new Result(r.Name, tournament.Game.Id, tournament.Id, tournament.Url, currentRule.Top8Point)));
+                        result.Results.Add(new Result(r.Name, tournament.Game.Id, tournament.ChallongeId, tournament.Url, currentRule.Top8Point)));
                     Top8.ForEach(p => lesSacs.Remove(p));
                 }
 
@@ -136,18 +131,56 @@ namespace LaDOSE.Business.Service
                 {
                     Top16.ForEach(r =>
                         result.Results.Add(
-                            new Result(r.Name, tournament.Game.Id, tournament.Id, tournament.Url, currentRule.Top16Point)));
+                            new Result(r.Name, tournament.Game.Id, tournament.ChallongeId, tournament.Url, currentRule.Top16Point)));
                     Top16.ForEach(p => lesSacs.Remove(p));
                 }
 
                 lesSacs.ForEach(r =>
-                    result.Results.Add(new Result(r.Name, tournament.Game.Id, tournament.Id, tournament.Url,
+                    result.Results.Add(new Result(r.Name, tournament.Game.Id, tournament.ChallongeId, tournament.Url,
                         currentRule.Participation)));
             }
 
             result.Games = tournaments.Select(e => e.Game).Distinct((game, game1) => game.Name == game1.Name).ToList();
 
             return result;
+        }
+        /// <summary>
+        /// Check if the tournament exist in database otherwise call Challonge.
+        /// </summary>
+        /// <param name="ids">tournaments ids</param>
+        /// <returns>List of the challonge's tournament with participents</returns>
+        private async Task<List<ChallongeTournament>> GetChallongeTournaments(List<int> ids, List<Game> games)
+        {
+            var tournaments = new List<ChallongeTournament>();
+            foreach (var idTournament in ids)
+            {
+                if (!TournamentExist(idTournament))
+                {
+                    ChallongeTournament challongeTournament = await _challongeProvider.GetTournament(idTournament);
+                    challongeTournament.Participents =
+                        await _challongeProvider.GetParticipents(challongeTournament.ChallongeId);
+
+                    var game = games.FirstOrDefault(g => challongeTournament.Name.Contains(g.Name));
+                    if (game != null) challongeTournament.Game = game;
+                    challongeTournament.Sync = DateTime.Now;
+
+                    tournaments.Add(challongeTournament);
+                    _context.ChallongeTournament.Add(challongeTournament);
+                    _context.SaveChanges();
+                }
+                else
+                {
+                    tournaments.Add(_context.ChallongeTournament.Where(e => e.ChallongeId == idTournament)
+                        .Include(e => e.Participents).First());
+                }
+            }
+
+            return tournaments;
+        }
+
+        private bool TournamentExist(int idTournament)
+        {
+            return this._context.ChallongeTournament.Any(e => e.ChallongeId == idTournament);
         }
     }
 }

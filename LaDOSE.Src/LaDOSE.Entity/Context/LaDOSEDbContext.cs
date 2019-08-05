@@ -1,4 +1,5 @@
-﻿using LaDOSE.Entity.Wordpress;
+﻿using LaDOSE.Entity.Challonge;
+using LaDOSE.Entity.Wordpress;
 using Microsoft.EntityFrameworkCore;
 
 namespace LaDOSE.Entity.Context
@@ -20,6 +21,8 @@ namespace LaDOSE.Entity.Context
         #endregion
         public DbSet<SeasonGame> SeasonGame { get; set; }
         public DbSet<EventGame> EventGame { get; set; }
+        public DbSet<ChallongeParticipent> ChallongeParticipent { get; set; }
+        public DbSet<ChallongeTournament> ChallongeTournament { get; set; }
 
         public LaDOSEDbContext(DbContextOptions options) : base(options)
         {
@@ -87,6 +90,12 @@ namespace LaDOSE.Entity.Context
                 .HasForeignKey(pt => pt.WPUserId);
             #endregion
 
+            #region Challonge 
+            modelBuilder.Entity<ChallongeParticipent>()
+                .HasOne(pt => pt.ChallongeTournament)
+                .WithMany(p => p.Participents)
+                .HasForeignKey(pt => pt.ChallongeTournamentId);
+            #endregion
         }
     }
 
