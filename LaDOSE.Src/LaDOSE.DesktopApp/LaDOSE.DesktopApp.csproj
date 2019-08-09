@@ -120,6 +120,7 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Themes\LeftMarginMultiplierConverter.cs" />
     <Compile Include="Themes\TreeViewItemExtensions.cs" />
+    <Compile Include="Utils\CustomEqualityCompare.cs" />
     <Compile Include="Utils\PhpSerialize.cs" />
     <Compile Include="UserControls\BookingUserControl.xaml.cs">
       <DependentUpon>BookingUserControl.xaml</DependentUpon>

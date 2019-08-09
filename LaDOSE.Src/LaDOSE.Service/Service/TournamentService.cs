@@ -144,10 +144,12 @@ namespace LaDOSE.Business.Service
 
             return result;
         }
+
         /// <summary>
         /// Check if the tournament exist in database otherwise call Challonge.
         /// </summary>
         /// <param name="ids">tournaments ids</param>
+        /// <param name="games">List of known games</param>
         /// <returns>List of the challonge's tournament with participents</returns>
         private async Task<List<ChallongeTournament>> GetChallongeTournaments(List<int> ids, List<Game> games)
         {

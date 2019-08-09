@@ -22,7 +22,7 @@ namespace LaDOSE.DesktopApp.ViewModels
         public override string DisplayName => "Tournament Result";
 
         private RestService RestService { get; set; }
-        Dictionary<string, Dictionary<int, int>> _computedResult;
+        //Dictionary<string, Dictionary<int, int>> _computedResult;
 
         #region Properties
 
@@ -234,19 +234,20 @@ namespace LaDOSE.DesktopApp.ViewModels
             if (selectedTournaments.Count > 0)
                 selectedTournaments.ForEach(e => this.SelectedTournaments.AddUI(e));
         }
-
+        //This could be simplified the Dictionary was for a previous usage, but i m too lazy to rewrite it. 
         private void ComputeDataGrid()
         {
-            var resultsParticipents = this.Results.Participents.OrderBy(e => e.Name).ToList();
-
-            _computedResult = ResultsToDataDictionary(resultsParticipents);
+            var resultsParticipents = this.Results.Participents.Select(e=>e.Name).Distinct(new CustomListExtension.EqualityComparer<String>((a, b) => a.ToUpperInvariant()== b.ToUpperInvariant())).OrderBy(e=>e).ToList();
+            //At start the dictionnary was for some fancy dataviz things, but since the point are inside
+            //i m to lazy to rewrite this functions (this is so ugly...)
+            //_computedResult = ResultsToDataDictionary(resultsParticipents);
 
             StringBuilder sb = new StringBuilder();
 
             DataTable grid = new DataTable();
             var games = Results.Games.Distinct().OrderBy(e => e.Order).ToList();
             grid.Columns.Add("Players");
-            games.ForEach(e => grid.Columns.Add(e.Name.Replace('.', ' ')));
+            games.ForEach(e => grid.Columns.Add(e.Name.Replace('.', ' '),typeof(Int32)));
             grid.Columns.Add("Total").DataType = typeof(Int32);
 
 
@@ -255,25 +256,18 @@ namespace LaDOSE.DesktopApp.ViewModels
                 var dataRow = grid.Rows.Add();
                 var resultsParticipent = resultsParticipents[i];
                 int total = 0;
-                dataRow["Players"] = resultsParticipent.Name;
+                dataRow["Players"] = resultsParticipent;
 
 
                 for (int j = 0; j < games.Count; j++)
                 {
                     var resultsGame = Results.Games[j];
-                    var dictionary = _computedResult[resultsParticipent.Name];
-                    if (dictionary.ContainsKey(resultsGame.Id))
-                    {
-                        int points = dictionary[resultsGame.Id];
-                        dataRow[resultsGame.Name.Replace('.', ' ')] = points;
-                        total += points;
-                    }
-
-                    else
-                        dataRow[resultsGame.Name.Replace('.', ' ')] = null;
+                    var points = GetPlayerPoint(resultsParticipent, resultsGame.Id);
+                    dataRow[resultsGame.Name.Replace('.', ' ')] = points!=0?(object) points:DBNull.Value;
+                    total += points;
                 }
-
                 dataRow["Total"] = total;
+
             }
 
             grid.DefaultView.Sort = "Total DESC";
@@ -362,33 +356,68 @@ namespace LaDOSE.DesktopApp.ViewModels
             System.Windows.Clipboard.SetText(this.HtmlContent);
         }
 
-        private Dictionary<string, Dictionary<int, int>> ResultsToDataDictionary(
-            List<ParticipentDTO> resultsParticipents)
+        private int GetPlayerPoint(string name, int gameid)
         {
-            var computed = new Dictionary<string, Dictionary<int, int>>();
-
-
-            foreach (var participent in resultsParticipents)
-            {
-                computed.Add(participent.Name, new Dictionary<int, int>());
-            }
-
-            foreach (var game in Results.Games)
-            {
-                var results = this.Results.Results.Where(e => e.GameId == game.Id).ToList();
-                foreach (var result in results)
-                {
-                    var dictionary = computed[result.Player];
-                    if (dictionary.ContainsKey(result.GameId))
-                        dictionary[game.Id] += result.Point;
-                    else
-                    {
-                        dictionary.Add(game.Id, result.Point);
-                    }
-                }
-            }
-
-            return computed;
+            return Results.Results.Where(e => e.GameId == gameid && e.Player.ToUpperInvariant() == name.ToUpperInvariant()).Sum(e=>e.Point);
         }
+
+    //    private Dictionary<string, Dictionary<int, int>> ResultsToDataDictionary(
+    //        List<ParticipentDTO> resultsParticipents)
+    //    {
+    //        var computed = new Dictionary<string, Dictionary<int, int>>();
+
+
+    //        foreach (var participent in resultsParticipents)
+    //        {
+    //            computed.Add(participent.Name, new Dictionary<int, int>());
+    //        }
+
+    //        foreach (var game in Results.Games)
+    //        {
+    //            var results = Results.Results.Where(e => e.GameId == game.Id).ToList();
+    //            foreach (var result in results)
+    //            {
+    //                var dictionary = computed[result.Player];
+    //                if (dictionary.ContainsKey(result.GameId))
+    //                    dictionary[game.Id] += result.Point;
+    //                else
+    //                {
+    //                    dictionary.Add(game.Id, result.Point);
+    //                }
+    //            }
+    //        }
+            
+    //        MergeDuplicates(resultsParticipents, computed);
+
+    //        return computed;
+    //    }
+
+    //    private static void MergeDuplicates(List<ParticipentDTO> resultsParticipents, Dictionary<string, Dictionary<int, int>> computed)
+    //    {
+    //        var duplicates = computed.Keys.ToList().GroupBy(x => x.ToUpperInvariant()).Where(x => x.Count() > 1)
+    //            .Select(x => x.Key)
+    //            .ToList();
+    //        if (duplicates.Count > 0)
+    //        {
+    //            foreach (var duplicate in duplicates)
+    //            {
+    //                var lines = computed.Where(e => e.Key.ToUpperInvariant() == duplicate).ToList();
+    //                for (int i = lines.Count(); i > 1; --i)
+    //                {
+    //                    var result = lines[--i];
+    //                    foreach (var games in result.Value.Keys)
+    //                    {
+    //                        if (lines[0].Value.ContainsKey(games))
+    //                            lines[0].Value[games] += result.Value[games];
+    //                        else
+    //                            lines[0].Value.Add(games, result.Value[games]);
+    //                    }
+
+    //                    computed.Remove(result.Key);
+    //                    resultsParticipents.Remove(resultsParticipents.First(e => e.Name == result.Key));
+    //                }
+    //            }
+    //        }
+    //    }
     }
 }

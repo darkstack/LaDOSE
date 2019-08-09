@@ -62,9 +62,7 @@
             <Label>Usefull :</Label>
             <Button Padding="5,0,5,0" x:Name="SelectMonth">Month</Button>
             <Button Padding="5,0,5,0" Margin="5,0,5,0" x:Name="SelectYear">Year</Button>
-            <Label>Select :</Label>
-            <TextBox Width="200" Text="{Binding SelectRegex}"></TextBox>
-            <Button Padding="5,0,5,0" Margin="5,0,5,0" x:Name="SelectRegexp">Select</Button>
+           
         </StackPanel>
         <Button Grid.Row="1" x:Name="LoadTournaments">Update</Button>
         <ListView Grid.Row="2" ItemsSource="{Binding Tournaments}" x:Name="TournamentList" Margin="0,0,0,5"
@@ -74,11 +72,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Id}" />
                         <TextBlock Margin="5,0,0,0" Text="{Binding Name}" />
-                        <TextBlock> - </TextBlock>
-                        <TextBlock Margin="5,0,0,0" Text="{Binding Game.Name}" />
-
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -97,7 +91,13 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
-            <Button Grid.Row="0" Grid.ColumnSpan="3" x:Name="Select">Select</Button>
+            <DockPanel Grid.Row="0" Grid.ColumnSpan="3" Dock="Left">
+                <Label>Select :</Label>
+                <TextBox Width="200" Text="{Binding SelectRegex}"></TextBox>
+                <Button Padding="5,0,5,0" Margin="5,0,5,0" x:Name="SelectRegexp">Select</Button>
+                <Button  x:Name="Select" >Get Tournaments Result</Button>
+            </DockPanel>
+           
 
 
             <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal">
