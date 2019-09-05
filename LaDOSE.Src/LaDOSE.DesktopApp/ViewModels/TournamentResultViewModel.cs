@@ -334,7 +334,7 @@ namespace LaDOSE.DesktopApp.ViewModels
                           $"<strong>{game.LongName} ({Results.Results.Count(e => e.GameId == game.Id)} participants) :</strong>" +
                           "</span>");
                 List<ResultDTO> enumerable = Results.Results.Where(r => r.GameId == game.Id).ToList();
-                List<string> top3 = enumerable.OrderByDescending(e => e.Point).Take(3).Select(e => e.Player).ToList();
+                List<string> top3 = enumerable.OrderBy(e => e.Rank).Take(3).Select(e => e.Player).ToList();
                 sb.AppendLine($"<br> 1/ {top3[0]}<br> 2/ {top3[1]}<br> 3/ {top3[2]}<p></p>");
                 sb.AppendLine($"<a href=\"https://challonge.com/fr/{enumerable.First().TournamentUrl}\" target=\"_blank\">https://challonge.com/fr/{enumerable.First().TournamentUrl}</a></p></td>");
                 if (columns % 2 == 0)
