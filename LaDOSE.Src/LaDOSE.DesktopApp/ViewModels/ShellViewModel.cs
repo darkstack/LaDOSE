@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Configuration;
+using System.Reflection;
+using System.Web.Configuration;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using Caliburn.Micro;
@@ -24,7 +26,7 @@ namespace LaDOSE.DesktopApp.ViewModels
 
         protected override void OnInitialize()
         {
-            this.DisplayName = "LaDOSE";
+            this.DisplayName = "LaDOSE " + Assembly.GetExecutingAssembly().GetName().Version.ToString(); ;
             this.User = "Test";
             this.AppIcon = BitmapFrame.Create(Application.GetResourceStream(new Uri("/LaDOSE.DesktopApp;component/Resources/64x64.png",
                 UriKind.RelativeOrAbsolute)).Stream);
