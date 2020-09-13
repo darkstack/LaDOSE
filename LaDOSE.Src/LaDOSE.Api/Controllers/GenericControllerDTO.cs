@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using LaDOSE.Business.Interface;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,30 +9,32 @@ namespace LaDOSE.Api.Controllers
 {
     public class GenericControllerDTO<T, TU, D> : Controller where TU : Entity.Context.Entity where T : IBaseService<TU>
     {
+        protected IMapper _mapper;
         protected T _service;
 
-        public GenericControllerDTO(T service)
+        public GenericControllerDTO(IMapper mapper, T service)
         {
+            _mapper = mapper;
             _service = service;
         }
 
         [HttpPost]
         public D Post([FromBody]D dto)
         {
-            TU entity = AutoMapper.Mapper.Map<TU>(dto);
-            return AutoMapper.Mapper.Map<D>(_service.AddOrUpdate(entity));
+            TU entity = _mapper.Map<TU>(dto);
+            return _mapper.Map<D>(_service.AddOrUpdate(entity));
         }
         [HttpGet]
         public List<D> Get()
         {
 
-            return AutoMapper.Mapper.Map<List<D>>(_service.GetAll().ToList());
+            return _mapper.Map<List<D>>(_service.GetAll().ToList());
 
         }
         [HttpGet("{id}")]
         public D Get(int id)
         {
-            return AutoMapper.Mapper.Map<D>(_service.GetById(id));
+            return _mapper.Map<D>(_service.GetById(id));
 
         }
         [HttpDelete("{id}")]

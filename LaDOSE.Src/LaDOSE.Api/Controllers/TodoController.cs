@@ -1,4 +1,5 @@
-﻿using LaDOSE.Business.Interface;
+﻿using AutoMapper;
+using LaDOSE.Business.Interface;
 using LaDOSE.DTO;
 using LaDOSE.Entity;
 using Microsoft.AspNetCore.Authorization;
@@ -11,7 +12,7 @@ namespace LaDOSE.Api.Controllers
     [Produces("application/json")]
     public class TodoController : GenericControllerDTO<ITodoService, Todo, TodoDTO>
     {
-        public TodoController(ITodoService service) : base(service)
+        public TodoController(IMapper mapper,ITodoService service) : base(mapper,service)
         {
 
         }

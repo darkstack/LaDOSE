@@ -63,7 +63,7 @@ namespace LaDOSE.Api
             }
             
             services.AddCors();
-            services.AddMvc().AddJsonOptions(x =>
+            services.AddMvc().AddNewtonsoftJson(x =>
             {
                 x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
                 x.SerializerSettings.MaxDepth= 4;
@@ -114,7 +114,7 @@ namespace LaDOSE.Api
             
             // configure DI for application services
             AddDIConfig(services);
-            Mapper.Initialize(cfg =>
+            var mapperConfig = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<WPUser, LaDOSE.DTO.WPUserDTO>();
                 cfg.CreateMap<WPUser, LaDOSE.DTO.WPUserDTO>();
@@ -131,6 +131,9 @@ namespace LaDOSE.Api
                 cfg.CreateMapTwoWay<Todo, LaDOSE.DTO.TodoDTO>();
 
             });
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
         }
 
         private void AddDIConfig(IServiceCollection services)
@@ -151,8 +154,8 @@ namespace LaDOSE.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
+            //loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            //loggerFactory.AddDebug();
 
             if (env.IsDevelopment())
             {
@@ -160,14 +163,17 @@ namespace LaDOSE.Api
             }
 
             app.UseCors(x => x
-                .AllowAnyOrigin()
+                //.AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader()
+                .SetIsOriginAllowed(origin => true)
                 .AllowCredentials());
 
             //app.UseHttpsRedirection();
+            app.UseRouting();
             app.UseAuthentication();
-            app.UseMvc();
+            app.UseAuthorization();
+            app.UseEndpoints(x => x.MapControllers());
         }
     }
 }

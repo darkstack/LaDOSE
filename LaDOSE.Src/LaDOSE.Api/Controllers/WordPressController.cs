@@ -13,13 +13,15 @@ namespace LaDOSE.Api.Controllers
     [Route("api/[controller]")]
     public class WordPressController : Controller
     {
+        private readonly IMapper _mapper;
         public IGameService GameService { get; }
 
         private IWordPressService _service;
         // GET
 
-        public WordPressController(IWordPressService service, IGameService gameService)
+        public WordPressController(IMapper mapper,IWordPressService service, IGameService gameService)
         {
+            _mapper = mapper;
             GameService = gameService;
             _service = service;
         }
@@ -38,7 +40,7 @@ namespace LaDOSE.Api.Controllers
                 }
             }
 
-            return Mapper.Map<List<WPEventDTO>>(wpEvents);
+            return _mapper.Map<List<WPEventDTO>>(wpEvents);
         }
 
         
@@ -54,21 +56,21 @@ namespace LaDOSE.Api.Controllers
                 wpEventWpBooking.WPUser.WPBookings = null;
             }
 
-            return Mapper.Map<WPEventDTO>(wpEvents);
+            return _mapper.Map<WPEventDTO>(wpEvents);
         }
 
         [HttpGet("GetUsers/{wpEventId}/{gameId}")]
         public List<WPUserDTO> GetUsers(int wpEventId, int gameId)
         {
             var game = GameService.GetById(gameId);
-            return Mapper.Map<List<WPUserDTO>>(_service.GetBooking(wpEventId, game));
+            return _mapper.Map<List<WPUserDTO>>(_service.GetBooking(wpEventId, game));
         }
 
         [HttpGet("GetUsersOptions/{wpEventId}/{gameId}")]
         public List<WPUserDTO> GetUsersOptions(int wpEventId, int gameId)
         {
             var game = GameService.GetById(gameId);
-            return Mapper.Map<List<WPUserDTO>>(_service.GetBookingOptions(wpEventId, game));
+            return _mapper.Map<List<WPUserDTO>>(_service.GetBookingOptions(wpEventId, game));
         }
 
 
