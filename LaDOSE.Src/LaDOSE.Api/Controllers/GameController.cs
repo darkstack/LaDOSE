@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using LaDOSE.Business.Interface;
 using LaDOSE.DTO;
 using LaDOSE.Entity;
@@ -16,7 +17,7 @@ namespace LaDOSE.Api.Controllers
     [Produces("application/json")]
     public class GameController : GenericControllerDTO<IGameService, Game, GameDTO>
     {
-        public GameController(IGameService service) : base(service)
+        public GameController(IMapper mapper,IGameService service) : base(mapper,service)
         {
         }
     }

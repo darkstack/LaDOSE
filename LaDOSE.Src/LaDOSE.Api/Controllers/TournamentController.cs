@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
 using LaDOSE.Business.Interface;
 using LaDOSE.DTO;
 using Microsoft.AspNetCore.Authorization;
@@ -15,10 +16,13 @@ namespace LaDOSE.Api.Controllers
     {
    
         private ITournamentService _service;
+
+        private IMapper _mapper;
+
         // GET
-        public TournamentController(ITournamentService service)
+        public TournamentController(IMapper mapper,ITournamentService service)
         {
-       
+            _mapper = mapper;
             _service = service;
         }
         //This may be a get , but i dont know what the RFC State for Get request with Body 
@@ -30,7 +34,7 @@ namespace LaDOSE.Api.Controllers
             if (dto.To.HasValue | dto.From.HasValue)
             {
                 var tournaments = await _service.GetTournaments(dto.From, dto.To);
-                return AutoMapper.Mapper.Map<List<TournamentDTO>>(tournaments);
+                return _mapper.Map<List<TournamentDTO>>(tournaments);
             }
             
             
@@ -47,7 +51,7 @@ namespace LaDOSE.Api.Controllers
             }
 
             var tournamentsResult = await _service.GetTournamentsResult(ids);
-            return AutoMapper.Mapper.Map<TournamentsResultDTO>(tournamentsResult);
+            return _mapper.Map<TournamentsResultDTO>(tournamentsResult);
             
         }
     }
