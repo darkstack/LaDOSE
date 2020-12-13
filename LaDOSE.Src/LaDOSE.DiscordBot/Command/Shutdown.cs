@@ -1,25 +1,26 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
 
 namespace LaDOSE.DiscordBot.Command
 {
-    [RequireRolesAttribute("SuperAdmin")]
-    public class Shutdown
+    [RequireRolesAttribute(RoleCheckMode.Any, "SuperAdmin")]
+    public class Shutdown : BaseCommandModule
     {
-        private readonly Dependencies dep;
+        private readonly CancellationTokenSource cts;
 
-        public Shutdown(Dependencies d)
+
+        public Shutdown(CancellationTokenSource cts)
         {
-            dep = d;
+            this.cts = cts;
         }
-
 
         [Command("shutdown")]
         public async Task ShutDownAsync(CommandContext ctx)
         {
             await ctx.RespondAsync("Hasta la vista, baby");
-            dep.Cts.Cancel();
+            cts.Cancel();
         }
     }
 }

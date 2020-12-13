@@ -7,16 +7,19 @@ using DSharpPlus;
 using DSharpPlus.Interactivity;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.EventArgs;
+using DSharpPlus.Interactivity.Enums;
+using DSharpPlus.Interactivity.Extensions;
 using LaDOSE.DiscordBot.Command;
 using LaDOSE.DiscordBot.Service;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace LaDOSE.DiscordBot
 {
     class Program
     {
         static DiscordClient discord;
-        static  InteractivityModule Interactivity { get; set; }
+        static  InteractivityConfiguration Interactivity { get; set; }
         static void Main(string[] args)
         {
             MainAsync(args).ConfigureAwait(false).GetAwaiter().GetResult();
@@ -24,6 +27,10 @@ namespace LaDOSE.DiscordBot
 
         static async Task MainAsync(string[] args)
         {
+#if DEBUG
+            //Wait in debug mode
+            Thread.Sleep(5*1000);
+#endif
             Console.WriteLine(Directory.GetCurrentDirectory());
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
@@ -37,7 +44,7 @@ namespace LaDOSE.DiscordBot
 
             Console.WriteLine($"LaDOSE.Net Discord Bot");
 
-
+            
             discord = new DiscordClient(new DiscordConfiguration
             {
                 Token = discordToken,
@@ -47,30 +54,26 @@ namespace LaDOSE.DiscordBot
             discord.UseInteractivity(new InteractivityConfiguration
             {
                 // default pagination behaviour to just ignore the reactions
-                PaginationBehaviour = TimeoutBehaviour.Ignore,
+                PaginationBehaviour = PaginationBehaviour.Ignore,
 
-                // default pagination timeout to 5 minutes
-                PaginationTimeout = TimeSpan.FromMinutes(5),
+                //// default pagination timeout to 5 minutes
+                //PaginationTimeout = TimeSpan.FromMinutes(5),
 
                 // default timeout for other actions to 2 minutes
                 Timeout = TimeSpan.FromMinutes(2)
             });
+
+            var depco = new ServiceCollection();
             var webService = new WebService(new Uri(restUrl),restUser,restPassword);
+            depco.AddSingleton(webService);
             //var challongeService = new ChallongeService(challongeToken);
             
-            var cts = new CancellationTokenSource();
-            DependencyCollection dep = null;
 
-            using (var d = new DependencyCollectionBuilder())
-            {
-                d.AddInstance(new Dependencies()
-                {
-                    Cts = cts,
-                    //ChallongeService = challongeService,
-                    WebService = webService
-                });
-                dep = d.Build();
-            }
+
+            var cts = new CancellationTokenSource();
+            depco.AddSingleton(cts);
+
+
 
             var _cnext = discord.UseCommandsNext(new CommandsNextConfiguration()
             {
@@ -78,30 +81,23 @@ namespace LaDOSE.DiscordBot
                 EnableDefaultHelp = true,
                 EnableDms = false,
                 EnableMentionPrefix = true,
-                StringPrefix = "!",
+                StringPrefixes = new List<string>(){"!"},
                 IgnoreExtraArguments = true,
-                Dependencies = dep
+                Services = depco.BuildServiceProvider(),
+
             });
 
+            
             _cnext.RegisterCommands<Result>();
             _cnext.RegisterCommands<Twitch>();
             _cnext.RegisterCommands<Shutdown>();
-            _cnext.RegisterCommands<Todo>();
+            //_cnext.RegisterCommands<Todo>();
+            _cnext.RegisterCommands<Roll>();
 
-
-            //discord.MessageCreated += async e =>
-            //{
-            //    if (e.Message.Content.ToLower().Equals("!result"))
-            //        await e.Message.RespondAsync("Les Résultats du dernier Ranking : XXXX");
-            //    if (e.Message.Content.ToLower().Equals("!twitch"))
-            //        await e.Message.RespondAsync("https://www.twitch.tv/LaDOSETV");
-            //};
-
-            discord.GuildMemberAdded +=  async e =>
+            discord.GuildMemberAdded += async (s, e) => 
             {
                 Console.WriteLine($"{e.Member.DisplayName} Joined");
-                await Task.Delay(0);
-                //await e.Guild.GetDefaultChannel().SendMessageAsync($"Bonjour!");
+                //await Task.Delay(0);
             };
             await discord.ConnectAsync();
             while (!cts.IsCancellationRequested)
