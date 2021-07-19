@@ -80,6 +80,8 @@ namespace LaDOSE.Business.Service
             var allParticipent = tournaments.SelectMany(e => e.Participents).Distinct((a, b) => a.Name == b.Name)
                 .ToList();
 
+            
+            allParticipent.RemoveAll(e => e.Name.StartsWith("[FORFAIT]"));
             //USELESS
             //foreach (var participent in allParticipent)
             //{
