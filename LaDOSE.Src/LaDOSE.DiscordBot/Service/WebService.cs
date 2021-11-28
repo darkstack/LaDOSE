@@ -48,7 +48,7 @@ namespace LaDOSE.DiscordBot.Service
             var wpBookingDtos = wpEventDto.WpBookings;
             List<String> player= new List<string>();
             wpBookingDtos.OrderBy(e=>e.WpUser.Name).ToList().ForEach(e=> player.Add(e.WpUser.Name));
-            return $"Les Joueurs inscrits pour {wpEventDto.Name} {string.Join(", ", player)}";
+            return $"Les Joueurs inscrits pour {wpEventDto.Name} {string.Join(", ", player)} + ({player?.Count})";
         }
         public bool RefreshDb()
         {

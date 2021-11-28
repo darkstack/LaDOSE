@@ -87,6 +87,7 @@ namespace LaDOSE.DiscordBot
             _cnext.RegisterCommands<Twitch>();
             _cnext.RegisterCommands<Shutdown>();
             _cnext.RegisterCommands<Todo>();
+            _cnext.RegisterCommands<Hokuto>();
 
 
             //discord.MessageCreated += async e =>
