@@ -267,6 +267,14 @@ namespace LaDOSE.REST
             
         }
 
+        public TournamentsResultDTO GetSmashResults(string slug)
+        {
+            CheckToken();
+            var restRequest = new RestRequest($"Api/Smash/GetTournament/{slug}", Method.GET);
+            var restResponse = Client.Get<TournamentsResultDTO>(restRequest);
+            return restResponse.Data;
+         
+        }
         #endregion
 
     }

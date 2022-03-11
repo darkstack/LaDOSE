@@ -10,7 +10,7 @@ using ChallongeCSharpDriver.Core.Results;
 using LaDOSE.Business.Interface;
 using LaDOSE.Entity.Challonge;
 
-namespace LaDOSE.Business.Provider
+namespace LaDOSE.Business.Provider.ChallongProvider
 {
     public class ChallongeProvider : IChallongeProvider
     {
@@ -30,9 +30,9 @@ namespace LaDOSE.Business.Provider
             DernierTournois = "Aucun tournois.";
         }
 
-        public async Task<TournamentResult> CreateTournament(string name, string url,DateTime? startAt = null)
+        public async Task<TournamentResult> CreateTournament(string name, string url, DateTime? startAt = null)
         {
-            var result = await new CreateTournamentQuery(name, startAt , TournamentType.Double_Elimination, url).call(ApiCaller);
+            var result = await new CreateTournamentQuery(name, startAt, TournamentType.Double_Elimination, url).call(ApiCaller);
             return result;
 
 
@@ -50,13 +50,13 @@ namespace LaDOSE.Business.Provider
         {
 
             List<TournamentResult> tournamentResultList = await new TournamentsQuery()
-                {
-                    state = TournamentState.Ended,
-                    createdAfter = start,
-                    createdBefore = DateTime.Now,
+            {
+                state = TournamentState.Ended,
+                createdAfter = start,
+                createdBefore = DateTime.Now,
 
 
-            }       
+            }
                 .call(this.ApiCaller);
             List<ChallongeTournament> tournaments = new List<ChallongeTournament>();
             tournamentResultList.ForEach(w => tournaments.Add(new ChallongeTournament()
@@ -70,7 +70,7 @@ namespace LaDOSE.Business.Provider
 
         public async Task<List<ChallongeParticipent>> GetParticipents(int idTournament)
         {
-            var participentResults = await new ParticipantsQuery(){tournamentID = idTournament }.call(ApiCaller);
+            var participentResults = await new ParticipantsQuery() { tournamentID = idTournament }.call(ApiCaller);
 
             List<ChallongeParticipent> participants = new List<ChallongeParticipent>();
             participentResults.ForEach(w =>
@@ -86,7 +86,7 @@ namespace LaDOSE.Business.Provider
                         IsMember = false,
                     });
                 }
-                
+
             });
             return participants;
         }
@@ -102,7 +102,7 @@ namespace LaDOSE.Business.Provider
                 Name = tournamentResult.name,
                 Url = tournamentResult.url,
                 Participents = new List<ChallongeParticipent>()
-                
+
             };
 
         }
@@ -136,7 +136,7 @@ namespace LaDOSE.Business.Provider
 
 
                 var lastDate = tournamentResultList.Max(e => e.completed_at);
-               
+
                 if (lastDate.HasValue)
                 {
                     var lastRankingDate = new DateTime(lastDate.Value.Year, lastDate.Value.Month, lastDate.Value.Day);

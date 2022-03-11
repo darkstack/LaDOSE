@@ -26,6 +26,8 @@ using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using AutoMapper;
 using LaDOSE.Api.Helpers;
 using LaDOSE.Business.Helper;
+using LaDOSE.Business.Provider.ChallongProvider;
+using LaDOSE.Business.Provider.SmashProvider;
 using LaDOSE.Entity.Challonge;
 using LaDOSE.Entity.Wordpress;
 
@@ -140,6 +142,7 @@ namespace LaDOSE.Api
         {
             
             services.AddTransient<IChallongeProvider>(p => new ChallongeProvider(this.Configuration["ApiKey:ChallongeApiKey"]));
+            services.AddTransient<ISmashProvider>(p => new SmashProvider(this.Configuration["ApiKey:SmashApiKey"]));
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IGameService, GameService>();
             services.AddScoped<IEventService, EventService>();

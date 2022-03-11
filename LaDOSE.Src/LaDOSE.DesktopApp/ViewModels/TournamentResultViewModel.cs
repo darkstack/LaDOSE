@@ -44,6 +44,17 @@ namespace LaDOSE.DesktopApp.ViewModels
             }
         }
 
+        private string _slug;
+        public String Slug
+        {
+            get { return _slug; }
+            set
+            {
+                _slug = value;
+                NotifyOfPropertyChange(() => Slug);
+            }
+        }
+
         private String _html;
 
         public String Html
@@ -213,7 +224,17 @@ namespace LaDOSE.DesktopApp.ViewModels
                 ComputeHtml();
             });
         }
-
+        public void GetSmash()
+        {
+            WpfUtil.Await(() =>
+            {
+              
+                var resultsDto = this.RestService.GetSmashResults(Slug);
+                this.Results = resultsDto;
+                ComputeDataGrid();
+                ComputeHtml();
+            });
+        }
 
         public void SelectYear()
         {
@@ -318,7 +339,7 @@ namespace LaDOSE.DesktopApp.ViewModels
         {
             
             StringBuilder sb = new StringBuilder();
-            sb.Append("<table style=\"text-align: center; margin-top: 15px;\" align=\"center\"><tbody>");
+            sb.Append("<table class=\"table table-responsive-md table-dark table-striped mt-lg-4 mt-3\">");
 
             int columns = 0;
             foreach (var game in Results.Games)
@@ -329,14 +350,19 @@ namespace LaDOSE.DesktopApp.ViewModels
                     sb.Append("<tr>");
                 }
                 columns++;
-                sb.Append("<td colspan=\"1\" width=\"50 % \">" +
+                sb.Append("<td colspan=\"1\" width=\"50%\">" +
                           "<span style=\"color: #ff0000;\">" +
                           $"<strong>{game.LongName} ({Results.Results.Count(e => e.GameId == game.Id)} participants) :</strong>" +
                           "</span>");
                 List<ResultDTO> enumerable = Results.Results.Where(r => r.GameId == game.Id).ToList();
                 List<string> top3 = enumerable.OrderBy(e => e.Rank).Take(3).Select(e => e.Player).ToList();
-                sb.AppendLine($"<br> 1/ {top3[0]}<br> 2/ {top3[1]}<br> 3/ {top3[2]}<p></p>");
-                sb.AppendLine($"<a href=\"https://challonge.com/fr/{enumerable.First().TournamentUrl}\" target=\"_blank\">https://challonge.com/fr/{enumerable.First().TournamentUrl}</a></p></td>");
+                if (top3.Count >= 3)
+                {
+                    sb.AppendLine($"<br> 1/ {top3[0]}<br> 2/ {top3[1]}<br> 3/ {top3[2]} <br>");
+                    sb.AppendLine($"<a href=\"https://challonge.com/fr/{enumerable.First().TournamentUrl}\" target=\"_blank\">https://challonge.com/fr/{enumerable.First().TournamentUrl}</a></p></td>");
+                }
+
+                
                 if (columns % 2 == 0)
                 {
                     sb.Append("</tr>");

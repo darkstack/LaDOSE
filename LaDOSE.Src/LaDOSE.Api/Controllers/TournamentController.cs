@@ -36,11 +36,9 @@ namespace LaDOSE.Api.Controllers
                 var tournaments = await _service.GetTournaments(dto.From, dto.To);
                 return _mapper.Map<List<TournamentDTO>>(tournaments);
             }
-            
-            
+
             return null;
         }
-
 
         [HttpPost("GetResults")]
         public async Task<TournamentsResultDTO> GetResults([FromBody] List<int> ids)
@@ -54,5 +52,7 @@ namespace LaDOSE.Api.Controllers
             return _mapper.Map<TournamentsResultDTO>(tournamentsResult);
             
         }
+
+
     }
 }

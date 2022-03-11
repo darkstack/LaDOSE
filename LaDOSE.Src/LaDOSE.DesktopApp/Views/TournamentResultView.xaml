@@ -18,6 +18,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="2*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -83,6 +84,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
 
             </Grid.RowDefinitions>
@@ -171,7 +173,12 @@
             </TabControl>
 
             <Button Grid.Row="4" Grid.ColumnSpan="3" x:Name="Export">Export</Button>
+            
         </Grid>
-
+        <StackPanel Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal">
+            <TextBlock> Slug :</TextBlock>
+            <TextBox Width="200" Text="{Binding Slug}"></TextBox>
+            <Button  x:Name="GetSmash" >Get Smash Tournaments Result</Button>
+        </StackPanel>
     </Grid>
 </UserControl>
