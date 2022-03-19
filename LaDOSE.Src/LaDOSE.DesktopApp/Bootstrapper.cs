@@ -26,7 +26,6 @@ namespace LaDOSE.DesktopApp
 
             container.Singleton<IWindowManager, WindowManager>();
             container.Singleton<RestService>();
-            
             container.PerRequest<ShellViewModel>();
 
            

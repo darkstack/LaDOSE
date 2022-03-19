@@ -344,7 +344,13 @@ namespace LaDOSE.DesktopApp.ViewModels
             int columns = 0;
             foreach (var game in Results.Games)
             {
-              
+                List<ResultDTO> enumerable = Results.Results.Where(r => r.GameId == game.Id).ToList();
+                List<string> top3 = enumerable.OrderBy(e => e.Rank).Take(3).Select(e => e.Player).ToList();
+                if (top3.Count == 0)
+                {
+                    continue;
+                }
+
                 if (columns % 2 == 0)
                 {
                     sb.Append("<tr>");
@@ -354,8 +360,7 @@ namespace LaDOSE.DesktopApp.ViewModels
                           "<span style=\"color: #ff0000;\">" +
                           $"<strong>{game.LongName} ({Results.Results.Count(e => e.GameId == game.Id)} participants) :</strong>" +
                           "</span>");
-                List<ResultDTO> enumerable = Results.Results.Where(r => r.GameId == game.Id).ToList();
-                List<string> top3 = enumerable.OrderBy(e => e.Rank).Take(3).Select(e => e.Player).ToList();
+                
                 if (top3.Count >= 3)
                 {
                     sb.AppendLine($"<br> 1/ {top3[0]}<br> 2/ {top3[1]}<br> 3/ {top3[2]} <br>");

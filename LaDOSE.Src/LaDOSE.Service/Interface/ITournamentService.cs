@@ -12,5 +12,6 @@ namespace LaDOSE.Business.Interface
 
         Task<TournamentsResult> GetTournamentsResult(List<int> ids);
         Task<TournamentsResult> GetSmashResult(string tournamentSlug);
+       
     }
 }

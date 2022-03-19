@@ -44,18 +44,6 @@ namespace LaDOSE.Api.Controllers
             return null;
         }
 
-        //[HttpPost("GetResults")]
-        //public async Task<TournamentsResultDTO> GetResults([FromBody] List<int> ids)
-        //{
-        //    if (ids == null)
-        //    {
-        //        throw new Exception("Invalid arguments");
-        //    }
-
-        //    var tournamentsResult = await _service.GetTournamentsResult(ids);
-        //    return _mapper.Map<TournamentsResultDTO>(tournamentsResult);
-
-        //}
 
 
     }

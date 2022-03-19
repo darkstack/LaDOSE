@@ -66,26 +66,26 @@ namespace LaDOSE.Business.Provider.SmashProvider
 				id
 				name,
                 state,
-        videogame {
-          id,
-          name,
-          displayName
-        }
-        standings(query: {page:0,perPage:500}){
-          nodes{
-            id,
-            player{
-              id,
-              gamerTag,
-              user {
-                id,
-                name,
-          			player {
-          			  id
-          			}
-              }
-            }
-            placement
+                    videogame {
+                      id,
+                      name,
+                      displayName
+                    }
+                standings(query: {page:0,perPage:500}){
+                  nodes{
+                    id,
+                    player{
+                      id,
+                      gamerTag,
+                      user {
+                        id,
+                        name,
+          			        player {
+          			          id
+          			        }
+                      }
+                    }
+                    placement
           }
         
         }

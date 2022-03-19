@@ -13,16 +13,8 @@ namespace LaDOSE.Entity
         public string WordPressTagOs { get; set; }
 
         public int? SmashId { get; set; }
-        public virtual IEnumerable<SeasonGame> Seasons { get; set; }
-        public virtual IEnumerable<EventGame> Events { get; set; }
+
 
     }
-    public class SmashParticipent : Context.Entity
-    {
-        public string Name { get; set; }
-        public string Tag { get; set; }
-        public int? SmashId{ get; set; }
-     
-
-    }
+  
 }

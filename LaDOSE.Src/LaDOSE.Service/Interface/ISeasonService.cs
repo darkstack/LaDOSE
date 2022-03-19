@@ -2,8 +2,8 @@
 
 namespace LaDOSE.Business.Interface
 {
-    public interface ISeasonService : IBaseService<Season>
-    {
+    //public interface ISeasonService : IBaseService<Season>
+    //{
 
-    }
+    //}
 }

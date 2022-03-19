@@ -19,14 +19,15 @@ namespace LaDOSE.DesktopApp
         {
 #if DEBUG
       
-            MessageBox.Show("WAITING IN DEBUG MODE");     
+            MessageBox.Show("WAITING IN DEBUG MODE");
 #endif
-            base.OnStartup(e);
-
 
             var settings = new CefSettings();
             settings.SetOffScreenRenderingBestPerformanceArgs();
             Cef.Initialize(settings);
+            base.OnStartup(e);
+
+
         }
 
 

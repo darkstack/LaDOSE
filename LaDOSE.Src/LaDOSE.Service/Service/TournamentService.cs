@@ -11,6 +11,7 @@ using LaDOSE.Entity.Context;
 using LaDOSE.Entity.Wordpress;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
+using Result = LaDOSE.Entity.Challonge.Result;
 
 namespace LaDOSE.Business.Service
 {
@@ -120,18 +121,18 @@ namespace LaDOSE.Business.Service
                 var Top8 = tournament.Participents.Where(p => p.Rank > 4 && p.Rank < 9).ToList();
                 var Top16 = tournament.Participents.Where(p => p.Rank > 8 && p.Rank <= 16).ToList();
 
-                result.Results.Add(new Result(first.Name, tournament.Game.Id, tournament.ChallongeId, tournament.Url, currentRule.FirstPoint,first.Rank??0));
+                result.Results.Add(new Result(first.Name, tournament.Game?.Id??0, tournament.ChallongeId, tournament.Url, currentRule.FirstPoint,first.Rank??0));
                 lesSacs.Remove(first);
-                result.Results.Add(new Result(second.Name, tournament.Game.Id, tournament.ChallongeId, tournament.Url, currentRule.SecondPoint, second.Rank ?? 0));
+                result.Results.Add(new Result(second.Name, tournament.Game?.Id ?? 0, tournament.ChallongeId, tournament.Url, currentRule.SecondPoint, second.Rank ?? 0));
                 lesSacs.Remove(second);
                 thirdFourth.ForEach(r =>
-                    result.Results.Add(new Result(r.Name, tournament.Game.Id, tournament.ChallongeId, tournament.Url,
+                    result.Results.Add(new Result(r.Name, tournament.Game?.Id ?? 0, tournament.ChallongeId, tournament.Url,
                         currentRule.ThirdFourthPoint, r.Rank ?? 0)));
                 thirdFourth.ForEach(p => lesSacs.Remove(p));
                 if (currentRule.Top8Point != 0)
                 {
                     Top8.ForEach(r =>
-                        result.Results.Add(new Result(r.Name, tournament.Game.Id, tournament.ChallongeId, tournament.Url, currentRule.Top8Point, r.Rank ?? 0)));
+                        result.Results.Add(new Result(r.Name, tournament.Game?.Id ?? 0, tournament.ChallongeId, tournament.Url, currentRule.Top8Point, r.Rank ?? 0)));
                     Top8.ForEach(p => lesSacs.Remove(p));
                 }
 
@@ -139,17 +140,21 @@ namespace LaDOSE.Business.Service
                 {
                     Top16.ForEach(r =>
                         result.Results.Add(
-                            new Result(r.Name, tournament.Game.Id, tournament.ChallongeId, tournament.Url, currentRule.Top16Point, r.Rank ?? 0)));
+                            new Result(r.Name, tournament.Game?.Id ?? 0, tournament.ChallongeId, tournament.Url, currentRule.Top16Point, r.Rank ?? 0)));
                     Top16.ForEach(p => lesSacs.Remove(p));
                 }
 
                 lesSacs.ForEach(r =>
-                    result.Results.Add(new Result(r.Name, tournament.Game.Id, tournament.ChallongeId, tournament.Url,
+                    result.Results.Add(new Result(r.Name, tournament.Game?.Id ?? 0, tournament.ChallongeId, tournament.Url,
                         currentRule.Participation, r.Rank ?? 0)));
             }
-
-            result.Games = tournaments.Select(e => e.Game).Distinct((game, game1) => game.Name == game1.Name).ToList();
-
+            
+            result.Games = tournaments.Select(e => e.Game).Distinct((game, game1) => game.Name == game1.Name).Where(e=>e!=null).ToList();
+            if (result.Games == null)
+            {
+                result.Games = new List<Game>();
+            }
+            result.Games.Add(new Game() {Id = 0, Order = 9999,Name = "UNKNOW"});
             return result;
         }
 
@@ -236,6 +241,8 @@ namespace LaDOSE.Business.Service
             return await Task.FromResult(result);
         }
 
+      
+
         /// <summary>
         /// Check if the tournament exist in database otherwise call Challonge.
         /// </summary>
@@ -271,6 +278,10 @@ namespace LaDOSE.Business.Service
             return tournaments;
         }
 
+        public Task<object> GetSmashTop(string tournamentSlug, string eventId,int playerCount)
+        {
+            throw new NotImplementedException();
+        }
         private bool TournamentExist(int idTournament)
         {
             return this._context.ChallongeTournament.Any(e => e.ChallongeId == idTournament);

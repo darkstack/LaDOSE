@@ -30,6 +30,7 @@ using LaDOSE.Business.Provider.ChallongProvider;
 using LaDOSE.Business.Provider.SmashProvider;
 using LaDOSE.Entity.Challonge;
 using LaDOSE.Entity.Wordpress;
+using Result = LaDOSE.Entity.Challonge.Result;
 
 namespace LaDOSE.Api
 {
@@ -146,7 +147,6 @@ namespace LaDOSE.Api
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IGameService, GameService>();
             services.AddScoped<IEventService, EventService>();
-            services.AddScoped<ISeasonService, SeasonService>();
             services.AddScoped<IWordPressService, WordPressService>();
             services.AddScoped<ITodoService, TodoService>();
             services.AddScoped<ITournamentService, TournamentService>();

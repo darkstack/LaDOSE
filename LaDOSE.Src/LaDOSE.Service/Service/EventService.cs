@@ -20,23 +20,24 @@ namespace LaDOSE.Business.Service
             this._challongeProvider = challongeProvider;
         }
 
-        public override Event GetById(int id)
-        {
-            return _context.Event.Include(e => e.Season).Include(e => e.Games).ThenInclude(e => e.Game)
-                .FirstOrDefault(e => e.Id == id);
-        }
+        //public override Event GetById(int id)
+        //{
+        //    re
+        //    //return _context.Event.Include(e => e.Season).Include(e => e.Games).ThenInclude(e => e.Game)
+        //    //    .FirstOrDefault(e => e.Id == id);
+        //}
 
-        public override Event Create(Event e)
-        {
-            if (e.Id != 0)
-            {
-                throw new Exception("Id is invalid");
-            }
+        //public override Event Create(Event e)
+        //{
+        //    if (e.Id != 0)
+        //    {
+        //        throw new Exception("Id is invalid");
+        //    }
 
-            var eventAdded = _context.Event.Add(e);
-            _context.SaveChanges();
-            return eventAdded.Entity;
-        }
+        //    var eventAdded = _context.Event.Add(e);
+        //    _context.SaveChanges();
+        //    return eventAdded.Entity;
+        //}
 
     }
 }

@@ -31,7 +31,7 @@ namespace LaDOSE.DesktopApp.ViewModels
             this.AppIcon = BitmapFrame.Create(Application.GetResourceStream(new Uri("/LaDOSE.DesktopApp;component/Resources/64x64.png",
                 UriKind.RelativeOrAbsolute)).Stream);
 
-       
+            
             var appSettings = ConfigurationManager.AppSettings;
             string url = (string)appSettings["ApiUri"];
             string user = (string)appSettings["ApiUser"];
@@ -41,9 +41,10 @@ namespace LaDOSE.DesktopApp.ViewModels
             restService.UpdatedJwtEvent += TokenUpdate;
             restService.Connect(uri, user, password);
            
+
             base.OnInitialize();
-            
-            
+            ActivateItem(new TournamentResultViewModel(IoC.Get<RestService>()));
+
         }
 
         private void TokenUpdate(object sender, UpdatedJwtEventHandler e)
@@ -56,7 +57,7 @@ namespace LaDOSE.DesktopApp.ViewModels
    
         public void LoadEvent()
         {
-         ActivateItem(new WordPressViewModel(IoC.Get<RestService>()));
+            ActivateItem(new WordPressViewModel(IoC.Get<RestService>()));
         }
         public void LoadGames()
         {
