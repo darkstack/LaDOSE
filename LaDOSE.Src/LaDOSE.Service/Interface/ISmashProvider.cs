@@ -11,6 +11,8 @@ namespace LaDOSE.Business.Interface
     {
         Task<Event> GetEvent(string slug);
         Task<List<Tournament>> GetResults(ref List<Tournament> tournaments);
+        Task<List<Tournament>> GetSets(ref List<Tournament> tournaments);
+
         Task<Event> ParseEvent(string slug);
         Task<TournamentResponse> GetTournament(string sludge);
 

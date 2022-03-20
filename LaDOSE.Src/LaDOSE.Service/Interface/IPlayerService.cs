@@ -5,6 +5,6 @@ namespace LaDOSE.Business.Interface
 {
     public interface IPlayerService : IBaseService<Player>
     {
-        int GetBySmash(PlayerType playerUser);
+        int GetBySmash(ParticipantType participantUser);
     }
 }

@@ -19,6 +19,7 @@ namespace LaDOSE.Entity
         }
 
         public String Name { get; set; }
+        public String SmashSlug { get; set; }
         public int? SmashId { get; set; }
 
         public DateTime Date { get; set; }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Cryptography.X509Certificates;
 
@@ -21,6 +22,7 @@ namespace LaDOSE.Entity
         [NotMapped]
         public Boolean IsChallonge => ChallongeId.HasValue;
 
+        //public List<Set> Sets { get; set; }
 
     }
 }

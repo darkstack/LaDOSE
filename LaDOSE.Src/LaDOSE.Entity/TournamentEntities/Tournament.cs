@@ -25,7 +25,11 @@ namespace LaDOSE.Entity
         public int? GameId {get;set;} 
         public Game Game { get; set; }
 
+        public bool Finish { get; set; }
         public List<Result> Results { get; set; }
+        public List<Set> Sets { get; set; }
+
+
 
 
 

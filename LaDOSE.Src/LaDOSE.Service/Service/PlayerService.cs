@@ -14,27 +14,27 @@ namespace LaDOSE.Business.Service
         {
         }
 
-        public int GetBySmash(PlayerType playerUser)
+        public int GetBySmash(ParticipantType participantUser)
         {
             //var p2 = _context.Player.ToList();
 
-            var p = _context.Player.FirstOrDefault(e => e.SmashId == playerUser.user.id);
+            var p = _context.Player.FirstOrDefault(e => e.SmashId == participantUser.user.id);
             if (p == null)
             {
                 var entity = new Player()
                 {
-                    Gamertag = playerUser.gamerTag,
-                    Name = string.IsNullOrEmpty(playerUser.user.name)? playerUser.gamerTag : playerUser.user.name,
-                    SmashId = playerUser.user.id,
+                    Gamertag = participantUser.gamerTag,
+                    Name = string.IsNullOrEmpty(participantUser.user.name)? participantUser.gamerTag : participantUser.user.name,
+                    SmashId = participantUser.user.id,
                 };
                 _context.Player.Add(entity);
                 _context.SaveChanges();
                 return entity.Id;
             }
 
-            if (p.Gamertag != playerUser.gamerTag)
+            if (p.Gamertag != participantUser.gamerTag)
             {
-                p.Name = playerUser.gamerTag;
+                p.Name = participantUser.gamerTag;
                 _context.SaveChanges();
             }
 

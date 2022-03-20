@@ -26,6 +26,7 @@ namespace LaDOSE.Entity.Context
         public DbSet<Event> Event { get; set; }
         public DbSet<Tournament> Tournament { get; set; }
         public DbSet<Result> Result { get; set; }
+        public DbSet<Set> Set { get; set; }
 
         #endregion
         public DbSet<ChallongeParticipent> ChallongeParticipent { get; set; }
@@ -58,6 +59,23 @@ namespace LaDOSE.Entity.Context
                 .HasForeignKey(pt => pt.EventId)
                 ;
 
+            modelBuilder.Entity<Set>()
+                .HasOne(e => e.Tournament)
+                .WithMany(e => e.Sets)
+                .HasForeignKey(pt => pt.TournamentId)
+                ;
+
+            //modelBuilder.Entity<Set>()
+            //    .HasOne(e => e.Player1)
+            //    .WithMany(e => e.Sets)
+            //    .HasForeignKey(pt => pt.Player1Id)
+            //    ;
+
+            //modelBuilder.Entity<Set>()
+            //    .HasOne(e => e.Player2)
+            //    .WithMany(e => e.Sets)
+            //    .HasForeignKey(pt => pt.Player2Id)
+            //    ;
             //#region SeasonGame
             //modelBuilder.Entity<SeasonGame>()
             //    .HasKey(t => new { t.SeasonId, t.GameId });

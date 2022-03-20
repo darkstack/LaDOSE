@@ -18,7 +18,7 @@ namespace LaDOSE.Business.Service
     public class EventService : BaseService<Event>, IEventService 
     {
         private IChallongeProvider _challongeProvider;
-
+        private ISmashProvider _smashProvider;
         #region Rules
         private class Rules
         {
@@ -54,7 +54,7 @@ namespace LaDOSE.Business.Service
             new Rules(32, Int32.MaxValue, 18, 12, 8, 5, 3),
         };
 
-        private ISmashProvider _smashProvider;
+ 
 
         #endregion
 
@@ -163,7 +163,11 @@ namespace LaDOSE.Business.Service
             var test = this._smashProvider.GetEvent(tournamentSlug).Result;
             var testTournaments = test.Tournaments;
             var getResultEvents = this._smashProvider.GetResults(ref testTournaments).Result;
-            this._context.Event.Add(test);
+
+           
+            getResultEvents = this._smashProvider.GetSets(ref testTournaments).Result;
+
+            this._context.Add(test);
             this._context.SaveChanges();
 
             var tournaments = await _smashProvider.GetTournament(tournamentSlug);

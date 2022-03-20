@@ -80,11 +80,14 @@ namespace LaDOSE.Business.Provider.SmashProvider
             {
                 Name = e.name,
                 SmashId = e.id,
+                Finish = e.state == "COMPLETED",
                 Game = games.FirstOrDefault(g => g.SmashId == e.videogame.id)
+                
             }).ToList();
 
             return new Event
             {
+                SmashSlug = slug,
                 Name = querySmash.Result.Tournament.Name,
                 SmashId = querySmash.Result.Tournament.id,
                 Date = querySmash.Result.Tournament.startAt,
@@ -97,7 +100,7 @@ namespace LaDOSE.Business.Provider.SmashProvider
         public Task<List<Tournament>> GetResults(ref List<Tournament> tournaments)
         {
 
-            foreach (var tournament in tournaments)
+            foreach (var tournament in tournaments.Where(t=>t.Finish).ToList())
             {
                 var query = new GraphQLRequest
                 {
@@ -149,8 +152,8 @@ namespace LaDOSE.Business.Provider.SmashProvider
                         {
                             query.Variables = new
                             {
-                                page = querySmash.Result.Event.standings.pageInfo.page,
-                                eventsId = tournament.SmashId,
+                                page = querySmash.Result.Event.standings.pageInfo.page+1,
+                                @event = tournament.SmashId,
                             };
                             querySmash = QuerySmash<EventResponse>(query);
                             standings.AddRange(querySmash.Result.Event.standings.nodes);
@@ -181,6 +184,115 @@ namespace LaDOSE.Business.Provider.SmashProvider
             }
 
             return Task.FromResult(tournaments);
+        }
+
+        public Task<List<Tournament>> GetSets(ref List<Tournament> tournaments)
+        {
+
+            foreach (var tournament in tournaments.Where(t => t.Finish).ToList())
+            {
+                var query = new GraphQLRequest
+                {
+                    Query = @"query SetsQuery($event: ID,$page:Int) {
+                    event(id: $event){
+                      sets(page:$page,perPage:20){
+                        pageInfo {
+                          total
+                          totalPages
+                          page
+                          perPage
+                          sortBy
+                          filter
+                        },
+                        nodes {
+                          id,
+                          lPlacement,
+                          wPlacement, 
+                          round,    
+                          slots {
+                            id,
+                            slotIndex,
+                            standing{
+                              id,
+                              player{
+                                id,
+                                user{
+                                  id,
+                                }
+                              }
+                              stats{
+                                score {
+                                  label
+                                  value
+                                  displayValue
+                                }
+                              }
+                              
+                            }
+                            entrant {
+                              id,
+                              name,
+                              participants{
+                                id,
+                                gamerTag
+                                user {
+                                  id
+                                },
+                              }
+                            },
+                          },
+                          phaseGroup {
+                            id
+                          },
+                          identifier
+                        },
+
+                      }
+                    }
+                    }",
+                    OperationName = "SetsQuery",
+                    Variables = new
+                    {
+                        page = 1,
+                        @event = tournament.SmashId,
+                    }
+                };
+                var querySmash = QuerySmash<SetsResponse>(query);
+
+                if (querySmash.Result.Event.sets.nodes != null)
+                {
+                    var sets = querySmash.Result.Event.sets.nodes;
+                    if (querySmash.Result.Event.sets.pageInfo.totalPages > 1)
+                    {
+                        while (querySmash.Result.Event.sets.pageInfo.page <
+                               querySmash.Result.Event.sets.pageInfo.totalPages)
+                        {
+                            query.Variables = new
+                            {
+                                page = querySmash.Result.Event.sets.pageInfo.page+1,
+                                @event = tournament.SmashId,
+                            };
+                            querySmash = QuerySmash<SetsResponse>(query);
+                            sets.AddRange(querySmash.Result.Event.sets.nodes);
+                        }
+                    }
+
+                    var tset = sets.Select(x => new Set()
+                    {
+                        Tournament = tournament,
+                        TournamentId = tournament.Id,
+
+                        Player1Id = PlayerService.GetBySmash(x.slots[0].entrant.participants[0]),
+                        Player2Id = PlayerService.GetBySmash(x.slots[1].entrant.participants[0]),
+                        Player1Score = x.slots[0].standing.stats.score.value,
+                        Player2Score = x.slots[1].standing.stats.score.value,
+                        Round = x.round ?? 0,
+                    }).ToList();
+                    tournament.Sets = tset;
+                }
+            }
+            return Task.FromResult(tournaments);
+
         }
 
         public async Task<Event> ParseEvent(string slug)

@@ -31,16 +31,31 @@ namespace LaDOSE.Business.Provider.SmashProvider
         public int id { get; set; }
         public string Name { get; set; }
     }
+    public class ScoreType
+    {
+        public string label { get; set; }
+        public int value { get; set; }
+        public string displayValue { get; set; }
+
+    }
+    public class StatType
+    {
+       public ScoreType score { get; set; }
+    }
 
     public class StandingType
     {
-        public int id { get; set; }
+        public string id { get; set; }
 
         public int placement { get; set; }
 
-        public PlayerType player { get; set; }
+        public ParticipantType player { get; set; }
+
+        public StatType stats { get; set; }
+
     }
-    public class PlayerType
+
+    public class ParticipantType
     {
         public int id { get; set; }
         public string gamerTag { get; set; }
@@ -61,8 +76,37 @@ namespace LaDOSE.Business.Provider.SmashProvider
 
         public VideoGameType videogame { get; set; }
         public Node<StandingType> standings { get; set; }
+        public Node<SetType> sets { get; set; }
     }
 
+    public class EntrantType
+    {
+        public int id { get; set; }
+        public string name { get; set; }
+
+        public List<ParticipantType> participants { get; set; }
+
+    }
+    public class SlotType
+    {
+        public string id { get; set; }
+        public int slotIndex { get; set; }
+      
+        public StandingType standing { get; set; }
+
+        public EntrantType entrant { get; set; }
+
+    }
+    public class SetType
+    {
+        public string id { get; set; }
+        public int? lPlacement { get; set; }
+        public int? wPlacement { get; set; }
+        public int? round { get; set; }
+        public List<SlotType> slots { get; set; }
+        public string identifier { get; set; }
+
+    }
     public class Node<T>
     {
         public PageInfoType pageInfo { get; set; }
@@ -84,7 +128,11 @@ namespace LaDOSE.Business.Provider.SmashProvider
         public EventType Event { get; set; }
 
     }
+    public class SetsResponse
+    {
+        public EventType Event { get; set; }
 
+    }
 
 
 }
