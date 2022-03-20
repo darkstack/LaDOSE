@@ -15,6 +15,8 @@ namespace LaDOSE.Entity
         public int? SmashId { get; set; }
 
 
+        public List<Tournament> Tournaments { get; set; }
+
     }
-  
+
 }

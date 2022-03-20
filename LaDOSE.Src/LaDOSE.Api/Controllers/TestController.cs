@@ -15,7 +15,7 @@ namespace LaDOSE.Api.Controllers
 #endif
     [Produces("application/json")]
     [Route("api/[controller]")]
-    public class SmashController : Controller
+    public class TestController : Controller
     {
 
         private IEventService _service;
@@ -23,7 +23,7 @@ namespace LaDOSE.Api.Controllers
         private IMapper _mapper;
 
         // GET
-        public SmashController(IMapper mapper, IEventService service)
+        public TestController(IMapper mapper, IEventService service)
         {
             _mapper = mapper;
             _service = service;
@@ -31,12 +31,11 @@ namespace LaDOSE.Api.Controllers
         //This may be a get , but i dont know what the RFC State for Get request with Body 
         //As i don't like to populate GET request with body this will be a post (and i think
         //it will be easier to proxy. 
-        [HttpGet("GetTournament/{tournamentSlug}")]
+        [HttpGet("Test/{tournamentSlug}")]
         public async Task<IActionResult> GetSmashTournament(string tournamentSlug)
         {
             if (!String.IsNullOrEmpty(tournamentSlug))
             {
-                
                 var tournaments = await _service.GetSmashResult(tournamentSlug);
 
                 return Ok(tournaments);
@@ -44,18 +43,7 @@ namespace LaDOSE.Api.Controllers
 
             return null;
         }
-        [HttpGet("AddTournament/{tournamentSlug}")]
-        public async Task<IActionResult> AddSmashTournament(string tournamentSlug)
-        {
-            if (!String.IsNullOrEmpty(tournamentSlug))
-            {
-                var tournaments = await _service.GetSmashResult2(tournamentSlug);
 
-                return Ok(tournaments);
-            }
-
-            return null;
-        }
 
 
     }

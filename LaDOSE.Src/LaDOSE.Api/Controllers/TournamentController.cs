@@ -15,12 +15,12 @@ namespace LaDOSE.Api.Controllers
     public class TournamentController : Controller
     {
    
-        private ITournamentService _service;
+        private IEventService _service;
 
         private IMapper _mapper;
 
         // GET
-        public TournamentController(IMapper mapper,ITournamentService service)
+        public TournamentController(IMapper mapper, IEventService service)
         {
             _mapper = mapper;
             _service = service;
@@ -49,6 +49,7 @@ namespace LaDOSE.Api.Controllers
             }
 
             var tournamentsResult = await _service.GetTournamentsResult(ids);
+
             return _mapper.Map<TournamentsResultDTO>(tournamentsResult);
             
         }

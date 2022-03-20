@@ -19,7 +19,7 @@
 
         public int PlayerId { get; set; }
         public Player Player { get; set; }
-        public int IdTournament { get; set; }
+        public int TournamentId { get; set; }
         public Tournament Tournament{ get; set; }
         public int Point { get; set; }
         public int Rank { get; set; }

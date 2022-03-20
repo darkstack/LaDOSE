@@ -40,15 +40,23 @@ namespace LaDOSE.Entity.Context
    
 
             base.OnModelCreating(modelBuilder);
-            
 
-            
-            //modelBuilder.Entity<Event>()
-            //    .HasOne(s => s.Season)
-            //    .WithMany(p => p.Event)
-            //    .HasForeignKey(fk => fk.SeasonId);
 
-            
+
+            modelBuilder.Entity<Event>()
+                .HasMany(s => s.Tournaments);
+
+
+            modelBuilder.Entity<Tournament>()
+                .HasOne(e => e.Game)
+                .WithMany(e=>e.Tournaments)
+                .HasForeignKey(pt=>pt.GameId)
+                ;
+            modelBuilder.Entity<Tournament>()
+                .HasOne(e => e.Event)
+                .WithMany(e => e.Tournaments)
+                .HasForeignKey(pt => pt.EventId)
+                ;
 
             //#region SeasonGame
             //modelBuilder.Entity<SeasonGame>()
@@ -67,7 +75,7 @@ namespace LaDOSE.Entity.Context
 
             //#region EventGame
 
-            //modelBuilder.Entity<EventGame>()
+            //modelBuilder.Entity<T>()
             //    .HasKey(t => new { t.EventId, t.GameId });
 
             //modelBuilder.Entity<EventGame>()

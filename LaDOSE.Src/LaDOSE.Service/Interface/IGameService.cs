@@ -6,5 +6,6 @@ namespace LaDOSE.Business.Interface
     public interface IGameService : IBaseService<Game>
     {
    
+
     }
 }

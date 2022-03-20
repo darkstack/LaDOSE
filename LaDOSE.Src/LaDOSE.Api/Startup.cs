@@ -143,14 +143,16 @@ namespace LaDOSE.Api
         {
             
             services.AddTransient<IChallongeProvider>(p => new ChallongeProvider(this.Configuration["ApiKey:ChallongeApiKey"]));
-            services.AddTransient<ISmashProvider>(p => new SmashProvider(this.Configuration["ApiKey:SmashApiKey"]));
+            
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IGameService, GameService>();
             services.AddScoped<IEventService, EventService>();
             services.AddScoped<IWordPressService, WordPressService>();
             services.AddScoped<ITodoService, TodoService>();
-            services.AddScoped<ITournamentService, TournamentService>();
-            
+            services.AddScoped<IEventService, EventService>();
+            services.AddScoped<IPlayerService, PlayerService>();
+            services.AddScoped<ISmashProvider>(p => new SmashProvider(p.GetRequiredService<IGameService>(), p.GetRequiredService<IPlayerService>(), this.Configuration["ApiKey:SmashApiKey"]));
+
         }
 
 

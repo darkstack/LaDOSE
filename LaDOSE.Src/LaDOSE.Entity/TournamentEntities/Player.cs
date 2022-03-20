@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Cryptography.X509Certificates;
 
 namespace LaDOSE.Entity
@@ -11,19 +12,13 @@ namespace LaDOSE.Entity
         {
         }
 
-        public Player(string name, int? challongeId, int? smashId)
-        {
-            this.Name = name;
-            ChallongeId = challongeId;
-            SmashId = smashId;
-        }
 
-        
-        public String  SmashName { get; set; }
+        public String Gamertag { get; set; }
         public String Name { get; set; }
         public int? ChallongeId {get;set;}
         public int? SmashId {get;set;}
 
+        [NotMapped]
         public Boolean IsChallonge => ChallongeId.HasValue;
 
 

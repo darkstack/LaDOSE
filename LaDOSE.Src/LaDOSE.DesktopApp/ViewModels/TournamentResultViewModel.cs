@@ -179,6 +179,7 @@ namespace LaDOSE.DesktopApp.ViewModels
             this.RestService = restService;
             _selectedTournaments = new ObservableCollection<TournamentDTO>();
             Tournaments = new List<TournamentDTO>();
+
         }
 
 
@@ -187,6 +188,7 @@ namespace LaDOSE.DesktopApp.ViewModels
             this.To = DateTime.Now;
             this.From = DateTime.Now.AddMonths(-1);
             this.SelectRegex = "Ranking";
+            this.Slug = "ranking-1001";
             LoadTournaments();
             base.OnInitialize();
         }

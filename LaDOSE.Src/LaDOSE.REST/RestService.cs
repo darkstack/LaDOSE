@@ -250,7 +250,18 @@ namespace LaDOSE.REST
 
 
         #endregion
+        #region Tournaments
 
+        public TournamentsResultDTO Test(string test)
+        {
+            CheckToken();
+            var restRequest = new RestRequest($"Api/Test/Test/{test}", Method.GET);
+            var restResponse = Client.Get<TournamentsResultDTO>(restRequest);
+            return restResponse.Data;
+            
+        }
+
+        #endregion
         #region Tournaments
 
         public List<TournamentDTO> GetTournaments(TimeRangeDTO timeRange)
