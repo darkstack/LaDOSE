@@ -20,8 +20,18 @@ namespace LaDOSE.Business.Service
             //var p2 = _context.Player.ToList();
 
             var p = _context.Player.FirstOrDefault(e => e.SmashId == participantUser.user.id);
+            
             if (p == null)
             {
+                p = _context.Player.FirstOrDefault(e => e.Gamertag.ToUpper() == participantUser.gamerTag.ToUpper());
+                if (p != null)
+                {
+                    if (p.SmashId == null)
+                    {
+                        p.SmashId = participantUser.user.id;
+                    }
+                    return p.Id;
+                }
                 var entity = new Player()
                 {
                     Gamertag = participantUser.gamerTag,
@@ -49,7 +59,7 @@ namespace LaDOSE.Business.Service
             {
                 challongeParticipent.Name = "UNKNOWPLAYER";
             }
-            var p = _context.Player.FirstOrDefault(e => e.Gamertag == challongeParticipent.Name);
+            var p = _context.Player.FirstOrDefault(e => e.Gamertag.ToUpper() == challongeParticipent.Name.ToUpper());
             if (p == null)
             {
                 var entity = new Player()

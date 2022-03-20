@@ -30,7 +30,7 @@ namespace LaDOSE.REST
         {
             Client = new RestClient(url);
 #if DEBUG
-            Client.Timeout = 99*1000;
+            Client.Timeout = 999*1000;
 #endif 
             this.username = user;
             this.password = password;

@@ -252,10 +252,10 @@ namespace LaDOSE.Business.Provider.ChallongProvider
                         {
                             currentevent.Tournaments = new List<Tournament>();
                         }
-                        var currentTournament = currentevent.Tournaments.FirstOrDefault(e => e.Name == eventGame);
+                        var currentTournament = currentevent.Tournaments.FirstOrDefault(e => e.Name.Contains($"Ranking {eventGame}"));
                         if (currentTournament == null)
                         {
-                            currentTournament = new Tournament(eventGame, tournament.Result.ChallongeId, null)
+                            currentTournament = new Tournament($"Ranking {eventGame}", tournament.Result.ChallongeId, null)
                             {
                                 GameId = GameService.GetIdByName(eventGame)
                             };

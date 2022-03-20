@@ -65,6 +65,13 @@ namespace LaDOSE.Entity.Context
                 .HasForeignKey(pt => pt.TournamentId)
                 ;
 
+            modelBuilder.Entity<Result>()
+                .HasOne(e => e.Tournament)
+                .WithMany(e => e.Results)
+                .HasForeignKey(pt => pt.TournamentId);
+                
+
+
             //modelBuilder.Entity<Set>()
             //    .HasOne(e => e.Player1)
             //    .WithMany(e => e.Sets)

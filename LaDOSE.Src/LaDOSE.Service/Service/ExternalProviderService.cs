@@ -158,7 +158,7 @@ namespace LaDOSE.Business.Service
         }
 
 
-        public async Task<bool> ParseSmash(string tournamentSlug)
+        public async Task<Event> ParseSmash(string tournamentSlug)
         {
             Event eventExist = GetBySlug(tournamentSlug);
             if (eventExist == null)
@@ -176,14 +176,16 @@ namespace LaDOSE.Business.Service
                 //POKEMON.
                 catch (Exception e)
                 {
-                    return false;
+                    throw new Exception("FUCK !");
                 }
-                return true;
+                return currentEvent;
             }
-            else
-            {
-                throw new Exception("Already Exist");
-            }
+            //else
+            //{
+            //    throw new Exception("Already Exist");
+            //}
+            //NEED TO UPDATE 
+            return eventExist;
 
         }
 
@@ -195,7 +197,12 @@ namespace LaDOSE.Business.Service
         public async Task<TournamentsResult> GetSmashResult(string tournamentSlug)
         {
             var parse = await this.ParseSmash(tournamentSlug);
-
+            var test = await GetEventResult(parse.Id);
+            if (test.Results != null)
+            {
+                var test2 = test.Games.Count();
+            }
+            return test;
             var tournaments = await _smashProvider.GetTournament(tournamentSlug);
             var players = tournaments.Tournament.Events.Where(e => e.standings != null).SelectMany(e => e.standings.nodes.Select(e => e.player)).ToList();
             var distinctp = players.DistinctBy(e => new { e.user.id }).ToList();
@@ -328,6 +335,89 @@ namespace LaDOSE.Business.Service
         private bool TournamentExist(int idTournament)
         {
             return this._context.ChallongeTournament.Any(e => e.ChallongeId == idTournament);
+        }
+
+        public async Task<TournamentsResult> GetEventResult(int id)
+        {
+            
+            Event cevent = _context.Event.Include(e=>e.Tournaments).ThenInclude(t=>t.Results).ThenInclude(e=>e.Player).FirstOrDefault(e => e.Id == id);
+            var players = cevent.Tournaments.SelectMany(e => e.Results.Select(e => e.Player)).Distinct().ToList();
+            var games = _context.Game.ToList();
+
+            TournamentsResult result = new TournamentsResult();
+            result.Results = new List<Result>();
+            result.Games = new List<Game>();
+            result.Participents = new List<ChallongeParticipent>();
+            players.ForEach(e =>
+            {
+                var x = new ChallongeParticipent()
+                {
+                    Name = e.Gamertag,
+                    ChallongeId = e.Id,
+                    Id = e.Id
+                };
+                result.Participents.Add(x);
+            });
+            games.ForEach(e =>
+            {
+                e.Id = e.SmashId ?? e.Id;
+                result.Games.Add(e);
+            });
+
+            foreach (var tournament in cevent.Tournaments.Where(e => e.Results != null && e.Results.Any()).ToList())
+            {
+
+                var tplayer = tournament.Results.Select(e => e.Player).ToList();
+                var playerCount = tplayer.Count();
+                var lesSacs = tplayer;
+                var currentRule = TournamentRules.FirstOrDefault(rules =>
+                    rules.PlayerMin < playerCount && rules.PlayerMax >= playerCount
+                );
+                if (currentRule == null)
+                {
+                    throw new Exception("Unable to find rules");
+                }
+
+                var first = tournament.Results.First(p => p.Rank == 1);
+                var second = tournament.Results.First(p => p.Rank == 2);
+                var thirdFourth = tournament.Results.Where(p => p.Rank == 3 || p.Rank == 4).ToList();
+                var Top8 = tournament.Results.Where(p => p.Rank > 4 && p.Rank < 9).ToList();
+                var Top16 = tournament.Results.Where(p => p.Rank > 8 && p.Rank <= 16).ToList();
+
+                result.Results.Add(new Result(first.Player.Gamertag, tournament.Game.Id, tournament.Id, tournament.Name, currentRule.FirstPoint, first.Rank));
+                lesSacs.Remove(first.Player);
+                result.Results.Add(new Result(second.Player.Gamertag, tournament.Game.Id, tournament.Id, tournament.Name, currentRule.SecondPoint, second.Rank));
+                lesSacs.Remove(second.Player);
+                thirdFourth.ForEach(r =>
+                    result.Results.Add(new Result(r.Player.Gamertag, tournament.Game.Id, tournament.Id, tournament.Name,
+                        currentRule.ThirdFourthPoint, r.Rank)));
+                thirdFourth.ForEach(p => lesSacs.Remove(p.Player));
+                if (currentRule.Top8Point != 0)
+                {
+                    Top8.ForEach(r =>
+                        result.Results.Add(new Result(r.Player.Gamertag, tournament.Game.Id, tournament.Id, tournament.Name,
+                            currentRule.ThirdFourthPoint, r.Rank)));
+                    Top8.ForEach(p => lesSacs.Remove(p.Player));
+                }
+
+                if (currentRule.Top16Point != 0)
+                {
+                    Top16.ForEach(r =>
+                        result.Results.Add(
+                            new Result(r.Player.Gamertag, tournament.Game.Id, tournament.Id, tournament.Name,
+                                currentRule.ThirdFourthPoint, r.Rank)));
+                    Top16.ForEach(p => lesSacs.Remove(p.Player));
+                }
+
+                lesSacs.ForEach(r =>
+                    result.Results.Add(new Result(r.Gamertag, tournament.Game.Id, tournament.Id, tournament.Name,
+                        currentRule.ThirdFourthPoint, tournament.Results.FirstOrDefault(e=>e.Player == r)?.Rank??999)));
+
+            }
+
+            System.Diagnostics.Trace.WriteLine(result.Results);
+
+            return await Task.FromResult(result);
         }
     }
 }
