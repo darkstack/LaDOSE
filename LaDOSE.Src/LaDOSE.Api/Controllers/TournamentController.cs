@@ -15,12 +15,12 @@ namespace LaDOSE.Api.Controllers
     public class TournamentController : Controller
     {
    
-        private IEventService _service;
+        private IExternalProviderService _service;
 
         private IMapper _mapper;
 
         // GET
-        public TournamentController(IMapper mapper, IEventService service)
+        public TournamentController(IMapper mapper, IExternalProviderService service)
         {
             _mapper = mapper;
             _service = service;
@@ -48,9 +48,11 @@ namespace LaDOSE.Api.Controllers
                 throw new Exception("Invalid arguments");
             }
 
-            var tournamentsResult = await _service.GetTournamentsResult(ids);
+            var test = await _service.GetChallongeEvents(ids);
 
-            return _mapper.Map<TournamentsResultDTO>(tournamentsResult);
+            //var tournamentsResult = await _service.GetTournamentsResult(ids);       
+          
+            return _mapper.Map<TournamentsResultDTO>(new TournamentsResultDTO());
             
         }
 

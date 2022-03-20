@@ -5,7 +5,7 @@ namespace LaDOSE.Business.Interface
 {
     public interface IGameService : IBaseService<Game>
     {
-   
+        public int? GetIdByName(string name);
 
     }
 }

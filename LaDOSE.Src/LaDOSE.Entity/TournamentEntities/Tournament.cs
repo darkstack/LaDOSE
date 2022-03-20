@@ -10,7 +10,7 @@ namespace LaDOSE.Entity
         {
         }
 
-        public Tournament(string name, int challongeId, int smashId)
+        public Tournament(string name, int? challongeId, int? smashId)
         {
             Name = name;
             ChallongeId = challongeId;
@@ -20,8 +20,8 @@ namespace LaDOSE.Entity
         public int EventId { get; set; }
         public Event Event { get; set; }
         public String Name { get; set; }
-        public int ChallongeId {get;set;}
-        public int SmashId {get;set;}
+        public int? ChallongeId {get;set;}
+        public int? SmashId {get;set;}
         public int? GameId {get;set;} 
         public Game Game { get; set; }
 

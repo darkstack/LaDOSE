@@ -18,12 +18,12 @@ namespace LaDOSE.Api.Controllers
     public class SmashController : Controller
     {
 
-        private IEventService _service;
+        private IExternalProviderService _service;
 
         private IMapper _mapper;
 
         // GET
-        public SmashController(IMapper mapper, IEventService service)
+        public SmashController(IMapper mapper, IExternalProviderService service)
         {
             _mapper = mapper;
             _service = service;

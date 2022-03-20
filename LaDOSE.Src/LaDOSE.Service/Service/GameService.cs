@@ -25,6 +25,11 @@ namespace LaDOSE.Business.Service
             return base.AddOrUpdate(entity);
         }
 
+        public int? GetIdByName(string name)
+        {
+            return _context.Game.FirstOrDefault(e => e.Name == name)?.Id ?? null;
+        }
+
         public override IEnumerable<Game> GetAll()
         {
             return _context.Game.ToList();

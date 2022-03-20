@@ -2,6 +2,7 @@
 using LaDOSE.Business.Interface;
 using LaDOSE.Business.Provider.SmashProvider;
 using LaDOSE.Entity;
+using LaDOSE.Entity.Challonge;
 using LaDOSE.Entity.Context;
 using Microsoft.EntityFrameworkCore.Internal;
 
@@ -14,7 +15,7 @@ namespace LaDOSE.Business.Service
         {
         }
 
-        public int GetBySmash(ParticipantType participantUser)
+        public int GetIdBySmash(ParticipantType participantUser)
         {
             //var p2 = _context.Player.ToList();
 
@@ -38,6 +39,30 @@ namespace LaDOSE.Business.Service
                 _context.SaveChanges();
             }
 
+            return p.Id;
+
+        }
+
+        public int GetIdByName(ChallongeParticipent challongeParticipent)
+        {
+            if (string.IsNullOrEmpty(challongeParticipent.Name))
+            {
+                challongeParticipent.Name = "UNKNOWPLAYER";
+            }
+            var p = _context.Player.FirstOrDefault(e => e.Gamertag == challongeParticipent.Name);
+            if (p == null)
+            {
+                var entity = new Player()
+                {
+                    Gamertag = challongeParticipent.Name,
+                    Name = challongeParticipent.Name,
+                    ChallongeId = challongeParticipent.ChallongeId,
+                };
+                _context.Player.Add(entity);
+                _context.SaveChanges();
+                return entity.Id;
+            }
+            
             return p.Id;
 
         }

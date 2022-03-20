@@ -18,12 +18,12 @@ namespace LaDOSE.Api.Controllers
     public class TestController : Controller
     {
 
-        private IEventService _service;
+        private IExternalProviderService _service;
 
         private IMapper _mapper;
 
         // GET
-        public TestController(IMapper mapper, IEventService service)
+        public TestController(IMapper mapper, IExternalProviderService service)
         {
             _mapper = mapper;
             _service = service;

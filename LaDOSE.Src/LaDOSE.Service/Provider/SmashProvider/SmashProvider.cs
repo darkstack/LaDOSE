@@ -20,15 +20,16 @@ namespace LaDOSE.Business.Provider.SmashProvider
         //{
         //    this.ApiKey = apiKey;
         //}
-        public SmashProvider(IGameService gameService, IPlayerService playerService, string apiKey)
+        public SmashProvider(IGameService gameService, IEventService eventService, IPlayerService playerService, string apiKey)
         {
             this.ApiKey = apiKey;
             this.GameService = gameService;
+            this.EventService = eventService;
             this.PlayerService = playerService;
         }
 
         public IPlayerService PlayerService { get; set; }
-
+        public IEventService EventService { get; set; }
         public IGameService GameService { get; set; }
 
         private async Task<T> QuerySmash<T>(GraphQLRequest req)
@@ -165,7 +166,7 @@ namespace LaDOSE.Business.Provider.SmashProvider
                         Tournament = tournament,
                         TournamentId = tournament.Id,
                     
-                        PlayerId = PlayerService.GetBySmash(x.player),
+                        PlayerId = PlayerService.GetIdBySmash(x.player),
                         Rank = x.placement
                     }).ToList();
                     tournament.Results = res;
@@ -282,8 +283,8 @@ namespace LaDOSE.Business.Provider.SmashProvider
                         Tournament = tournament,
                         TournamentId = tournament.Id,
 
-                        Player1Id = PlayerService.GetBySmash(x.slots[0].entrant.participants[0]),
-                        Player2Id = PlayerService.GetBySmash(x.slots[1].entrant.participants[0]),
+                        Player1Id = PlayerService.GetIdBySmash(x.slots[0].entrant.participants[0]),
+                        Player2Id = PlayerService.GetIdBySmash(x.slots[1].entrant.participants[0]),
                         Player1Score = x.slots[0].standing.stats.score.value,
                         Player2Score = x.slots[1].standing.stats.score.value,
                         Round = x.round ?? 0,

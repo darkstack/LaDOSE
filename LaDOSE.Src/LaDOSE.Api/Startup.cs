@@ -142,7 +142,6 @@ namespace LaDOSE.Api
         private void AddDIConfig(IServiceCollection services)
         {
             
-            services.AddTransient<IChallongeProvider>(p => new ChallongeProvider(this.Configuration["ApiKey:ChallongeApiKey"]));
             
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IGameService, GameService>();
@@ -150,8 +149,18 @@ namespace LaDOSE.Api
             services.AddScoped<IWordPressService, WordPressService>();
             services.AddScoped<ITodoService, TodoService>();
             services.AddScoped<IEventService, EventService>();
+            
             services.AddScoped<IPlayerService, PlayerService>();
-            services.AddScoped<ISmashProvider>(p => new SmashProvider(p.GetRequiredService<IGameService>(), p.GetRequiredService<IPlayerService>(), this.Configuration["ApiKey:SmashApiKey"]));
+            services.AddTransient<IChallongeProvider>(p => new ChallongeProvider(   p.GetRequiredService<IGameService>(),
+                                                                                    p.GetRequiredService<IEventService>(),
+                                                                                    p.GetRequiredService<IPlayerService>(), 
+                                                                                    this.Configuration["ApiKey:ChallongeApiKey"]));
+
+            services.AddTransient<ISmashProvider>(p => new SmashProvider(   p.GetRequiredService<IGameService>(), 
+                                                                            p.GetRequiredService<IEventService>(),
+                                                                            p.GetRequiredService<IPlayerService>(),
+                                                                            this.Configuration["ApiKey:SmashApiKey"]));
+            services.AddScoped<IExternalProviderService, ExternalProviderService>();
 
         }
 

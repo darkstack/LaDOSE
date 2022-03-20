@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using ChallongeCSharpDriver;
 using ChallongeCSharpDriver.Caller;
@@ -8,6 +10,7 @@ using ChallongeCSharpDriver.Core.Objects;
 using ChallongeCSharpDriver.Core.Queries;
 using ChallongeCSharpDriver.Core.Results;
 using LaDOSE.Business.Interface;
+using LaDOSE.Entity;
 using LaDOSE.Entity.Challonge;
 
 namespace LaDOSE.Business.Provider.ChallongProvider
@@ -21,15 +24,25 @@ namespace LaDOSE.Business.Provider.ChallongProvider
 
         public string DernierTournois { get; set; }
 
-
-        public ChallongeProvider(string apiKey)
+        public ChallongeProvider(IGameService gameService, IEventService eventService, IPlayerService playerService, string apiKey)
         {
             this.ApiKey = apiKey;
             this.Config = new ChallongeConfig(this.ApiKey);
             this.ApiCaller = new ChallongeHTTPClientAPICaller(Config);
+            this.EventService = eventService;
+            this.GameService = gameService;
+            this.PlayerService = playerService;
+
             DernierTournois = "Aucun tournois.";
         }
 
+        public IPlayerService PlayerService { get; set; }
+
+        public IGameService GameService { get; set; }
+
+        public IEventService EventService { get; set; }
+
+        #region Old Provider 
         public async Task<TournamentResult> CreateTournament(string name, string url, DateTime? startAt = null)
         {
             var result = await new CreateTournamentQuery(name, startAt, TournamentType.Double_Elimination, url).call(ApiCaller);
@@ -160,6 +173,117 @@ namespace LaDOSE.Business.Provider.ChallongProvider
         public string GetLastTournamentMessage()
         {
             return DernierTournois;
+        }
+        #endregion
+
+
+        public Event TryGetEvent(string eventName, string date)
+        {
+
+            var currentevent = this.EventService.GetByName(eventName);
+            if (currentevent != null) return currentevent;
+            
+            var Date = new DateTime(1950, 1, 1);
+            //
+            try
+            {
+                Date = DateTime.ParseExact(date, "dd/MM/yy",
+                    CultureInfo.InvariantCulture);
+            }
+            catch (FormatException)
+            {
+                //Don't care
+            }
+            currentevent = new Event()
+            {
+                Name = eventName,
+                Date = Date,
+            };
+            this.EventService.AddOrUpdate(currentevent);
+
+            return currentevent;
+        }
+
+        private const string RegexRanking = @"Ranking #\w{3}";
+        private const string DateRanking = @"^\[(\d{2}\/\d{2}\/\d{2})\]";
+        private const string GameRanking = @"\-.(\w*)$";
+        public async Task<List<Event>> GetEvents(List<int> idTournaments)
+        {
+            var result = new List<Event>();
+            foreach (var idTournament in idTournaments)
+            {
+                Task<ChallongeTournament> tournament;
+                try
+                {
+                    tournament = GetTournament(idTournament);
+                }
+                catch
+                {
+                    continue;
+                    
+                }
+
+                if (tournament.Result.Name.Contains("Ranking #"))
+                {
+                    var eventName = Regex.Match(tournament.Result.Name, RegexRanking);
+                    var eventDate = Regex.Match(tournament.Result.Name, DateRanking);
+                    var tournamentGame = Regex.Match(tournament.Result.Name, GameRanking);
+
+
+                    if (eventName.Groups.Count > 0 && eventDate.Groups.Count > 1)
+                    {
+                        var eventNameCapture = eventName.Groups[0].Value;
+                        var eventDateCapture = eventDate.Groups[1].Value;
+
+                        var currentevent = result.FirstOrDefault(e => e.Name == eventNameCapture);
+                        if (currentevent == null)
+                        {
+                            currentevent = TryGetEvent(eventNameCapture, eventDateCapture);
+                            result.Add(currentevent);
+                        }
+
+                        string eventGame = tournament.Result.Name;
+                        if (tournamentGame.Groups.Count > 1)
+                        {
+                            eventGame = tournamentGame.Groups[1].Value;
+                        }
+
+                        if (currentevent.Tournaments == null)
+                        {
+                            currentevent.Tournaments = new List<Tournament>();
+                        }
+                        var currentTournament = currentevent.Tournaments.FirstOrDefault(e => e.Name == eventGame);
+                        if (currentTournament == null)
+                        {
+                            currentTournament = new Tournament(eventGame, tournament.Result.ChallongeId, null)
+                            {
+                                GameId = GameService.GetIdByName(eventGame)
+                            };
+                            List<ChallongeParticipent> participents = new List<ChallongeParticipent>();
+                            try
+                            {
+                                participents = await GetParticipents(tournament.Result.ChallongeId);
+                            }
+                            catch
+                            {
+                                continue;
+                            }
+                            var results = participents.Select(e => new Entity.Result()
+                            {
+                                Tournament = currentTournament,
+                                PlayerId = this.PlayerService.GetIdByName(e),
+                                Rank = e.Rank ?? 999
+                            }).ToList();
+
+                            currentTournament.Results = results;
+                            currentevent.Tournaments.Add(currentTournament);
+                        }
+
+                    }
+
+                }
+            }
+            return result;
         }
     }
 }
