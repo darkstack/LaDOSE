@@ -25,9 +25,11 @@ namespace LaDOSE.Api.Controllers
             _mapper = mapper;
             _service = service;
         }
+
         //This may be a get , but i dont know what the RFC State for Get request with Body 
         //As i don't like to populate GET request with body this will be a post (and i think
         //it will be easier to proxy. 
+
         [HttpPost("GetTournaments")]
         public async Task<List<TournamentDTO>> GetChallonges([FromBody] TimeRangeDTO dto)
         {
@@ -48,12 +50,34 @@ namespace LaDOSE.Api.Controllers
                 throw new Exception("Invalid arguments");
             }
 
-            var test = await _service.GetChallongeEvents(ids);
-
-            //var tournamentsResult = await _service.GetTournamentsResult(ids);       
-          
-            return _mapper.Map<TournamentsResultDTO>(new TournamentsResultDTO());
+            var test = await _service.GetEventsResult(ids);
+            return _mapper.Map<TournamentsResultDTO>(test);
             
+        }
+
+
+        [HttpGet("ParseSmash/{tournamentSlug}")]
+        public async Task<bool> AddSmashTournament(string tournamentSlug)
+        {
+            if (!String.IsNullOrEmpty(tournamentSlug))
+            {
+                var smash = await _service.ParseSmash(tournamentSlug);
+                //var tournaments = await _service.GetSmashResult2(tournamentSlug);
+                return smash != null;
+                //return Ok(tournaments);
+            }
+
+            return false;
+        }
+        [HttpPost("ParseChallonge")]
+        public async Task<bool> ParseChallonge([FromBody] List<int> ids)
+        {
+            if (ids != null)
+            {
+                var tournaments = await _service.ParseChallonge(ids);
+                return tournaments.Count>0;
+            }
+            return false;
         }
 
 

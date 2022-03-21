@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
@@ -26,12 +27,14 @@ namespace LaDOSE.DesktopApp.ViewModels
 
         #region Properties
 
-        private string css = "strong { font-weight: 700;} " +
-                             "a { color: #ff9024;}"+
-                             "body { color: #efefef;background-color: #141415; }" +
-                             ""+
-                             "a:hover, .entry-meta span a:hover, .comments-link a:hover, body.coldisplay2 #front-columns a:active {color: #cb5920;}"+
-                             "tr td { border: 1px dashed #3D3D3D;} ";
+        private string css = string.Empty;
+            
+                            //"strong { font-weight: 700;} ". +
+                            // "a { color: #ff9024;}"+
+                            // "body { color: #efefef;background-color: #141415; }" +
+                            // ""+
+                            // "a:hover, .entry-meta span a:hover, .comments-link a:hover, body.coldisplay2 #front-columns a:active {color: #cb5920;}"+
+                            // "tr td { border: 1px dashed #3D3D3D;} ";
         private String _selectRegex;
 
         public String SelectRegex
@@ -44,6 +47,17 @@ namespace LaDOSE.DesktopApp.ViewModels
             }
         }
 
+        private String _selectEventRegex;
+
+        public String SelectEventRegex
+        {
+            get { return _selectEventRegex; }
+            set
+            {
+                _selectEventRegex = value;
+                NotifyOfPropertyChange(() => SelectEventRegex);
+            }
+        }
         private string _slug;
         public String Slug
         {
@@ -108,6 +122,8 @@ namespace LaDOSE.DesktopApp.ViewModels
         private TournamentsResultDTO _results;
         public List<TournamentDTO> Tournaments { get; set; }
 
+        public List<EventDTO> Events { get; set; }
+
         public TournamentsResultDTO Results
         {
             get => _results;
@@ -115,6 +131,18 @@ namespace LaDOSE.DesktopApp.ViewModels
             {
                 _results = value;
                 NotifyOfPropertyChange(() => Results);
+            }
+        }
+
+        private ObservableCollection<EventDTO> _selectedEvents;
+
+        public ObservableCollection<EventDTO> SelectedEvents
+        {
+            get { return _selectedEvents; }
+            set
+            {
+                _selectedEvents = value;
+                NotifyOfPropertyChange(() => SelectedEvents);
             }
         }
 
@@ -178,18 +206,28 @@ namespace LaDOSE.DesktopApp.ViewModels
         {
             this.RestService = restService;
             _selectedTournaments = new ObservableCollection<TournamentDTO>();
+            _selectedEvents = new ObservableCollection<EventDTO>();
             Tournaments = new List<TournamentDTO>();
+            Events = new List<EventDTO>();
 
         }
 
 
         protected override void OnInitialize()
         {
+            var manifestResourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("LaDOSE.DesktopApp.Resources.css.css");
+            using (var sr = new StreamReader(manifestResourceStream))
+            {
+                this.css = sr.ReadToEnd();
+            }
+            
+
             this.To = DateTime.Now;
             this.From = DateTime.Now.AddMonths(-1);
             this.SelectRegex = "Ranking";
             this.Slug = "ranking-1001";
             LoadTournaments();
+            LoadEvents();
             base.OnInitialize();
         }
 
@@ -202,6 +240,18 @@ namespace LaDOSE.DesktopApp.ViewModels
                 this.Tournaments = tournamentDtos;
 
                 NotifyOfPropertyChange("Tournaments");
+            });
+        }
+
+        public void LoadEvents()
+        {
+            WpfUtil.Await(() =>
+            {
+                var eventsDtos = this.RestService
+                    .GetAllEvents().ToList();
+                this.Events = eventsDtos;
+
+                NotifyOfPropertyChange("Events");
             });
         }
 
@@ -219,7 +269,7 @@ namespace LaDOSE.DesktopApp.ViewModels
         {
             WpfUtil.Await(() =>
             {
-                var tournamentsIds = SelectedTournaments.Select(e => e.ChallongeId).ToList();
+                var tournamentsIds = SelectedEvents.Select(e => e.Id).ToList();
                 var resultsDto = this.RestService.GetResults(tournamentsIds);
                 this.Results = resultsDto;
                 ComputeDataGrid();
@@ -231,11 +281,29 @@ namespace LaDOSE.DesktopApp.ViewModels
             WpfUtil.Await(() =>
             {
               
-                var resultsDto = this.RestService.GetSmashResults(Slug);
-                this.Results = resultsDto;
-                ComputeDataGrid();
-                ComputeHtml();
+                var resultsDto = this.RestService.ParseSmash(Slug);
+                if (!resultsDto)
+                {
+                    MessageBox.Show("Fail");
+                }
             });
+        }
+        public void GetChallonge()
+        {
+            WpfUtil.Await(() =>
+            {
+                var ids = SelectedTournaments.Select(e => e.ChallongeId).ToList();
+                var resultsDto = this.RestService.ParseChallonge(ids);
+                if (!resultsDto)
+                {
+                    MessageBox.Show("Fail");
+                }
+            });
+        }
+
+        public void UpdateEvent()
+        {
+            LoadEvents();
         }
 
         public void SelectYear()
@@ -256,6 +324,13 @@ namespace LaDOSE.DesktopApp.ViewModels
             this.SelectedTournaments.Clear();
             if (selectedTournaments.Count > 0)
                 selectedTournaments.ForEach(e => this.SelectedTournaments.AddUI(e));
+        }
+        public void SelectEvent()
+        {
+            var selectedEvents = this.Events.Where(e => Regex.IsMatch(e.Name, this.SelectEventRegex)).ToList();
+            this.SelectedEvents.Clear();
+            if (selectedEvents.Count > 0)
+                selectedEvents.ForEach(e => this.SelectedEvents.AddUI(e));
         }
         //This could be simplified the Dictionary was for a previous usage, but i m too lazy to rewrite it. 
         private void ComputeDataGrid()
@@ -344,7 +419,11 @@ namespace LaDOSE.DesktopApp.ViewModels
             sb.Append("<table class=\"table table-responsive-md table-dark table-striped mt-lg-4 mt-3\">");
 
             int columns = 0;
-            foreach (var game in Results.Games)
+
+            var distinct = Results.Results.Select(e => e.GameId).Distinct();
+
+            var gamePlayed = Results.Games.Where(e=> distinct.Contains(e.Id));
+            foreach (var game in gamePlayed)
             {
                 List<ResultDTO> enumerable = Results.Results.Where(r => r.GameId == game.Id).ToList();
                 List<string> top3 = enumerable.OrderBy(e => e.Rank).Take(3).Select(e => e.Player).ToList();
@@ -358,7 +437,15 @@ namespace LaDOSE.DesktopApp.ViewModels
                     sb.Append("<tr>");
                 }
                 columns++;
-                sb.Append("<td colspan=\"1\" width=\"50%\">" +
+                var span = 1;
+                if (columns == gamePlayed.Count())
+                {
+                    if (columns % 2 != 0)
+                    {
+                        span = 2;
+                    }
+                }
+                sb.Append($"<td colspan=\"{span}\" width=\"50%\">" +
                           "<span style=\"color: #ff0000;\">" +
                           $"<strong>{game.LongName} ({Results.Results.Count(e => e.GameId == game.Id)} participants) :</strong>" +
                           "</span>");
@@ -366,7 +453,11 @@ namespace LaDOSE.DesktopApp.ViewModels
                 if (top3.Count >= 3)
                 {
                     sb.AppendLine($"<br> 1/ {top3[0]}<br> 2/ {top3[1]}<br> 3/ {top3[2]} <br>");
-                    sb.AppendLine($"<a href=\"https://challonge.com/fr/{enumerable.First().TournamentUrl}\" target=\"_blank\">https://challonge.com/fr/{enumerable.First().TournamentUrl}</a></p></td>");
+                    //<a href=\"https://challonge.com/fr/{enumerable.First().TournamentUrl}\" target=\"_blank\">https://challonge.com/fr/{enumerable.First().TournamentUrl}</a>
+                    var url = enumerable.FirstOrDefault().TournamentUrl;
+                    url = url.Replace(" ", "-");
+                    url = url.Replace(".", "-");
+                    sb.AppendLine($"<a href=\"https://smash.gg/tournament/ranking-1002/event/{url}\" target=\"_blank\">Voir le Bracket</p></td>");
                 }
 
                 

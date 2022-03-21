@@ -14,71 +14,136 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Row="2" Column="1">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="2*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
-            <Label> Date : </Label>
-            <StackPanel Orientation="Horizontal" Width="210">
-                <DatePicker SelectedDate="{Binding From}" Width="100"  BorderBrush="{x:Null}">
-                    <DatePicker.Resources>
-                        <Style TargetType="{x:Type DatePickerTextBox}">
-                            <Setter Property="Control.Template">
-                                <Setter.Value>
-                                    <ControlTemplate>
-                                        <TextBox x:Name="PART_TextBox"  Foreground="White"
+        <Grid Row="0" Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid Row="0" Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,5">
+                    <Label>Date :</Label>
+                    <StackPanel Orientation="Horizontal" Width="210">
+                        <DatePicker SelectedDate="{Binding From}" Width="100"  BorderBrush="{x:Null}">
+                            <DatePicker.Resources>
+                                <Style TargetType="{x:Type DatePickerTextBox}">
+                                    <Setter Property="Control.Template">
+                                        <Setter.Value>
+                                            <ControlTemplate>
+                                                <TextBox x:Name="PART_TextBox"  Foreground="White"
                                                  Text="{Binding Path=SelectedDate, RelativeSource={RelativeSource AncestorType={x:Type DatePicker}},StringFormat=d}" />
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </DatePicker.Resources>
-                </DatePicker>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </DatePicker.Resources>
+                        </DatePicker>
 
-                <DatePicker SelectedDate="{Binding To}" Width="100" Margin="5,0,5,0" BorderBrush="{x:Null}">
-                    <DatePicker.Resources>
-                        
-                        <Style TargetType="{x:Type DatePickerTextBox}">
-                           
-                            <Setter Property="Control.Template">
-                               
-                                <Setter.Value>
-                                    <ControlTemplate>
-                                        <TextBox x:Name="PART_TextBox"  Foreground="White"
+                        <DatePicker SelectedDate="{Binding To}" Width="100" Margin="5,0,5,0" BorderBrush="{x:Null}">
+                            <DatePicker.Resources>
+
+                                <Style TargetType="{x:Type DatePickerTextBox}">
+
+                                    <Setter Property="Control.Template">
+
+                                        <Setter.Value>
+                                            <ControlTemplate>
+                                                <TextBox x:Name="PART_TextBox"  Foreground="White"
                                                  Text="{Binding Path=SelectedDate, RelativeSource={RelativeSource AncestorType={x:Type DatePicker}},StringFormat=d}" />
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </DatePicker.Resources>
-                </DatePicker>
-            </StackPanel>
-           
-            <Label>Usefull :</Label>
-            <Button Padding="5,0,5,0" x:Name="SelectMonth">Month</Button>
-            <Button Padding="5,0,5,0" Margin="5,0,5,0" x:Name="SelectYear">Year</Button>
-           
-        </StackPanel>
-        <Button Grid.Row="1" x:Name="LoadTournaments">Update</Button>
-        <ListView Grid.Row="2" ItemsSource="{Binding Tournaments}" x:Name="TournamentList" Margin="0,0,0,5"
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </DatePicker.Resources>
+                        </DatePicker>
+                    </StackPanel>
+
+                    <Label>Usefull :</Label>
+                    <Button Padding="5,0,5,0" x:Name="SelectMonth">Month</Button>
+                    <Button Padding="5,0,5,0" Margin="5,0,5,0" x:Name="SelectYear">Year</Button>
+
+                </StackPanel>
+                <Button Grid.Row="1" x:Name="LoadTournaments">Update</Button>
+                <ListView Grid.Row="2" ItemsSource="{Binding Tournaments}" x:Name="TournamentList" Margin="0,0,0,5"
                   IsTextSearchEnabled="True" TextSearch.TextPath="Name"
                   behaviors:MultiSelectorBehaviours.SynchronizedSelectedItems="{Binding SelectedTournaments}"
                   SelectionMode="Multiple">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Margin="5,0,0,0" Text="{Binding Name}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="5,0,0,0" Text="{Binding Name}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
 
-        </ListView>
+                </ListView>
+                <DockPanel Grid.Row="3" Dock="Left">
+                    <Label>Select :</Label>
+                    <TextBox Width="200" Text="{Binding SelectRegex}"></TextBox>
+                    <Button Padding="5,0,5,0" Margin="5,0,5,0" x:Name="SelectRegexp">Select</Button>
+                    <Button Padding="5,0,5,0" Margin="5,0,5,0" x:Name="GetChallonge">Import</Button>
+                </DockPanel>
+
+            </Grid>
+            <Grid Row="0" Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal"  Margin="0,0,0,6">
+                    <Label> Smash Slug :</Label>
+                    <TextBox Width="200" Text="{Binding Slug}"></TextBox>
+                    <Button Margin="5,0,5,0"  x:Name="GetSmash" >Import Smash Event</Button>
+                </StackPanel>
+                
+                <Button Grid.Row="1"  x:Name="UpdateEvent" >Update Event</Button>
+
+                <ListView Grid.Row="2" ItemsSource="{Binding Events}" Margin="0,0,0,5"
+                          IsTextSearchEnabled="True" TextSearch.TextPath="Name"
+                          behaviors:MultiSelectorBehaviours.SynchronizedSelectedItems="{Binding SelectedEvents}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Id}" />
+                                <TextBlock Margin="5,0,0,0" Text="{Binding Name}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+                <DockPanel Grid.Row="3" Dock="Left">
+                    <Label>Select :</Label>
+                    <TextBox Width="200" Text="{Binding SelectEventRegex}"></TextBox>
+                    <Button Padding="5,0,5,0" Margin="5,0,5,0" x:Name="SelectEvent">Select</Button>
+                </DockPanel>
+            </Grid>
+        </Grid>
+
         <Grid Row="3">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -93,13 +158,13 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
-            <DockPanel Grid.Row="0" Grid.ColumnSpan="3" Dock="Left">
+            <!--<DockPanel Grid.Row="0" Grid.ColumnSpan="3" Dock="Left">
                 <Label>Select :</Label>
                 <TextBox Width="200" Text="{Binding SelectRegex}"></TextBox>
                 <Button Padding="5,0,5,0" Margin="5,0,5,0" x:Name="SelectRegexp">Select</Button>
                 <Button  x:Name="Select" >Get Tournaments Result</Button>
-            </DockPanel>
-           
+            </DockPanel>-->
+            <Button  x:Name="Select" Grid.ColumnSpan="3" >Get Tournaments Result</Button>
 
 
             <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal">
@@ -165,20 +230,16 @@
                     </DockPanel>
                 </TabItem>
                 <TabItem Header="HTML">
-                   <DockPanel>
-                       <Button x:Name="CopyHtml" DockPanel.Dock="Top"> Copy HTML to clipboard </Button>
-                       <cefSharp:ChromiumWebBrowser behaviors:HtmlBehavior.Html="{Binding Html}" />
+                    <DockPanel>
+                        <Button x:Name="CopyHtml" DockPanel.Dock="Top">Copy HTML to clipboard</Button>
+                        <cefSharp:ChromiumWebBrowser behaviors:HtmlBehavior.Html="{Binding Html}" />
                     </DockPanel>
                 </TabItem>
             </TabControl>
 
             <Button Grid.Row="4" Grid.ColumnSpan="3" x:Name="Export">Export</Button>
-            
+
         </Grid>
-        <StackPanel Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal">
-            <TextBlock> Slug :</TextBlock>
-            <TextBox Width="200" Text="{Binding Slug}"></TextBox>
-            <Button  x:Name="GetSmash" >Get Smash Tournaments Result</Button>
-        </StackPanel>
+ 
     </Grid>
 </UserControl>

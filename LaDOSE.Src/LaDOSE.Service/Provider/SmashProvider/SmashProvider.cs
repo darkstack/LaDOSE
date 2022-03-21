@@ -128,6 +128,10 @@ namespace LaDOSE.Business.Provider.SmashProvider
           			                              id
           			                            }
                                           }
+                                        },
+                                        entrant {
+                                          id,
+                                          isDisqualified
                                         }
                                         placement
                                       }
@@ -161,11 +165,11 @@ namespace LaDOSE.Business.Provider.SmashProvider
                         }
                     }
 
-                    var res= standings.Select(x => new Result()
+                    var res= standings.Where(s=>s.entrant.isDisqualified != true).Select(x => new Result()
                     {
                         Tournament = tournament,
                         TournamentId = tournament.Id,
-                    
+                        
                         PlayerId = PlayerService.GetIdBySmash(x.player),
                         Rank = x.placement
                     }).ToList();

@@ -19,7 +19,9 @@ namespace LaDOSE.Business.Interface
         Task<ChallongeTournament> GetTournament(int idTournament);
         Task<ChallongeTournament> GetTournament(string urlTournament);
 
-        Task<List<Event>> GetEvents(List<int> idTournaments);
+        Task<List<Event>> ParseEvent(List<int> idTournaments);
+
+
     }
 
 }

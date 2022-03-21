@@ -53,6 +53,8 @@ namespace LaDOSE.Business.Provider.SmashProvider
 
         public StatType stats { get; set; }
 
+        public EntrantType entrant { get; set; }
+
     }
 
     public class ParticipantType
@@ -67,6 +69,7 @@ namespace LaDOSE.Business.Provider.SmashProvider
         public string name { get; set; }
 
     }
+
     public class EventType
     {
         public int id { get; set; }
@@ -83,7 +86,7 @@ namespace LaDOSE.Business.Provider.SmashProvider
     {
         public int id { get; set; }
         public string name { get; set; }
-
+        public bool? isDisqualified { get; set; }
         public List<ParticipantType> participants { get; set; }
 
     }

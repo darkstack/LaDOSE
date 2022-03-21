@@ -207,7 +207,7 @@ namespace LaDOSE.Business.Provider.ChallongProvider
         private const string RegexRanking = @"[R|r]anking.?#\w{3}";
         private const string DateRanking = @"^\[(\d{2}\/\d{2}\/\d{2})\]";
         private const string GameRanking = @"\-.(\w*)$";
-        public async Task<List<Event>> GetEvents(List<int> idTournaments)
+        public async Task<List<Event>> ParseEvent(List<int> idTournaments)
         {
             var result = new List<Event>();
             foreach (var idTournament in idTournaments)

@@ -281,15 +281,29 @@ namespace LaDOSE.REST
             
         }
 
-        public TournamentsResultDTO GetSmashResults(string slug)
+
+        public bool ParseSmash(string slug)
         {
             CheckToken();
-            var restRequest = new RestRequest($"Api/Smash/GetTournament/{slug}", Method.GET);
-            var restResponse = Client.Get<TournamentsResultDTO>(restRequest);
+            var restRequest = new RestRequest($"Api/Tournament/ParseSmash/{slug}", Method.GET);
+            var restResponse = Client.Get<bool>(restRequest);
             return restResponse.Data;
          
         }
+
+        public bool ParseChallonge(List<int> ids)
+        {
+            CheckToken();
+            return Post<List<int>, bool>("Api/Tournament/ParseChallonge", ids);
+        }
         #endregion
 
+        public List<EventDTO> GetAllEvents()
+        {
+            CheckToken();
+            var restRequest = new RestRequest("/api/Event", Method.GET);
+            var restResponse = Client.Get<List<EventDTO>>(restRequest);
+            return restResponse.Data;
+        }
     }
 }

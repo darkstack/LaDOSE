@@ -122,6 +122,8 @@ namespace LaDOSE.Api
                 cfg.CreateMap<WPUser, LaDOSE.DTO.WPUserDTO>();
                 cfg.CreateMap<WPEvent, LaDOSE.DTO.WPEventDTO>();
                 cfg.CreateMap<Result, LaDOSE.DTO.ResultDTO>();
+                cfg.CreateMap<Event, LaDOSE.DTO.EventDTO>();
+
                 cfg.CreateMap<TournamentsResult, LaDOSE.DTO.TournamentsResultDTO>();
                 cfg.CreateMap<ChallongeParticipent, LaDOSE.DTO.ParticipentDTO>();
                 cfg.CreateMap<ChallongeTournament, LaDOSE.DTO.TournamentDTO>();
