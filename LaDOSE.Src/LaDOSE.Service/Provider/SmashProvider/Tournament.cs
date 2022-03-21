@@ -34,7 +34,7 @@ namespace LaDOSE.Business.Provider.SmashProvider
     public class ScoreType
     {
         public string label { get; set; }
-        public int value { get; set; }
+        public int? value { get; set; }
         public string displayValue { get; set; }
 
     }

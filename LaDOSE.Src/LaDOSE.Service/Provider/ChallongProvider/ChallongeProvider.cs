@@ -204,7 +204,7 @@ namespace LaDOSE.Business.Provider.ChallongProvider
             return currentevent;
         }
 
-        private const string RegexRanking = @"Ranking #\w{3}";
+        private const string RegexRanking = @"[R|r]anking.?#\w{3}";
         private const string DateRanking = @"^\[(\d{2}\/\d{2}\/\d{2})\]";
         private const string GameRanking = @"\-.(\w*)$";
         public async Task<List<Event>> GetEvents(List<int> idTournaments)
@@ -223,7 +223,7 @@ namespace LaDOSE.Business.Provider.ChallongProvider
                     
                 }
 
-                if (tournament.Result.Name.Contains("Ranking #"))
+                if (tournament.Result.Name.Contains("Ranking"))
                 {
                     var eventName = Regex.Match(tournament.Result.Name, RegexRanking);
                     var eventDate = Regex.Match(tournament.Result.Name, DateRanking);

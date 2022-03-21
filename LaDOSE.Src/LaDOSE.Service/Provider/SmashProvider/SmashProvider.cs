@@ -285,8 +285,8 @@ namespace LaDOSE.Business.Provider.SmashProvider
 
                         Player1Id = PlayerService.GetIdBySmash(x.slots[0].entrant.participants[0]),
                         Player2Id = PlayerService.GetIdBySmash(x.slots[1].entrant.participants[0]),
-                        Player1Score = x.slots[0].standing.stats.score.value,
-                        Player2Score = x.slots[1].standing.stats.score.value,
+                        Player1Score = x.slots[0].standing.stats.score.value.HasValue ? x.slots[0].standing.stats.score.value.Value : 0,
+                        Player2Score = x.slots[1].standing.stats.score.value.HasValue ? x.slots[1].standing.stats.score.value.Value : 0,
                         Round = x.round ?? 0,
                     }).ToList();
                     tournament.Sets = tset;

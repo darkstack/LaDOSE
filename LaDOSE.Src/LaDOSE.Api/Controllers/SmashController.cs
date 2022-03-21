@@ -49,9 +49,9 @@ namespace LaDOSE.Api.Controllers
         {
             if (!String.IsNullOrEmpty(tournamentSlug))
             {
-                var tournaments = await _service.GetSmashResult2(tournamentSlug);
-
-                return Ok(tournaments);
+                //var tournaments = await _service.GetSmashResult2(tournamentSlug);
+                return Ok();
+                //return Ok(tournaments);
             }
 
             return null;

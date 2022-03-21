@@ -75,7 +75,6 @@ namespace LaDOSE.Api
                 options => options.UseMySql($"Server={MySqlServer};Database={MySqlDatabase};User={MySqlUser};Password={MySqlPassword};", // replace with your Connection String
                     mysqlOptions =>
                     {
-                        
                         mysqlOptions.ServerVersion(new Version(10, 1, 16), ServerType.MariaDb); // replace with your Server Version and Type
                     }
                 ));
@@ -175,7 +174,7 @@ namespace LaDOSE.Api
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            
             app.UseCors(x => x
                 //.AllowAnyOrigin()
                 .AllowAnyMethod()
