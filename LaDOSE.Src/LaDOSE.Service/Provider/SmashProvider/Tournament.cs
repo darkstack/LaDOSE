@@ -80,6 +80,8 @@ namespace LaDOSE.Business.Provider.SmashProvider
         public VideoGameType videogame { get; set; }
         public Node<StandingType> standings { get; set; }
         public Node<SetType> sets { get; set; }
+
+        public Node<EntrantType> entrants { get; set; }
     }
 
     public class EntrantType

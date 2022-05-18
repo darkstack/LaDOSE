@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="LaDOSE.DesktopApp.Views.EventPlayerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LaDOSE.DesktopApp.Views"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:behaviors="clr-namespace:LaDOSE.DesktopApp.Behaviors"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             x:Name ="EventPlayer">
+    <Grid Row="4" Column="1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+
+            <RowDefinition Height="Auto"></RowDefinition>
+           
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <TextBox Width="200" Text="{Binding Slug}"></TextBox>
+            <Button x:Name="GetPlayers">Load Games</Button>
+        </StackPanel>
+        <DockPanel Grid.Row="1" >
+            <Label> Char : </Label>
+            <TextBox  Text="{Binding Chars}"></TextBox>
+        </DockPanel>
+
+        <ListView Grid.Row="2" ItemsSource="{Binding Data}" x:Name="GamesListView">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Content="{Binding player}" ></Label>
+                        <ComboBox Grid.Column="1" Text="{Binding character}" ItemsSource="{Binding DataContext.CharList, RelativeSource={RelativeSource AncestorType=UserControl}}"></ComboBox>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+        <Button Grid.Row="3" Grid.ColumnSpan="2" x:Name="Export">Export</Button>
+     
+    </Grid>
+</UserControl>

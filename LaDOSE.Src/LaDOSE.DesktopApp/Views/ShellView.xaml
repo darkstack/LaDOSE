@@ -47,6 +47,14 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </MenuItem>
+                <MenuItem Header="_EventPlayers">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <cal:ActionMessage MethodName="EventPlayers">
+                            </cal:ActionMessage>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </MenuItem>
                 <MenuItem Header="_Close" />
             </MenuItem>
         </Menu>

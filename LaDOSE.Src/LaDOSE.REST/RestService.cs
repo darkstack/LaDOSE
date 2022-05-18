@@ -305,5 +305,13 @@ namespace LaDOSE.REST
             var restResponse = Client.Get<List<EventDTO>>(restRequest);
             return restResponse.Data;
         }
+
+        public List<string> GetPlayers(string slug)
+        {
+            CheckToken();
+            var restRequest = new RestRequest($"/api/Tournament/GetPLayers/{slug}", Method.GET);
+            var restResponse = Client.Get<List<string>>(restRequest);
+            return restResponse.Data;
+        }
     }
 }

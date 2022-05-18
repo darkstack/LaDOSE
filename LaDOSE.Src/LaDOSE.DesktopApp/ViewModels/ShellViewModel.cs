@@ -68,5 +68,9 @@ namespace LaDOSE.DesktopApp.ViewModels
         {
             ActivateItem(new TournamentResultViewModel(IoC.Get<RestService>()));
         }
+        public void EventPlayers()
+        {
+            ActivateItem(new EventPlayerViewModel(IoC.Get<RestService>()));
+        }
     }
 }

@@ -80,6 +80,21 @@ namespace LaDOSE.Api.Controllers
             return false;
         }
 
+        [AllowAnonymous]
+        [HttpGet("GetPlayers/{slug}")]
+        public async Task<List<String>> GetPlayer(string slug)
+        {
+            if (!string.IsNullOrEmpty(slug))
+            {
+                var player = await _service.GetPlayer(slug);
+                return player;
+            }
+
+            throw new Exception("Erreur");
+
+        }
+
+
 
     }
 }

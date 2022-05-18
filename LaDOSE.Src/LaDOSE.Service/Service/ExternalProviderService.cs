@@ -6,6 +6,7 @@ using System.Reactive.Subjects;
 using System.Threading.Tasks;
 using LaDOSE.Business.Helper;
 using LaDOSE.Business.Interface;
+using LaDOSE.Business.Provider.SmashProvider;
 using LaDOSE.Entity;
 using LaDOSE.Entity.Challonge;
 using LaDOSE.Entity.Context;
@@ -206,7 +207,7 @@ namespace LaDOSE.Business.Service
         //    var parse = await this.ParseSmash(tournamentSlug);
         //    var test = await GetEventResult(parse.Id);
         //    return test;
-        
+
         //}
 
         //public async Task<TournamentsResult> GetEventsResult(List<int> events)
@@ -279,7 +280,7 @@ namespace LaDOSE.Business.Service
                 players = players.Concat(e.Tournaments.SelectMany(e => e.Results.Select(e => e.Player)).Distinct().ToList()).ToList();
                 cevent.Tournaments = cevent.Tournaments.Concat(e.Tournaments).ToList();
             }
-       
+
             var games = _context.Game.ToList();
 
             TournamentsResult result = new TournamentsResult();
@@ -360,6 +361,15 @@ namespace LaDOSE.Business.Service
 
             return await Task.FromResult(result);
         }
+
+        public async Task<List<string>> GetPlayer(string slug)
+        {
+            var tournament = await _smashProvider.GetNames(slug);
+            var players = tournament.Tournament.Events.SelectMany(e => e.entrants.nodes.SelectMany(x => x.participants.Select(e => e.gamerTag))).ToList();
+            return players;
+
+        }
+
         /// <summary>
         /// Get Result For one Event
         /// </summary>
@@ -367,8 +377,8 @@ namespace LaDOSE.Business.Service
         /// <returns></returns>
         public async Task<TournamentsResult> GetEventResult(int id)
         {
-            
-            Event cevent = _context.Event.Include(e=>e.Tournaments).ThenInclude(t=>t.Results).ThenInclude(e=>e.Player).FirstOrDefault(e => e.Id == id);
+
+            Event cevent = _context.Event.Include(e => e.Tournaments).ThenInclude(t => t.Results).ThenInclude(e => e.Player).FirstOrDefault(e => e.Id == id);
             var players = cevent.Tournaments.SelectMany(e => e.Results.Select(e => e.Player)).Distinct().ToList();
             var games = _context.Game.ToList();
 
@@ -407,18 +417,18 @@ namespace LaDOSE.Business.Service
                 var Top8 = tournament.Results.Where(p => p.Rank > 4 && p.Rank < 9).ToList();
                 var Top16 = tournament.Results.Where(p => p.Rank > 8 && p.Rank <= 16).ToList();
 
-                result.Results.Add(new Result(first.Player.Gamertag, tournament.Game?.Id??0, tournament.Id, tournament.Name, currentRule.FirstPoint, first.Rank));
+                result.Results.Add(new Result(first.Player.Gamertag, tournament.Game?.Id ?? 0, tournament.Id, tournament.Name, currentRule.FirstPoint, first.Rank));
                 lesSacs.Remove(first.Player);
                 result.Results.Add(new Result(second.Player.Gamertag, tournament.Game?.Id ?? 0, tournament.Id, tournament.Name, currentRule.SecondPoint, second.Rank));
                 lesSacs.Remove(second.Player);
                 thirdFourth.ForEach(r =>
-                    result.Results.Add(new Result(r.Player.Gamertag, tournament.Game?.Id??0, tournament.Id, tournament.Name,
+                    result.Results.Add(new Result(r.Player.Gamertag, tournament.Game?.Id ?? 0, tournament.Id, tournament.Name,
                         currentRule.ThirdFourthPoint, r.Rank)));
                 thirdFourth.ForEach(p => lesSacs.Remove(p.Player));
                 if (currentRule.Top8Point != 0)
                 {
                     Top8.ForEach(r =>
-                        result.Results.Add(new Result(r.Player.Gamertag, tournament.Game?.Id??0, tournament.Id, tournament.Name,
+                        result.Results.Add(new Result(r.Player.Gamertag, tournament.Game?.Id ?? 0, tournament.Id, tournament.Name,
                             currentRule.Top8Point, r.Rank)));
                     Top8.ForEach(p => lesSacs.Remove(p.Player));
                 }
@@ -427,20 +437,20 @@ namespace LaDOSE.Business.Service
                 {
                     Top16.ForEach(r =>
                         result.Results.Add(
-                            new Result(r.Player.Gamertag, tournament.Game?.Id??0, tournament.Id, tournament.Name,
+                            new Result(r.Player.Gamertag, tournament.Game?.Id ?? 0, tournament.Id, tournament.Name,
                                 currentRule.Top16Point, r.Rank)));
                     Top16.ForEach(p => lesSacs.Remove(p.Player));
                 }
 
                 lesSacs.ForEach(r =>
-                    result.Results.Add(new Result(r.Gamertag, tournament.Game?.Id??0, tournament.Id, tournament.Name,
-                        currentRule.Participation, tournament.Results.FirstOrDefault(e=>e.Player == r)?.Rank??999)));
+                    result.Results.Add(new Result(r.Gamertag, tournament.Game?.Id ?? 0, tournament.Id, tournament.Name,
+                        currentRule.Participation, tournament.Results.FirstOrDefault(e => e.Player == r)?.Rank ?? 999)));
 
             }
 
             if (result.Results.Any(e => e.GameId == 0))
             {
-                result.Games.Add(new Game(){Id = 0,Name = "GAME NOT FOUND",LongName = "GAME NOT FOUND",Order = 999});
+                result.Games.Add(new Game() { Id = 0, Name = "GAME NOT FOUND", LongName = "GAME NOT FOUND", Order = 999 });
             }
 
             var enumerable = result.Results.Select(e => e.GameId).Distinct();

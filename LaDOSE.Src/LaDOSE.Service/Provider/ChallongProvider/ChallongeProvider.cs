@@ -47,8 +47,6 @@ namespace LaDOSE.Business.Provider.ChallongProvider
         {
             var result = await new CreateTournamentQuery(name, startAt, TournamentType.Double_Elimination, url).call(ApiCaller);
             return result;
-
-
         }
 
         public async Task<ParticipantResult> AddPlayer(int tournamentId, string userName)
@@ -56,7 +54,6 @@ namespace LaDOSE.Business.Provider.ChallongProvider
             var p = new ParticipantEntry(userName);
             var result = await new AddParticipantQuery(tournamentId, p).call(ApiCaller);
             return result;
-
         }
 
         public async Task<List<ChallongeTournament>> GetTournaments(DateTime? start, DateTime? end)
@@ -119,6 +116,7 @@ namespace LaDOSE.Business.Provider.ChallongProvider
             };
 
         }
+
         public async Task<ChallongeTournament> GetTournament(string urlTournament)
         {
 

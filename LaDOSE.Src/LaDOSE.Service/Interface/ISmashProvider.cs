@@ -16,7 +16,8 @@ namespace LaDOSE.Business.Interface
         Task<Event> ParseEvent(string slug);
         Task<TournamentResponse> GetTournament(string sludge);
 
+        Task<TournamentResponse> GetNames(string slug);
 
-        
+
     }
 }

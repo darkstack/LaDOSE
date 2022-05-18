@@ -307,6 +307,74 @@ namespace LaDOSE.Business.Provider.SmashProvider
         }
 
 
+
+
+               public async Task<TournamentResponse> GetNames(string slug)
+        {
+
+            var graphQLClient = new GraphQLHttpClient("https://api.smash.gg/gql/alpha", new NewtonsoftJsonSerializer());
+            graphQLClient.HttpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {ApiKey}");
+            var Event = new GraphQLRequest
+            {
+                Query = @"query TournamentQuery($slug: String) {
+                tournament(slug: $slug){
+                id
+
+                name
+
+                events {
+                id
+
+                name,
+                state,
+                videogame {
+                id,
+                name,
+                displayName
+            },
+            entrants{
+                nodes{
+                    id
+                        name,
+                        participants{
+                        id,
+                        gamerTag
+                        player{
+                            gamerTag
+                        }
+                    }
+                }
+            },
+            }
+			
+            }
+            }"
+                ,
+                OperationName = "TournamentQuery",
+                Variables = new
+                {
+                    slug = slug,
+                }
+            };
+
+            //GraphQLHttpRequest preprocessedRequest = await graphQLClient.Options.PreprocessRequest(EventType, graphQLClient);
+            //var x = preprocessedRequest.ToHttpRequestMessage(graphQLClient.Options, new NewtonsoftJsonSerializer());
+            //System.Diagnostics.Trace.WriteLine(x.Content.ReadAsStringAsync().Result);
+            //var sendAsync = await graphQLClient.HttpClient.SendAsync(x);
+            //System.Diagnostics.Trace.WriteLine(sendAsync.Content.ReadAsStringAsync().Result);
+
+            var graphQLResponse = await graphQLClient.SendQueryAsync<TournamentResponse>(Event);
+            if (graphQLResponse.Errors != null)
+            {
+                //EventType not done ? 
+                //throw new Exception("Error");
+            }
+            System.Diagnostics.Trace.Write(graphQLResponse.Data.Tournament.Name);
+
+            return graphQLResponse.Data;
+        }
+
+
         public async Task<TournamentResponse> GetTournament(string slug)
         {
 

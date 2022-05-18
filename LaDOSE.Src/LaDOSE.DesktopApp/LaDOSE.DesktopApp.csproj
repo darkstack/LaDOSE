@@ -127,11 +127,15 @@
     </Compile>
     <Compile Include="Utils\WpEventDeserialize.cs" />
     <Compile Include="Utils\WpfUtil.cs" />
+    <Compile Include="ViewModels\EventPlayerViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\GameViewModel.cs" />
     <Compile Include="ViewModels\TournamentResultViewModel.cs" />
     <Compile Include="ViewModels\WebNavigationViewModel.cs" />
     <Compile Include="ViewModels\WordPressViewModel.cs" />
+    <Compile Include="Views\EventPlayerView.xaml.cs">
+      <DependentUpon>EventPlayerView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\WebNavigationView.xaml.cs">
       <DependentUpon>WebNavigationView.xaml</DependentUpon>
     </Compile>
@@ -158,6 +162,10 @@
     <Page Include="UserControls\BookingUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EventPlayerView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\WebNavigationView.xaml">
       <Generator>MSBuild:Compile</Generator>
