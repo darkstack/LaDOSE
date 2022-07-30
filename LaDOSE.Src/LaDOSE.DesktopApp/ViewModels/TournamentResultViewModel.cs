@@ -229,7 +229,9 @@ namespace LaDOSE.DesktopApp.ViewModels
             this.To = DateTime.Now;
             this.From = DateTime.Now.AddMonths(-1);
             this.SelectRegex = "Ranking";
+            this.SelectEventRegex = @"Ranking #10\d{2}";
             this.Slug = "ranking-1001";
+            
             LoadTournaments();
             LoadEvents();
             base.OnInitialize();
@@ -426,7 +428,7 @@ namespace LaDOSE.DesktopApp.ViewModels
 
             var distinct = Results.Results.Select(e => e.GameId).Distinct();
 
-            var gamePlayed = Results.Games.Where(e=> distinct.Contains(e.Id));
+            var gamePlayed = Results.Games.Where(e=> distinct.Contains(e.Id)).OrderBy(e=>e.Order);
             foreach (var game in gamePlayed)
             {
                 List<ResultDTO> enumerable = Results.Results.Where(r => r.GameId == game.Id).ToList();
