@@ -76,8 +76,8 @@ namespace LaDOSE.Business.Provider.SmashProvider
                 }
             };
             var games = GameService.GetAll();
-            var querySmash = QuerySmash<TournamentResponse>(query);
-            List<Tournament> tournaments = querySmash.Result.Tournament.Events.Select(e => new Tournament()
+            var querySmash = await QuerySmash<TournamentResponse>(query);
+            List<Tournament> tournaments = querySmash.Tournament.Events.Select(e => new Tournament()
             {
                 Name = e.name,
                 SmashId = e.id,
@@ -92,9 +92,9 @@ namespace LaDOSE.Business.Provider.SmashProvider
             return new Event
             {
                 SmashSlug = slug,
-                Name = querySmash.Result.Tournament.Name,
-                SmashId = querySmash.Result.Tournament.id,
-                Date = querySmash.Result.Tournament.startAt,
+                Name = querySmash.Tournament.Name,
+                SmashId = querySmash.Tournament.id,
+                Date = querySmash.Tournament.startAt,
                 Tournaments = tournaments,
 
             };

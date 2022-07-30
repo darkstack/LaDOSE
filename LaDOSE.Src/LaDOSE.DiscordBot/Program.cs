@@ -90,7 +90,28 @@ namespace LaDOSE.DiscordBot
             _cnext.RegisterCommands<Hokuto>();
             _cnext.RegisterCommands<BotEvent>();
 
+            //discord.UserUpdated += async e =>
+            //{
+            //    await e.Client?.InitializeAsync();
+            //};
+            //discord.UserSettingsUpdated += async e =>
+            //{
+            //    await e.Client?.InitializeAsync();
+            //};
+            //discord.GuildMemberUpdated += async e =>
+            //{
+            //    await e.Client?.InitializeAsync();
+            //};
+            //discord.GuildRoleUpdated += async e =>
+            //{
+            //    e.Client?.InitializeAsync();
+            //};
 
+            //discord.UserSettingsUpdated += async e =>
+            //{
+            //    e.Client?.InitializeAsync();
+            //};
+            
             //discord.MessageCreated += async e =>
             //{
             //    if (e.Message.Content.ToLower().Equals("!result"))
@@ -105,10 +126,15 @@ namespace LaDOSE.DiscordBot
                 await Task.Delay(0);
                 //await e.Guild.GetDefaultChannel().SendMessageAsync($"Bonjour!");
             };
+
+            
             await discord.ConnectAsync();
             while (!cts.IsCancellationRequested)
             {
+                
                 await Task.Delay(200);
+
+                //if(discord.GetConnectionsAsync().Result.Count)
             }
             
         }
