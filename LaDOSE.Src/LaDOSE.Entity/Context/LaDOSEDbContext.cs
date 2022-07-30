@@ -1,6 +1,6 @@
 ﻿using LaDOSE.Entity.Challonge;
-
 using LaDOSE.Entity.Wordpress;
+using LaDOSE.Entity.BotEvent;
 using Microsoft.EntityFrameworkCore;
 
 namespace LaDOSE.Entity.Context
@@ -32,6 +32,10 @@ namespace LaDOSE.Entity.Context
         public DbSet<ChallongeParticipent> ChallongeParticipent { get; set; }
         public DbSet<ChallongeTournament> ChallongeTournament { get; set; }
 
+        #region BotEvents
+        public DbSet<BotEvent.BotEvent> BotEvent { get; set; }
+        public DbSet<BotEventResult> BotEventResult { get; set; }
+        #endregion
         public LaDOSEDbContext(DbContextOptions options) : base(options)
         {
         }
@@ -69,7 +73,12 @@ namespace LaDOSE.Entity.Context
                 .HasOne(e => e.Tournament)
                 .WithMany(e => e.Results)
                 .HasForeignKey(pt => pt.TournamentId);
-                
+
+            modelBuilder.Entity<BotEventResult>()
+                .HasOne(e => e.BotEvent)
+                .WithMany(e => e.Results)
+                .HasForeignKey(pt => pt.BotEventId);
+
 
 
             //modelBuilder.Entity<Set>()

@@ -20,14 +20,6 @@ namespace LaDOSE.DiscordBot.Command
         }
 
 
-        //[Command("hokuto")]
-        //public async Task HokutoAsync(CommandContext ctx)
-        //{
-
-        //    var i = r.Next(0, 3);
-        //    await ctx.RespondAsync(ctx.User?.Mention + " : " + Games[i].ToString());
-        //}
-
         [Command("hokuto")]
         public async Task HokutoUserAsync(CommandContext ctx, params DiscordMember[] user)
         {

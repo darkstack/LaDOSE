@@ -31,6 +31,7 @@ using LaDOSE.Business.Provider.SmashProvider;
 using LaDOSE.Entity.Challonge;
 using LaDOSE.Entity.Wordpress;
 using Result = LaDOSE.Entity.Challonge.Result;
+using LaDOSE.Entity.BotEvent;
 
 namespace LaDOSE.Api
 {
@@ -123,6 +124,8 @@ namespace LaDOSE.Api
                 cfg.CreateMap<WPEvent, LaDOSE.DTO.WPEventDTO>();
                 cfg.CreateMap<Result, LaDOSE.DTO.ResultDTO>();
                 cfg.CreateMap<Event, LaDOSE.DTO.EventDTO>();
+                cfg.CreateMap<BotEventResult, LaDOSE.DTO.BotEventResultDTO>();
+                cfg.CreateMap<BotEvent, LaDOSE.DTO.BotEventDTO>();
 
                 cfg.CreateMap<TournamentsResult, LaDOSE.DTO.TournamentsResultDTO>();
                 cfg.CreateMap<ChallongeParticipent, LaDOSE.DTO.ParticipentDTO>();
@@ -150,6 +153,7 @@ namespace LaDOSE.Api
             services.AddScoped<IWordPressService, WordPressService>();
             services.AddScoped<ITodoService, TodoService>();
             services.AddScoped<IEventService, EventService>();
+            services.AddScoped<IBotEventService, BotEventService>();
             
             services.AddScoped<IPlayerService, PlayerService>();
             services.AddTransient<IChallongeProvider>(p => new ChallongeProvider(   p.GetRequiredService<IGameService>(),

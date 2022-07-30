@@ -297,7 +297,7 @@ namespace LaDOSE.REST
             return Post<List<int>, bool>("Api/Tournament/ParseChallonge", ids);
         }
         #endregion
-
+        #region Tournamenet Event / Player
         public List<EventDTO> GetAllEvents()
         {
             CheckToken();
@@ -313,5 +313,33 @@ namespace LaDOSE.REST
             var restResponse = Client.Get<List<string>>(restRequest);
             return restResponse.Data;
         }
+        #endregion
+
+
+        #region Bot Command
+
+        public bool CreateBotEvent(string eventName)
+        {
+            CheckToken();
+            var restRequest = new RestRequest($"/api/BotEvent/CreateBotEvent/{eventName}", Method.GET);
+            var restResponse = Client.Get<bool>(restRequest);
+            return restResponse.Data;
+        }
+
+        public BotEventDTO GetLastBotEvent()
+        {
+            CheckToken();
+            var restRequest = new RestRequest($"/api/BotEvent/GetLastBotEvent/", Method.GET);
+            var restResponse = Client.Post<BotEventDTO>(restRequest);
+            return restResponse.Data;
+        }
+
+        public bool ResultBotEvent(BotEventSendDTO result)
+        {
+            CheckToken();
+            return Post<BotEventSendDTO,bool>("/api/BotEvent/ResultBotEvent", result);
+        }
+
+        #endregion
     }
 }

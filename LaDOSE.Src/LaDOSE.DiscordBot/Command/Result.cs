@@ -14,29 +14,21 @@ namespace LaDOSE.DiscordBot.Command
         }
 
 
-        //[RequireRolesAttribute("Staff")]
-        //[Command("update")]
-        //public async Task UpdateAsync(CommandContext ctx)
+        //[Command("last")]
+        //public async Task LastAsync(CommandContext ctx)
         //{
-        //    //var tournament = await dep.ChallongeService.GetLastTournament();
-        //    //await ctx.RespondAsync($"Mise à jour effectuée");
+        //    var lastTournamentMessage = dep.WebService.GetLastChallonge();
+        //    await ctx.RespondAsync(lastTournamentMessage);
         //}
 
-        [Command("last")]
-        public async Task LastAsync(CommandContext ctx)
-        {
-            var lastTournamentMessage = dep.WebService.GetLastChallonge();
-            await ctx.RespondAsync(lastTournamentMessage);
-        }
-
-        [RequireRolesAttribute("Staff")]
-        [Command("inscriptions")]
-        public async Task InscriptionsAsync(CommandContext ctx)
-        {
-            await ctx.TriggerTypingAsync();
-            var inscrits = dep.WebService.GetInscrits();
-            await ctx.RespondAsync(inscrits);
-        }
+        //[RequireRolesAttribute("Staff")]
+        //[Command("inscriptions")]
+        //public async Task InscriptionsAsync(CommandContext ctx)
+        //{
+        //    await ctx.TriggerTypingAsync();
+        //    var inscrits = dep.WebService.GetInscrits();
+        //    await ctx.RespondAsync(inscrits);
+        //}
 
         [RequireRolesAttribute("Staff")]
         [Command("UpdateDb")]
