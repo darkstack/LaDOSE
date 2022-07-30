@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LaDOSE.Api.Controllers
 {
-    public class GenericControllerDTO<T, TU, D> : Controller where TU : Entity.Context.Entity where T : IBaseService<TU>
+    public abstract class GenericControllerDTO<T, TU, D> : Controller where TU : Entity.Context.Entity where T : IBaseService<TU>
     {
         protected IMapper _mapper;
         protected T _service;
@@ -19,26 +19,26 @@ namespace LaDOSE.Api.Controllers
         }
 
         [HttpPost]
-        public D Post([FromBody]D dto)
+        public virtual D Post([FromBody]D dto)
         {
             TU entity = _mapper.Map<TU>(dto);
             return _mapper.Map<D>(_service.AddOrUpdate(entity));
         }
         [HttpGet]
-        public List<D> Get()
+        public virtual List<D> Get()
         {
 
             return _mapper.Map<List<D>>(_service.GetAll().ToList());
 
         }
         [HttpGet("{id}")]
-        public D Get(int id)
+        public virtual D Get(int id)
         {
             return _mapper.Map<D>(_service.GetById(id));
 
         }
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public virtual IActionResult Delete(int id)
         {
             try
             {

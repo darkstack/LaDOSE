@@ -85,7 +85,10 @@ namespace LaDOSE.Business.Provider.SmashProvider
                 Game = games.FirstOrDefault(g => g.SmashId == e.videogame.id)
                 
             }).ToList();
-
+            if (tournaments.Any(e => !e.Finish))
+            {
+                throw new Exception("Tournament not finished.");
+            }
             return new Event
             {
                 SmashSlug = slug,

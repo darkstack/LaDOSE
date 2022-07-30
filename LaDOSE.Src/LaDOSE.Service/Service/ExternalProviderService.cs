@@ -192,10 +192,11 @@ namespace LaDOSE.Business.Service
 
         }
 
-        public Task<List<Event>> ParseChallonge(List<int> ids)
-        {
-            return _challongeProvider.ParseEvent(ids);
-        }
+        //public Task<List<Event>> ParseChallonge(List<int> ids)
+        //{
+        //    return GetChallongeEvents(ids);
+        //    //return _challongeProvider.Get(ids);
+        //}
 
         private Event GetBySlug(string tournamentSlug)
         {
@@ -220,6 +221,7 @@ namespace LaDOSE.Business.Service
         {
             var events = await this._challongeProvider.ParseEvent(ids);
             this._context.Event.AddRange(events);
+            this._context.SaveChanges();
             return events;
         }
 

@@ -29,9 +29,9 @@ namespace LaDOSE.REST
         public void Connect(Uri url, string user, string password)
         {
             Client = new RestClient(url);
-
+#if DEBUG
             Client.Timeout = 999*1000;
-
+#endif
             this.username = user;
             this.password = password;
             GetToken(user, password);
@@ -75,7 +75,7 @@ namespace LaDOSE.REST
             }
         }
 
-        #region PostFix
+#region PostFix
 
         private T Post<T>(string resource,T entity)
         {
@@ -128,9 +128,9 @@ namespace LaDOSE.REST
 
         }
 
-        #endregion
+#endregion
 
-        #region WordPress
+#region WordPress
         public List<WPEventDTO> GetEvents()
         {
             CheckToken();
@@ -192,9 +192,9 @@ namespace LaDOSE.REST
         }
 
 
-        #endregion
+#endregion
 
-        #region Games
+#region Games
         public List<GameDTO> GetGames()
         {
             CheckToken();
@@ -215,14 +215,14 @@ namespace LaDOSE.REST
             var restResponse = Client.Execute(restRequest);
             return restResponse.IsSuccessful;
         }
-        #endregion
+#endregion
 
-        #region Events
+#region Events
 
 
-        #endregion
+#endregion
 
-        #region Todo
+#region Todo
 
         public List<TodoDTO> GetTodos()
         {
@@ -252,8 +252,8 @@ namespace LaDOSE.REST
         }
 
 
-        #endregion
-        #region Tournaments
+#endregion
+#region Tournaments
 
         public TournamentsResultDTO Test(string test)
         {
@@ -264,8 +264,8 @@ namespace LaDOSE.REST
             
         }
 
-        #endregion
-        #region Tournaments
+#endregion
+#region Tournaments
 
         public List<TournamentDTO> GetTournaments(TimeRangeDTO timeRange)
         {
@@ -296,8 +296,8 @@ namespace LaDOSE.REST
             CheckToken();
             return Post<List<int>, bool>("Api/Tournament/ParseChallonge", ids);
         }
-        #endregion
-        #region Tournamenet Event / Player
+#endregion
+#region Tournamenet Event / Player
         public List<EventDTO> GetAllEvents()
         {
             CheckToken();
@@ -313,10 +313,10 @@ namespace LaDOSE.REST
             var restResponse = Client.Get<List<string>>(restRequest);
             return restResponse.Data;
         }
-        #endregion
+#endregion
 
 
-        #region Bot Command
+#region Bot Command
 
         public bool CreateBotEvent(string eventName)
         {
@@ -340,6 +340,6 @@ namespace LaDOSE.REST
             return Post<BotEventSendDTO,bool>("/api/BotEvent/ResultBotEvent", result);
         }
 
-        #endregion
+#endregion
     }
 }

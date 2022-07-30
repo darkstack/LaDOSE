@@ -74,7 +74,7 @@ namespace LaDOSE.Api.Controllers
         {
             if (ids != null)
             {
-                var tournaments = await _service.ParseChallonge(ids);
+                var tournaments = await _service.GetChallongeEvents(ids);
                 return tournaments.Count>0;
             }
             return false;

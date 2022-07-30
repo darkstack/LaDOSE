@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LaDOSE.Api.Controllers
 {
-    public class GenericController<T, TU> : Controller where TU : Entity.Context.Entity where T : IBaseService<TU>
+    public abstract class GenericController<T, TU> : Controller where TU : Entity.Context.Entity where T : IBaseService<TU>
     {
         protected T _service;
 
@@ -18,13 +18,13 @@ namespace LaDOSE.Api.Controllers
         }
 
         [HttpPost]
-        public TU Post([FromBody] TU dto)
+        public virtual TU Post([FromBody] TU dto)
         {
             return _service.AddOrUpdate(dto);
         }
 
         [HttpGet]
-        public List<TU> Get()
+        public virtual List<TU> Get()
         {
 
             return _service.GetAll().ToList();
@@ -32,14 +32,14 @@ namespace LaDOSE.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public TU Get(int id)
+        public virtual TU Get(int id)
         {
             return _service.GetById(id);
 
         }
      
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public virtual IActionResult Delete(int id)
         {
             try
             {

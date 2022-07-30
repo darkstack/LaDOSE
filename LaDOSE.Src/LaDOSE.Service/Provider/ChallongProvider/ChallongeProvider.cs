@@ -197,14 +197,14 @@ namespace LaDOSE.Business.Provider.ChallongProvider
                 Name = eventName,
                 Date = Date,
             };
-            this.EventService.AddOrUpdate(currentevent);
+            //this.EventService.AddOrUpdate(currentevent);
 
             return currentevent;
         }
 
-        private const string RegexRanking = @"[R|r]anking.?#\w{3}";
+        private const string RegexRanking = @"[R|r]anking.?#\d{1,3}";
         private const string DateRanking = @"^\[(\d{2}\/\d{2}\/\d{2})\]";
-        private const string GameRanking = @"\-.(\w*)$";
+        private const string GameRanking = @"\-.((\w|\.|\s)*)$";
         public async Task<List<Event>> ParseEvent(List<int> idTournaments)
         {
             var result = new List<Event>();
