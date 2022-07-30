@@ -36,7 +36,7 @@ namespace LaDOSE.DesktopApp.ViewModels
             this.RestService = restService;
             Data = new ObservableCollection<KiouzeFile>();
             this.Slug = "tag-team-tuesdays-umvc3-team-tournament-2";
-            this.Chars = "akuma;blanka;boxer;cammy;chunli;claw;deejay;dhalsim;dictator;feilong;guile;honda;ken;ryu;sagat;thawk;zangief";
+            this.Chars = "akuma;blanka;boxer;cammy;chunli;claw;deejay;dhalsim;dictator;feilong;guile;honda;ken;ryu;sagat;thawk;zangief;o_blanka;o_boxer;o_cammy;o_chunli;o_claw;o_deejay;o_dhalsim;o_dictator;o_feilong;o_guile;o_honda;o_ken;o_ryu;o_sagat;o_thawk;o_zangief";
 
         }
 

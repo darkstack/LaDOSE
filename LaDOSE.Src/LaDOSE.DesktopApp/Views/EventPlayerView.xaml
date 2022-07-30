@@ -27,23 +27,27 @@
             <TextBox  Text="{Binding Chars}"></TextBox>
         </DockPanel>
 
-        <ListView Grid.Row="2" ItemsSource="{Binding Data}" x:Name="GamesListView">
+        <ListView Grid.Row="2" ItemsSource="{Binding Data}" x:Name="GamesListView" IsTabStop="False"  KeyboardNavigation.TabNavigation="Cycle">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                    <Setter Property="IsTabStop" Value="False"></Setter>
                 </Style>
+                
             </ListView.ItemContainerStyle>
+            
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
+                    <Grid Focusable="False">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*" Focusable="False"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Content="{Binding player}" ></Label>
-                        <ComboBox Grid.Column="1" Text="{Binding character}" ItemsSource="{Binding DataContext.CharList, RelativeSource={RelativeSource AncestorType=UserControl}}"></ComboBox>
+                        <Label IsTabStop="False" Grid.Column="0" Content="{Binding player}" ></Label>
+                        <ComboBox IsTabStop="True" Grid.Column="1" Text="{Binding character}" ItemsSource="{Binding DataContext.CharList, RelativeSource={RelativeSource AncestorType=UserControl}}"></ComboBox>
                     </Grid>
                 </DataTemplate>
+                
             </ListView.ItemTemplate>
 
         </ListView>
