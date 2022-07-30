@@ -59,14 +59,18 @@ namespace LaDOSE.DiscordBot.Command
             var q = Questions[rnd.Next(Questions.Count - 1)];
 
             var s = q.Split('_', StringSplitOptions.RemoveEmptyEntries);
-            for (int i = 0; i < s.Length - 1; i++)
+            if (s.Length == 1)
             {
-                response += s[i] + Answers[rnd.Next(Answers.Count - 1)];
+                response += q + " " + Answers[rnd.Next(Answers.Count - 1)];
             }
-            response += s[s.Length-1];
-
-
-
+            else
+            {
+                for (int i = 0; i < s.Length - 1; i++)
+                {
+                    response += s[i] + Answers[rnd.Next(Answers.Count - 1)];
+                }
+                response += s[s.Length - 1];
+            }
             await ctx.RespondAsync(response);
         }
 
