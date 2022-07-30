@@ -3,8 +3,9 @@ using System.Collections.Generic;
 
 namespace LaDOSE.Entity.Challonge
 {
-    public class ChallongeTournament : Context.Entity
+    public class ChallongeTournament
     {
+        public int Id { get; set;  }
         public int ChallongeId { get; set; }
         public string Name { get; set; }
         public Game Game { get; set; }

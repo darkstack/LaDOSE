@@ -2,9 +2,9 @@
 
 namespace LaDOSE.Entity.Challonge
 {
-    public class ChallongeParticipent : Context.Entity
-
+    public class ChallongeParticipent
     {
+        public int Id { get; set;  }
         public ChallongeTournament ChallongeTournament { get; set; }
         public int ChallongeTournamentId { get; set; }
         public int ChallongeId { get; set; }

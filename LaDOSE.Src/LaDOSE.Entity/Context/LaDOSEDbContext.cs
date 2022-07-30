@@ -29,8 +29,8 @@ namespace LaDOSE.Entity.Context
         public DbSet<Set> Set { get; set; }
 
         #endregion
-        public DbSet<ChallongeParticipent> ChallongeParticipent { get; set; }
-        public DbSet<ChallongeTournament> ChallongeTournament { get; set; }
+        //public DbSet<ChallongeParticipent> ChallongeParticipent { get; set; }
+        //public DbSet<ChallongeTournament> ChallongeTournament { get; set; }
 
         #region BotEvents
         public DbSet<BotEvent.BotEvent> BotEvent { get; set; }
@@ -45,7 +45,6 @@ namespace LaDOSE.Entity.Context
    
 
             base.OnModelCreating(modelBuilder);
-
 
 
             modelBuilder.Entity<Event>()
@@ -139,12 +138,12 @@ namespace LaDOSE.Entity.Context
                 .HasForeignKey(pt => pt.WPUserId);
             #endregion
 
-            #region Challonge 
-            modelBuilder.Entity<ChallongeParticipent>()
-                .HasOne(pt => pt.ChallongeTournament)
-                .WithMany(p => p.Participents)
-                .HasForeignKey(pt => pt.ChallongeTournamentId);
-            #endregion
+            //#region Challonge 
+            //modelBuilder.Entity<ChallongeParticipent>()
+            //    .HasOne(pt => pt.ChallongeTournament)
+            //    .WithMany(p => p.Participents)
+            //    .HasForeignKey(pt => pt.ChallongeTournamentId);
+            //#endregion
         }
     }
 
