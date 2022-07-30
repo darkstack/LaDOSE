@@ -109,30 +109,10 @@ namespace LaDOSE.Business.Service
 
         }
 
-        //public Task<List<Event>> ParseChallonge(List<int> ids)
-        //{
-        //    return GetChallongeEvents(ids);
-        //    //return _challongeProvider.Get(ids);
-        //}
-
         private Event GetBySlug(string tournamentSlug)
         {
             return _context.Event.FirstOrDefault(e => e.SmashSlug == tournamentSlug);
         }
-
-        //public async Task<TournamentsResult> GetSmashResult(string tournamentSlug)
-        //{
-        //    var parse = await this.ParseSmash(tournamentSlug);
-        //    var test = await GetEventResult(parse.Id);
-        //    return test;
-
-        //}
-
-        //public async Task<TournamentsResult> GetEventsResult(List<int> events)
-        //{
-        //    var test = await GetEventsResult(events);
-        //    return test;
-        //}
 
         public async Task<List<Event>> GetChallongeEvents(List<int> ids)
         {
@@ -141,47 +121,7 @@ namespace LaDOSE.Business.Service
             this._context.SaveChanges();
             return events;
         }
-
-
-        /// <summary>
-        /// Check if the tournament exist in database otherwise call Challonge.
-        /// </summary>
-        /// <param name="ids">tournaments ids</param>
-        /// <param name="games">List of known games</param>
-        /// <returns>List of the challonge's tournament with participents</returns>
-        private async Task<List<ChallongeTournament>> GetChallongeTournaments(List<int> ids, List<Game> games)
-        {
-            var tournaments = new List<ChallongeTournament>();
-            foreach (var idTournament in ids)
-            {
-                if (!TournamentExist(idTournament))
-                {
-                    ChallongeTournament challongeTournament = await _challongeProvider.GetTournament(idTournament);
-                    challongeTournament.Participents =
-                        await _challongeProvider.GetParticipents(challongeTournament.ChallongeId);
-
-                    var game = games.FirstOrDefault(g => challongeTournament.Name.Contains(g.Name));
-                    if (game != null) challongeTournament.Game = game;
-                    challongeTournament.Sync = DateTime.Now;
-
-                    tournaments.Add(challongeTournament);
-                    _context.ChallongeTournament.Add(challongeTournament);
-                    _context.SaveChanges();
-                }
-                else
-                {
-                    tournaments.Add(_context.ChallongeTournament.Where(e => e.ChallongeId == idTournament)
-                        .Include(e => e.Participents).First());
-                }
-            }
-
-            return tournaments;
-        }
-
-        private bool TournamentExist(int idTournament)
-        {
-            return this._context.ChallongeTournament.Any(e => e.ChallongeId == idTournament);
-        }
+        
 
         /// <summary>
         /// Get Events Result 
@@ -289,95 +229,6 @@ namespace LaDOSE.Business.Service
 
         }
 
-        ///// <summary>
-        ///// Get Result For one Event
-        ///// </summary>
-        ///// <param name="id"></param>
-        ///// <returns></returns>
-        //public async Task<TournamentsResult> GetEventResult(int id)
-        //{
-
-        //    Event cevent = _context.Event.Include(e => e.Tournaments).ThenInclude(t => t.Results).ThenInclude(e => e.Player).FirstOrDefault(e => e.Id == id);
-        //    var players = cevent.Tournaments.SelectMany(e => e.Results.Select(e => e.Player)).Distinct().ToList();
-        //    var games = _context.Game.ToList();
-
-        //    TournamentsResult result = new TournamentsResult();
-        //    result.Results = new List<Result>();
-        //    result.Games = new List<Game>();
-        //    result.Participents = new List<ChallongeParticipent>();
-        //    players.ForEach(e =>
-        //    {
-        //        var x = new ChallongeParticipent()
-        //        {
-        //            Name = e.Gamertag,
-        //            ChallongeId = e.Id,
-        //            Id = e.Id
-        //        };
-        //        result.Participents.Add(x);
-        //    });
-
-        //    foreach (var tournament in cevent.Tournaments.Where(e => e.Results != null && e.Results.Any()).ToList())
-        //    {
-
-        //        var tplayer = tournament.Results.Select(e => e.Player).ToList();
-        //        var playerCount = tplayer.Count();
-        //        var lesSacs = tplayer;
-        //        var currentRule = TournamentRules.FirstOrDefault(rules =>
-        //            rules.PlayerMin < playerCount && rules.PlayerMax >= playerCount
-        //        );
-        //        if (currentRule == null)
-        //        {
-        //            throw new Exception("Unable to find rules");
-        //        }
-
-        //        var first = tournament.Results.First(p => p.Rank == 1);
-        //        var second = tournament.Results.First(p => p.Rank == 2);
-        //        var thirdFourth = tournament.Results.Where(p => p.Rank == 3 || p.Rank == 4).ToList();
-        //        var Top8 = tournament.Results.Where(p => p.Rank > 4 && p.Rank < 9).ToList();
-        //        var Top16 = tournament.Results.Where(p => p.Rank > 8 && p.Rank <= 16).ToList();
-
-        //        result.Results.Add(new Result(first.Player.Gamertag, tournament.Game?.Id ?? 0, tournament.Id, tournament.Name, currentRule.FirstPoint, first.Rank));
-        //        lesSacs.Remove(first.Player);
-        //        result.Results.Add(new Result(second.Player.Gamertag, tournament.Game?.Id ?? 0, tournament.Id, tournament.Name, currentRule.SecondPoint, second.Rank));
-        //        lesSacs.Remove(second.Player);
-        //        thirdFourth.ForEach(r =>
-        //            result.Results.Add(new Result(r.Player.Gamertag, tournament.Game?.Id ?? 0, tournament.Id, tournament.Name,
-        //                currentRule.ThirdFourthPoint, r.Rank)));
-        //        thirdFourth.ForEach(p => lesSacs.Remove(p.Player));
-        //        if (currentRule.Top8Point != 0)
-        //        {
-        //            Top8.ForEach(r =>
-        //                result.Results.Add(new Result(r.Player.Gamertag, tournament.Game?.Id ?? 0, tournament.Id, tournament.Name,
-        //                    currentRule.Top8Point, r.Rank)));
-        //            Top8.ForEach(p => lesSacs.Remove(p.Player));
-        //        }
-
-        //        if (currentRule.Top16Point != 0)
-        //        {
-        //            Top16.ForEach(r =>
-        //                result.Results.Add(
-        //                    new Result(r.Player.Gamertag, tournament.Game?.Id ?? 0, tournament.Id, tournament.Name,
-        //                        currentRule.Top16Point, r.Rank)));
-        //            Top16.ForEach(p => lesSacs.Remove(p.Player));
-        //        }
-
-        //        lesSacs.ForEach(r =>
-        //            result.Results.Add(new Result(r.Gamertag, tournament.Game?.Id ?? 0, tournament.Id, tournament.Name,
-        //                currentRule.Participation, tournament.Results.FirstOrDefault(e => e.Player == r)?.Rank ?? 999)));
-
-        //    }
-
-        //    if (result.Results.Any(e => e.GameId == 0))
-        //    {
-        //        result.Games.Add(new Game() { Id = 0, Name = "GAME NOT FOUND", LongName = "GAME NOT FOUND", Order = 999 });
-        //    }
-
-        //    var enumerable = result.Results.Select(e => e.GameId).Distinct();
-        //    result.Games = _context.Game.Where(g => enumerable.Contains(g.Id)).ToList();
-
-        //    System.Diagnostics.Trace.WriteLine(result.Results);
-
-        //    return await Task.FromResult(result);
-        //}
+       
     }
 }
