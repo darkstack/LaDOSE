@@ -10,7 +10,7 @@ using LaDOSE.REST.Event;
 
 namespace LaDOSE.DesktopApp.ViewModels
 {
-    public class ShellViewModel : Conductor<IScreen>.Collection.AllActive
+    public class ShellViewModel : Conductor<IScreen>.Collection.OneActive
     {
         private string _user;
 
@@ -62,6 +62,7 @@ namespace LaDOSE.DesktopApp.ViewModels
         public void LoadGames()
         {
             ActivateItem(new GameViewModel(IoC.Get<RestService>()));
+            
         }
 
         public void TournamentResult()

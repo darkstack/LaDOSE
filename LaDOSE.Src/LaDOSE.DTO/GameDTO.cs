@@ -9,5 +9,6 @@
         public string ImgUrl { get; set; }
         public string WordPressTag { get; set; }
         public string WordPressTagOs { get; set; }
+        public int? SmashId { get; set; }
     }
 }

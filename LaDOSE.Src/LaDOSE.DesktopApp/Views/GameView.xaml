@@ -42,10 +42,10 @@
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
+      
             </Grid.RowDefinitions>
             <Button Grid.Row="0"  Grid.Column="0" x:Name="AddGame">Add Game</Button>
 
@@ -71,6 +71,15 @@
             <TextBox Grid.Row="5" Grid.Column="1"  Text="{Binding Path=CurrentGame.WordPressTag,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ></TextBox>
             <Label Grid.Row="6" Grid.Column="0">WpTagOs</Label>
             <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding Path=CurrentGame.WordPressTagOs,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ></TextBox>
+            <Label Grid.Row="7" Grid.Column="0">SmashId</Label>
+            <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding Path=CurrentGame.SmashId,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                <i:Interaction.Behaviors>
+                    <behaviors:TextBoxInputRegExBehaviour RegularExpression="^\d+$" MaxLength="9" EmptyValue="">
+
+                    </behaviors:TextBoxInputRegExBehaviour>
+                </i:Interaction.Behaviors>
+            </TextBox>
+
             <Button Grid.Row="9" Grid.ColumnSpan="2" x:Name="Update">Update</Button>
             
         </Grid>

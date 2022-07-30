@@ -168,9 +168,13 @@ namespace LaDOSE.DesktopApp.ViewModels
             {
                 _selectedGame = value;
                 //TODO: QUICK AND DIRTY
-                List<ResultDTO> resultForGame = this.Results.Results.Where(e => e.GameId == SelectedGame.Id).ToList();
-                First = resultForGame.OrderByDescending(e => e.Point).First().Player;
-                SelectedGameResult = new ObservableCollection<ResultDTO>(resultForGame);
+                List<ResultDTO> resultForGame = this.Results.Results.Where(e => e.GameId == SelectedGame?.Id).ToList();
+                if (resultForGame.Any())
+                {
+                    First = resultForGame.OrderByDescending(e => e.Point).First().Player;
+                    SelectedGameResult = new ObservableCollection<ResultDTO>(resultForGame);
+                }
+                
                 NotifyOfPropertyChange(() => SelectedGame);
             }
         }
