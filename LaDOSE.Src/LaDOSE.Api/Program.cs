@@ -37,7 +37,7 @@ namespace LaDOSE.Api
             return WebHost.CreateDefaultBuilder(args)
                 .UseContentRoot(Directory.GetCurrentDirectory())
             .UseConfiguration(config)
-                .UseKestrel(options => options.Listen(IPAddress.Any,int.Parse(config["Port"])))
+                .UseKestrel(options => options.Listen(IPAddress.Parse(config["AllowedHosts"]), int.Parse(config["Port"])))
                     .UseStartup<Startup>();
         }
     }
