@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace LaDOSE.Api.Controllers
 {
     
-    //[Authorize]
+    [Authorize]
     [Produces("application/json")]
     [Route("api/[controller]")]
     public class EventController : GenericControllerDTO<IEventService, Event, EventDTO>

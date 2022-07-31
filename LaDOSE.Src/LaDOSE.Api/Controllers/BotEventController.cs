@@ -14,8 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LaDOSE.Api.Controllers
 {
-    [AllowAnonymous]
-    //[Authorize]
+    [Authorize]
     [Produces("application/json")]
     [Route("api/[controller]")]
     public class BotEventController : GenericControllerDTO<IBotEventService, BotEvent, BotEventDTO>
