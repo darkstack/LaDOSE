@@ -17,9 +17,13 @@ namespace LaDOSE.Business.Service
 
         public int GetIdBySmash(ParticipantType participantUser)
         {
+            Player p = null;
             //var p2 = _context.Player.ToList();
-
-            var p = _context.Player.FirstOrDefault(e => e.SmashId == participantUser.user.id);
+            if (participantUser.user != null)
+            { 
+                p = _context.Player.FirstOrDefault(e => e.SmashId == participantUser.user.id);
+            }
+             
             
             if (p == null)
             {
@@ -28,15 +32,15 @@ namespace LaDOSE.Business.Service
                 {
                     if (p.SmashId == null)
                     {
-                        p.SmashId = participantUser.user.id;
+                        p.SmashId = participantUser.user?.id;
                     }
                     return p.Id;
                 }
                 var entity = new Player()
                 {
                     Gamertag = participantUser.gamerTag,
-                    Name = string.IsNullOrEmpty(participantUser.user.name)? participantUser.gamerTag : participantUser.user.name,
-                    SmashId = participantUser.user.id,
+                    Name = string.IsNullOrEmpty(participantUser.user?.name)? participantUser.gamerTag : participantUser.user.name,
+                    SmashId = participantUser.user?.id,
                 };
                 _context.Player.Add(entity);
                 _context.SaveChanges();

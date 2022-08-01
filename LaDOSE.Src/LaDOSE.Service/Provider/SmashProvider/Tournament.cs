@@ -61,7 +61,7 @@ namespace LaDOSE.Business.Provider.SmashProvider
     {
         public int id { get; set; }
         public string gamerTag { get; set; }
-        public UserType user { get; set; }
+        public UserType? user { get; set; }
     }
     public class UserType
     {
