@@ -3,31 +3,31 @@ using System.Text;
 using System.Threading.Tasks;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
+using LaDOSE.DiscordBot.Service;
 using LaDOSE.DTO;
 
 namespace LaDOSE.DiscordBot.Command
 {
-    public class BotEvent
+    public class BotEvent : BaseCommandModule
     {
-        private readonly Dependencies dep;
-
-        public BotEvent(Dependencies d)
+        private WebService dep;
+        public BotEvent(WebService d)
         {
             dep = d;
         }
 
-        [RequireRolesAttribute("Staff")]
+        [RequireRolesAttribute(RoleCheckMode.Any, "Staff")]
         [Command("newevent")]
         public async Task NewEventAsync(CommandContext ctx, string command)
         {
 
-            await ctx.RespondAsync(dep.WebService.RestService.CreateBotEvent(command).ToString());
+            await ctx.RespondAsync(dep.RestService.CreateBotEvent(command).ToString());
         }
-        [RequireRolesAttribute("Staff")]
+        [RequireRolesAttribute(RoleCheckMode.Any,"Staff")]
         [Command("staffs")]
         public async Task StaffAsync(CommandContext ctx)
         {
-            BotEventDTO currentEvent = dep.WebService.RestService.GetLastBotEvent();
+            BotEventDTO currentEvent = dep.RestService.GetLastBotEvent();
             StringBuilder stringBuilder = new StringBuilder();
 
             var present = currentEvent.Results.Where(x => x.Result).ToList();
@@ -40,19 +40,19 @@ namespace LaDOSE.DiscordBot.Command
             await ctx.RespondAsync(stringBuilder.ToString());
 
         }
-        [RequireRolesAttribute("Staff")]
+        [RequireRolesAttribute(RoleCheckMode.Any, "Staff")]
         [Command("present")]
         public async Task PresentAsync(CommandContext ctx)
         {
-            await ctx.RespondAsync(dep.WebService.RestService.ResultBotEvent(new DTO.BotEventSendDTO() { DiscordId = ctx.Member.Id.ToString(), DiscordName = ctx.Member.DisplayName, Present = true }).ToString());
+            await ctx.RespondAsync(dep.RestService.ResultBotEvent(new DTO.BotEventSendDTO() { DiscordId = ctx.Member.Id.ToString(), DiscordName = ctx.Member.DisplayName, Present = true }).ToString());
 
 
         }
-        [RequireRolesAttribute("Staff")]
+        [RequireRolesAttribute(RoleCheckMode.Any, "Staff")]
         [Command("absent")]
         public async Task AbsentAsync(CommandContext ctx)
         {
-            await ctx.RespondAsync(dep.WebService.RestService.ResultBotEvent(new DTO.BotEventSendDTO() { DiscordId = ctx.Member.Id.ToString(), DiscordName = ctx.Member.DisplayName, Present = false }).ToString());
+            await ctx.RespondAsync(dep.RestService.ResultBotEvent(new DTO.BotEventSendDTO() { DiscordId = ctx.Member.Id.ToString(), DiscordName = ctx.Member.DisplayName, Present = false }).ToString());
         }
     }
 }

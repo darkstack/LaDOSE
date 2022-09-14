@@ -9,16 +9,16 @@ using DSharpPlus.CommandsNext.Attributes;
 
 namespace LaDOSE.DiscordBot.Command
 {
-    public class Public
+    public class Public : BaseCommandModule
     {
-        private readonly Dependencies dep;
+        
         private static List<string> Quotes { get; set; }
         private static List<string> Questions { get; set; }
         private static List<string> Answers { get; set; }
         private Random rnd { get; set; }
-        public Public(Dependencies d)
+        public Public()
         {
-            dep = d;
+            
             rnd = new Random(DateTime.Now.Millisecond);
         }
 
@@ -65,9 +65,17 @@ namespace LaDOSE.DiscordBot.Command
             }
             else
             {
+                
                 for (int i = 0; i < s.Length - 1; i++)
                 {
-                    response += s[i] + Answers[rnd.Next(Answers.Count - 1)];
+                    if (s[i] == "" && i==0)
+                    {
+                        response += Answers[rnd.Next(Answers.Count - 1)];
+                    }
+                    else
+                    {
+                        response += s[i] + "***" + Answers[rnd.Next(Answers.Count - 1)].ToLower() + "***";
+                    }
                 }
                 response += s[s.Length - 1];
             }

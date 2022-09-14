@@ -9,14 +9,14 @@ using DSharpPlus.Entities;
 namespace LaDOSE.DiscordBot.Command
 {
 
-    public class Hokuto
+    public class Hokuto : BaseCommandModule
     {
-        private readonly Dependencies dep;
+        
         private static List<string> Games = new List<string> { "2X", "3.3", "Karnov" };
         private static Random r = new Random();
-        public Hokuto(Dependencies d)
+        public Hokuto()
         {
-            dep = d;
+            
         }
 
 
