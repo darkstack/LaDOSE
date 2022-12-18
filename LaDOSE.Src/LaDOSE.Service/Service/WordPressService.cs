@@ -46,7 +46,7 @@ namespace LaDOSE.Business.Service
         public bool UpdateBooking()
         {
             _context.Database.SetCommandTimeout(60);
-            _context.Database.ExecuteSqlCommand("call ladoseapi.ImportEvent();");
+            _context.Database.ExecuteSqlRaw("call ladoseapi.ImportEvent();");
             _context.Database.SetCommandTimeout(30);
             return true;
         }
