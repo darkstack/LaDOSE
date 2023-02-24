@@ -72,14 +72,21 @@ namespace LaDOSE.Api
                 x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
                 x.SerializerSettings.MaxDepth= 4;
             });
-            services.AddDbContextPool<LaDOSEDbContext>( // replace "YourDbContext" with the class name of your DbContext
-                options => options.UseMySql($"Server={MySqlServer};Database={MySqlDatabase};User={MySqlUser};Password={MySqlPassword};", // replace with your Connection String
-                    mysqlOptions =>
-                    {
-                        mysqlOptions.ServerVersion(new Version(10, 1, 16), ServerType.MariaDb); // replace with your Server Version and Type
-                    }
-                ));
-
+            // services.AddDbContextPool<LaDOSEDbContext>( // replace "YourDbContext" with the class name of your DbContext
+            //     
+            //     options => options.UseMySql($"Server={MySqlServer};Database={MySqlDatabase};User={MySqlUser};Password={MySqlPassword};", // replace with your Connection String
+            //         mysqlOptions =>
+            //         {
+            //             mysqlOptions.ServerVersion(new Version(10, 1, 16), ServerType.MariaDb); // replace with your Server Version and Type
+            //         }
+            //     ));
+            services.AddDbContextPool<LaDOSEDbContext>(options =>
+            {
+                options.UseMySql(
+                    $"Server={MySqlServer};Database={MySqlDatabase};User={MySqlUser};Password={MySqlPassword};",
+                    new MariaDbServerVersion(new Version(10, 1)));
+            });
+            
             var key = Encoding.ASCII.GetBytes(this.Configuration["JWTTokenSecret"]);
             services.AddAuthentication(x =>
                 {
