@@ -34,13 +34,6 @@ namespace LaDOSE.DiscordBot.Service
           
         }
 
-        private void CheckToken()
-        {
-            
-         
-        }
-
-
 
         public String GetInscrits()
         {

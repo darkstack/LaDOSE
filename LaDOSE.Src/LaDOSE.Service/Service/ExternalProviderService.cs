@@ -96,7 +96,7 @@ namespace LaDOSE.Business.Service
                 //POKEMON.
                 catch (Exception e)
                 {
-                    throw new Exception("FUCK !");
+                    throw new Exception($"FUCK ! {e.Message}");
                 }
                 return currentEvent;
             }

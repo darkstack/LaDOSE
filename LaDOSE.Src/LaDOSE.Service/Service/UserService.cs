@@ -20,6 +20,7 @@ namespace LaDOSE.Business.Service
         {
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
                 return null;
+            var p = _context.ApplicationUser.ToList();
             var user = _context.ApplicationUser.SingleOrDefault(x => x.Username == username);
 
             // check if username exists

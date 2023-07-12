@@ -1,28 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using LaDOSE.Business.Interface;
-using LaDOSE.Business.Provider;
 using LaDOSE.Business.Service;
 using LaDOSE.Entity;
 using LaDOSE.Entity.Context;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-//using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Pomelo.EntityFrameworkCore.MySql;
-using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using AutoMapper;
 using LaDOSE.Api.Helpers;
 using LaDOSE.Business.Helper;
@@ -32,6 +23,7 @@ using LaDOSE.Entity.Challonge;
 using LaDOSE.Entity.Wordpress;
 using Result = LaDOSE.Entity.Challonge.Result;
 using LaDOSE.Entity.BotEvent;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace LaDOSE.Api
 {
@@ -82,9 +74,7 @@ namespace LaDOSE.Api
             //     ));
             services.AddDbContextPool<LaDOSEDbContext>(options =>
             {
-                options.UseMySql(
-                    $"Server={MySqlServer};Database={MySqlDatabase};User={MySqlUser};Password={MySqlPassword};",
-                    new MariaDbServerVersion(new Version(10, 1)));
+                options.UseNpgsql(Configuration.GetConnectionString("DbContext")).ReplaceService<ISqlGenerationHelper,NpgsqlSqlGenerationLowercaseHelper>();
             });
             
             var key = Encoding.ASCII.GetBytes(this.Configuration["JWTTokenSecret"]);
