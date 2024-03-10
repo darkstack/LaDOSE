@@ -34,7 +34,7 @@ namespace LaDOSE.DesktopApp.Avalonia.Views
             if (e.Property.Name == "ItemsSource")
             {
                 Trace.WriteLine("Changed Binding");
-                
+                 
                 var grid = (sender as DataGrid);
                 grid.Columns.Clear();
                 var data = ViewModel.GridDataTable;

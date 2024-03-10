@@ -1,0 +1,57 @@
+name: Build App
+run-name: ${{ gitea.actor }} is testing out Gitea Actions 🚀
+on: [push]
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest-real
+    steps:
+      - name: Update 
+        run: | 
+          sudo apt-get update -y -qq
+          sudo apt-get install zip 
+          sudo sh -c "echo '192.168.1.253 descartes.local' >> /etc/hosts"
+      - name: GetDNS 
+        run: |
+          cat /etc/resolv.conf
+      - name: Setup .NET 6.x
+        uses: actions/setup-dotnet@v3
+        with:
+        # Semantic version range syntax or exact version of a dotnet version
+          dotnet-version: '6.x'
+      
+      - run: echo "Build."
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - run: echo "The ${{ gitea.repository }} repository has been cloned to the runner."
+      - name: List files in the repository
+        run: |
+          ls ${{ gitea.workspace }}
+      - name: Restore Deps
+        run : | 
+          cd LaDOSE.Src/
+          dotnet restore LaDOSE.linux.sln
+      - name: Build
+        run: |
+          cd LaDOSE.Src/
+          dotnet build --configuration Release --os linux  LaDOSE.DesktopApp.Avalonia
+          dotnet build --configuration Release --os win  LaDOSE.DesktopApp.Avalonia
+      - name: Zip file 
+        run: |
+          zip -r build-winx64.zip LaDOSE.Src/LaDOSE.DesktopApp.Avalonia/bin/Release/net6.0/win-x64/
+          zip -r build-linux64.zip LaDOSE.Src/LaDOSE.DesktopApp.Avalonia/bin/Release/net6.0/linux-x64/
+      - name: Upload Artifact Windows 
+        uses: actions/upload-artifact@v3
+        with:
+          path: build-winx64.zip
+          retention-days: 30
+          overwrite: true
+
+      - name: Upload Artifact Linux
+        uses: actions/upload-artifact@v3
+        with:
+          path: build-winx64.zip
+          retention-days: 30
+          overwrite: true
+      - run: echo "This job's status is ${{ job.status }}."
+
