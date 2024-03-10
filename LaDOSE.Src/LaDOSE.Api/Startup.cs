@@ -40,11 +40,6 @@ namespace LaDOSE.Api
         public void ConfigureServices(IServiceCollection services)
         {
             //Fix Gentoo Issue.
-   
-            var MySqlServer = this.Configuration["MySql:Server"];
-            var MySqlDatabase = this.Configuration["MySql:Database"];
-            var MySqlUser = this.Configuration["MySql:User"];
-            var MySqlPassword = this.Configuration["MySql:Password"];
             if (Convert.ToBoolean(this.Configuration["FixGentoo"]))
             {
                 try

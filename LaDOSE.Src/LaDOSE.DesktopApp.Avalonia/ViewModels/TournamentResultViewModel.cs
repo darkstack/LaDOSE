@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
@@ -8,19 +7,19 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Windows.Controls;
-using System.Windows.Forms;
-using LaDOSE.DesktopApp.Utils;
+using Avalonia.Collections;
+using Avalonia.Controls;
+using LaDOSE.DesktopApp.Avalonia.Utils;
 using LaDOSE.DTO;
 using LaDOSE.REST;
-using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
-using Screen = Caliburn.Micro.Screen;
+using ReactiveUI;
+using Splat;
 
-namespace LaDOSE.DesktopApp.ViewModels
+namespace LaDOSE.DesktopApp.Avalonia.ViewModels
 {
-    public class TournamentResultViewModel : Screen
+    public class TournamentResultViewModel : BaseViewModel
     {
-        public override string DisplayName => "Tournament Result";
+        public string DisplayName => "Tournament Result";
 
         private RestService RestService { get; set; }
         //Dictionary<string, Dictionary<int, int>> _computedResult;
@@ -28,13 +27,7 @@ namespace LaDOSE.DesktopApp.ViewModels
         #region Properties
 
         private string css = string.Empty;
-            
-                            //"strong { font-weight: 700;} ". +
-                            // "a { color: #ff9024;}"+
-                            // "body { color: #efefef;background-color: #141415; }" +
-                            // ""+
-                            // "a:hover, .entry-meta span a:hover, .comments-link a:hover, body.coldisplay2 #front-columns a:active {color: #cb5920;}"+
-                            // "tr td { border: 1px dashed #3D3D3D;} ";
+     
         private String _selectRegex;
 
         public String SelectRegex
@@ -43,7 +36,7 @@ namespace LaDOSE.DesktopApp.ViewModels
             set
             {
                 _selectRegex = value;
-                NotifyOfPropertyChange(() => SelectRegex);
+                RaisePropertyChanged(nameof(SelectRegex));
             }
         }
 
@@ -55,7 +48,7 @@ namespace LaDOSE.DesktopApp.ViewModels
             set
             {
                 _selectEventRegex = value;
-                NotifyOfPropertyChange(() => SelectEventRegex);
+                RaisePropertyChanged(nameof(SelectEventRegex));
             }
         }
         private string _slug;
@@ -65,7 +58,7 @@ namespace LaDOSE.DesktopApp.ViewModels
             set
             {
                 _slug = value;
-                NotifyOfPropertyChange(() => Slug);
+                RaisePropertyChanged(nameof(Slug));
             }
         }
 
@@ -87,34 +80,34 @@ namespace LaDOSE.DesktopApp.ViewModels
             set
             {
                 _htmlContent = value;
-                NotifyOfPropertyChange(() => HtmlContent);
-                NotifyOfPropertyChange(() => Html);
+                RaisePropertyChanged(nameof(HtmlContent));
+                RaisePropertyChanged(nameof(Html));
             }
         }
 
 
 
-        private DateTime _from;
+        private DateTimeOffset _from;
 
-        public DateTime From
+        public DateTimeOffset From
         {
             get { return _from; }
             set
             {
                 _from = value;
-                NotifyOfPropertyChange(() => From);
+                RaisePropertyChanged(nameof(From));
             }
         }
 
-        private DateTime _to;
+        private DateTimeOffset _to;
 
-        public DateTime To
+        public DateTimeOffset To
         {
             get { return _to; }
             set
             {
                 _to = value;
-                NotifyOfPropertyChange(() => To);
+                RaisePropertyChanged(nameof(To));
             }
         }
 
@@ -130,7 +123,7 @@ namespace LaDOSE.DesktopApp.ViewModels
             set
             {
                 _results = value;
-                NotifyOfPropertyChange(() => Results);
+                RaisePropertyChanged(nameof(Results));
             }
         }
 
@@ -142,7 +135,7 @@ namespace LaDOSE.DesktopApp.ViewModels
             set
             {
                 _selectedEvents = value;
-                NotifyOfPropertyChange(() => SelectedEvents);
+                RaisePropertyChanged(nameof(SelectedEvents));
             }
         }
 
@@ -154,7 +147,7 @@ namespace LaDOSE.DesktopApp.ViewModels
             set
             {
                 _selectedTournaments = value;
-                NotifyOfPropertyChange(() => SelectedTournaments);
+                RaisePropertyChanged(nameof(SelectedTournaments));
             }
         }
 
@@ -175,7 +168,7 @@ namespace LaDOSE.DesktopApp.ViewModels
                     SelectedGameResult = new ObservableCollection<ResultDTO>(resultForGame);
                 }
                 
-                NotifyOfPropertyChange(() => SelectedGame);
+                RaisePropertyChanged(nameof(SelectedGame));
             }
         }
 
@@ -187,12 +180,13 @@ namespace LaDOSE.DesktopApp.ViewModels
             set
             {
                 _selectedGameResult = value;
-                NotifyOfPropertyChange(() => SelectedGameResult);
+                RaisePropertyChanged(nameof(SelectedGameResult));
             }
         }
 
         private String _first;
         private DataTable _gridDataTable;
+        private string _error;
 
         public String First
         {
@@ -200,65 +194,62 @@ namespace LaDOSE.DesktopApp.ViewModels
             set
             {
                 _first = value;
-                NotifyOfPropertyChange(() => First);
+                RaisePropertyChanged(nameof(First));
             }
         }
 
         #endregion
 
-        public TournamentResultViewModel(RestService restService)
+        public TournamentResultViewModel(IScreen hostScreen):base(hostScreen,"Tournament")
         {
-            this.RestService = restService;
+            this.RestService = Locator.Current.GetService<RestService>();;
             _selectedTournaments = new ObservableCollection<TournamentDTO>();
             _selectedEvents = new ObservableCollection<EventDTO>();
             Tournaments = new List<TournamentDTO>();
             Events = new List<EventDTO>();
-
+            OnInitialize();
         }
 
 
-        protected override void OnInitialize()
+        protected void OnInitialize()
         {
-            var manifestResourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("LaDOSE.DesktopApp.Resources.css.css");
-            using (var sr = new StreamReader(manifestResourceStream))
-            {
-                this.css = sr.ReadToEnd();
-            }
+            // var manifestResourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("LaDOSE.DesktopApp.Resources.css.css");
+            // using (var sr = new StreamReader(manifestResourceStream))
+            // {
+            //     this.css = sr.ReadToEnd();
+            // }
             
 
-            this.To = DateTime.Now;
-            this.From = DateTime.Now.AddMonths(-1);
+            this.To = new DateTimeOffset(DateTime.Now);
+            this.From = new DateTimeOffset(DateTime.Now.AddMonths(-1));
             this.SelectRegex = "Ranking";
             this.SelectEventRegex = @"Ranking #10\d{2}";
             this.Slug = "ranking-1001";
             
             LoadTournaments();
             LoadEvents();
-            base.OnInitialize();
         }
 
         public void LoadTournaments()
         {
-            WpfUtil.Await(() =>
-            {
-                var tournamentDtos = this.RestService
-                    .GetTournaments(new TimeRangeDTO() {From = this.From, To = this.To}).ToList();
-                this.Tournaments = tournamentDtos;
+  
+                // var tournamentDtos = this.RestService
+                //     .GetTournaments(new TimeRangeDTO() {From = this.From, To = this.To}).ToList();
+                // this.Tournaments = tournamentDtos;
 
-                NotifyOfPropertyChange("Tournaments");
-            });
+                RaisePropertyChanged(nameof(Tournaments));
+        
         }
 
         public void LoadEvents()
         {
-            WpfUtil.Await(() =>
-            {
+    
                 var eventsDtos = this.RestService
                     .GetAllEvents().ToList();
                 this.Events = eventsDtos;
 
-                NotifyOfPropertyChange("Events");
-            });
+                RaisePropertyChanged(nameof(Events));
+           
         }
 
         public DataTable GridDataTable
@@ -267,44 +258,61 @@ namespace LaDOSE.DesktopApp.ViewModels
             set
             {
                 _gridDataTable = value;
-                NotifyOfPropertyChange(() => GridDataTable);
+                RaisePropertyChanged(nameof(GridDataTable));
+                RaisePropertyChanged(nameof(GridDataTableView));
+            }
+        }
+        public DataView GridDataTableView
+        {
+            get
+            {
+                DataView gridDataTableView = _gridDataTable?.AsDataView();
+                return gridDataTableView;
             }
         }
 
         public void Select()
         {
-            WpfUtil.Await(() =>
-            {
+      
                 var tournamentsIds = SelectedEvents.Select(e => e.Id).ToList();
                 var resultsDto = this.RestService.GetResults(tournamentsIds);
                 this.Results = resultsDto;
                 ComputeDataGrid();
                 ComputeHtml();
-            });
+        
         }
         public void GetSmash()
         {
-            WpfUtil.Await(() =>
-            {
+
               
                 var resultsDto = this.RestService.ParseSmash(Slug);
                 if (!resultsDto)
                 {
-                    MessageBox.Show("Fail");
+                    Error = "Error getting Smash";
                 }
-            });
+          
         }
+
+        public string Error
+        {
+            get => _error;
+            set
+            {
+                if (value == _error) return;
+                _error = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public void GetChallonge()
         {
-            WpfUtil.Await(() =>
-            {
+           
                 var ids = SelectedTournaments.Select(e => e.ChallongeId).ToList();
                 var resultsDto = this.RestService.ParseChallonge(ids);
                 if (!resultsDto)
                 {
-                    MessageBox.Show("Fail");
+                    Error = "Fail";
                 }
-            });
         }
 
         public void UpdateEvent()
@@ -329,14 +337,14 @@ namespace LaDOSE.DesktopApp.ViewModels
             var selectedTournaments = this.Tournaments.Where(e => Regex.IsMatch(e.Name, this.SelectRegex)).ToList();
             this.SelectedTournaments.Clear();
             if (selectedTournaments.Count > 0)
-                selectedTournaments.ForEach(e => this.SelectedTournaments.AddUI(e));
+                selectedTournaments.ForEach(e => this.SelectedTournaments.Add(e));
         }
         public void SelectEvent()
         {
             var selectedEvents = this.Events.Where(e => Regex.IsMatch(e.Name, this.SelectEventRegex)).ToList();
             this.SelectedEvents.Clear();
             if (selectedEvents.Count > 0)
-                selectedEvents.ForEach(e => this.SelectedEvents.AddUI(e));
+                selectedEvents.ForEach(e => this.SelectedEvents.Add(e));
         }
         //This could be simplified the Dictionary was for a previous usage, but i m too lazy to rewrite it. 
         private void ComputeDataGrid()
@@ -367,7 +375,7 @@ namespace LaDOSE.DesktopApp.ViewModels
                 {
                     var resultsGame = Results.Games[j];
                     var points = GetPlayerPoint(resultsParticipent, resultsGame.Id);
-                    dataRow[resultsGame.Name.Replace('.', ' ')] = points!=0?(object) points:DBNull.Value;
+                    dataRow[resultsGame.Name.Replace('.', ' ')] = points!=0?points:0;
                     total += points;
                 }
                 dataRow["Total"] = total;
@@ -389,33 +397,33 @@ namespace LaDOSE.DesktopApp.ViewModels
 
         private void ExportToCSV()
         {
-            if (this.GridDataTable != null)
-            {
-                var dataTable = this.GridDataTable.DefaultView.ToTable();
-                SaveFileDialog sfDialog = new SaveFileDialog()
-                {
-                    Filter = "Csv Files (*.csv)|*.csv|All Files (*.*)|*.*",
-                    AddExtension = true
-                };
-                if (sfDialog.ShowDialog() == true)
-                {
-                    StringBuilder sb = new StringBuilder();
-
-                    IEnumerable<string> columnNames = dataTable.Columns.Cast<DataColumn>()
-                        .Select(column => column.ColumnName);
-                    sb.AppendLine(string.Join(";", columnNames));
-
-                    foreach (DataRow row in dataTable.Rows)
-                    {
-                        //EXCEL IS A BITCH
-                        IEnumerable<string> fields = row.ItemArray.Select(field =>
-                            string.Concat("\"", field.ToString().Replace("\"", "\"\""), "\""));
-                        sb.AppendLine(string.Join(";", fields));
-                    }
-
-                    File.WriteAllText(sfDialog.FileName, sb.ToString());
-                }
-            }
+            // if (this.GridDataTable != null)
+            // {
+            //     var dataTable = this.GridDataTable.DefaultView.ToTable();
+            //     SaveFileDialog sfDialog = new SaveFileDialog()
+            //     {
+            //         Filter = "Csv Files (*.csv)|*.csv|All Files (*.*)|*.*",
+            //         AddExtension = true
+            //     };
+            //     if (sfDialog.ShowDialog() == true)
+            //     {
+            //         StringBuilder sb = new StringBuilder();
+            //
+            //         IEnumerable<string> columnNames = dataTable.Columns.Cast<DataColumn>()
+            //             .Select(column => column.ColumnName);
+            //         sb.AppendLine(string.Join(";", columnNames));
+            //
+            //         foreach (DataRow row in dataTable.Rows)
+            //         {
+            //             //EXCEL IS A BITCH
+            //             IEnumerable<string> fields = row.ItemArray.Select(field =>
+            //                 string.Concat("\"", field.ToString().Replace("\"", "\"\""), "\""));
+            //             sb.AppendLine(string.Join(";", fields));
+            //         }
+            //
+            //         File.WriteAllText(sfDialog.FileName, sb.ToString());
+            //     }
+            // }
         }
 
         private void ComputeHtml()
@@ -483,7 +491,7 @@ namespace LaDOSE.DesktopApp.ViewModels
         }
         public void CopyHtml()
         {
-            System.Windows.Clipboard.SetText(this.HtmlContent);
+            // System.Windows.Clipboard.SetText(this.HtmlContent);
         }
 
         private int GetPlayerPoint(string name, int gameid)

@@ -71,7 +71,7 @@ namespace LaDOSE.Api.Controllers
             });
         }
 
-        //[AllowAnonymous]
+        [AllowAnonymous]
         [HttpPost("register")]
         public IActionResult Register([FromBody]ApplicationUser userDto)
         {

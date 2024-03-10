@@ -1,0 +1,82 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="LaDOSE.DesktopApp.Avalonia.Views.GamesView"
+             xmlns:vm="using:LaDOSE.DesktopApp.Avalonia.ViewModels"
+             x:DataType="vm:GamesViewModel"
+             >
+   <Grid Row="4" Column="1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" x:Name="LoadGames" Command="{Binding LoadGames}" >Load Games</Button>
+        
+        <ListBox Grid.Row="1" ItemsSource="{Binding Games}" x:Name="GamesListView" SelectedItem="{Binding CurrentGame}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="{Binding Order}"></Label>
+                        <Label> - </Label>
+                        <Label Content="{Binding Name}"></Label>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            
+        </ListBox>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+      
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0"  Grid.Column="0" x:Name="AddGame"   Command="{Binding AddGame}">Add Game</Button>
+
+            <Button Grid.Row="0"  Grid.Column="1" x:Name="DeleteGame"  Command="{Binding DeleteGame}">Delete Game</Button>
+            <Label Grid.Row="1" Grid.Column="0">Id</Label>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=CurrentGame.Id,Mode=TwoWay}" IsReadOnly="True"></TextBox>
+
+            <Label Grid.Row="2" Grid.Column="0">Name</Label>
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=CurrentGame.Name,Mode=TwoWay}" ></TextBox>
+
+            <Label Grid.Row="3" Grid.Column="0">Order</Label>
+            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=CurrentGame.Order,Mode=TwoWay}">
+                <!-- <i:Interaction.Behaviors> -->
+                <!--     <behaviors:TextBoxInputRegExBehaviour RegularExpression="^\d+$" MaxLength="9" EmptyValue="0"> -->
+                <!-- -->
+                <!--     </behaviors:TextBoxInputRegExBehaviour> -->
+                <!-- </i:Interaction.Behaviors> -->
+            </TextBox>
+            <Label Grid.Row="4" Grid.Column="0">LongName</Label>
+            <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Path=CurrentGame.LongName,Mode=TwoWay}" ></TextBox>
+
+            <Label Grid.Row="5" Grid.Column="0">WpTag</Label>
+            <TextBox Grid.Row="5" Grid.Column="1"  Text="{Binding Path=CurrentGame.WordPressTag,Mode=TwoWay}" ></TextBox>
+            <Label Grid.Row="6" Grid.Column="0">WpTagOs</Label>
+            <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding Path=CurrentGame.WordPressTagOs,Mode=TwoWay}" ></TextBox>
+            <Label Grid.Row="7" Grid.Column="0">SmashId</Label>
+            <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding Path=CurrentGame.SmashId,Mode=TwoWay}">
+
+            </TextBox>
+
+            <Button Grid.Row="9" Grid.ColumnSpan="2" x:Name="Update" Command="{Binding Update}">Update</Button>
+            
+        </Grid>
+       </Grid>
+</UserControl>

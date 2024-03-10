@@ -24,7 +24,10 @@ namespace LaDOSE.REST
 
         public event EventHandler<UpdatedJwtEventHandler> UpdatedJwtEvent;
 
-        public RestService() { }
+        public RestService()
+        {
+            
+        }
     
 
         public void Connect(Uri url, string user, string password)
@@ -36,7 +39,7 @@ namespace LaDOSE.REST
 #if DEBUG
                 options.MaxTimeout = Int32.MaxValue;
 #endif
-                options.Authenticator = new JwtAuthenticator("token");
+                options.Authenticator = new JwtAuthenticator(token);
             });
 
             this.username = user;

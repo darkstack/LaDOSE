@@ -1,0 +1,212 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="LaDOSE.DesktopApp.Avalonia.Views.TournamentResultView"
+             xmlns:vm="using:LaDOSE.DesktopApp.Avalonia.ViewModels"
+             x:DataType="vm:TournamentResultViewModel"
+>
+    <Grid Row="2" Column="1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid Row="0" Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid Row="0" Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,5">
+                    <Label>Date :</Label>
+                    <StackPanel Orientation="Horizontal" Width="210">
+                        <DatePicker SelectedDate="{Binding From}" Width="100"  BorderBrush="{x:Null}">
+                        </DatePicker>
+
+                        <DatePicker SelectedDate="{Binding To}" Width="100" Margin="5,0,5,0" BorderBrush="{x:Null}">
+                        </DatePicker>
+                    </StackPanel>
+
+                    <Label>Usefull :</Label>
+                    <Button Padding="5,0,5,0" x:Name="SelectMonth" Command="{Binding SelectMonth}">Month</Button>
+                    <Button Padding="5,0,5,0" Margin="5,0,5,0" x:Name="SelectYear" Command="{Binding SelectYear}">Year</Button>
+
+                </StackPanel>
+                <Button Grid.Row="1" x:Name="LoadTournaments" Command="{Binding LoadTournaments}">Update</Button>
+                <ListBox Grid.Row="2" ItemsSource="{Binding Tournaments}" x:Name="TournamentList" Margin="0,0,0,5"
+                  IsTextSearchEnabled="True" TextSearch.Text="Name"
+                  SelectedItems="{Binding SelectedTournaments}"
+                  SelectionMode="Multiple">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="5,0,0,0" Text="{Binding Name}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
+                </ListBox>
+                <DockPanel Grid.Row="3" Dock="Left">
+                    <Label>Select :</Label>
+                    <TextBox Width="200" Text="{Binding SelectRegex}"></TextBox>
+                    <Button Padding="5,0,5,0" Margin="5,0,5,0" x:Name="SelectRegexp" Command="{Binding SelectRegexp}">Select</Button>
+                    <Button Padding="5,0,5,0" Margin="5,0,5,0" x:Name="GetChallonge" Command="{Binding GetChallonge}">Import</Button>
+                </DockPanel>
+
+            </Grid>
+            <Grid Row="0" Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal"  Margin="0,0,0,6">
+                    <Label> Smash Slug :</Label>
+                    <TextBox Width="200" Text="{Binding Slug}"></TextBox>
+                    <Button Margin="5,0,5,0"  x:Name="GetSmash" Command="{Binding GetSmash}" >Import Smash Event</Button>
+                </StackPanel>
+                
+                <Button Grid.Row="1"  x:Name="UpdateEvent" Command="{Binding UpdateEvent}">Update Event</Button>
+
+                <ListBox Grid.Row="2" ItemsSource="{Binding Events}" Margin="0,0,0,5"
+                          IsTextSearchEnabled="True" TextSearch.Text="Name" SelectionMode="Multiple"
+                          SelectedItems="{Binding SelectedEvents}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Id}" />
+                                <TextBlock Margin="5,0,0,0" Text="{Binding Name}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
+                </ListBox>
+                <DockPanel Grid.Row="3" Dock="Left">
+                    <Label>Select :</Label>
+                    <TextBox Width="200" Text="{Binding SelectEventRegex}"></TextBox>
+                    <Button Padding="5,0,5,0" Margin="5,0,5,0" x:Name="SelectEvent" Command="{Binding SelectEvent}">Select</Button>
+                </DockPanel>
+            </Grid>
+        </Grid>
+
+        <Grid Row="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <!--<DockPanel Grid.Row="0" Grid.ColumnSpan="3" Dock="Left">
+                <Label>Select :</Label>
+                <TextBox Width="200" Text="{Binding SelectRegex}"></TextBox>
+                <Button Padding="5,0,5,0" Margin="5,0,5,0" x:Name="SelectRegexp">Select</Button>
+                <Button  x:Name="Select" >Get Tournaments Result</Button>
+            </DockPanel>-->
+            <Button  x:Name="Select" Grid.ColumnSpan="3" Command="{Binding Select}">Get Tournaments Result</Button>
+
+
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal">
+                <TextBlock> Game :</TextBlock>
+                <TextBlock Margin="5,0,0,0" Text="{Binding Results.Games.Count}" />
+
+            </StackPanel>
+            <ListBox Grid.Row="2" ItemsSource="{Binding Results.Games}" Margin="5,5,5,5"
+                      IsTextSearchEnabled="True" TextSearch.Text="Name"
+                      SelectedItem="{Binding SelectedGame}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Id}" />
+                            <TextBlock Margin="5,0,0,0" Text="{Binding Name}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+            </ListBox>
+            <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal">
+                <TextBlock> Participents :</TextBlock>
+                <TextBlock Margin="5,0,0,0" Text="{Binding Results.Participents.Count}" />
+
+            </StackPanel>
+            <ListBox Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Results.Participents}" Margin="5,5,5,5"
+                      IsTextSearchEnabled="True" TextSearch.Text="Name">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="5,0,0,0" Text="{Binding Name}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+            </ListBox>
+
+            <TabControl Grid.Row="2" Grid.Column="2">
+                <TabItem Header="Result">
+                    <DataGrid x:Name="DataGrid" PropertyChanged="DataGrid_OnPropertyChanged" ItemsSource="{Binding GridDataTableView}"  CanUserSortColumns="True" BorderThickness="1" BorderBrush="Gray"/>
+                </TabItem>
+                <TabItem Header="By Game">
+                    <DockPanel>
+
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                            <TextBlock> Total :</TextBlock>
+                            <TextBlock Text="{Binding SelectedGameResult.Count}" />
+                        </StackPanel>
+                        <ListBox ItemsSource="{Binding SelectedGameResult}" Margin="5,5,5,5"
+                                  IsTextSearchEnabled="True" TextSearch.Text="Name" DockPanel.Dock="Top">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Margin="5,0,0,0" Text="{Binding Player}" />
+                                        <TextBlock Margin="5,0,0,0" Text="{Binding Point}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+
+                        </ListBox>
+
+                    </DockPanel>
+                </TabItem>
+                <TabItem Header="HTML">
+                    <DockPanel>
+                        <Button x:Name="CopyHtml" DockPanel.Dock="Top" Command="{Binding CopyHtml}">Copy HTML to clipboard</Button>
+                        <TextBox Text="{Binding Html}" />
+                    </DockPanel>
+                </TabItem>
+            </TabControl>
+
+            <Button Grid.Row="4" Grid.ColumnSpan="3" x:Name="Export" Command="{Binding Export}">Export</Button>
+
+        </Grid>
+ 
+    </Grid>
+</UserControl>

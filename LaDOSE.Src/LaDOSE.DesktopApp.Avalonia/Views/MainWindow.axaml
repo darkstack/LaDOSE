@@ -1,0 +1,52 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:LaDOSE.DesktopApp.Avalonia.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:reactiveUi="http://reactiveui.net"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="LaDOSE.DesktopApp.Avalonia.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="LaDOSE.DesktopApp.Avalonia">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+  <Grid Row="4" Column="1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Events" Command="{Binding RoutedViewViewHost.ShowTournament}">
+                </MenuItem>
+                <MenuItem Header="_Games" Command="{Binding RoutedViewViewHost.ShowGames}" >
+                </MenuItem>
+                <MenuItem Header="_Tournaments">
+                </MenuItem>
+                <MenuItem Header="_EventPlayers">
+                </MenuItem>
+                <MenuItem Header="_Info" Command="{Binding RoutedViewViewHost.ShowInfo}" />
+                <MenuItem Header="_Close" Command="{Binding CloseApp}" />
+            </MenuItem>
+        </Menu>
+
+      <TabControl Grid.Row="1" TabStripPlacement="Left">
+          <TabItem Header="{Binding Path=RoutedViewViewHost.Current}">
+              <DockPanel DataContext="{Binding RoutedViewViewHost}">
+                  <reactiveUi:RoutedViewHost Router="{Binding Router}"/>
+              </DockPanel>
+          </TabItem>
+      </TabControl>
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+        <TextBlock> User : </TextBlock>
+        <TextBlock Margin="5,0,0,0"></TextBlock>
+        </StackPanel>
+    </Grid>
+</Window>

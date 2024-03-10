@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace LaDOSE.DesktopApp.Utils
+namespace LaDOSE.DesktopApp.Avalonia.Utils
 {
     public static class CustomListExtension
     {
