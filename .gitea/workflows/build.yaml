@@ -43,7 +43,8 @@ jobs:
       - name: Upload Artifact Windows 
         uses: actions/upload-artifact@v3
         with:
-          path: build-winx64.zip
+          path: build-linux64.zip
+          name: build-linux64.zip
           retention-days: 30
           overwrite: true
 
@@ -51,6 +52,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           path: build-winx64.zip
+          name: build-winx64.zip
           retention-days: 30
           overwrite: true
       - run: echo "This job's status is ${{ job.status }}."
