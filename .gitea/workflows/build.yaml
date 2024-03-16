@@ -1,5 +1,5 @@
 name: Build App
-run-name: ${{ gitea.actor }} is testing out Gitea Actions 🚀
+run-name: ${{ gitea.actor }} is building
 on: [push]
 
 jobs:
@@ -17,16 +17,13 @@ jobs:
       - name: Setup .NET 6.x
         uses: actions/setup-dotnet@v3
         with:
-        # Semantic version range syntax or exact version of a dotnet version
+          # Semantic version range syntax or exact version of a dotnet version
           dotnet-version: '6.x'
-      
+
       - run: echo "Build."
       - name: Check out repository code
         uses: actions/checkout@v3
-      - run: echo "The ${{ gitea.repository }} repository has been cloned to the runner."
-      - name: List files in the repository
-        run: |
-          ls ${{ gitea.workspace }}
+
       - name: Restore Deps
         run : | 
           cd LaDOSE.Src/
@@ -55,5 +52,12 @@ jobs:
           name: build-winx64.zip
           retention-days: 30
           overwrite: true
-      - run: echo "This job's status is ${{ job.status }}."
+
+      - name: Release
+        uses: akkuman/gitea-release-action@v1
+        env:
+        with:
+          files: |-
+            build-winx64.zip
+            build-linux64.zip
 

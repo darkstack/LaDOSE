@@ -4,7 +4,9 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal;
 
 namespace LaDOSE.Api;
 
+#pragma warning disable EF1001
 public class NpgsqlSqlGenerationLowercaseHelper : NpgsqlSqlGenerationHelper
+
 {
         
     static string ToLowerCase(string input) => input.ToLower();
@@ -15,3 +17,4 @@ public class NpgsqlSqlGenerationLowercaseHelper : NpgsqlSqlGenerationHelper
     public override void DelimitIdentifier(StringBuilder builder, string identifier)
         => base.DelimitIdentifier(builder, ToLowerCase(identifier));
 }
+#pragma warning restore EF1001
