@@ -1,0 +1,7 @@
+﻿{
+  "REST": {
+    "Url": "http://localhost:5000",
+    "User": "user",
+    "Password": "password"
+  }
+}

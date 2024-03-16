@@ -11,6 +11,7 @@ jobs:
           sudo apt-get update -y -qq
           sudo apt-get install zip 
           sudo sh -c "echo '192.168.1.253 descartes.local' >> /etc/hosts"
+          sudo sh -c "echo '192.168.1.253 build.ladose.net' >> /etc/hosts"
       - name: GetDNS 
         run: |
           cat /etc/resolv.conf
@@ -35,8 +36,8 @@ jobs:
           dotnet build --configuration Release --os win  LaDOSE.DesktopApp.Avalonia
       - name: Zip file 
         run: |
-          zip -r build-winx64.zip LaDOSE.Src/LaDOSE.DesktopApp.Avalonia/bin/Release/net6.0/win-x64/
-          zip -r build-linux64.zip LaDOSE.Src/LaDOSE.DesktopApp.Avalonia/bin/Release/net6.0/linux-x64/
+          zip -rj build-winx64.zip ./LaDOSE.Src/LaDOSE.DesktopApp.Avalonia/bin/Release/net6.0/win-x64/
+          zip -rj build-linux64.zip ./LaDOSE.Src/LaDOSE.DesktopApp.Avalonia/bin/Release/net6.0/linux-x64/
       - name: Upload Artifact Windows 
         uses: actions/upload-artifact@v3
         with:

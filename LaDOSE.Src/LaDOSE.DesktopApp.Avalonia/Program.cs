@@ -2,7 +2,9 @@
 using Avalonia.ReactiveUI;
 using System;
 using System.ComponentModel;
+using System.IO;
 using LaDOSE.REST;
+using Microsoft.Extensions.Configuration;
 using Splat;
 // using Xilium.CefGlue;
 // using Xilium.CefGlue.Common;
@@ -26,10 +28,15 @@ sealed class Program
 
     private static void RegisterDependencies(IMutableDependencyResolver currentMutable, IReadonlyDependencyResolver current)
     {
+        var builder = new ConfigurationBuilder()
+            .AddJsonFile("settings.json", optional: true, reloadOnChange: true).Build();
+        var restUrl = builder["REST:Url"].ToString();
+        var restUser = builder["REST:User"].ToString();
+        var restPassword = builder["REST:Password"].ToString();
         currentMutable.RegisterLazySingleton<RestService>(()=>
         {
             var restService = new RestService();
-            restService.Connect(new Uri("http://localhost:5000"),"dev","dev");
+            restService.Connect(new Uri(restUrl),restUser,restPassword);
             return restService;
         });
     }
