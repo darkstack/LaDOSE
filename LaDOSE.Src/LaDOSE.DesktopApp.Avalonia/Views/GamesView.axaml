@@ -2,9 +2,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="650"
              x:Class="LaDOSE.DesktopApp.Avalonia.Views.GamesView"
              xmlns:vm="using:LaDOSE.DesktopApp.Avalonia.ViewModels"
+             xmlns:dto="clr-namespace:LaDOSE.DTO;assembly=LaDOSE.DTO"
              x:DataType="vm:GamesViewModel"
              >
    <Grid Row="4" Column="1">
@@ -42,6 +43,7 @@
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
+                
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
       
@@ -71,11 +73,19 @@
             <Label Grid.Row="6" Grid.Column="0">WpTagOs</Label>
             <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding Path=CurrentGame.WordPressTagOs,Mode=TwoWay}" ></TextBox>
             <Label Grid.Row="7" Grid.Column="0">SmashId</Label>
-            <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding Path=CurrentGame.SmashId,Mode=TwoWay}">
+            <AutoCompleteBox Grid.Row="7" Grid.Column="1" Text="{Binding Path=CurrentGame.SmashId,Mode=TwoWay}" ItemsSource="{Binding Path=SearchGame}">
+                <AutoCompleteBox.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel LastChildFill="True" Margin="2" x:DataType="dto:GameDTO">
+                            <TextBox Text="{Binding Id}"></TextBox>
+                            <TextBlock Text="{Binding Name}" DockPanel.Dock="Left"/>
+                        </DockPanel>
+                    </DataTemplate>
+                    </AutoCompleteBox.ItemTemplate>
+            </AutoCompleteBox>
 
-            </TextBox>
-
-            <Button Grid.Row="9" Grid.ColumnSpan="2" x:Name="Update" Command="{Binding Update}">Update</Button>
+            <Button Grid.Row="9"  x:Name="Update" Command="{Binding Update}">Update</Button>
+            <Button Grid.Row="9" Grid.Column="1" x:Name="SmashGame" Command="{Binding GetGame}">Get Game From Smash</Button>
             
         </Grid>
        </Grid>

@@ -120,7 +120,10 @@ namespace LaDOSE.Business.Provider.SmashProvider
 
     }
 
-
+    public class VideoGamesResponse
+    {
+        public Node<VideoGameType>? videogames {get; set; }
+    }
 
 
     public class TournamentResponse

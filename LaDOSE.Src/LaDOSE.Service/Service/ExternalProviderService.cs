@@ -78,6 +78,10 @@ namespace LaDOSE.Business.Service
             //}
         }
 
+        public async Task<List<Game>> GetSmashGames(string name)
+        {
+            return await _smashProvider.GetGames(name);
+        }
         public async Task<Event> ParseSmash(string tournamentSlug)
         {
             Event eventExist = GetBySlug(tournamentSlug);
@@ -107,6 +111,11 @@ namespace LaDOSE.Business.Service
             //NEED TO UPDATE 
             return eventExist;
 
+        }
+
+        public Task<List<Game>> GetSmashGame(string name)
+        {
+            return _smashProvider.GetGames(name);
         }
 
         private Event GetBySlug(string tournamentSlug)

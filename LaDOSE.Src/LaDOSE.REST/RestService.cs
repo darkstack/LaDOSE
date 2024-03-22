@@ -24,6 +24,7 @@ namespace LaDOSE.REST
 
         public event EventHandler<UpdatedJwtEventHandler> UpdatedJwtEvent;
 
+         
         public RestService()
         {
             
@@ -33,7 +34,15 @@ namespace LaDOSE.REST
         public void Connect(Uri url, string user, string password)
         {
             Client = new RestClient(url);
-            string token = GetToken(user, password);
+            string token;
+            try
+            {
+                token = GetToken(user, password);
+            }
+            catch (Exception)
+            {
+                return;
+            }
             Client = new RestClient(url, options =>
             {
 #if DEBUG
@@ -201,6 +210,14 @@ namespace LaDOSE.REST
         {
             CheckToken();
             var restRequest = new RestRequest("/api/Game", Method.Get);
+            var restResponse = Client.Get<List<GameDTO>>(restRequest);
+            return restResponse;
+        }
+        
+        public List<GameDTO> GetSmashGames(string name)
+        {
+            CheckToken();
+            var restRequest = new RestRequest($"/api/Game/Smash/{name}", Method.Get);
             var restResponse = Client.Get<List<GameDTO>>(restRequest);
             return restResponse;
         }

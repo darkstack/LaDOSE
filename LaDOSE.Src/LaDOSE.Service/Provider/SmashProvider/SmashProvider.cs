@@ -47,6 +47,37 @@ namespace LaDOSE.Business.Provider.SmashProvider
             return graphQLResponse.Data;
         }
 
+        public async Task<List<Game>> GetGames(string game)
+        {
+            var query = new GraphQLRequest()
+            {
+                Query = @"
+                    query VideogameQuery($name:String) {
+                      videogames(query: { filter: { name: $name }, perPage: 5 }) {
+                        nodes {
+                          id
+                          name
+                          displayName
+                        }
+                      }
+                    }
+                ",
+                OperationName = "VideogameQuery",
+                Variables = new
+                {
+                    name = game,
+                }
+            };
+            VideoGamesResponse querySmash = await QuerySmash<VideoGamesResponse>(query);
+            if (querySmash.videogames != null)
+            {
+                return querySmash.videogames.nodes.Select(e => new Game() { Id = e.id, Name = e.Name }).ToList();
+            }
+
+            return new List<Game>();
+
+        }
+
         public async Task<Event> GetEvent(string slug)
         {
 

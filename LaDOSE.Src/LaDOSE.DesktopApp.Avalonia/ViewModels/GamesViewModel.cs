@@ -18,6 +18,7 @@ namespace LaDOSE.DesktopApp.Avalonia.ViewModels
 
         private GameDTO _currentGame;
         private List<GameDTO> _games;
+        private List<GameDTO> _Searchgames;
         private RestService RestService { get; set; }
         public GamesViewModel(IScreen screen): base(screen,"Games")
         {
@@ -25,6 +26,7 @@ namespace LaDOSE.DesktopApp.Avalonia.ViewModels
             this.Games=new List<GameDTO>();
             OnInitialize();
         }
+        
         
         void OnInitialize()
         {
@@ -49,6 +51,15 @@ namespace LaDOSE.DesktopApp.Avalonia.ViewModels
             }
         }
 
+        public List<GameDTO> SearchGame
+        {
+            get => _Searchgames;
+            set
+            {
+                _Searchgames = value;
+                RaisePropertyChanged(nameof(this.SearchGame));
+            }
+        }
         public GameDTO CurrentGame
         {
             get => _currentGame;
@@ -79,6 +90,10 @@ namespace LaDOSE.DesktopApp.Avalonia.ViewModels
             LoadGames();
         }
 
+        public void GetGame()
+        {
+            SearchGame = this.RestService.GetSmashGames(this.CurrentGame.LongName);
+        }
         public bool CanDeleteGame => CurrentGame != null;
 
 

@@ -17,8 +17,17 @@ namespace LaDOSE.Api.Controllers
     [Produces("application/json")]
     public class GameController : GenericControllerDTO<IGameService, Game, GameDTO>
     {
-        public GameController(IMapper mapper,IGameService service) : base(mapper,service)
+        private IExternalProviderService provider;
+        public GameController(IMapper mapper,IGameService service, IExternalProviderService service2) : base(mapper,service)
         {
+            provider = service2;
+        }
+        [HttpGet("smash/{name}")]
+        public async Task<List<GameDTO>> GetIdFromSmash(string name)
+        {
+            var smashGame = await provider.GetSmashGame(name);
+            
+            return _mapper.Map<List<GameDTO>>(smashGame);;
         }
     }
 }

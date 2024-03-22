@@ -24,6 +24,7 @@ using LaDOSE.Entity.Wordpress;
 using Result = LaDOSE.Entity.Challonge.Result;
 using LaDOSE.Entity.BotEvent;
 using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.Extensions.Hosting;
 
 namespace LaDOSE.Api
 {
@@ -163,7 +164,7 @@ namespace LaDOSE.Api
 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostEnvironment env, ILoggerFactory loggerFactory)
         {
             //loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             //loggerFactory.AddDebug();

@@ -14,14 +14,14 @@ namespace LaDOSE.DesktopApp.Avalonia.Utils
                 _compare = c;
             }
 
-            public bool Equals(T x, T y)
+            public bool Equals(T? x, T? y)
             {
                 return _compare(x, y);
             }
 
             public int GetHashCode(T obj)
             {
-                return 0;
+                return obj.GetHashCode();
             }
         }
     }

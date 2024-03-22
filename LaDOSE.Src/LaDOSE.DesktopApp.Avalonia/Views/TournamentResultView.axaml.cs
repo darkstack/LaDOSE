@@ -24,7 +24,7 @@ namespace LaDOSE.DesktopApp.Avalonia.Views
         object? IViewFor.ViewModel
         {
             get => ViewModel;
-            set => ViewModel = (TournamentResultViewModel)value;
+            set => ViewModel = (TournamentResultViewModel)value!;
         }
 
         public TournamentResultViewModel? ViewModel { get; set; }

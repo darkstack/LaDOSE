@@ -21,16 +21,16 @@ namespace LaDOSE.DesktopApp.Avalonia.ViewModels
     {
         public string DisplayName => "Tournament Result";
 
-        private RestService RestService { get; set; }
+        private RestService? RestService { get; set; }
         //Dictionary<string, Dictionary<int, int>> _computedResult;
 
         #region Properties
 
         private string css = string.Empty;
      
-        private String _selectRegex;
+        private string? _selectRegex;
 
-        public String SelectRegex
+        public string? SelectRegex
         {
             get { return _selectRegex; }
             set
@@ -40,9 +40,9 @@ namespace LaDOSE.DesktopApp.Avalonia.ViewModels
             }
         }
 
-        private String _selectEventRegex;
+        private string? _selectEventRegex;
 
-        public String SelectEventRegex
+        public string? SelectEventRegex
         {
             get { return _selectEventRegex; }
             set
@@ -51,8 +51,8 @@ namespace LaDOSE.DesktopApp.Avalonia.ViewModels
                 RaisePropertyChanged(nameof(SelectEventRegex));
             }
         }
-        private string _slug;
-        public String Slug
+        private string? _slug;
+        public string? Slug
         {
             get { return _slug; }
             set
@@ -62,9 +62,9 @@ namespace LaDOSE.DesktopApp.Avalonia.ViewModels
             }
         }
 
-        private String _html;
+        private string? _html;
 
-        public String Html
+        public string? Html
         {
             get { return $"<html><head><style>{this.css}</style></head><body>{HtmlContent}</body></html>";   }
             set
@@ -72,9 +72,9 @@ namespace LaDOSE.DesktopApp.Avalonia.ViewModels
                 _html = value;
             }
         }
-        private String _htmlContent;
+        private string? _htmlContent;
 
-        public String HtmlContent
+        public string? HtmlContent
         {
             get { return _htmlContent; }
             set
@@ -112,12 +112,12 @@ namespace LaDOSE.DesktopApp.Avalonia.ViewModels
         }
 
 
-        private TournamentsResultDTO _results;
+        private TournamentsResultDTO? _results;
         public List<TournamentDTO> Tournaments { get; set; }
 
         public List<EventDTO> Events { get; set; }
 
-        public TournamentsResultDTO Results
+        public TournamentsResultDTO? Results
         {
             get => _results;
             set
@@ -151,10 +151,10 @@ namespace LaDOSE.DesktopApp.Avalonia.ViewModels
             }
         }
 
-        private GameDTO _selectedGame;
+        private GameDTO? _selectedGame;
 
 
-        public GameDTO SelectedGame
+        public GameDTO? SelectedGame
         {
             get { return _selectedGame; }
             set
@@ -172,9 +172,9 @@ namespace LaDOSE.DesktopApp.Avalonia.ViewModels
             }
         }
 
-        private ObservableCollection<ResultDTO> _selectedGameResult;
+        private ObservableCollection<ResultDTO>? _selectedGameResult;
 
-        public ObservableCollection<ResultDTO> SelectedGameResult
+        public ObservableCollection<ResultDTO>? SelectedGameResult
         {
             get { return _selectedGameResult; }
             set
@@ -184,11 +184,11 @@ namespace LaDOSE.DesktopApp.Avalonia.ViewModels
             }
         }
 
-        private String _first;
-        private DataTable _gridDataTable;
-        private string _error;
+        private string? _first;
+        private DataTable? _gridDataTable;
+        private string? _error;
 
-        public String First
+        public string? First
         {
             get { return _first; }
             set
@@ -252,7 +252,7 @@ namespace LaDOSE.DesktopApp.Avalonia.ViewModels
            
         }
 
-        public DataTable GridDataTable
+        public DataTable? GridDataTable
         {
             get => _gridDataTable;
             set
@@ -262,7 +262,7 @@ namespace LaDOSE.DesktopApp.Avalonia.ViewModels
                 RaisePropertyChanged(nameof(GridDataTableView));
             }
         }
-        public DataView GridDataTableView
+        public DataView? GridDataTableView
         {
             get
             {
@@ -293,7 +293,7 @@ namespace LaDOSE.DesktopApp.Avalonia.ViewModels
           
         }
 
-        public string Error
+        public string? Error
         {
             get => _error;
             set
@@ -356,7 +356,7 @@ namespace LaDOSE.DesktopApp.Avalonia.ViewModels
 
             StringBuilder sb = new StringBuilder();
 
-            DataTable grid = new DataTable();
+            DataTable? grid = new DataTable();
             var games = Results.Games.Distinct().OrderBy(e => e.Order).ToList();
             grid.Columns.Add("Players");
             games.ForEach(e => grid.Columns.Add(e.Name.Replace('.', ' '),typeof(Int32)));
@@ -468,7 +468,7 @@ namespace LaDOSE.DesktopApp.Avalonia.ViewModels
                 {
                     sb.AppendLine($"<br> 1/ {top3[0]}<br> 2/ {top3[1]}<br> 3/ {top3[2]} <br>");
                     //<a href=\"https://challonge.com/fr/{enumerable.First().TournamentUrl}\" target=\"_blank\">https://challonge.com/fr/{enumerable.First().TournamentUrl}</a>
-                    var url = enumerable.FirstOrDefault().TournamentUrl;
+                    string url = enumerable.FirstOrDefault()?.TournamentUrl;
                     url = url.Replace(" ", "-");
                     url = url.Replace(".", "-");
                     sb.AppendLine($"<a href=\"https://smash.gg/tournament/ranking-1002/event/{url}\" target=\"_blank\">Voir le Bracket</p></td>");

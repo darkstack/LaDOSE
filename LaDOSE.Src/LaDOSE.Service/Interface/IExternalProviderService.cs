@@ -10,6 +10,9 @@ namespace LaDOSE.Business.Interface
     {
         Task<List<ChallongeTournament>> GetTournaments(DateTime? start, DateTime? end);
         Task<Event> ParseSmash(string tournamentSlug);
+
+        Task<List<Game>> GetSmashGame(string name);
+        
         //Task<List<Event>> ParseChallonge(List<int> ids);
 
         //Task<TournamentsResult> GetChallongeTournamentsResult(List<int> ids);

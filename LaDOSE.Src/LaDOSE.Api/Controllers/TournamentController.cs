@@ -19,7 +19,7 @@ namespace LaDOSE.Api.Controllers
 
         private IMapper _mapper;
 
-        // GET
+        // GETawa
         public TournamentController(IMapper mapper, IExternalProviderService service)
         {
             _mapper = mapper;

@@ -10,7 +10,7 @@ public class MainWindowViewModel : Window
 
     public void CloseApp()
     {
-        if (Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime)
-            ((IClassicDesktopStyleApplicationLifetime)Application.Current.ApplicationLifetime).Shutdown();
+        if (Application.Current != null && Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime)
+            ((Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)!).Shutdown();
     }
 }

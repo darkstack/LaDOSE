@@ -3,6 +3,8 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using LaDOSE.DesktopApp.Avalonia.ViewModels;
 using LaDOSE.DesktopApp.Avalonia.Views;
+using LaDOSE.REST;
+using MsBox.Avalonia;
 using ReactiveUI;
 using Splat;
 
@@ -10,6 +12,10 @@ namespace LaDOSE.DesktopApp.Avalonia;
 
 public partial class App : Application
 {
+
+    
+    
+
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);

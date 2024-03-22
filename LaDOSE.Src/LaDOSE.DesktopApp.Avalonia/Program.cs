@@ -5,6 +5,8 @@ using System.ComponentModel;
 using System.IO;
 using LaDOSE.REST;
 using Microsoft.Extensions.Configuration;
+using MsBox.Avalonia;
+using MsBox.Avalonia.Enums;
 using Splat;
 // using Xilium.CefGlue;
 // using Xilium.CefGlue.Common;
@@ -22,23 +24,36 @@ sealed class Program
     public static void Main(string[] args)
     {
         RegisterDependencies(Locator.CurrentMutable, Locator.Current);
-        BuildAvaloniaApp()
-            .StartWithClassicDesktopLifetime(args);  
+
+        var app = BuildAvaloniaApp();
+        app.StartWithClassicDesktopLifetime(args);  
     }
 
     private static void RegisterDependencies(IMutableDependencyResolver currentMutable, IReadonlyDependencyResolver current)
     {
-        var builder = new ConfigurationBuilder()
-            .AddJsonFile("settings.json", optional: true, reloadOnChange: true).Build();
-        var restUrl = builder["REST:Url"].ToString();
-        var restUser = builder["REST:User"].ToString();
-        var restPassword = builder["REST:Password"].ToString();
-        currentMutable.RegisterLazySingleton<RestService>(()=>
-        {
-            var restService = new RestService();
-            restService.Connect(new Uri(restUrl),restUser,restPassword);
-            return restService;
-        });
+
+            var builder = new ConfigurationBuilder()
+                .AddJsonFile("settings.json", optional: true, reloadOnChange: true).Build();
+            var restUrl = builder["REST:Url"].ToString();
+            var restUser = builder["REST:User"].ToString();
+            var restPassword = builder["REST:Password"].ToString();
+            
+            currentMutable.RegisterLazySingleton<RestService>(() =>
+            {        
+                    var restService = new RestService();
+                    try
+                    {
+                        restService.Connect(new Uri(restUrl), restUser, restPassword);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                        
+                    }
+                    
+                    return restService;
+            });
+
     }
 
     // Avalonia configuration, don't remove; also used by visual designer.
@@ -48,13 +63,5 @@ sealed class Program
             .UsePlatformDetect()
             .WithInterFont()
             .LogToTrace()
-            .AfterSetup(_ =>
-            {
-                // CefRuntimeLoader.Initialize(new CefSettings()
-                // {
-                //     WindowlessRenderingEnabled = true,
-                //     NoSandbox = true,
-                // });
-            })
             .UseReactiveUI();
 }
