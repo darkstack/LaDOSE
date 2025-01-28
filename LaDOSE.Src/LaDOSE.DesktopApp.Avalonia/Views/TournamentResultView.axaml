@@ -207,6 +207,6 @@
            
 
         </Grid>
-        <Button Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"  x:Name="Export" Command="{Binding Export}">Export</Button>
+        <Button Grid.Column="0" Grid.Row="4"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"  x:Name="Export" Command="{Binding Export}">Export</Button>
     </Grid>
 </UserControl>

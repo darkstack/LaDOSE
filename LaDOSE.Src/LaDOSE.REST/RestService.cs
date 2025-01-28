@@ -34,6 +34,8 @@ namespace LaDOSE.REST
         public void Connect(Uri url, string user, string password)
         {
             Client = new RestClient(url);
+            this.username = user;
+            this.password = password;
             string token;
             try
             {
@@ -51,8 +53,7 @@ namespace LaDOSE.REST
                 options.Authenticator = new JwtAuthenticator(token);
             });
 
-            this.username = user;
-            this.password = password;
+
             
         }
 

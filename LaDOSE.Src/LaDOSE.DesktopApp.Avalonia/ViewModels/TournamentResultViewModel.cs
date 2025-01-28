@@ -244,7 +244,7 @@ namespace LaDOSE.DesktopApp.Avalonia.ViewModels
         public void LoadEvents()
         {
     
-                var eventsDtos = this.RestService
+                List<EventDTO> eventsDtos = this.RestService
                     .GetAllEvents().ToList();
                 this.Events = eventsDtos;
 
@@ -274,8 +274,8 @@ namespace LaDOSE.DesktopApp.Avalonia.ViewModels
         public void Select()
         {
       
-                var tournamentsIds = SelectedEvents.Select(e => e.Id).ToList();
-                var resultsDto = this.RestService.GetResults(tournamentsIds);
+                List<int> tournamentsIds = SelectedEvents.Select(e => e.Id).ToList();
+                TournamentsResultDTO? resultsDto = this.RestService.GetResults(tournamentsIds);
                 this.Results = resultsDto;
                 ComputeDataGrid();
                 ComputeHtml();
@@ -285,7 +285,7 @@ namespace LaDOSE.DesktopApp.Avalonia.ViewModels
         {
 
               
-                var resultsDto = this.RestService.ParseSmash(Slug);
+                bool resultsDto = this.RestService.ParseSmash(Slug);
                 if (!resultsDto)
                 {
                     Error = "Error getting Smash";
@@ -307,8 +307,8 @@ namespace LaDOSE.DesktopApp.Avalonia.ViewModels
         public void GetChallonge()
         {
            
-                var ids = SelectedTournaments.Select(e => e.ChallongeId).ToList();
-                var resultsDto = this.RestService.ParseChallonge(ids);
+                List<int> ids = SelectedTournaments.Select(e => e.ChallongeId).ToList();
+                bool resultsDto = this.RestService.ParseChallonge(ids);
                 if (!resultsDto)
                 {
                     Error = "Fail";
@@ -334,14 +334,14 @@ namespace LaDOSE.DesktopApp.Avalonia.ViewModels
 
         public void SelectRegexp()
         {
-            var selectedTournaments = this.Tournaments.Where(e => Regex.IsMatch(e.Name, this.SelectRegex)).ToList();
+            List<TournamentDTO> selectedTournaments = this.Tournaments.Where(e => Regex.IsMatch(e.Name, this.SelectRegex)).ToList();
             this.SelectedTournaments.Clear();
             if (selectedTournaments.Count > 0)
                 selectedTournaments.ForEach(e => this.SelectedTournaments.Add(e));
         }
         public void SelectEvent()
         {
-            var selectedEvents = this.Events.Where(e => Regex.IsMatch(e.Name, this.SelectEventRegex)).ToList();
+            List<EventDTO> selectedEvents = this.Events.Where(e => Regex.IsMatch(e.Name, this.SelectEventRegex)).ToList();
             this.SelectedEvents.Clear();
             if (selectedEvents.Count > 0)
                 selectedEvents.ForEach(e => this.SelectedEvents.Add(e));
@@ -349,7 +349,7 @@ namespace LaDOSE.DesktopApp.Avalonia.ViewModels
         //This could be simplified the Dictionary was for a previous usage, but i m too lazy to rewrite it. 
         private void ComputeDataGrid()
         {
-            var resultsParticipents = this.Results.Participents.Select(e=>e.Name).Distinct(new CustomListExtension.EqualityComparer<String>((a, b) => a.ToUpperInvariant()== b.ToUpperInvariant())).OrderBy(e=>e).ToList();
+            List<string> resultsParticipents = this.Results.Participents.Select(e=>e.Name).Distinct(new CustomListExtension.EqualityComparer<String>((a, b) => a.ToUpperInvariant()== b.ToUpperInvariant())).OrderBy(e=>e).ToList();
             //At start the dictionnary was for some fancy dataviz things, but since the point are inside
             //i m to lazy to rewrite this functions (this is so ugly...)
             //_computedResult = ResultsToDataDictionary(resultsParticipents);
@@ -357,7 +357,7 @@ namespace LaDOSE.DesktopApp.Avalonia.ViewModels
             StringBuilder sb = new StringBuilder();
 
             DataTable? grid = new DataTable();
-            var games = Results.Games.Distinct().OrderBy(e => e.Order).ToList();
+            List<GameDTO> games = Results.Games.Distinct().OrderBy(e => e.Order).ToList();
             grid.Columns.Add("Players");
             games.ForEach(e => grid.Columns.Add(e.Name.Replace('.', ' '),typeof(Int32)));
             grid.Columns.Add("Total").DataType = typeof(Int32);
@@ -365,16 +365,17 @@ namespace LaDOSE.DesktopApp.Avalonia.ViewModels
 
             for (int i = 0; i < resultsParticipents.Count; i++)
             {
-                var dataRow = grid.Rows.Add();
-                var resultsParticipent = resultsParticipents[i];
+                DataRow dataRow = grid.Rows.Add();
+                string resultsParticipent = resultsParticipents[i];
                 int total = 0;
                 dataRow["Players"] = resultsParticipent;
 
 
                 for (int j = 0; j < games.Count; j++)
                 {
-                    var resultsGame = Results.Games[j];
-                    var points = GetPlayerPoint(resultsParticipent, resultsGame.Id);
+                    GameDTO? resultsGame = Results.Games[j];
+                    int points = GetPlayerPoint(resultsParticipent, resultsGame.Id);
+                    var o = dataRow[resultsGame.Name.Replace('.', ' ')];
                     dataRow[resultsGame.Name.Replace('.', ' ')] = points!=0?points:0;
                     total += points;
                 }
@@ -434,10 +435,10 @@ namespace LaDOSE.DesktopApp.Avalonia.ViewModels
 
             int columns = 0;
 
-            var distinct = Results.Results.Select(e => e.GameId).Distinct();
+            IEnumerable<int> distinct = Results.Results.Select(e => e.GameId).Distinct();
 
-            var gamePlayed = Results.Games.Where(e=> distinct.Contains(e.Id)).OrderBy(e=>e.Order);
-            foreach (var game in gamePlayed)
+            IOrderedEnumerable<GameDTO> gamePlayed = Results.Games.Where(e=> distinct.Contains(e.Id)).OrderBy(e=>e.Order);
+            foreach (GameDTO game in gamePlayed)
             {
                 List<ResultDTO> enumerable = Results.Results.Where(r => r.GameId == game.Id).ToList();
                 List<string> top3 = enumerable.OrderBy(e => e.Rank).Take(3).Select(e => e.Player).ToList();
@@ -451,7 +452,7 @@ namespace LaDOSE.DesktopApp.Avalonia.ViewModels
                     sb.Append("<tr>");
                 }
                 columns++;
-                var span = 1;
+                int span = 1;
                 if (columns == gamePlayed.Count())
                 {
                     if (columns % 2 != 0)
