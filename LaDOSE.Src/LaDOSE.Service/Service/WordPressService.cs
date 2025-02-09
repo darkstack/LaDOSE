@@ -42,14 +42,7 @@ namespace LaDOSE.Business.Service
                 .Include(e => e.WPBookings).ThenInclude(e => e.WPUser).FirstOrDefault(e => Enumerable.Count<WPBooking>(e.WPBookings) != 0);
             return wpEvents;
         }
-
-        public bool UpdateBooking()
-        {
-            _context.Database.SetCommandTimeout(60);
-            _context.Database.ExecuteSqlRaw("call ladoseapi.ImportEvent();");
-            _context.Database.SetCommandTimeout(30);
-            return true;
-        }
+        
         public List<WPUser> GetBooking(int wpEventId, Game game)
         {
             var selectedGameWpId = game.WordPressTag.Split(';');

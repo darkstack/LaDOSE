@@ -29,13 +29,19 @@ namespace LaDOSE.REST
         {
             
         }
-    
-
-        public void Connect(Uri url, string user, string password)
+        public RestService(Uri url, string user, string password)
         {
             Client = new RestClient(url);
             this.username = user;
             this.password = password;
+        }
+    
+
+        public void Connect(Uri url, string user, string password)
+        {
+            // Client = new RestClient(url);
+            // this.username = user;
+            // this.password = password;
             string token;
             try
             {
@@ -79,7 +85,7 @@ namespace LaDOSE.REST
 
         private void CheckToken()
         {
-            if (this.Auth == null || this.Auth.Expire <= DateTime.Now)
+            if (this.Auth == null || this.Auth.Expire.ToUniversalTime() <= DateTime.Now.ToUniversalTime())
             {
                 GetToken(this.username,this.password);
             }

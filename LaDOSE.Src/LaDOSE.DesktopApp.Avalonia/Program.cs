@@ -38,9 +38,9 @@ sealed class Program
             var restUser = builder["REST:User"].ToString();
             var restPassword = builder["REST:Password"].ToString();
             
-            currentMutable.RegisterLazySingleton<RestService>(() =>
+            currentMutable.Register<RestService>(() =>
             {        
-                    var restService = new RestService();
+                    var restService = new RestService(new Uri(restUrl), restUser, restPassword);
                     try
                     {
                         restService.Connect(new Uri(restUrl), restUser, restPassword);
@@ -53,7 +53,7 @@ sealed class Program
                     
                     return restService;
             });
-
+            
     }
 
     // Avalonia configuration, don't remove; also used by visual designer.

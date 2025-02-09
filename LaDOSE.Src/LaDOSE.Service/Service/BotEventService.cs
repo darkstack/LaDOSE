@@ -6,6 +6,7 @@ using LaDOSE.Entity.BotEvent;
 using LaDOSE.Entity.Context;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace LaDOSE.Business.Service
 {
     public class BotEventService : BaseService<BotEvent>, IBotEventService

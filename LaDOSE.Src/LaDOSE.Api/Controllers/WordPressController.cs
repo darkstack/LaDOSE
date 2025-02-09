@@ -77,7 +77,7 @@ namespace LaDOSE.Api.Controllers
         [HttpGet("UpdateDb")]
         public bool UpdateDb()
         {
-            return _service.UpdateBooking();
+            return false;
         }
 
         [HttpGet("CreateChallonge/{gameId:int}/{wpEventId:int}")]
