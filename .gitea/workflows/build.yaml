@@ -19,7 +19,7 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           # Semantic version range syntax or exact version of a dotnet version
-          dotnet-version: '6.x'
+          dotnet-version: '8.x'
 
       - run: echo "Build."
       - name: Check out repository code
@@ -36,8 +36,8 @@ jobs:
           dotnet build --configuration Release --os win  LaDOSE.DesktopApp.Avalonia
       - name: Zip file 
         run: |
-          zip -rj build-winx64.zip ./LaDOSE.Src/LaDOSE.DesktopApp.Avalonia/bin/Release/net6.0/win-x64/
-          zip -rj build-linux64.zip ./LaDOSE.Src/LaDOSE.DesktopApp.Avalonia/bin/Release/net6.0/linux-x64/
+          zip -rj build-winx64.zip ./LaDOSE.Src/LaDOSE.DesktopApp.Avalonia/bin/Release/net8.0/win-x64/
+          zip -rj build-linux64.zip ./LaDOSE.Src/LaDOSE.DesktopApp.Avalonia/bin/Release/net8.0/linux-x64/
       - name: Upload Artifact Windows 
         uses: actions/upload-artifact@v3
         with:
