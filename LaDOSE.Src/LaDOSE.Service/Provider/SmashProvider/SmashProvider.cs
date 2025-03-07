@@ -15,6 +15,7 @@ namespace LaDOSE.Business.Provider.SmashProvider
 {
     public class SmashProvider : ISmashProvider
     {
+        private static string API_FQDN = "api.start.gg";
         public string ApiKey { get; set; }
         //public SmashProvider(string apiKey)
         //{
@@ -34,7 +35,7 @@ namespace LaDOSE.Business.Provider.SmashProvider
 
         private async Task<T> QuerySmash<T>(GraphQLRequest req)
         {
-            var graphQLClient = new GraphQLHttpClient("https://api.smash.gg/gql/alpha", new NewtonsoftJsonSerializer());
+            var graphQLClient = new GraphQLHttpClient($"https://{API_FQDN}/gql/alpha", new NewtonsoftJsonSerializer());
             graphQLClient.HttpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {ApiKey}");
 
             var graphQLResponse = await graphQLClient.SendQueryAsync<T>(req);
@@ -346,7 +347,7 @@ namespace LaDOSE.Business.Provider.SmashProvider
                public async Task<TournamentResponse> GetNames(string slug)
         {
 
-            var graphQLClient = new GraphQLHttpClient("https://api.smash.gg/gql/alpha", new NewtonsoftJsonSerializer());
+            var graphQLClient = new GraphQLHttpClient($"https://{API_FQDN}/gql/alpha", new NewtonsoftJsonSerializer());
             graphQLClient.HttpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {ApiKey}");
             var Event = new GraphQLRequest
             {
@@ -412,7 +413,7 @@ namespace LaDOSE.Business.Provider.SmashProvider
         public async Task<TournamentResponse> GetTournament(string slug)
         {
 
-            var graphQLClient = new GraphQLHttpClient("https://api.smash.gg/gql/alpha", new NewtonsoftJsonSerializer());
+            var graphQLClient = new GraphQLHttpClient($"https://{API_FQDN}/gql/alpha", new NewtonsoftJsonSerializer());
             graphQLClient.HttpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {ApiKey}");
             var Event = new GraphQLRequest
             {

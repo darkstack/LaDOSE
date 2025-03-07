@@ -223,8 +223,8 @@ namespace LaDOSE.DesktopApp.Avalonia.ViewModels
             this.To = new DateTimeOffset(DateTime.Now);
             this.From = new DateTimeOffset(DateTime.Now.AddMonths(-1));
             this.SelectRegex = "Ranking";
-            this.SelectEventRegex = @"Ranking #10\d{2}";
-            this.Slug = "ranking-1001";
+            this.SelectEventRegex = @"Ranking #13\d{2}";
+            this.Slug = "ranking-130";
             
             LoadTournaments();
             LoadEvents();
@@ -472,7 +472,7 @@ namespace LaDOSE.DesktopApp.Avalonia.ViewModels
                     string url = enumerable.FirstOrDefault()?.TournamentUrl;
                     url = url.Replace(" ", "-");
                     url = url.Replace(".", "-");
-                    sb.AppendLine($"<a href=\"https://smash.gg/tournament/ranking-1002/event/{url}\" target=\"_blank\">Voir le Bracket</p></td>");
+                    sb.AppendLine($"<a href=\"https://start.gg/tournament/{Results.Slug}/event/{url}\" target=\"_blank\">Voir le Bracket</p></td>");
                 }
 
                 

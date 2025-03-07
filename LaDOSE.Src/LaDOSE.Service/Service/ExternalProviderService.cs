@@ -148,10 +148,14 @@ namespace LaDOSE.Business.Service
                 players = players.Concat(e.Tournaments.SelectMany(e => e.Results.Select(e => e.Player)).Distinct().ToList()).ToList();
                 cevent.Tournaments = cevent.Tournaments.Concat(e.Tournaments).ToList();
             }
-
+            
             var games = _context.Game.ToList();
 
             TournamentsResult result = new TournamentsResult();
+            if (id.Count == 1)
+            {
+                result.Slug = _context.Event.Where(e=> e.Id == id.First()).First().SmashSlug;
+            }
             result.Results = new List<Result>();
             result.Games = new List<Game>();
             result.Participents = new List<ChallongeParticipent>();

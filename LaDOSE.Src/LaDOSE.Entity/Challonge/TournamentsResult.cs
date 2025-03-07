@@ -9,6 +9,7 @@ namespace LaDOSE.Entity.Challonge
         public List<Game> Games{ get; set; }
 
         public List<Result> Results { get; set; }
+        public string Slug { get; set; }
     }
 
     public class Result

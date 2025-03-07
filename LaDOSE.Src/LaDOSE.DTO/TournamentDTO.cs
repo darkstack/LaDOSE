@@ -27,6 +27,8 @@ namespace LaDOSE.DTO
         public List<GameDTO> Games { get; set; }
 
         public List<ResultDTO> Results { get; set; }
+        
+        public string Slug { get; set; }
     }
     public class ResultDTO
     {
